@@ -1,0 +1,60 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/mnu_open"
+          android:title="@string/mnuOpen">
+        <menu>
+            <item
+                android:id="@+id/mnu_open_verse"
+                android:title="@string/mnuOpenVerse" />
+            <item
+                android:id="@+id/mnu_open_chapter"
+                android:title="@string/mnuOpenChapter" />
+            <item
+                android:id="@+id/mnu_open_result"
+                android:title="@string/mnuOpenResult" />
+        </menu>
+    </item>
+    <item android:id="@+id/mnu_copy"
+          android:title="@string/mnuCopy">
+        <menu>
+            <item
+                android:id="@+id/mnu_copy_verse_to_clipboard"
+                android:title="@string/mnuCopyVerseToClipboard" />
+            <item
+                android:id="@+id/mnu_copy_chapter_to_clipboard"
+                android:title="@string/mnuCopyChapterToClipboard" />
+            <item
+                android:id="@+id/mnu_copy_result_to_clipboard"
+                android:title="@string/mnuCopyResultToClipboard" />
+        </menu>
+    </item>
+    <item android:id="@+id/mnu_share"
+          android:title="@string/mnuShare">
+        <menu>
+            <item
+                android:id="@+id/mnu_share_verse"
+                android:title="@string/mnuShareVerse" />
+            <item
+                android:id="@+id/mnu_share_chapter"
+                android:title="@string/mnuShareChapter" />
+            <item
+                android:id="@+id/mnu_share_result"
+                android:title="@string/mnuShareResult" />
+        </menu>
+    </item>
+    <item android:id="@+id/mnu_note"
+          android:title="@string/mnuNote">
+        <menu>
+            <item
+                android:id="@+id/mnu_add_note"
+                android:title="@string/mnuNoteFavAdd" />
+            <item
+                android:id="@+id/mnu_add_reading"
+                android:title="@string/mnuNoteReadingAdd" />
+            <item
+                android:id="@+id/mnu_remove_note"
+                android:title="@string/mnuNoteRemove" />
+        </menu>
+    </item>
+</menu>

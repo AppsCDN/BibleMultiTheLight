@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lvMain"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <!-- Toolbar -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/lvTest"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="5dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    android:visibility="gone"/>
+
+            </android.support.design.widget.AppBarLayout>
+        </LinearLayout>
+
+        <!--
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:ciId="@+ciId/lvTest"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:ciId="@+ciId/etSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recherche"
+                    />
+
+                <ImageButton
+                    android:ciId="@+ciId/ibSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/abc_ic_search_api_material"/>
+            </LinearLayout>
+        -->
+
+        <!-- Books -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@color/colorPrimary">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" &lt;"
+                android:background="#80000000"
+                android:gravity="top|left|bottom"
+                android:textColor="@color/foreground_material_dark"/>
+
+            <TextView
+                android:id="@+id/tvBookTitle"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_weight="1"
+                android:textColor="@color/foreground_material_dark"
+                android:background="#80000000"
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"
+                android:longClickable="false"
+                android:singleLine="true"
+                android:text="@string/tvBookTitle"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="> "
+                android:id="@+id/btnForward"
+                android:layout_weight="0"
+                android:background="#80000000"
+                android:gravity="top|bottom|right"
+                android:textColor="@color/foreground_material_dark"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/sv1"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:minLines="1"
+                android:scrollIndicators="right"/>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/lvDivider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <SeekBar
+                android:id="@+id/skDivider"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/ivDivider"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/bottom_bar"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:layout_weight="1"/>
+
+            <SeekBar
+                android:id="@+id/skTextSize"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/sv2"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:minLines="1"
+                android:scrollIndicators="right"/>
+
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bookTitleForeground" format="color" />
+    <attr name="cardBgColor" format="color" />
+    <attr name="cardFgColor" format="color" />
+</resources>

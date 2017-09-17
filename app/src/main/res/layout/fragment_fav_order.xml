@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llFavOrderBy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnFavOrder0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FAV_ORDER0"
+        android:tag="0" />
+
+    <Button
+        android:id="@+id/btnFavOrder1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FAV_ORDER1"
+        android:tag="1" />
+
+    <Button
+        android:id="@+id/btnFavOrder2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FAV_ORDER2"
+        android:tag="2" />
+
+</LinearLayout>

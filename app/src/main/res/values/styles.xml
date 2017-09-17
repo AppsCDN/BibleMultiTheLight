@@ -1,0 +1,129 @@
+<resources>
+    <style name="AppTheme" parent="AppThemeLight">
+    </style>
+
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/red</item>
+        <item name="cardBgColor">@color/cardview_light_background</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/red</item>
+        <item name="cardBgColor">@color/cardview_dark_background</item>
+    </style>
+
+<!-- not functionning, maybe level 23
+    <item name="checkboxStyle">@style/CheckboxStyleDark</item>
+    <style name="CheckboxStyleDark" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+-->
+
+    <style name="AppThemeDev" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blueDark</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/blue</item>        <!-- Selected Tab header -->
+        <item name="cardBgColor">@color/cardview_light_background</item>
+    </style>
+<!-- bak
+    <style name="AppThemeKaki" parent="AppThemeLight">
+        <item name="colorPrimary">@color/kaki</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:colorBackground">@color/kakiDark</item>
+        <item name="cardBgColor">@color/kaki</item>
+    </style>
+-->
+<!-- Fort bien, fo rester dans les khaki :)
+    <style name="AppThemeKaki" parent="AppThemeLight">
+        <item name="colorPrimary">@color/kakiDark</item>
+        <item name="colorPrimaryDark">@color/kakiDark</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:colorBackground">@color/kakiDark</item>
+        <item name="cardBgColor">@color/kaki</item>
+    </style>
+-->
+    <!-- khaki2 est proche de khaki apparement-->
+    <style name="AppThemeKaki" parent="AppThemeLight">
+        <item name="colorPrimary">@color/kakiDark</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:colorBackground">@color/kakiDark</item>
+        <item name="android:dialogTheme">@style/DialogStyleKaki</item>
+        <!--<item name="android:popupMenuStyle">@style/PopupMenuStyleKaki</item>-->
+        <item name="android:listViewStyle">@style/ListViewStyleKaki</item>
+        <!--<item name="android:buttonStyleToggle">@style/ButtonStyleKaki</item>-->
+        <item name="cardBgColor">@color/kaki</item>
+        <item name="cardFgColor">@color/test2</item>
+    </style>
+
+    <style name="DialogStyleKaki" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:alertDialogStyle">@style/TitleStyleKaki</item>
+        <item name="android:background">@color/kakiDark</item>
+    </style>
+
+    <style name="ListViewStyleKaki" parent="@android:style/Widget.ListView.Menu">
+        <item name="android:background">@color/kakiDark</item>
+        <item name="android:listSelector">@color/kakiDark</item>
+    </style>
+
+
+    <!-- dont' work !!! -->
+    <!-- holo always installed? -->
+    <style name="ButtonStyleKaki">
+        <item name="android:colorPrimary">@color/white</item>
+    </style>
+
+    <style name="TitleStyleKaki">
+        <item name="android:windowBackground">@color/kakiDark</item>
+    </style>
+
+    <style name="PopupMenuStyleKaki">
+        <item name="android:popupBackground">@color/red</item>
+    </style>
+
+
+    <!--
+    <style name="PopupMenuKaki" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/kakiDark</item>
+    </style>
+    -->
+
+    <!--
+        <style name="AppTheme.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
+    -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- don't work
+    <style name="AppThemeKaki.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:popupMenuStyle">@style/PopupMenuKaki</item>
+    </style>
+    -->
+
+<!--
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+-->
+</resources>

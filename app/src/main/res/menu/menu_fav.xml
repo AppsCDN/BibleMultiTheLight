@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnu_fav_clear_filter"
+        android:orderInCategory="1"
+        android:title="@string/mnuFavClearFilter"
+        android:icon="@android:drawable/ic_notification_clear_all"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/mnu_fav_sort"
+        android:orderInCategory="2"
+        android:title="@string/mnuFavSort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/mnu_search"
+        android:orderInCategory="100"
+        android:title="@string/mnuSearchAll"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="collapseActionView|always"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        />
+
+</menu>

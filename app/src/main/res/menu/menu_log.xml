@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnu_log_clear"
+        android:orderInCategory="100"
+        android:title="@string/mnuLogClear"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:title="@string/mnuGroupBible"
+        android:key="BIBLE_NAME"
+        android:entries="@array/BIBLE_ARRAY"
+        android:entryValues="@array/BIBLE_VALUES_ARRAY"
+        android:defaultValue="k"
+        android:persistent="true"
+    />
+
+    <PreferenceCategory android:title="@string/mnuGroupLayoutDynamicTitle">
+        <ListPreference
+            android:title="@string/mnuGroupTheme"
+            android:key="THEME_NAME"
+            android:entries="@array/THEME_ARRAY"
+            android:entryValues="@array/THEME_VALUES_ARRAY"
+            android:defaultValue="@string/mnuThemeLight"
+            android:persistent="true"
+        />
+
+        <Preference
+            android:key="FONT"
+            android:title="@string/mnuGroupTypeface">
+            <intent android:action="org.hlwd.bible.PreferencesFontActivity" />
+        </Preference>
+
+        <ListPreference
+            android:title="@string/mnuGroupFontSize"
+            android:key="FONT_SIZE"
+            android:entries="@array/FONT_SIZE_VALUES_ARRAY"
+            android:entryValues="@array/FONT_SIZE_VALUES_ARRAY"
+            android:defaultValue="14"
+            android:persistent="true"
+        />
+
+        <ListPreference
+            android:title="@string/mnuGroupFavSymbol"
+            android:key="FAV_SYMBOL"
+            android:entries="@array/FAV_SYMBOL_VALUES_ARRAY"
+            android:entryValues="@array/FAV_SYMBOL_VALUES_ARRAY"
+            android:defaultValue="@string/favSymbolFavDefault"
+            android:persistent="true"
+        />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:entryValues="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:key="LAYOUT_DYNAMIC_1"
+            android:persistent="true"
+            android:title="@string/mnuGroupLayoutDynamic1"
+            android:summary="@string/mnuGroupLayoutDynamicSummary"
+        />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:entryValues="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:key="LAYOUT_DYNAMIC_2"
+            android:persistent="true"
+            android:title="@string/mnuGroupLayoutDynamic2"
+            android:summary="@string/mnuGroupLayoutDynamicSummary"
+        />
+
+        <ListPreference
+            android:defaultValue="3"
+            android:entries="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:entryValues="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:key="LAYOUT_DYNAMIC_3"
+            android:persistent="true"
+            android:title="@string/mnuGroupLayoutDynamic3"
+            android:summary="@string/mnuGroupLayoutDynamicSummary"
+        />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:entryValues="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:key="LAYOUT_DYNAMIC_4"
+            android:persistent="true"
+            android:title="@string/mnuGroupLayoutDynamic4"
+            android:summary="@string/mnuGroupLayoutDynamicSummary"
+        />
+    </PreferenceCategory>
+</PreferenceScreen>

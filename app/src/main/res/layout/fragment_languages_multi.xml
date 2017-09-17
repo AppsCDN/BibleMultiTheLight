@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:id="@+id/llLanguages"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTrad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:text="@string/tvTrad"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_marginTop="15dp"
+    />
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:rowCount="3">
+
+        <ToggleButton
+            android:id="@+id/btnLanguageEN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:textOff="@string/languageEn"
+            android:textOn="@string/languageEn"
+        />
+
+        <ToggleButton
+            android:id="@+id/btnLanguageES"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:textOff="@string/languageEs"
+            android:textOn="@string/languageEs"
+        />
+
+        <ToggleButton
+            android:id="@+id/btnLanguageFR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:textOff="@string/languageFr"
+            android:textOn="@string/languageFr"
+        />
+
+        <ToggleButton
+            android:id="@+id/btnLanguageIT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingBottom="10dp"
+            android:textOff="@string/languageIt"
+            android:textOn="@string/languageIt"
+        />
+
+        <Button
+            android:id="@+id/btnLanguageClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/languageClear"/>
+
+        <Button
+            android:id="@+id/btnLanguageContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/languageContinue"/>
+
+    </GridLayout>
+</LinearLayout>
