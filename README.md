@@ -18,6 +18,11 @@ Bibbia multi lingue, gratuita, offline, senza pubblicità, interamente in ingles
 King James Version, Segond, Diodati, Valera.
 Facile da usare con funzioni di ricerca veloce e di condivisione, piani de lettura, articoli.
 
+
+## Installation
+Android play store, Amazon, F-Droid
+
+
 ## Screenshots
 
 
