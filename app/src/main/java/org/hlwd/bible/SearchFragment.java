@@ -1,6 +1,7 @@
 
 package org.hlwd.bible;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -70,9 +71,10 @@ public class SearchFragment extends Fragment
         this.fragmentType = FRAGMENT_TYPE.SEARCH_TYPE;
     }
 
-    public SearchFragment(final FRAGMENT_TYPE fragmentType)
+    @SuppressLint("ValidFragment")
+    public SearchFragment(final FRAGMENT_TYPE type)
     {
-        this.fragmentType = fragmentType;
+        this.fragmentType = type;
     }
 
     public static int GetScrollPosY()
@@ -94,16 +96,16 @@ public class SearchFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle bundle)
     {
         try
         {
-            super.onCreateView(inflater, container, savedInstanceState);
+            super.onCreateView(inflater, container, bundle);
 
             CheckLocalInstance();
 
             v = inflater.inflate(R.layout.fragment_search, container, false);
-            setHasOptionsMenu(true);                                                                //TODO: sethasoptionsmenu in Reload ???
+            setHasOptionsMenu(true);
 
             llBookTitle = (LinearLayout) v.findViewById(R.id.llBookTitle);
             tvBookTitle = (Button) v.findViewById(R.id.tvBookTitle);
@@ -434,6 +436,7 @@ public class SearchFragment extends Fragment
      * @param t     CacheTabBO
      * @param scrollPosY
      */
+    @SuppressWarnings("JavaDoc")
     private void ShowArticle(final CacheTabBO t, final int scrollPosY)
     {
         try
@@ -545,19 +548,6 @@ public class SearchFragment extends Fragment
                     svDesc.scrollTo(0, scrollPosY);
                 }
             });
-
-/*
-            final String theme_name = PCommon.GetPref(v.getContext(), IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
-            if (theme_name.compareToIgnoreCase("KAKI") == 0)
-            {
-                final TypedValue typedValue = new TypedValue();
-                final Resources.Theme theme = v.getContext().getTheme();
-                theme.resolveAttribute(R.attr.cardFgColor, typedValue, true);
-                final int fgColor = typedValue.data;
-
-                tvDesc.setTextColor(fgColor);
-            }
-*/
         }
         catch(Exception ex)
         {
@@ -598,7 +588,7 @@ public class SearchFragment extends Fragment
             if (verse == null) return false;
             final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber);
 
-            final AlertDialog builder = new AlertDialog.Builder(getContext()).create();             //, R.style.DialogStyleKaki
+            final AlertDialog builder = new AlertDialog.Builder(getContext()).create();
             final LayoutInflater inflater = getActivity().getLayoutInflater();
             final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) getActivity().findViewById(R.id.llLanguages));
 
@@ -1423,7 +1413,7 @@ public class SearchFragment extends Fragment
     /***
      * Get dynamic column count
      * @param ic Info count to display
-     * @return Prefered number of columns to use to display the infos
+     * @return Preferred number of columns to use to display the info
      */
     private int GetDynamicColumnCount(final int ic)
     {
@@ -1465,7 +1455,7 @@ public class SearchFragment extends Fragment
     {
         try
         {
-            final AlertDialog builder = new AlertDialog.Builder(getContext()).create();             //, R.style.DialogStyleKaki
+            final AlertDialog builder = new AlertDialog.Builder(getContext()).create();
             final LayoutInflater inflater = getActivity().getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_fav_order, (ViewGroup) getActivity().findViewById(R.id.llFavOrderBy));
 
@@ -1628,6 +1618,7 @@ public class SearchFragment extends Fragment
                     vNumber = Integer.parseInt(words[2]);
                     final int vNumberTo = Integer.parseInt(words[3]);
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowVerses(bbName, bNumber, cNumber, vNumber, vNumberTo);
 
@@ -1649,6 +1640,7 @@ public class SearchFragment extends Fragment
                     cNumber = Integer.parseInt(words[1]);
                     vNumber = Integer.parseInt(words[2]);
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowVerse(bbName, bNumber, cNumber, vNumber);
 
@@ -1670,6 +1662,7 @@ public class SearchFragment extends Fragment
                     cNumber = Integer.parseInt(words[1]);
                     vNumber = 0;
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
 
                     final InnerClass innerClass = new InnerClass();
@@ -1703,6 +1696,7 @@ public class SearchFragment extends Fragment
                     cNumber = Integer.parseInt(words[ 1 ]);
                     vNumber = 0;
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowChapter(bbName, bNumber, cNumber);
 
@@ -1724,6 +1718,7 @@ public class SearchFragment extends Fragment
                     cNumber = 0;
                     vNumber = 0;
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
 
                     final InnerClass innerClass = new InnerClass();
@@ -1757,6 +1752,7 @@ public class SearchFragment extends Fragment
                     cNumber = 1;
                     vNumber = 0;
 
+                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowChapter(bbName, bNumber, cNumber);
 
@@ -1775,6 +1771,7 @@ public class SearchFragment extends Fragment
                 cNumber = 0;
                 vNumber = 0;
 
+                //noinspection ConstantConditions,ConstantConditions,ConstantConditions
                 SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                 SetTabTitle(searchFullQuery);
                 SaveTab();

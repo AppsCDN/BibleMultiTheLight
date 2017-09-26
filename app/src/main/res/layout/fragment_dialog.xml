@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/llDialog"
+              xmlns:tools="http://schemas.android.com/tools" android:id="@+id/llDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:minLines="1"
-            android:text="T" />
+            android:text="T" tools:ignore="HardcodedText"/>
 
     </ScrollView>
 

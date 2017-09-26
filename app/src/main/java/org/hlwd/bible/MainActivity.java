@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity
                                 fragmentType = SearchFragment.FRAGMENT_TYPE.ARTICLE_TYPE;
                             }
                         }
-
                         final Fragment frag = new SearchFragment(fragmentType);
 
                         ft.replace(R.id.content_frame, frag, Integer.toString(tabId));
@@ -243,7 +242,7 @@ public class MainActivity extends AppCompatActivity
                 final View view = inflater.inflate(R.layout.fragment_languages, (ViewGroup) findViewById(R.id.llLanguages));
                 final String msg = getString(R.string.mnuLanguage);
                 final String desc = "";
-                final AlertDialog builder = new AlertDialog.Builder(MainActivity.this).create();    //R.style.DialogStyleKaki
+                final AlertDialog builder = new AlertDialog.Builder(MainActivity.this).create();
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface)
@@ -1943,6 +1942,7 @@ public class MainActivity extends AppCompatActivity
          * Add tab empty SEARCH_TYPE, FAV_TYPE
          * @param context
          */
+        @SuppressWarnings("JavaDoc")
         protected static void AddTab(final Context context)
         {
             try
@@ -1968,6 +1968,7 @@ public class MainActivity extends AppCompatActivity
          * @param cNumber
          * @param fullQuery
          */
+        @SuppressWarnings("JavaDoc")
         protected static void AddTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery)
         {
             try
@@ -1999,6 +2000,7 @@ public class MainActivity extends AppCompatActivity
          * @param tbbName
          * @param fullQuery bNumber, cNumber, vNumberFrom, vNumberTo
          */
+        @SuppressWarnings("JavaDoc")
         protected static void AddTab(final Context context, final String cacheTabType, final String tbbName, final String fullQuery)
         {
             try
@@ -2064,6 +2066,7 @@ public class MainActivity extends AppCompatActivity
          * @param tabNumberFrom
          * @param bbNameTo
          */
+        @SuppressWarnings("JavaDoc")
         protected static void AddTab(final Context context, final int tabNumberFrom, final String bbNameTo)
         {
             try

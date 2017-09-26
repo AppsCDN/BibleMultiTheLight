@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="aboutContactMe">Si usted tiene problemas o sugerencias, por favor se pone en contacto yo.</string>
     <string name="close">Cerrar</string>
@@ -14,9 +13,9 @@ Entre tanto, usted puede leer la Biblia en inglés (menu Libros), leer la Ayuda 
 Por favor, sea paciente, este proceso largo no se producirá más en el momento de las actualizaciones.\n\n
 ]]></string>
     <string name="languageInstalling">Instalación&#8230;</string>
-    <string name="languageEnInstalled">Versión establecida: EN...</string>
-    <string name="languageEsInstalled">Versiones establecidas: EN, ES...</string>
-    <string name="languageFrInstalled">Versiones establecidas: EN, ES, FR...</string>
+    <string name="languageEnInstalled">Versión establecida: EN…</string>
+    <string name="languageEsInstalled">Versiones establecidas: EN, ES…</string>
+    <string name="languageFrInstalled">Versiones establecidas: EN, ES, FR…</string>
     <string name="languageClear">Cancelar</string>
     <string name="languageContinue">Continuar</string>
     <string name="logErr">Errore: %s</string>
@@ -48,8 +47,6 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuCopyChapterToClipboard">Capítulo</string>
     <string name="mnuCopyResultToClipboard">Todos</string>
     <string name="mnuCopyVerseToClipboard">Versículo</string>
-    <string name="mnuMarkAsRead">Marcar como leído</string>
-    <string name="mnuUnmarkAsRead">Marcar como no leído</string>
     <string name="mnuMarkAllAboveAsRead">Marcar como leído (por encima)</string>
     <string name="mnuUnmarkAllAboveAsRead">Marcar como no leído (por encima)</string>
     <string name="mnuSearchBibleName">-</string>
@@ -67,7 +64,6 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuGroupTypeface">Tipo de fuente</string>
     <string name="mnuGroupFontSize">Tamaño de fuente</string>
     <string name="mnuGroupFavSymbol">Favoritos (simbolo)</string>
-    <string name="mnuGroupOther">Otro</string>
     <string name="mnuPrbl">Parábolas</string>
     <string name="mnuShare">Compartir</string>
     <string name="mnuShareChapter">Capítulo</string>
@@ -75,12 +71,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuShareVerse">Versículo</string>
     <string name="mnuShowHideFavShow">Mostrar favoritos</string>
     <string name="mnuShowHideFavHide">Ocultar favoritos</string>
-    <string name="mnuThemeDefault">Defecto</string>
     <string name="mnuThemeLight">Claro</string>
-    <string name="mnuThemeDev">Claro y azul</string>
-    <string name="mnuThemeKaki">Khaki</string>
-    <string name="mnuThemeKakiDark">Khaki scuro</string>
-    <string name="mnuThemeDark">Oscuro</string>
     <string name="mnuTypefaceDefault">Predeterminado</string>
     <string name="searchBibleHint">Buscar Biblia</string>
     <string name="searchFavHint">Buscar \u2606</string>
@@ -94,7 +85,6 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="planSelect">Planes de lectura</string>
     <string name="planSelectMsg">No tenéis todavía despacio de lectura. Por favor, selectas un tema o un libro en la lista.</string>
     <string name="planStartDate">Fecha de inicio:\n(a/m/d)</string>
-    <string name="planTitle">Plan</string>
     <string name="planBookCount">Libros</string>
     <string name="planCalTitleDay">Día:</string>
     <string name="planCalTitleDt">Día\n(a/m/d)</string>
@@ -120,7 +110,6 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="tvPlanThemes">- Temas -</string>
     <string name="tvPlanYourPlans">- Vuestros planes -</string>
     <string name="tvTrad">Orden:</string>
-    <string name="tvSearchTitle">Cercare</string>
 
     <!-- Fav order Text (to translate) -->
     <string name="FAV_ORDER0">Favorito (lecturas primero)</string>

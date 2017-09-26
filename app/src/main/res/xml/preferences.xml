@@ -6,7 +6,7 @@
         android:key="BIBLE_NAME"
         android:entries="@array/BIBLE_ARRAY"
         android:entryValues="@array/BIBLE_VALUES_ARRAY"
-        android:defaultValue="k"
+        android:defaultValue="@string/bibleDefault"
         android:persistent="true"
     />
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">Se avete problemi o suggerimenti, si prega di contattare me.</string>
     <string name="close">Chiudere</string>
     <string name="favOrderTitle">Ordinare per?</string>
@@ -14,9 +13,9 @@ Intanto, potete leggere la Bibbia in inglese (menu Libri), leggere l\'Aiuto o fa
 Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca dei collocamento aggiornati.\n\n
 ]]></string>
     <string name="languageInstalling">Installazione&#8230;</string>
-    <string name="languageEnInstalled">Versione installata: EN...</string>
-    <string name="languageEsInstalled">Versioni installate: EN, ES...</string>
-    <string name="languageFrInstalled">Versioni installate: EN, ES, FR...</string>
+    <string name="languageEnInstalled">Versione installata: EN&#8230;</string>
+    <string name="languageEsInstalled">Versioni installate: EN, ES&#8230;</string>
+    <string name="languageFrInstalled">Versioni installate: EN, ES, FR&#8230;</string>
     <string name="languageClear">Cancellare</string>
     <string name="languageContinue">Continuare</string>
     <string name="logErr">Errore: %s</string>
@@ -48,8 +47,6 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuCopyChapterToClipboard">Capitolo</string>
     <string name="mnuCopyResultToClipboard">Tutto</string>
     <string name="mnuCopyVerseToClipboard">Versetto</string>
-    <string name="mnuMarkAsRead">Segnare come letto</string>
-    <string name="mnuUnmarkAsRead">Segnare come non letto</string>
     <string name="mnuMarkAllAboveAsRead">Segnare come letto (di sopra)</string>
     <string name="mnuUnmarkAllAboveAsRead">Segnare come non letto (di sopra)</string>
     <string name="mnuSearchBibleName">-</string>
@@ -67,7 +64,6 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuGroupTypeface">Stile carattere</string>
     <string name="mnuGroupFontSize">Dimensione carattere</string>
     <string name="mnuGroupFavSymbol">Favoriti (simbolo)</string>
-    <string name="mnuGroupOther">Altro</string>
     <string name="mnuPrbl">Parabole</string>
     <string name="mnuShare">Condividere</string>
     <string name="mnuShareChapter">Capitolo</string>
@@ -75,12 +71,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuShareVerse">Versetto</string>
     <string name="mnuShowHideFavShow">Mostrare favoriti</string>
     <string name="mnuShowHideFavHide">Nascondere favoriti</string>
-    <string name="mnuThemeDefault">Predefinito</string>
     <string name="mnuThemeLight">Chiaro</string>
-    <string name="mnuThemeDev">Chiaro e blu</string>
-    <string name="mnuThemeKaki">Khaki</string>
-    <string name="mnuThemeKakiDark">Khaki scuro</string>
-    <string name="mnuThemeDark">Scuro</string>
     <string name="mnuTypefaceDefault">Predefinito</string>
     <string name="searchBibleHint">Cercare Bibbia</string>
     <string name="searchFavHint">Cercare \u2606</string>
@@ -94,7 +85,6 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="planSelect">Piani de lettura</string>
     <string name="planSelectMsg">Non avete ancora piano di lettura. Per favore, selezionate un tema o un libro nell\'elenco.</string>
     <string name="planStartDate">Data d\'inizio:\n(a/m/g)</string>
-    <string name="planTitle">Piano</string>
     <string name="planBookCount">Libri</string>
     <string name="planCalTitleDay">Giorno:</string>
     <string name="planCalTitleDt">Giorno\n(a/m/g)</string>
@@ -120,7 +110,6 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="tvPlanThemes">- Temi -</string>
     <string name="tvPlanYourPlans">- Vostri piani -</string>
     <string name="tvTrad">Ordine:</string>
-    <string name="tvSearchTitle">Cercare</string>
 
     <!-- Fav order Text (to translate) -->
     <string name="FAV_ORDER0">Favorito (letture primo)</string>
@@ -128,63 +117,63 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="FAV_ORDER2">Libro (ordine)</string>
 
     <!-- Prbl Text (to translate) -->
-    <string name="PRBL1">Il buon pastore</string>
-    <string name="PRBL2">Il grano e la zizzania (1)</string>
-    <string name="PRBL3">Il grano e la zizzania (2)</string>
-    <string name="PRBL4">La perla di grande valore</string>
-    <string name="PRBL5">La rete</string>
-    <string name="PRBL6">Il perdono</string>
-    <string name="PRBL7">I lavoratori di 11 ore</string>
-    <string name="PRBL8">Sia figlio</string>
-    <string name="PRBL9">Il matrimonio del figlio del re</string>
-    <string name="PRBL10">Le dieci vergini</string>
-    <string name="PRBL11">I dieci talenti</string>
-    <string name="PRBL12">Le pecore e le capre</string>
-    <string name="PRBL13">Il seme che cresce di nascosto</string>
-    <string name="PRBL14">Il padrone di casa</string>
-    <string name="PRBL15">Entrambi i debitori</string>
-    <string name="PRBL16">Il Buon Samaritano</string>
-    <string name="PRBL17">L\'amico a mezzanotte</string>
-    <string name="PRBL18">Il ricco uomo ei suoi granai</string>
-    <string name="PRBL19">I servi attenti</string>
-    <string name="PRBL20">I fedeli parsimonioso e sapiente</string>
-    <string name="PRBL21">Il fico sterile</string>
-    <string name="PRBL22">La grande cena</string>
-    <string name="PRBL23">La moneta perduta</string>
-    <string name="PRBL24">Il figliol prodigo</string>
-    <string name="PRBL25">I fedeli parsimonioso</string>
-    <string name="PRBL26">l\'uomo ricco e Lazzaro</string>
-    <string name="PRBL27">Lo schiavo di ritorno dai campi</string>
-    <string name="PRBL28">Il giudice ingiusto</string>
-    <string name="PRBL29">Il fariseo e del pubblicano</string>
-    <string name="PRBL30">Le miniere</string>
-    <string name="PRBL31">casa sulla roccia o sabbia (1)</string>
-    <string name="PRBL32">casa sulla roccia o sabbia (2)</string>
-    <string name="PRBL33">Lievito (1)</string>
-    <string name="PRBL34">Lievito (2)</string>
-    <string name="PRBL35">La pecora perduta (1)</string>
-    <string name="PRBL36">La pecora perduta (2)</string>
-    <string name="PRBL37">La nuova tuta e il vecchio cappotto (1)</string>
-    <string name="PRBL38">La nuova tuta e il vecchio cappotto (2)</string>
-    <string name="PRBL39">La nuova tuta e il vecchio cappotto (3)</string>
-    <string name="PRBL40">Il vino nuovo in otri vecchi (1)</string>
-    <string name="PRBL41">Il vino nuovo in otri vecchi (2)</string>
-    <string name="PRBL42">Il vino nuovo in otri vecchi (3)</string>
-    <string name="PRBL43">Il seminatore (1a)</string>
-    <string name="PRBL44">Il seminatore (1b)</string>
-    <string name="PRBL45">Il seminatore (2a)</string>
-    <string name="PRBL46">Il seminatore (2b)</string>
-    <string name="PRBL47">Il seminatore (3a)</string>
-    <string name="PRBL48">Il seminatore (3b)</string>
-    <string name="PRBL49">Il granello di senape (1)</string>
-    <string name="PRBL50">Il granello di senape (2)</string>
-    <string name="PRBL51">Il granello di senape (3)</string>
-    <string name="PRBL52">I viticoltori malvagi (1)</string>
-    <string name="PRBL53">I viticoltori malvagi (2)</string>
-    <string name="PRBL54">I viticoltori malvagi (3)</string>
-    <string name="PRBL55">Il fico e tutti gli alberi (1)</string>
-    <string name="PRBL56">Il fico e tutti gli alberi (2)</string>
-    <string name="PRBL57">Il fico e tutti gli alberi (3)</string>
+    <string name="PRBL1" tools:ignore="UnusedResources">Il buon pastore</string>
+    <string name="PRBL2" tools:ignore="UnusedResources">Il grano e la zizzania (1)</string>
+    <string name="PRBL3" tools:ignore="UnusedResources">Il grano e la zizzania (2)</string>
+    <string name="PRBL4" tools:ignore="UnusedResources">La perla di grande valore</string>
+    <string name="PRBL5" tools:ignore="UnusedResources">La rete</string>
+    <string name="PRBL6" tools:ignore="UnusedResources">Il perdono</string>
+    <string name="PRBL7" tools:ignore="UnusedResources">I lavoratori di 11 ore</string>
+    <string name="PRBL8" tools:ignore="UnusedResources">Sia figlio</string>
+    <string name="PRBL9" tools:ignore="UnusedResources">Il matrimonio del figlio del re</string>
+    <string name="PRBL10" tools:ignore="UnusedResources">Le dieci vergini</string>
+    <string name="PRBL11" tools:ignore="UnusedResources">I dieci talenti</string>
+    <string name="PRBL12" tools:ignore="UnusedResources">Le pecore e le capre</string>
+    <string name="PRBL13" tools:ignore="UnusedResources">Il seme che cresce di nascosto</string>
+    <string name="PRBL14" tools:ignore="UnusedResources">Il padrone di casa</string>
+    <string name="PRBL15" tools:ignore="UnusedResources">Entrambi i debitori</string>
+    <string name="PRBL16" tools:ignore="UnusedResources">Il Buon Samaritano</string>
+    <string name="PRBL17" tools:ignore="UnusedResources">L\'amico a mezzanotte</string>
+    <string name="PRBL18" tools:ignore="UnusedResources">Il ricco uomo ei suoi granai</string>
+    <string name="PRBL19" tools:ignore="UnusedResources">I servi attenti</string>
+    <string name="PRBL20" tools:ignore="UnusedResources">I fedeli parsimonioso e sapiente</string>
+    <string name="PRBL21" tools:ignore="UnusedResources">Il fico sterile</string>
+    <string name="PRBL22" tools:ignore="UnusedResources">La grande cena</string>
+    <string name="PRBL23" tools:ignore="UnusedResources">La moneta perduta</string>
+    <string name="PRBL24" tools:ignore="UnusedResources">Il figliol prodigo</string>
+    <string name="PRBL25" tools:ignore="UnusedResources">I fedeli parsimonioso</string>
+    <string name="PRBL26" tools:ignore="UnusedResources">l\'uomo ricco e Lazzaro</string>
+    <string name="PRBL27" tools:ignore="UnusedResources">Lo schiavo di ritorno dai campi</string>
+    <string name="PRBL28" tools:ignore="UnusedResources">Il giudice ingiusto</string>
+    <string name="PRBL29" tools:ignore="UnusedResources">Il fariseo e del pubblicano</string>
+    <string name="PRBL30" tools:ignore="UnusedResources">Le miniere</string>
+    <string name="PRBL31" tools:ignore="UnusedResources">casa sulla roccia o sabbia (1)</string>
+    <string name="PRBL32" tools:ignore="UnusedResources">casa sulla roccia o sabbia (2)</string>
+    <string name="PRBL33" tools:ignore="UnusedResources">Lievito (1)</string>
+    <string name="PRBL34" tools:ignore="UnusedResources">Lievito (2)</string>
+    <string name="PRBL35" tools:ignore="UnusedResources">La pecora perduta (1)</string>
+    <string name="PRBL36" tools:ignore="UnusedResources">La pecora perduta (2)</string>
+    <string name="PRBL37" tools:ignore="UnusedResources">La nuova tuta e il vecchio cappotto (1)</string>
+    <string name="PRBL38" tools:ignore="UnusedResources">La nuova tuta e il vecchio cappotto (2)</string>
+    <string name="PRBL39" tools:ignore="UnusedResources">La nuova tuta e il vecchio cappotto (3)</string>
+    <string name="PRBL40" tools:ignore="UnusedResources">Il vino nuovo in otri vecchi (1)</string>
+    <string name="PRBL41" tools:ignore="UnusedResources">Il vino nuovo in otri vecchi (2)</string>
+    <string name="PRBL42" tools:ignore="UnusedResources">Il vino nuovo in otri vecchi (3)</string>
+    <string name="PRBL43" tools:ignore="UnusedResources">Il seminatore (1a)</string>
+    <string name="PRBL44" tools:ignore="UnusedResources">Il seminatore (1b)</string>
+    <string name="PRBL45" tools:ignore="UnusedResources">Il seminatore (2a)</string>
+    <string name="PRBL46" tools:ignore="UnusedResources">Il seminatore (2b)</string>
+    <string name="PRBL47" tools:ignore="UnusedResources">Il seminatore (3a)</string>
+    <string name="PRBL48" tools:ignore="UnusedResources">Il seminatore (3b)</string>
+    <string name="PRBL49" tools:ignore="UnusedResources">Il granello di senape (1)</string>
+    <string name="PRBL50" tools:ignore="UnusedResources">Il granello di senape (2)</string>
+    <string name="PRBL51" tools:ignore="UnusedResources">Il granello di senape (3)</string>
+    <string name="PRBL52" tools:ignore="UnusedResources">I viticoltori malvagi (1)</string>
+    <string name="PRBL53" tools:ignore="UnusedResources">I viticoltori malvagi (2)</string>
+    <string name="PRBL54" tools:ignore="UnusedResources">I viticoltori malvagi (3)</string>
+    <string name="PRBL55" tools:ignore="UnusedResources">Il fico e tutti gli alberi (1)</string>
+    <string name="PRBL56" tools:ignore="UnusedResources">Il fico e tutti gli alberi (2)</string>
+    <string name="PRBL57" tools:ignore="UnusedResources">Il fico e tutti gli alberi (3)</string>
 
     <string-array name="THEME_ARRAY">
         <item>Chiaro</item>
@@ -192,84 +181,84 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
         <item>Scuro</item>
     </string-array>
 
-    <string name="PLAN_OT">Vecchio Testamento</string>
-    <string name="PLAN_NT">Nuovo Testamento</string>
-    <string name="PLAN_PENTA">Pentateuco</string>
-    <string name="PLAN_HISTO">Libri storici</string>
-    <string name="PLAN_POET">Libri poetici</string>
-    <string name="PLAN_PROPHET">Profeti</string>
-    <string name="PLAN_EVG">Vangeli</string>
-    <string name="PLAN_PAUL">Epistole di Paolo</string>
-    <string name="PLAN_OEPT">Altre Epistole</string>
-    <string name="PLAN_BOOK1">Genesi</string>
-    <string name="PLAN_BOOK2">Esodo</string>
-    <string name="PLAN_BOOK3">Levitico</string>
-    <string name="PLAN_BOOK4">Numeri</string>
-    <string name="PLAN_BOOK5">Deuteronomio</string>
-    <string name="PLAN_BOOK6">Giosuè</string>
-    <string name="PLAN_BOOK7">Giudici</string>
-    <string name="PLAN_BOOK8">Rut</string>
-    <string name="PLAN_BOOK9">1Samuele</string>
-    <string name="PLAN_BOOK10">2Samuele</string>
-    <string name="PLAN_BOOK11">1Re</string>
-    <string name="PLAN_BOOK12">2Re</string>
-    <string name="PLAN_BOOK13">1Cronache</string>
-    <string name="PLAN_BOOK14">2Cronache</string>
-    <string name="PLAN_BOOK15">Esdra</string>
-    <string name="PLAN_BOOK16">Neemia</string>
-    <string name="PLAN_BOOK17">Ester</string>
-    <string name="PLAN_BOOK18">Giobbe</string>
-    <string name="PLAN_BOOK19">Salmi</string>
-    <string name="PLAN_BOOK20">Proverbi</string>
-    <string name="PLAN_BOOK21">Ecclesiaste</string>
-    <string name="PLAN_BOOK22">CanticoDeiCantici</string>
-    <string name="PLAN_BOOK23">Isaia</string>
-    <string name="PLAN_BOOK24">Geremia</string>
-    <string name="PLAN_BOOK25">Lamentazioni</string>
-    <string name="PLAN_BOOK26">Ezechiele</string>
-    <string name="PLAN_BOOK27">Daniele</string>
-    <string name="PLAN_BOOK28">Osea</string>
-    <string name="PLAN_BOOK29">Gioele</string>
-    <string name="PLAN_BOOK30">Amos</string>
-    <string name="PLAN_BOOK31">Abdia</string>
-    <string name="PLAN_BOOK32">Giona</string>
-    <string name="PLAN_BOOK33">Michea</string>
-    <string name="PLAN_BOOK34">Nahum</string>
-    <string name="PLAN_BOOK35">Abacuc</string>
-    <string name="PLAN_BOOK36">Sofonia</string>
-    <string name="PLAN_BOOK37">Aggeo</string>
-    <string name="PLAN_BOOK38">Zaccaria</string>
-    <string name="PLAN_BOOK39">Malachia</string>
-    <string name="PLAN_BOOK40">Matteo</string>
-    <string name="PLAN_BOOK41">Marco</string>
-    <string name="PLAN_BOOK42">Luca</string>
-    <string name="PLAN_BOOK43">Giovanni</string>
-    <string name="PLAN_BOOK44">Atti</string>
-    <string name="PLAN_BOOK45">Romani</string>
-    <string name="PLAN_BOOK46">1Corinzi</string>
-    <string name="PLAN_BOOK47">2Corinzi</string>
-    <string name="PLAN_BOOK48">Galati</string>
-    <string name="PLAN_BOOK49">Efesini</string>
-    <string name="PLAN_BOOK50">Filippesi</string>
-    <string name="PLAN_BOOK51">Colossesi</string>
-    <string name="PLAN_BOOK52">1Tessalonicesi</string>
-    <string name="PLAN_BOOK53">2Tessalonicesi</string>
-    <string name="PLAN_BOOK54">1Timoteo</string>
-    <string name="PLAN_BOOK55">2Timoteo</string>
-    <string name="PLAN_BOOK56">Tito</string>
-    <string name="PLAN_BOOK57">Filemone</string>
-    <string name="PLAN_BOOK58">Ebrei</string>
-    <string name="PLAN_BOOK59">Giacomo</string>
-    <string name="PLAN_BOOK60">1Pietro</string>
-    <string name="PLAN_BOOK61">2Pietro</string>
-    <string name="PLAN_BOOK62">1Giovanni</string>
-    <string name="PLAN_BOOK63">2Giovanni</string>
-    <string name="PLAN_BOOK64">3Giovanni</string>
-    <string name="PLAN_BOOK65">Giuda</string>
-    <string name="PLAN_BOOK66">Apocalisse</string>
+    <string name="PLAN_OT" tools:ignore="UnusedResources">Vecchio Testamento</string>
+    <string name="PLAN_NT" tools:ignore="UnusedResources">Nuovo Testamento</string>
+    <string name="PLAN_PENTA" tools:ignore="UnusedResources">Pentateuco</string>
+    <string name="PLAN_HISTO" tools:ignore="UnusedResources">Libri storici</string>
+    <string name="PLAN_POET" tools:ignore="UnusedResources">Libri poetici</string>
+    <string name="PLAN_PROPHET" tools:ignore="UnusedResources">Profeti</string>
+    <string name="PLAN_EVG" tools:ignore="UnusedResources">Vangeli</string>
+    <string name="PLAN_PAUL" tools:ignore="UnusedResources">Epistole di Paolo</string>
+    <string name="PLAN_OEPT" tools:ignore="UnusedResources">Altre Epistole</string>
+    <string name="PLAN_BOOK1" tools:ignore="UnusedResources">Genesi</string>
+    <string name="PLAN_BOOK2" tools:ignore="UnusedResources">Esodo</string>
+    <string name="PLAN_BOOK3" tools:ignore="UnusedResources">Levitico</string>
+    <string name="PLAN_BOOK4" tools:ignore="UnusedResources">Numeri</string>
+    <string name="PLAN_BOOK5" tools:ignore="UnusedResources">Deuteronomio</string>
+    <string name="PLAN_BOOK6" tools:ignore="UnusedResources">Giosuè</string>
+    <string name="PLAN_BOOK7" tools:ignore="UnusedResources">Giudici</string>
+    <string name="PLAN_BOOK8" tools:ignore="UnusedResources">Rut</string>
+    <string name="PLAN_BOOK9" tools:ignore="UnusedResources">1Samuele</string>
+    <string name="PLAN_BOOK10" tools:ignore="UnusedResources">2Samuele</string>
+    <string name="PLAN_BOOK11" tools:ignore="UnusedResources">1Re</string>
+    <string name="PLAN_BOOK12" tools:ignore="UnusedResources">2Re</string>
+    <string name="PLAN_BOOK13" tools:ignore="UnusedResources">1Cronache</string>
+    <string name="PLAN_BOOK14" tools:ignore="UnusedResources">2Cronache</string>
+    <string name="PLAN_BOOK15" tools:ignore="UnusedResources">Esdra</string>
+    <string name="PLAN_BOOK16" tools:ignore="UnusedResources">Neemia</string>
+    <string name="PLAN_BOOK17" tools:ignore="UnusedResources">Ester</string>
+    <string name="PLAN_BOOK18" tools:ignore="UnusedResources">Giobbe</string>
+    <string name="PLAN_BOOK19" tools:ignore="UnusedResources">Salmi</string>
+    <string name="PLAN_BOOK20" tools:ignore="UnusedResources">Proverbi</string>
+    <string name="PLAN_BOOK21" tools:ignore="UnusedResources">Ecclesiaste</string>
+    <string name="PLAN_BOOK22" tools:ignore="UnusedResources">CanticoDeiCantici</string>
+    <string name="PLAN_BOOK23" tools:ignore="UnusedResources">Isaia</string>
+    <string name="PLAN_BOOK24" tools:ignore="UnusedResources">Geremia</string>
+    <string name="PLAN_BOOK25" tools:ignore="UnusedResources">Lamentazioni</string>
+    <string name="PLAN_BOOK26" tools:ignore="UnusedResources">Ezechiele</string>
+    <string name="PLAN_BOOK27" tools:ignore="UnusedResources">Daniele</string>
+    <string name="PLAN_BOOK28" tools:ignore="UnusedResources">Osea</string>
+    <string name="PLAN_BOOK29" tools:ignore="UnusedResources">Gioele</string>
+    <string name="PLAN_BOOK30" tools:ignore="UnusedResources">Amos</string>
+    <string name="PLAN_BOOK31" tools:ignore="UnusedResources">Abdia</string>
+    <string name="PLAN_BOOK32" tools:ignore="UnusedResources">Giona</string>
+    <string name="PLAN_BOOK33" tools:ignore="UnusedResources">Michea</string>
+    <string name="PLAN_BOOK34" tools:ignore="UnusedResources">Nahum</string>
+    <string name="PLAN_BOOK35" tools:ignore="UnusedResources">Abacuc</string>
+    <string name="PLAN_BOOK36" tools:ignore="UnusedResources">Sofonia</string>
+    <string name="PLAN_BOOK37" tools:ignore="UnusedResources">Aggeo</string>
+    <string name="PLAN_BOOK38" tools:ignore="UnusedResources">Zaccaria</string>
+    <string name="PLAN_BOOK39" tools:ignore="UnusedResources">Malachia</string>
+    <string name="PLAN_BOOK40" tools:ignore="UnusedResources">Matteo</string>
+    <string name="PLAN_BOOK41" tools:ignore="UnusedResources">Marco</string>
+    <string name="PLAN_BOOK42" tools:ignore="UnusedResources">Luca</string>
+    <string name="PLAN_BOOK43" tools:ignore="UnusedResources">Giovanni</string>
+    <string name="PLAN_BOOK44" tools:ignore="UnusedResources">Atti</string>
+    <string name="PLAN_BOOK45" tools:ignore="UnusedResources">Romani</string>
+    <string name="PLAN_BOOK46" tools:ignore="UnusedResources">1Corinzi</string>
+    <string name="PLAN_BOOK47" tools:ignore="UnusedResources">2Corinzi</string>
+    <string name="PLAN_BOOK48" tools:ignore="UnusedResources">Galati</string>
+    <string name="PLAN_BOOK49" tools:ignore="UnusedResources">Efesini</string>
+    <string name="PLAN_BOOK50" tools:ignore="UnusedResources">Filippesi</string>
+    <string name="PLAN_BOOK51" tools:ignore="UnusedResources">Colossesi</string>
+    <string name="PLAN_BOOK52" tools:ignore="UnusedResources">1Tessalonicesi</string>
+    <string name="PLAN_BOOK53" tools:ignore="UnusedResources">2Tessalonicesi</string>
+    <string name="PLAN_BOOK54" tools:ignore="UnusedResources">1Timoteo</string>
+    <string name="PLAN_BOOK55" tools:ignore="UnusedResources">2Timoteo</string>
+    <string name="PLAN_BOOK56" tools:ignore="UnusedResources">Tito</string>
+    <string name="PLAN_BOOK57" tools:ignore="UnusedResources">Filemone</string>
+    <string name="PLAN_BOOK58" tools:ignore="UnusedResources">Ebrei</string>
+    <string name="PLAN_BOOK59" tools:ignore="UnusedResources">Giacomo</string>
+    <string name="PLAN_BOOK60" tools:ignore="UnusedResources">1Pietro</string>
+    <string name="PLAN_BOOK61" tools:ignore="UnusedResources">2Pietro</string>
+    <string name="PLAN_BOOK62" tools:ignore="UnusedResources">1Giovanni</string>
+    <string name="PLAN_BOOK63" tools:ignore="UnusedResources">2Giovanni</string>
+    <string name="PLAN_BOOK64" tools:ignore="UnusedResources">3Giovanni</string>
+    <string name="PLAN_BOOK65" tools:ignore="UnusedResources">Giuda</string>
+    <string name="PLAN_BOOK66" tools:ignore="UnusedResources">Apocalisse</string>
 
-    <string name="ART1">Comandamenti</string>
-    <string name="ART1_CONTENT"><![CDATA[
+    <string name="ART1" tools:ignore="UnusedResources">Comandamenti</string>
+    <string name="ART1_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>2</HB>
 <R>2 20 12 17</R>
@@ -284,25 +273,25 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
 <R>40 19 18 19</R><br>
 <R>40 22 36 40</R>
 ]]></string>
-    <string name="ART2">Come pregare?</string>
-    <string name="ART2_CONTENT"><![CDATA[
+    <string name="ART2" tools:ignore="UnusedResources">Come pregare?</string>
+    <string name="ART2_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 6 9 13</R>
 ]]></string>
-    <string name="ART3">Questioni</string>
-    <string name="ART3_CONTENT"><![CDATA[
+    <string name="ART3" tools:ignore="UnusedResources">Questioni</string>
+    <string name="ART3_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 - Cosa ti dice il tuo cuore?<br><br>
 - Se questo sarà il tuo ultimo giorno / i tuoi ultimi 5 minuti?<br><br>
 - Hai cambiato dall\'anno scorso&#8230;?<br><br>
 ]]></string>
-    <string name="ART4">Giudizio</string>
-    <string name="ART4_CONTENT"><![CDATA[
+    <string name="ART4" tools:ignore="UnusedResources">Giudizio</string>
+    <string name="ART4_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 25 31 46</R>
 ]]></string>
-    <string name="ART5">Giudizio (parabole)</string>
-    <string name="ART5_CONTENT"><![CDATA[
+    <string name="ART5" tools:ignore="UnusedResources">Giudizio (parabole)</string>
+    <string name="ART5_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>Parabola I</H>
 <R>40 22 2 14</R>
@@ -311,8 +300,8 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
 <H>Parabola III</H>
 <R>40 25 14 30</R>
 ]]></string>
-    <string name="ART6">Segni</string>
-    <string name="ART6_CONTENT"><![CDATA[
+    <string name="ART6" tools:ignore="UnusedResources">Segni</string>
+    <string name="ART6_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>23</HB>
 <R>23 13 9 13</R><br>
@@ -338,21 +327,21 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
 <R>66 6 12 17</R><br>
 <R>66 7 1 4</R>
 ]]></string>
-    <string name="ART7">Gesù il pane della vita</string>
-    <string name="ART7_CONTENT"><![CDATA[
+    <string name="ART7" tools:ignore="UnusedResources">Gesù il pane della vita</string>
+    <string name="ART7_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 Molto istruttivo.<br>
 <HB>43</HB>
 <R>43 6 16 71</R>
 ]]></string>
-    <string name="ART9">Ultima cena</string>
-    <string name="ART9_CONTENT"><![CDATA[
+    <string name="ART9" tools:ignore="UnusedResources">Ultima cena</string>
+    <string name="ART9_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>42</HB>
 <R>42 22 1 20</R>
 ]]></string>
-    <string name="ART10">Gesù, suo corpo, suo sangue</string>
-    <string name="ART10_CONTENT"><![CDATA[
+    <string name="ART10" tools:ignore="UnusedResources">Gesù, suo corpo, suo sangue</string>
+    <string name="ART10_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>40</HB>
 <R>40 26 26 29</R>
@@ -365,15 +354,15 @@ Molto istruttivo.<br>
 <HB>46</HB>
 <R>46 11 23 31</R>
 ]]></string>
-    <string name="ART11">Prossima cena</string>
-    <string name="ART11_CONTENT"><![CDATA[
+    <string name="ART11" tools:ignore="UnusedResources">Prossima cena</string>
+    <string name="ART11_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>66</HB>
 <R>66 3 20 21</R><br>
 <R>66 19 9 9</R>
 ]]></string>
-    <string name="ART13">Tentazione</string>
-    <string name="ART13_CONTENT"><![CDATA[
+    <string name="ART13" tools:ignore="UnusedResources">Tentazione</string>
+    <string name="ART13_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>Tentazione di Dio</H>
 <R>40 4 7 7</R><br>
@@ -401,8 +390,8 @@ Molto istruttivo.<br>
 <R>59 1 12 15</R><br>
 <R>66 3 10 11</R>
 ]]></string>
-    <string name="ART14">Ipocrisia</string>
-    <string name="ART14_CONTENT"><![CDATA[
+    <string name="ART14" tools:ignore="UnusedResources">Ipocrisia</string>
+    <string name="ART14_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 6 2 2</R><br>
 <R>40 6 5 5</R><br>
@@ -410,8 +399,8 @@ Molto istruttivo.<br>
 <R>40 22 18 18</R><br>
 <R>42 6 42 42</R>
 ]]></string>
-    <string name="ART12">Scherno</string>
-    <string name="ART12_CONTENT"><![CDATA[
+    <string name="ART12" tools:ignore="UnusedResources">Scherno</string>
+    <string name="ART12_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>19</HB>
 <R>19 1 1 1</R>
@@ -427,21 +416,21 @@ Molto istruttivo.<br>
 <HB>65</HB>
 <R>65 1 17 19</R>
 ]]></string>
-    <string name="ART8">Amate i vostri nemici</string>
-    <string name="ART8_CONTENT"><![CDATA[
+    <string name="ART8" tools:ignore="UnusedResources">Amate i vostri nemici</string>
+    <string name="ART8_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <HB>40</HB>
 <R>40 5 38 48</R>
 <HB>42</HB>
 <R>42 6 27 36</R>
 ]]></string>
-    <string name="ART15">Buon Samaritano</string>
-    <string name="ART15_CONTENT"><![CDATA[
+    <string name="ART15" tools:ignore="UnusedResources">Buon Samaritano</string>
+    <string name="ART15_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>42 10 30 37</R>
 ]]></string>
-    <string name="ART16">10 versetti importanti concernente la fede</string>
-    <string name="ART16_CONTENT"><![CDATA[
+    <string name="ART16" tools:ignore="UnusedResources">10 versetti importanti concernente la fede</string>
+    <string name="ART16_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>42 17 5 6</R><br>
 <R>45 5 1 2</R><br>
@@ -454,8 +443,8 @@ Molto istruttivo.<br>
 <R>61 1 5 5</R><br>
 <R>62 5 4 4</R>
 ]]></string>
-    <string name="ART17">Fede</string>
-    <string name="ART17_CONTENT"><![CDATA[
+    <string name="ART17" tools:ignore="UnusedResources">Fede</string>
+    <string name="ART17_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 Gli argomenti sono divisi da questo simbolo: ~~<br><br>
 <H>Definizione</H>
@@ -517,8 +506,8 @@ Gli argomenti sono divisi da questo simbolo: ~~<br><br>
 <R>60 1 6 7</R><br>
 <R>59 1 2 4</R>
 ]]></string>
-    <string name="ART18">Bugia</string>
-    <string name="ART18_CONTENT"><![CDATA[
+    <string name="ART18" tools:ignore="UnusedResources">Bugia</string>
+    <string name="ART18_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>45 1 25 25</R><br>
 <R>49 4 25 25</R><br>
@@ -526,8 +515,8 @@ Gli argomenti sono divisi da questo simbolo: ~~<br><br>
 <R>66 21 27 27</R><br>
 <R>66 22 14 15</R>
 ]]></string>
-    <string name="ART19">Rabbia</string>
-    <string name="ART19_CONTENT"><![CDATA[
+    <string name="ART19" tools:ignore="UnusedResources">Rabbia</string>
+    <string name="ART19_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>5 31 16 17</R><br>
 <R>20 22 24 24</R><br>
@@ -543,27 +532,27 @@ Gli argomenti sono divisi da questo simbolo: ~~<br><br>
 <R>66 12 12 12</R><br>
 <R>66 14 9 10</R>
 ]]></string>
-    <string name="ART20">Onora tuo padre e tua madre</string>
-    <string name="ART20_CONTENT"><![CDATA[
+    <string name="ART20" tools:ignore="UnusedResources">Onora tuo padre e tua madre</string>
+    <string name="ART20_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>2 20 12 12</R><br>
 <R>40 15 4 4</R><br>
 <R>41 7 10 10</R>
 ]]></string>
-    <string name="ART21">Cosa ti dice il tuo cuore?</string>
-    <string name="ART21_CONTENT"><![CDATA[
+    <string name="ART21" tools:ignore="UnusedResources">Cosa ti dice il tuo cuore?</string>
+    <string name="ART21_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 15 1 20</R>
 ]]></string>
-    <string name="ART22">Spiriti immondi</string>
-    <string name="ART22_CONTENT"><![CDATA[
+    <string name="ART22" tools:ignore="UnusedResources">Spiriti immondi</string>
+    <string name="ART22_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 12 43 45</R><br>
 <R>61 2 1 22</R><br>
 <R>66 18 1 5</R>
 ]]></string>
-    <string name="ART23">Seduzione</string>
-    <string name="ART23_CONTENT"><![CDATA[
+    <string name="ART23" tools:ignore="UnusedResources">Seduzione</string>
+    <string name="ART23_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <R>40 7 15 20</R><br>
 <R>40 24 4 5</R><br>
@@ -578,8 +567,8 @@ Gli argomenti sono divisi da questo simbolo: ~~<br><br>
 <R>66 19 20 20</R><br>
 <R>66 20 10 10</R>
 ]]></string>
-    <string name="ART24">Mene, Mene, Tekel, Upharsin</string>
-    <string name="ART24_CONTENT"><![CDATA[
+    <string name="ART24" tools:ignore="UnusedResources">Mene, Mene, Tekel, Upharsin</string>
+    <string name="ART24_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>Riferimenti</H>
 Di Daniele 5.25 (ebraico): \'Mene, Mene, Tekel, Upharsin\'.<br>
@@ -591,8 +580,8 @@ Di Daniele 5.25 (ebraico): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <R>27 4 1 37</R>
 <R>27 5 1 31</R>
 ]]></string>
-    <string name="ART_APP_HELP">Aiuto</string>
-    <string name="ART_APP_HELP_CONTENT"><![CDATA[
+    <string name="ART_APP_HELP" tools:ignore="UnusedResources">Aiuto</string>
+    <string name="ART_APP_HELP_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <h1><u>A proposito</u></h1>
 <i>Ciao,</i> sono un programmatore cristiano e ho fatto questa applicazione col il mio cuore per servire il Signore. La fine dei tempi è vicini con le tribolazioni, l\'anticristo, Gesù ed il giudizio finale.
 <i>Whattt! Are you serious?</i> Sì, sono serio, i segni sono dovunque. Questa applicazione che dà la vera parola di Dio può aiutarvi ad essere forti durante questo periodo quando il diavolo provera di ingannarvi più che mai e di essere pronto quando il Cristo ritornerà.
@@ -693,8 +682,8 @@ Questa applicazione resterà totalmente gratuita, senza pubblicità, redirezioni
 Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
 <br><br>
 ]]></string>
-    <string name="ART_APP_LOG">Logs</string>
-    <string name="ART_APP_LOG_CONTENT"><![CDATA[
+    <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
+    <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>2.7</H>
 • Articoli & spazio<br>
@@ -731,9 +720,9 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
 • All\'epoca di un aggiornato, l\'articolo di Logs è affisso<br>
 <br>
 ]]></string>
-    <string name="ART25">10 versetti</string>
-    <string name="ART26">Youtubers</string>
-    <string name="ART26_CONTENT"><![CDATA[
+    <string name="ART25" tools:ignore="UnusedResources">10 versetti</string>
+    <string name="ART26" tools:ignore="UnusedResources">Youtubers</string>
+    <string name="ART26_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consultate i loro videi. Attivate i sottotitoli in Youtube.<br><br>
 <br><br>
 <H1>Inglese</H1>
@@ -751,16 +740,16 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <blockquote><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></blockquote>
 ]]></string>
-    <string name="ART27">Le dieci vergini</string>
-    <string name="ART28">Marchio della bestia</string>
-    <string name="ART29">Paura e poca fede</string>
-    <string name="ART30">Pregare, conseguenza</string>
-    <string name="ART31">Ravvedimento</string>
-    <string name="ART32">Tentazione (avvertimento)</string>
-    <string name="ART33">Figlioletti</string>
-    <string name="ART34">Sementi</string>
-    <string name="ART35">Lievito de Farisei e Sadducei (avvertimento)</string>
-    <string name="ART36">Legami</string>
-    <string name="ART37">Vendi</string>
-    <string name="ART38">10 versetti (2)</string>
+    <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
+    <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>
+    <string name="ART29" tools:ignore="UnusedResources">Paura e poca fede</string>
+    <string name="ART30" tools:ignore="UnusedResources">Pregare, conseguenza</string>
+    <string name="ART31" tools:ignore="UnusedResources">Ravvedimento</string>
+    <string name="ART32" tools:ignore="UnusedResources">Tentazione (avvertimento)</string>
+    <string name="ART33" tools:ignore="UnusedResources">Figlioletti</string>
+    <string name="ART34" tools:ignore="UnusedResources">Sementi</string>
+    <string name="ART35" tools:ignore="UnusedResources">Lievito de Farisei e Sadducei (avvertimento)</string>
+    <string name="ART36" tools:ignore="UnusedResources">Legami</string>
+    <string name="ART37" tools:ignore="UnusedResources">Vendi</string>
+    <string name="ART38" tools:ignore="UnusedResources">10 versetti (2)</string>
 </resources>

@@ -13,9 +13,9 @@ Entre-temps, vous pouvez lire la Bible en anglais (menu Livres), lire l\'Aide ou
 S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des mises à jour.\n\n
 ]]></string>
     <string name="languageInstalling">Installation&#8230;</string>
-    <string name="languageEnInstalled">Version installée: EN...</string>
-    <string name="languageEsInstalled">Versions installées: EN, ES...</string>
-    <string name="languageFrInstalled">Versions installées: EN, ES, FR...</string>
+    <string name="languageEnInstalled">Version installée: EN…</string>
+    <string name="languageEsInstalled">Versions installées: EN, ES…</string>
+    <string name="languageFrInstalled">Versions installées: EN, ES, FR…</string>
     <string name="languageClear">Effacer</string>
     <string name="languageContinue">Continuer</string>
     <string name="logErr">Erreur: %s</string>
@@ -47,8 +47,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuCopyChapterToClipboard">Chapitre</string>
     <string name="mnuCopyResultToClipboard">Tout</string>
     <string name="mnuCopyVerseToClipboard">Verset</string>
-    <string name="mnuMarkAsRead">Marquer comme lu</string>
-    <string name="mnuUnmarkAsRead">Marquer comme non lu</string>
     <string name="mnuMarkAllAboveAsRead">Marquer tous ceux au-dessus comme lu</string>
     <string name="mnuUnmarkAllAboveAsRead">Marquer tous ceux au-dessus comme non lu</string>
     <string name="mnuSearchBibleName">-</string>
@@ -66,7 +64,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuGroupTypeface">Police</string>
     <string name="mnuGroupFontSize">Taille de la police</string>
     <string name="mnuGroupFavSymbol">Favoris (symbole)</string>
-    <string name="mnuGroupOther">Autre</string>
     <string name="mnuPrbl">Paraboles</string>
     <string name="mnuShare">Partager</string>
     <string name="mnuShareChapter">Chapitre</string>
@@ -74,12 +71,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuShareVerse">Verset</string>
     <string name="mnuShowHideFavShow">Montrer Favoris</string>
     <string name="mnuShowHideFavHide">Cacher Favoris</string>
-    <string name="mnuThemeDefault">Defaut</string>
     <string name="mnuThemeLight">Clair</string>
-    <string name="mnuThemeDev">Clair et bleu</string>
-    <string name="mnuThemeKaki">Kaki</string>
-    <string name="mnuThemeKakiDark">Kaki foncé</string>
-    <string name="mnuThemeDark">Foncé</string>
     <string name="mnuTypefaceDefault">Défaut</string>
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->
     <string name="searchFavHint">Chercher \u2606</string><!-- should be favHeader -->
@@ -93,7 +85,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="planSelect">Plans de lecture</string>
     <string name="planSelectMsg">Vous n\'avez pas encore de plan de lecture. S\'il vous plaît, sélectionnez un thème ou un livre dans la liste.</string>
     <string name="planStartDate">Date début:\n(a/m/j)</string>
-    <string name="planTitle">Plan</string>
     <string name="planBookCount">Livres</string>
     <string name="planCalTitleDay">Jour:</string>
     <string name="planCalTitleDt">Jour\n(a/m/j)</string>
@@ -119,7 +110,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvPlanThemes">- Thèmes -</string>
     <string name="tvPlanYourPlans">- Vos plans -</string>
     <string name="tvTrad">Ordre:</string>
-    <string name="tvSearchTitle">Chercher</string>
 
     <!-- Fav order Text (to translate) -->
     <string name="FAV_ORDER0">Favori (lecture en premier)</string>

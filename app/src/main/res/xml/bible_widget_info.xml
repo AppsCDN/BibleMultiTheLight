@@ -8,9 +8,3 @@
                     android:updatePeriodMillis="3600000"
                     android:widgetCategory="home_screen">
 </appwidget-provider>
-<!--
-android:configure="org.hlwd.bible.BibleWidgetConfigureActivity"
-android:previewImage="@drawable/example_appwidget_preview"
-3600000
-size = (cells * 70) - 30
--->

@@ -10,6 +10,5 @@
         android:layout_height="match_parent"
         android:textColor="@color/colorPrimary"
         android:background="@color/transparent"
-        android:textAppearance="@style/AppTheme.PopupOverlay"
-        />
+        android:textAppearance="@style/AppTheme.PopupOverlay" />
 </LinearLayout>

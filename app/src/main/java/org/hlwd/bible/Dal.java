@@ -10,7 +10,7 @@ import android.text.format.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Dal
+class Dal
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
@@ -26,7 +26,7 @@ public class Dal
      * Using specified context
      * @param ctx   context
      */
-    protected Dal(final Context ctx)
+    Dal(final Context ctx)
     {
         //TODO: method with context may be deprecated
         Init(ctx);
@@ -52,7 +52,7 @@ public class Dal
     /***
      * Open db connection
      */
-    protected void OpenReadWrite()
+    void OpenReadWrite()
     {
         try
         {
@@ -86,7 +86,7 @@ public class Dal
     /***
      * CloseDb db connection
      */
-    protected void CloseDb()
+    void CloseDb()
     {
         try
         {
@@ -102,7 +102,7 @@ public class Dal
      * Db is open?
      * @return  true/false
      */
-    protected boolean IsDbOpen()
+    boolean IsDbOpen()
     {
         boolean isDbOpen = false;
 
@@ -126,7 +126,7 @@ public class Dal
     /**
      * Shrink db
      */
-    protected void ShrinkDb(final Context context)
+    void ShrinkDb(final Context context)
     {
         String sql = null;
 
@@ -152,7 +152,7 @@ public class Dal
      * Get last rowId
      * @return Last identity inserted (-1 in case of error)
      */
-    protected int GetLastRowId()
+    int GetLastRowId()
     {
         Cursor c = null;
         int id = -1;
@@ -191,7 +191,7 @@ public class Dal
      * Get db version
      * @return db version
      */
-    protected int GetDbVersion()
+    int GetDbVersion()
     {
         int dbVersion = -1;
 
@@ -215,7 +215,8 @@ public class Dal
      * Add a act
      * @param msg
      */
-    protected void AddLog(final String msg)
+    @SuppressWarnings("JavaDoc")
+    void AddLog(final String msg)
     {
         String sql = null;
 
@@ -240,7 +241,7 @@ public class Dal
      * Get all logs
      * @return logs as string
      */
-    protected String GetAllLogs()
+    String GetAllLogs()
     {
         Cursor c = null;
         StringBuilder sbLogs = null;
@@ -289,7 +290,7 @@ public class Dal
     /***
      * Delete all logs
      */
-    protected void DeleteAllLogs()
+    void DeleteAllLogs()
     {
         //TODO: check act size, _db size
 
@@ -319,7 +320,8 @@ public class Dal
      * Delete bible
      * @param bbName
      */
-    protected void DeleteBible(final String bbName)
+    @SuppressWarnings("JavaDoc")
+    void DeleteBible(final String bbName)
     {
         //TODO: check act size, _db size
 
@@ -340,7 +342,7 @@ public class Dal
      * @param artName   ART_NAME
      * @return Negative value if not found
      */
-    protected int GetArticleTabId(final String artName)
+    int GetArticleTabId(final String artName)
     {
         String sql = null;
         Cursor c = null;
@@ -381,7 +383,8 @@ public class Dal
      * @param bibleId
      * @return verse
      */
-    protected VerseBO GetVerse(final int bibleId)
+    @SuppressWarnings("JavaDoc")
+    VerseBO GetVerse(final int bibleId)
     {
         String sql = null;
         Cursor c = null;
@@ -438,7 +441,8 @@ public class Dal
      * @param vNumber
      * @return verse
      */
-    protected ArrayList<VerseBO> GetVerse(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> GetVerse(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -505,7 +509,8 @@ public class Dal
      * @param vNumberTo
      * @return list of verses
      */
-    protected ArrayList<VerseBO> GetVerses(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> GetVerses(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
     {
         String sql = null;
         Cursor c = null;
@@ -578,7 +583,8 @@ public class Dal
      * @param vNumberEnd
      * @return true if copy was successful
      */
-    protected boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
+    @SuppressWarnings("JavaDoc")
+    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
     {
         String sql = null;
         Cursor c = null;
@@ -649,7 +655,8 @@ public class Dal
      * @param vNumber
      * @return Text with verse
      */
-    protected String GetVerseText(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
+    @SuppressWarnings("JavaDoc")
+    String GetVerseText(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
         ArrayList<VerseBO> lstVerse = null;
         StringBuilder sb = new StringBuilder("");
@@ -693,7 +700,8 @@ public class Dal
      * @param cNumber
      * @return list of verses
      */
-    protected ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -757,7 +765,8 @@ public class Dal
      * @param cNumber
      * @return text of chapter
      */
-    protected String GetChapterText(final String tbbName, final int bNumber, final int cNumber)
+    @SuppressWarnings("JavaDoc")
+    String GetChapterText(final String tbbName, final int bNumber, final int cNumber)
     {
         ArrayList<VerseBO> lstVerse = null;
         StringBuilder sb = new StringBuilder("");
@@ -802,7 +811,8 @@ public class Dal
      * @param searchString
      * @return list of verses
      */
-    protected ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final int cNumber, String searchString)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final int cNumber, String searchString)
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
@@ -868,11 +878,11 @@ public class Dal
      * Search bible
      * @param bbName
      * @param bNumber
-     * @param cNumber
      * @param searchString
      * @return list of verses
      */
-    protected ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, String searchString)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, String searchString)
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
@@ -939,7 +949,8 @@ public class Dal
      * @param searchString
      * @return list of verses
      */
-    protected ArrayList<VerseBO> SearchBible(final String bbName, String searchString)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> SearchBible(final String bbName, String searchString)
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
@@ -1007,7 +1018,8 @@ public class Dal
      * @param markType      Mark type (NULL to get all types)
      * @return list of verses
      */
-    protected ArrayList<VerseBO> SearchNotes(final String bbName, String searchString, final int orderBy, final String markType)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> SearchNotes(final String bbName, String searchString, final int orderBy, final String markType)
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
@@ -1106,7 +1118,8 @@ public class Dal
      * @param searchId  tabId
      * @return
      */
-    protected ArrayList<VerseBO> SearchBible(final int searchId)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<VerseBO> SearchBible(final int searchId)
     {
         String sql = null;
         Cursor c = null;
@@ -1168,7 +1181,8 @@ public class Dal
      * @param searchString
      * @return list of books
      */
-    protected ArrayList<BibleRefBO> GetListBookByName(final String bbName, String searchString)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<BibleRefBO> GetListBookByName(final String bbName, String searchString)
     {
         String sql = null;
         Cursor c = null;
@@ -1222,7 +1236,8 @@ public class Dal
      * @param bbName
      * @return list all books
      */
-    protected ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
+    @SuppressWarnings("JavaDoc")
+    ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
     {
         String sql = null;
         Cursor c = null;
@@ -1275,7 +1290,8 @@ public class Dal
      * @param bName
      * @return book number (0 if not found)
      */
-    protected int GetBookNumberByName(final String bbName, final String bName)
+    @SuppressWarnings("JavaDoc")
+    int GetBookNumberByName(final String bbName, final String bName)
     {
         String sql = null;
         Cursor c = null;
@@ -1320,7 +1336,8 @@ public class Dal
      * @param bNumber
      * @return book ref
      */
-    protected BibleRefBO GetBookRef(final String bbName, final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    BibleRefBO GetBookRef(final String bbName, final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -1366,7 +1383,8 @@ public class Dal
      * Get cache tab
      * @param tabId
      */
-    protected CacheTabBO GetCacheTab(final int tabId)
+    @SuppressWarnings("JavaDoc")
+    CacheTabBO GetCacheTab(final int tabId)
     {
         String sql = null;
         CacheTabBO t = null;
@@ -1418,7 +1436,7 @@ public class Dal
     /***
      * Get cache tab
      */
-    protected CacheTabBO GetCacheTabFav()
+    CacheTabBO GetCacheTabFav()
     {
         String sql = null;
         CacheTabBO t = null;
@@ -1469,7 +1487,8 @@ public class Dal
      * Get cache tab title
      * @param tabId
      */
-    protected String GetCacheTabTitle(final int tabId)
+    @SuppressWarnings("JavaDoc")
+    String GetCacheTabTitle(final int tabId)
     {
         String sql = null;
         String title = null;
@@ -1509,7 +1528,8 @@ public class Dal
      * Save cache tab (insert or replace)
      * @param t
      */
-    protected void SaveCacheTab(final CacheTabBO t)
+    @SuppressWarnings("JavaDoc")
+    void SaveCacheTab(final CacheTabBO t)
     {
         String sql = null;
 
@@ -1548,7 +1568,8 @@ public class Dal
      * Save cache tab fav (delete and insert), should be unique
      * @param t
      */
-    protected void SaveCacheTabFav(final CacheTabBO t)
+    @SuppressWarnings("JavaDoc")
+    void SaveCacheTabFav(final CacheTabBO t)
     {
         String sql = null;
 
@@ -1594,7 +1615,8 @@ public class Dal
      * @param tabId
      * @param lstBibleId
      */
-    protected void SaveCacheSearch(final int tabId, final ArrayList<Integer> lstBibleId)
+    @SuppressWarnings("JavaDoc")
+    void SaveCacheSearch(final int tabId, final ArrayList<Integer> lstBibleId)
     {
         String sql = null;
 
@@ -1622,68 +1644,14 @@ public class Dal
     }
 
     /***
-     * Get cache search
-     * @param tabId
-     *
-    private ArrayList<CacheSearchBO> GetCacheSearch(final int tabId)
-    {
-    String sql = null;
-    Cursor c = null;
-    ArrayList<CacheSearchBO> lstCs = new ArrayList<CacheSearchBO>();
-
-    try
-    {
-    CacheSearchBO cs;
-
-    sql = PCommon.ConcaT("SELECT b.bNumber, b.cNumber, b.vNumber FROM cacheSearch s",
-    " INNER JOIN bible b ON b.Id=s.bibleId",
-    " WHERE s.tabId=", tabId,
-    " ORDER BY b.bNumber, b.cNumber, b.vNumber ASC");
-
-    c = _db.rawQuery(sql, null);
-    c.moveToFirst();
-
-    while (!c.isAfterLast())
-    {
-    cs = new CacheSearchBO();
-    cs.bNumber = c.getInt(0);
-    cs.cNumber = c.getInt(1);
-    cs.vNumber = c.getInt(2);
-
-    lstCs.add(cs);
-
-    c.moveToNext();
-    }
-    }
-    catch (SQLException ex)
-    {
-    if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-    }
-    finally
-    {
-    //_db.endTransaction();
-    sql = null;
-
-    if (c != null)
-    {
-    c.close();
-    c = null;
-    }
-    }
-
-    return lstCs;
-    }
-     */
-
-
-    /***
      * Copy cache search for other bible (data are deleted before copying)
      * @param tabIdFrom
      * @param tabIdTo
      * @param tbbName
      * @return true if copy was successful
      */
-    protected boolean CopyCacheSearchForOtherBible(final int tabIdFrom, final int tabIdTo, final String tbbName)
+    @SuppressWarnings("JavaDoc")
+    boolean CopyCacheSearchForOtherBible(final int tabIdFrom, final int tabIdTo, final String tbbName)
     {
         boolean insert = false;
 
@@ -1708,6 +1676,7 @@ public class Dal
      * @param tbbName
      * @return true if copy was successful
      */
+    @SuppressWarnings("JavaDoc")
     private boolean AddCacheSearch(final int tabIdFrom, final int tabIdTo, final String tbbName)
     {
         try
@@ -1751,7 +1720,8 @@ public class Dal
      * @param tabIdTo
      * @return text of all
      */
-    protected String GetResultText(final int tabIdFrom, final int tabIdTo, final String tbbName)
+    @SuppressWarnings("JavaDoc")
+    String GetResultText(final int tabIdFrom, final int tabIdTo, final String tbbName)
     {
         Cursor c = null;
         String text = "";
@@ -1804,6 +1774,7 @@ public class Dal
      * Delete cache search
      * @param tabId
      */
+    @SuppressWarnings("JavaDoc")
     private void DeleteCacheSearch(final int tabId)
     {
         String sql = null;
@@ -1827,7 +1798,8 @@ public class Dal
      * Delete cache
      * @param tabId
      */
-    protected void DeleteCache(final int tabId)
+    @SuppressWarnings("JavaDoc")
+    void DeleteCache(final int tabId)
     {
         String sql = null;
 
@@ -1854,7 +1826,8 @@ public class Dal
      * @param fromTabId
      * @param toTabId
      */
-    protected void UpdateCacheId(final int fromTabId, final int toTabId)
+    @SuppressWarnings("JavaDoc")
+    void UpdateCacheId(final int fromTabId, final int toTabId)
     {
         String sql = null;
 
@@ -1879,7 +1852,7 @@ public class Dal
     /***
      * Get cache tab visible count
      */
-    protected int GetCacheTabVisibleCount()
+    int GetCacheTabVisibleCount()
     {
         String sql = null;
         Cursor c = null;
@@ -1944,7 +1917,8 @@ public class Dal
      * Save note
      * @param noteBO
      */
-    protected void SaveNote(final NoteBO noteBO)
+    @SuppressWarnings("JavaDoc")
+    void SaveNote(final NoteBO noteBO)
     {
         String sql = null;
 
@@ -1977,7 +1951,8 @@ public class Dal
      * @param cNumber
      * @param vNumber
      */
-    protected void DeleteNote(final int bNumber, final int cNumber, final int vNumber)
+    @SuppressWarnings("JavaDoc")
+    void DeleteNote(final int bNumber, final int cNumber, final int vNumber)
     {
         String sql = null;
 
@@ -2005,7 +1980,8 @@ public class Dal
      * @param bbName
      * @return bibleId
      */
-    protected int GetBibleIdMin(final String bbName)
+    @SuppressWarnings("JavaDoc")
+    int GetBibleIdMin(final String bbName)
     {
         String sql = null;
         Cursor c = null;
@@ -2044,7 +2020,8 @@ public class Dal
      * @param bbName
      * @return bibleId
      */
-    protected int GetBibleIdMax(final String bbName)
+    @SuppressWarnings("JavaDoc")
+    int GetBibleIdMax(final String bbName)
     {
         String sql = null;
         Cursor c = null;
@@ -2084,7 +2061,8 @@ public class Dal
      * @param bNumber
      * @return bibleId
      */
-    protected int GetBookChapterMax(final String bbName, final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    int GetBookChapterMax(final String bbName, final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2125,7 +2103,8 @@ public class Dal
      * @param bNumber
      * @return true/false
      */
-    protected boolean IsBookExist(final String bbName, final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    boolean IsBookExist(final String bbName, final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2165,7 +2144,7 @@ public class Dal
      * @param fld   Table field to case (ex: b.bbName)
      * @return string with CASE clause for bbNameOrder
      */
-    protected String CaseBible(final String fld, final String trad)
+    private String CaseBible(final String fld, final String trad)
     {
         //EX: CASE b.bbName WHEN 'f' THEN 1 WHEN 'k' THEN 2 END bbNameOrder
         final int size = trad.length();
@@ -2190,7 +2169,7 @@ public class Dal
      * @return string for IN clause
      * Rem: there is no check of the content, '". Works only for chars.
      */
-    protected String InBible(final String str)
+    private String InBible(final String str)
     {
         final int size = str.length();
         if (size <= 1) return PCommon.ConcaT("('", str, "')");
@@ -2213,7 +2192,7 @@ public class Dal
      * Get plan id max
      * @return Plan id max
      */
-    protected int GetPlanDescIdMax()
+    int GetPlanDescIdMax()
     {
         String sql = null;
         Cursor c = null;
@@ -2234,6 +2213,15 @@ public class Dal
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
+        finally
+        {
+            sql = null;
+
+            if (c != null) {
+                c.close();
+                c = null;
+            }
+        }
 
         return max;
     }
@@ -2243,7 +2231,8 @@ public class Dal
      * @param bNumber
      * @return chapter count, verse count of the book
      */
-    protected Integer[] GetBibleCiByBook(final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    Integer[] GetBibleCiByBook(final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2268,6 +2257,15 @@ public class Dal
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
+        finally
+        {
+            sql = null;
+
+            if (c != null) {
+                c.close();
+                c = null;
+            }
+        }
 
         return ci;
     }
@@ -2277,7 +2275,8 @@ public class Dal
      * @param bNumber
      * @return First Id of a book, -1 in case of error
      */
-    protected int GetBookMinId(final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    private int GetBookMinId(final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2318,7 +2317,8 @@ public class Dal
      * @param bNumber
      * @return Max Id of a book, -1 in case of error
      */
-    protected int GetBookMaxId(final int bNumber)
+    @SuppressWarnings("JavaDoc")
+    private int GetBookMaxId(final int bNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2358,7 +2358,7 @@ public class Dal
      * Delete a plan
      * @param planId    Plan Id
      */
-    protected void DeletePlan(final int planId)
+    void DeletePlan(final int planId)
     {
         String sql;
 
@@ -2385,7 +2385,7 @@ public class Dal
      * @param pd    Plan description
      * @param strBookNumbers List of book numbers
      */
-    protected void AddPlan(final PlanDescBO pd, final String strBookNumbers)
+    void AddPlan(final PlanDescBO pd, final String strBookNumbers)
     {
         String sql = null;
 
@@ -2495,7 +2495,7 @@ public class Dal
      * Get all plan descriptions
      * @return List of all plan descriptions
      */
-    protected ArrayList<PlanDescBO> GetAllPlanDesc()
+    ArrayList<PlanDescBO> GetAllPlanDesc()
     {
         String sql = null;
         Cursor c = null;
@@ -2550,7 +2550,7 @@ public class Dal
      * Get a plan desc
      * @return Plan description
      */
-    protected PlanDescBO GetPlanDesc(final int planId)
+    PlanDescBO GetPlanDesc(final int planId)
     {
         String sql = null;
         Cursor c = null;
@@ -2602,7 +2602,8 @@ public class Dal
      * @param planRef
      * @return true/false
      */
-    protected boolean IsPlanDescExist(final String planRef)
+    @SuppressWarnings("JavaDoc")
+    boolean IsPlanDescExist(final String planRef)
     {
         String sql = null;
         Cursor c = null;
@@ -2643,7 +2644,7 @@ public class Dal
      * @param pageNr    Page number
      * @return list of days
      */
-    protected ArrayList<PlanCalBO> GetPlanCal(final String bbName, final int planId, final int pageNr)
+    ArrayList<PlanCalBO> GetPlanCal(final String bbName, final int planId, final int pageNr)
     {
         String sql = null;
         Cursor c = null;
@@ -2717,7 +2718,8 @@ public class Dal
      * @param planId
      * @return day number (0 if not found)
      */
-    protected int GetCurrentDayNumberOfPlanCal(final int planId)
+    @SuppressWarnings("JavaDoc")
+    int GetCurrentDayNumberOfPlanCal(final int planId)
     {
         String sql = null;
         Cursor c = null;
@@ -2766,7 +2768,7 @@ public class Dal
      * @param dayNumber Day number
      * @return Plan cal of day
      */
-    protected PlanCalBO GetPlanCalByDay(final String bbName, final int planId, final int dayNumber)
+    PlanCalBO GetPlanCalByDay(final String bbName, final int planId, final int dayNumber)
     {
         String sql = null;
         Cursor c = null;
@@ -2826,7 +2828,7 @@ public class Dal
      * @param planId    Plan Id
      * @return Row count for this calendar
      */
-    protected int GetPlanCalRowCount(final String bbName, final int planId)
+    int GetPlanCalRowCount(final String bbName, final int planId)
     {
         String sql = null;
         Cursor c = null;
@@ -2873,7 +2875,8 @@ public class Dal
      * @param planId
      * @return Count of days read
      */
-    protected int GetPlanCalDaysReadCount(final int planId)
+    @SuppressWarnings("JavaDoc")
+    int GetPlanCalDaysReadCount(final int planId)
     {
         String sql = null;
         Cursor c = null;
@@ -2922,7 +2925,7 @@ public class Dal
      * @param dayNumber Day number
      * @param isRead    Is read
      */
-    protected void MarkPlanCal(final int planId, final int dayNumber, final int isRead)
+    void MarkPlanCal(final int planId, final int dayNumber, final int isRead)
     {
         String sql = null;
 
@@ -2948,7 +2951,7 @@ public class Dal
      * @param dayNumber Day number
      * @param isRead    Is read
      */
-    protected void MarkAllAbovePlanCal(final int planId, final int dayNumber, final int isRead)
+    void MarkAllAbovePlanCal(final int planId, final int dayNumber, final int isRead)
     {
         String sql = null;
 

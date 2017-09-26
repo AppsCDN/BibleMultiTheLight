@@ -2,10 +2,8 @@
 package org.hlwd.bible;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 
 public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
 {
+    @SuppressWarnings("WeakerAccess")
     protected ArrayList<VerseBO> lstVerse = null;
     private String markFav;
     private String markReading;
@@ -117,6 +116,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
      * @param orderBy       Order by
      * @param markType      Mark type (NULL to get all types)
      */
+    @SuppressWarnings("JavaDoc")
     public BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, final String markType)
     {
         CheckLocalInstance(context);
@@ -148,19 +148,6 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
             final int fontSize = PCommon.GetFontSize(view.getContext());
             tv_ref.setTextSize(fontSize);
             tv_text.setTextSize(fontSize);
-
-            final String theme_name = PCommon.GetPrefThemeName(view.getContext());
-            if (theme_name.compareTo("KAKI") == 0)
-            {
-                final TypedValue typedValue = new TypedValue();
-                final Resources.Theme theme = view.getContext().getTheme();
-                theme.resolveAttribute(R.attr.cardFgColor, typedValue, true);
-                final int fgColor = typedValue.data;
-
-                tv_ref.setTextColor(fgColor);
-                tv_text.setTextColor(fgColor);
-                tv_mark.setTextColor(fgColor);
-            }
         }
     }
 

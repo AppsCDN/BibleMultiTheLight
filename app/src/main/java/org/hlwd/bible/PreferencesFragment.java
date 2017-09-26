@@ -26,12 +26,6 @@ public class PreferencesFragment extends PreferenceFragment
                     final String themeName = o.toString();
                     PCommon.SetThemeName(preference.getContext(), themeName);
 
-                    //final int THEME_ID = PCommon.GetPrefThemeId( preference.getContext() );
-                    //setTheme(THEME_ID);
-
-                    //final Fragment test = getFragmentManager().findFragmentByTag("PA");
-                    //test.getActivity().setTheme(R.style.AppThemeKaki);
-
                     final Intent returnIntent = new Intent();
                     getActivity().setResult(Activity.RESULT_OK, returnIntent);
 

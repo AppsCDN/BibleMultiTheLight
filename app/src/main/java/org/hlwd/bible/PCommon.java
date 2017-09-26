@@ -35,7 +35,7 @@ import java.util.*;
  *
  * Special characters: { } [ ] ||
  */
-public final class PCommon implements IProject
+final class PCommon implements IProject
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
@@ -66,6 +66,7 @@ public final class PCommon implements IProject
      * Check local instance
      * @param context
      */
+    @SuppressWarnings("JavaDoc")
     private static void CheckLocalInstance(final Context context)
     {
         try
@@ -163,16 +164,6 @@ public final class PCommon implements IProject
         return DateFormat.format("yyyyMMdd", new Date()).toString();
     }
 
-    /***
-     * Get Now in millics (since Epoch)
-     * @return long value
-     *
-    protected static long NowInMillics()
-    {
-        return new Date().getTime();
-    }
-    */
-
     /**
      * Get current time (E.G.: 14:34:20)
      * @return NowFunc
@@ -199,6 +190,7 @@ public final class PCommon implements IProject
      * @param key
      * @param value
      */
+    @SuppressWarnings("JavaDoc")
     protected static void SavePref(final Context context, final APP_PREF_KEY key, final String value)
     {
         //SharedPreferences appPrefs = context.getSharedPreferences("task1", MODE_PRIVATE);
@@ -215,6 +207,7 @@ public final class PCommon implements IProject
      * @param key   integer logs as String
      * @param value
      */
+    @SuppressWarnings("JavaDoc")
     protected static void SavePrefInt(final Context context, final APP_PREF_KEY key, final int value) {
 
         SavePref(context, key, ConcaT(value));
@@ -228,6 +221,7 @@ public final class PCommon implements IProject
      * @param key
      * @return
      */
+    @SuppressWarnings("JavaDoc")
     protected static String GetPref(final Context context, final APP_PREF_KEY key) {
 
         return GetPref(context, key, "");
@@ -240,6 +234,7 @@ public final class PCommon implements IProject
      * @param defaultValue
      * @return
      */
+    @SuppressWarnings("JavaDoc")
     protected static String GetPref(final Context context, final APP_PREF_KEY key, final String defaultValue)
     {
         final SharedPreferences appPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -251,6 +246,7 @@ public final class PCommon implements IProject
      * Get BIBLE_NAME
      * @param context
      */
+    @SuppressWarnings("JavaDoc")
     protected static String GetPrefBibleName(final Context context)
     {
         String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME);
@@ -264,6 +260,7 @@ public final class PCommon implements IProject
      * @param context
      * @param canReturnDefaultValue  False => its real value (can be empty), True => if empty: fill with a default value
      */
+    @SuppressWarnings("JavaDoc")
     protected static String GetPrefTradBibleName(final Context context, final boolean canReturnDefaultValue)
     {
         String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME);
@@ -287,6 +284,7 @@ public final class PCommon implements IProject
      * @param context
      * @return theme ID
      */
+    @SuppressWarnings("JavaDoc")
     protected static int GetPrefThemeId(final Context context)
     {
         final String THEME_NAME = PCommon.GetPrefThemeName(context);
@@ -325,6 +323,7 @@ public final class PCommon implements IProject
      * @param bbName    bbName
      * @return String with selected language names
      */
+    @SuppressWarnings("JavaDoc")
     protected static String ManageTradBibleName(final Context context, final int operation, final String bbName)
     {
         boolean valueChanged = false;
@@ -389,6 +388,7 @@ public final class PCommon implements IProject
      * @param context
      * @return LIGHT as default
      */
+    @SuppressWarnings("JavaDoc")
     protected static String GetPrefThemeName(final Context context)
     {
         String themeName = "DARK";
@@ -477,15 +477,6 @@ public final class PCommon implements IProject
 
     /**
      * Log (Release mode)
-     * @param resId RessourceId (without params)
-     *
-    protected static void LogR(final Context context, final int resId) {
-        LogR(context, context.getResources().getText(resId).toString());
-    }
-    */
-
-    /**
-     * Log (Release mode)
      * @param resId RessourceId
      * @param args  Arguments (for String.format)
      */
@@ -505,13 +496,7 @@ public final class PCommon implements IProject
         //LogR(context, ex, "");
     }
 
-    /**
-     * Log (Release mode) stack trace
-     * @param context   Context
-     * @param ex    Exception
-     * @param addMsg    Additional message
-     */
-/*
+    /*
     protected static void LogR(final Context context, final Exception ex, String addMsg)
     {
         String msg = null;
@@ -558,24 +543,6 @@ public final class PCommon implements IProject
     }
 */
 
-    /**
-     * Log (Debug mode only)
-     * @param msg   Message
-     *
-    protected static void LogD(final Context context, final String msg)
-    {
-        if (_isDebugVersion)
-        {
-            LogR(context, msg);
-        }
-    }
-    */
-
-    /**
-     * Reduce logs
-     * @param logs Logs
-     * @return logs cut
-     */
     /*
     protected static String LogCut(final String logs)
     {
@@ -667,56 +634,6 @@ public final class PCommon implements IProject
 
         return id;
     }
-
-    /***
-     * Get resource (text)
-     * @param resNm         Resource name
-     * @param formatType    Format type: 0 = space (wide), 1 = newline (high)
-     * @return resource as string (null if not found)
-     *
-    protected static String GetResText(final Context context, final String resNm, final int formatType) throws Exception
-    {
-        //Rem: different context; from Activity to Application, resource not available => give full path
-        //Works with: org.me.vibrato.R.string.class.getField( resNm ).getInt(null);
-        final int resId = (resNm == null) ? -1 : org.hlwd.bible.R.string.class.getField( resNm ).getInt(null);
-
-        String resText = null;
-
-        if (resNm == null)
-        {
-            resText = null;
-        }
-        else
-        {
-            resText = context.getResources().getText(resId).toString();
-
-            //Replace | by new line.
-            if (resText.length() > 0)
-            {
-                if (formatType == 1)
-                    resText = resText.replaceAll("\\|", "\n");
-                else
-                    resText = resText.replaceAll("\\|", " ");
-            }
-        }
-
-        return resText;
-    }
-    */
-
-    /***
-     * Modulo (works for negative value)
-     * @param x     Value
-     * @param mod   Modulo
-     * @return -2 mod 6 => 4
-     *
-    protected static int Modulo(final int x, final int mod)
-    {
-        final int result = x % mod;
-
-        return (result < 0) ? result + mod : result;
-    }
-    */
 
     /***
      * Get count of threads running
@@ -936,6 +853,7 @@ public final class PCommon implements IProject
      * @param forceShowAllButtons  Force to show all buttons
      * @return builder
      */
+    @SuppressWarnings("JavaDoc")
     protected static void SelectBibleLanguage(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
     {
         try
@@ -1011,8 +929,8 @@ public final class PCommon implements IProject
      * @param desc
      * @param isCancelable
      * @param forceShowAllButtons  Force to show all buttons
-     * @return builder
      */
+    @SuppressWarnings("JavaDoc")
     protected static void SelectBibleLanguageMulti(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
     {
         try
@@ -1131,8 +1049,8 @@ public final class PCommon implements IProject
      * @param isCancelable
      * @param forceShowAllButtons  Force to show all buttons
      * @param chapterMax
-     * @return builder
      */
+    @SuppressWarnings("JavaDoc")
     protected static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons, final int chapterMax)
     {
         try
@@ -1252,6 +1170,7 @@ public final class PCommon implements IProject
      * @param titleId
      * @param msgId
      */
+    @SuppressWarnings("JavaDoc")
     protected static void ShowDialog(final Activity activity, final int titleId, final int msgId)
     {
         try
@@ -1290,6 +1209,7 @@ public final class PCommon implements IProject
      * @param maxRange  Maximum
      * @return Random int
      */
+    @SuppressWarnings("JavaDoc")
     protected static int GetRandomInt(final Context context, final int minRange, final int maxRange)
     {
         int rndValue = minRange;
@@ -1316,6 +1236,7 @@ public final class PCommon implements IProject
      * @param context
      * @return null has default typeface, so don't set it. Roboto?
      */
+    @SuppressWarnings("JavaDoc")
     protected static Typeface GetTypeface(final Context context)
     {
         try
@@ -1339,6 +1260,7 @@ public final class PCommon implements IProject
      * Get font size (verse)
      * @param context
      */
+    @SuppressWarnings("JavaDoc")
     protected static int GetFontSize(final Context context)
     {
         try

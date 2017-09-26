@@ -222,6 +222,7 @@ public class DbHelper extends SQLiteOpenHelper
                 sql = DropTable("temp_cacheTab");
                 _db.execSQL(sql);
             }
+            //noinspection StatementWithEmptyBody
             if (oldVersion < 4)    //1..3 => 4
             {
                 //Code REMOVED: PCommon.SavePref(_context, IProject.APP_PREF_KEY.LAYOUT_COLUMN, "1");
@@ -470,8 +471,8 @@ public class DbHelper extends SQLiteOpenHelper
      * Create index
      * @param tblName
      * @param fieldNames
-     * @return sql
      */
+    @SuppressWarnings("JavaDoc")
     private void CreateIndex(final String tblName, final String fieldNames)
     {
         try
@@ -495,9 +496,10 @@ public class DbHelper extends SQLiteOpenHelper
      * @param toFieldTypes
      * @param transformationOldToNew
      */
+    @SuppressWarnings("JavaDoc")
     private void UpgradeTable(final String tblName,
                               final String fromFieldNames, final String fromFieldTypes,
-                              final String toFieldNames,   final String toFieldTypes,
+                              final String toFieldNames, final String toFieldTypes,
                               final String transformationOldToNew)
     {
         try
@@ -525,8 +527,9 @@ public class DbHelper extends SQLiteOpenHelper
      * @param toFieldNames
      * @param toFieldTypes
      */
+    @SuppressWarnings("JavaDoc")
     private void UpgradeTable(final String tblName,
-                              final String toFieldNames,   final String toFieldTypes
+                              final String toFieldNames, final String toFieldTypes
     )
     {
         UpgradeTable(tblName, null, null, toFieldNames, toFieldTypes, null);
@@ -538,6 +541,7 @@ public class DbHelper extends SQLiteOpenHelper
      * @param fieldTypes
      * @return
      */
+    @SuppressWarnings("JavaDoc")
     private String TableDefinition(final String fieldNames, final String fieldTypes)
     {
         String result = "";
