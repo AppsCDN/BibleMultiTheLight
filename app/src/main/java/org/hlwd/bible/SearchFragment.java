@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment
     private Context _context = null;
     private SCommon _s = null;
     private static View v;
-    protected static FRAGMENT_TYPE fragmentType;
+    private static FRAGMENT_TYPE fragmentType;
     private LinearLayout llBookTitle;
     private Button tvBookTitle;
 
@@ -316,7 +316,7 @@ public class SearchFragment extends Fragment
                 vNumber = t.vNumber;
                 trad = t.trad;
 
-                String title = null;
+                @SuppressWarnings("UnusedAssignment") String title = null;
                 final String[] cols = searchFullQuery.split("\\s");
                 if (cols.length == 3)
                 {
@@ -454,9 +454,10 @@ public class SearchFragment extends Fragment
 
             //Parse <R></R>
             i = -1;
+            //noinspection UnusedAssignment
             pos = -1;
             String[] arrRef = artHtml.split("<R>");
-            if (arrRef != null)
+            if (arrRef.length > 0)
             {
                 String strVerses;
                 for (String strRef : arrRef)
@@ -480,20 +481,24 @@ public class SearchFragment extends Fragment
                             {   //5
                                 strVerses = _s.GetVersesHtml(ref[0], Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]),  Integer.parseInt(ref[4]));
                             }
+                            //noinspection UnusedAssignment
                             ref = null;
                             artHtml = artHtml.replaceFirst(strRef, strVerses);
                         }
                     }
                 }
+                //noinspection UnusedAssignment
                 strVerses = null;
             }
 
             //Parse <HB></HB>
             i = -1;
+            //noinspection UnusedAssignment
             pos = -1;
+            //noinspection UnusedAssignment
             arrRef = null;
             arrRef = artHtml.split("<HB>");
-            if (arrRef != null)
+            if (arrRef.length > 0)
             {
                 for (String strRef : arrRef)
                 {
@@ -511,11 +516,13 @@ public class SearchFragment extends Fragment
                             String[] ref = strRef.replaceFirst("<HB>", "").replaceFirst("</HB>", "").split("\\s");
                             artHtml = artHtml.replaceFirst(strRef,
                                     PCommon.ConcaT("<H>",_s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</H>"));
+                            //noinspection UnusedAssignment
                             ref = null;
                         }
                     }
                 }
             }
+            //noinspection UnusedAssignment
             arrRef = null;
 
             //Parse <T></T>,  <H></H>,  <HA/>
@@ -527,7 +534,7 @@ public class SearchFragment extends Fragment
                     .replaceAll("</H>", "</u></h1>");
             //End Parser
 
-            final Spanned spanned = Html.fromHtml( artHtml );
+            @SuppressWarnings("deprecation") final Spanned spanned = Html.fromHtml( artHtml );
             final TextView tvDesc = (TextView) v.findViewById(R.id.tvDesc);
             tvDesc.setText(spanned);
             if (artHtml.contains("</a>")) tvDesc.setMovementMethod(LinkMovementMethod.getInstance());
@@ -608,7 +615,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
@@ -628,7 +635,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
                         }
@@ -651,7 +658,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
 
                             if (isVerse)
@@ -686,7 +693,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             final String text = _s.GetVerseText(tbbName, verse.bNumber, verse.cNumber, verse.vNumber);
                             PCommon.CopyTextToClipboard(_context, "", text);
@@ -706,7 +713,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             final String text = _s.GetChapterText(tbbName, verse.bNumber, verse.cNumber);
                             PCommon.CopyTextToClipboard(_context, "", text);
@@ -730,7 +737,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             final String text;
 
@@ -770,7 +777,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             final String text = _s.GetVerseText(tbbName, verse.bNumber, verse.cNumber, verse.vNumber);
 
@@ -791,7 +798,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "" ) return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
                             final String text = _s.GetChapterText(tbbName, verse.bNumber, verse.cNumber);
 
@@ -812,7 +819,7 @@ public class SearchFragment extends Fragment
                         public void onDismiss(DialogInterface dialogInterface)
                         {
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
-                            if (bbname == "") return;
+                            if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
 
                             final int tabIdFrom = tabNumber();
@@ -1090,7 +1097,7 @@ public class SearchFragment extends Fragment
     {
         SetLayoutManager();
 
-        recyclerViewAdapter = new BibleAdapter(_context);
+        recyclerViewAdapter = new BibleAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
     }
@@ -1352,7 +1359,7 @@ public class SearchFragment extends Fragment
     private void SaveTab()
     {
         final String tabType = (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE) ? "S" : (fragmentType == FRAGMENT_TYPE.PLAN_TYPE) ? "P" : (fragmentType == FRAGMENT_TYPE.FAV_TYPE) ? "F" : "A";
-        if (trad == null || trad == "") trad = bbName;
+        if (trad == null || trad.equals("")) trad = bbName;
         final CacheTabBO cacheTab = new CacheTabBO(tabNumber(), tabType, tabTitle, searchFullQuery, scrollPosY, bbName, isBook, isChapter, isVerse, bNumber, cNumber, vNumber, trad);
         _s.SaveCacheTab(cacheTab);
         SetLayoutManager();
@@ -1568,10 +1575,10 @@ public class SearchFragment extends Fragment
 
             SetLocalBibleName();
 
-            boolean isBook = false,  isChapter = false,  isVerse = false;
-            int     bNumber = 0,     cNumber = 0,        vNumber = 0;
+            @SuppressWarnings("UnusedAssignment") boolean isBook = false,  isChapter = false,  isVerse = false;
+            @SuppressWarnings("UnusedAssignment") int     bNumber = 0,     cNumber = 0,        vNumber = 0;
 
-            int wCount = 0;
+            @SuppressWarnings("UnusedAssignment") int wCount = 0;
             final String[] words = searchFullQuery.split("\\s");
             final String patternDigit = "\\d+";
 

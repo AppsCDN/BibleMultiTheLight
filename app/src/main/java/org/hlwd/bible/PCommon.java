@@ -41,11 +41,11 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    protected final static boolean _isDebugVersion = true;
+    final static boolean _isDebugVersion = true;
 
-    protected final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-    protected final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-    protected final static LayoutParams _layoutParamsMatch = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+    final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+    final static LayoutParams _layoutParamsMatch = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
     private static SCommon _s = null;
 
@@ -84,7 +84,7 @@ final class PCommon implements IProject
      * @param stackTrace    Stack trace
      * @return string
      */
-    protected static String StackTraceToString(final StackTraceElement[] stackTrace)
+    private static String StackTraceToString(final StackTraceElement[] stackTrace)
     {
         final StringWriter sw = new StringWriter();
         PrintStackTrace(stackTrace, new PrintWriter(sw));
@@ -105,7 +105,7 @@ final class PCommon implements IProject
      * @param args  Arguments
      * @return string
      */
-    protected static String ConcaT(final Object... args)
+    static String ConcaT(final Object... args)
     {
         final StringBuilder sb = new StringBuilder();
 
@@ -122,7 +122,7 @@ final class PCommon implements IProject
      * @param value Field value
      * @return Quotated string
      */
-    protected static String AQ(final String value)
+    static String AQ(final String value)
     {
         final String newValue = PCommon.ConcaT("'", value, "'");
 
@@ -134,7 +134,7 @@ final class PCommon implements IProject
      * @param value     Field value
      * @return Field value ready to be concatenated in sql query
      */
-    protected static String RQ(final String value)
+    static String RQ(final String value)
     {
         if (!value.contains("'"))
         {
@@ -150,7 +150,7 @@ final class PCommon implements IProject
      * Get current date time (E.G.: 23/09 14:34:20)
      * @return NowFunc
      */
-    protected static String NowFunc()
+    static String NowFunc()
     {
         return DateFormat.format("dd/MM kk:mm:ss", new Date()).toString();
     }
@@ -159,7 +159,7 @@ final class PCommon implements IProject
      * Get current date YYYYMMDD (E.G.: 20160818)
      * @return YYYYMMDD
      */
-    protected static String NowYYYYMMDD()
+    static String NowYYYYMMDD()
     {
         return DateFormat.format("yyyyMMdd", new Date()).toString();
     }
@@ -168,7 +168,7 @@ final class PCommon implements IProject
      * Get current time (E.G.: 14:34:20)
      * @return NowFunc
      */
-    protected static String TimeFunc()
+    private static String TimeFunc()
     {
         return DateFormat.format("kk:mm:ss", new Date()).toString();
     }
@@ -177,7 +177,7 @@ final class PCommon implements IProject
      * Get current time (E.G.: 143420)
      * @return NowFunc
      */
-    protected static String TimeFuncShort()
+    static String TimeFuncShort()
     {
         final String now = DateFormat.format("kkmmss", new Date()).toString();
 
@@ -191,7 +191,7 @@ final class PCommon implements IProject
      * @param value
      */
     @SuppressWarnings("JavaDoc")
-    protected static void SavePref(final Context context, final APP_PREF_KEY key, final String value)
+    static void SavePref(final Context context, final APP_PREF_KEY key, final String value)
     {
         //SharedPreferences appPrefs = context.getSharedPreferences("task1", MODE_PRIVATE);
         final SharedPreferences appPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -208,8 +208,8 @@ final class PCommon implements IProject
      * @param value
      */
     @SuppressWarnings("JavaDoc")
-    protected static void SavePrefInt(final Context context, final APP_PREF_KEY key, final int value) {
-
+    static void SavePrefInt(final Context context, final APP_PREF_KEY key, final int value)
+    {
         SavePref(context, key, ConcaT(value));
 
         //LogD(context, key);
@@ -222,8 +222,8 @@ final class PCommon implements IProject
      * @return
      */
     @SuppressWarnings("JavaDoc")
-    protected static String GetPref(final Context context, final APP_PREF_KEY key) {
-
+    static String GetPref(final Context context, final APP_PREF_KEY key)
+    {
         return GetPref(context, key, "");
     }
 
@@ -235,7 +235,7 @@ final class PCommon implements IProject
      * @return
      */
     @SuppressWarnings("JavaDoc")
-    protected static String GetPref(final Context context, final APP_PREF_KEY key, final String defaultValue)
+    static String GetPref(final Context context, final APP_PREF_KEY key, final String defaultValue)
     {
         final SharedPreferences appPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -247,10 +247,10 @@ final class PCommon implements IProject
      * @param context
      */
     @SuppressWarnings("JavaDoc")
-    protected static String GetPrefBibleName(final Context context)
+    static String GetPrefBibleName(final Context context)
     {
         String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME);
-        if (bbName == "" || bbName == null) bbName = "k";
+        if (bbName == null || bbName.equals("")) bbName = "k";
 
         return bbName;
     }
@@ -261,10 +261,10 @@ final class PCommon implements IProject
      * @param canReturnDefaultValue  False => its real value (can be empty), True => if empty: fill with a default value
      */
     @SuppressWarnings("JavaDoc")
-    protected static String GetPrefTradBibleName(final Context context, final boolean canReturnDefaultValue)
+    static String GetPrefTradBibleName(final Context context, final boolean canReturnDefaultValue)
     {
         String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME);
-        if (trad == "" || trad == null)
+        if (trad == null || trad.equals(""))
         {
             if (canReturnDefaultValue)
             {
@@ -285,7 +285,7 @@ final class PCommon implements IProject
      * @return theme ID
      */
     @SuppressWarnings("JavaDoc")
-    protected static int GetPrefThemeId(final Context context)
+    static int GetPrefThemeId(final Context context)
     {
         final String THEME_NAME = PCommon.GetPrefThemeName(context);
         final int themeId;
@@ -324,14 +324,14 @@ final class PCommon implements IProject
      * @return String with selected language names
      */
     @SuppressWarnings("JavaDoc")
-    protected static String ManageTradBibleName(final Context context, final int operation, final String bbName)
+    private static String ManageTradBibleName(final Context context, final int operation, final String bbName)
     {
         boolean valueChanged = false;
         String trad = PCommon.GetPrefTradBibleName(context, false);
         if (operation > 0)
         {
             //Add
-            if (trad.indexOf(bbName) < 0)
+            if (!trad.contains(bbName))
             {
                 trad = PCommon.ConcaT(trad, bbName);
                 valueChanged = true;
@@ -340,7 +340,7 @@ final class PCommon implements IProject
         else if (operation < 0)
         {
             //Remove
-            if (trad.indexOf(bbName) >= 0)
+            if (trad.contains(bbName))
             {
                 trad = trad.replace(bbName, "");
                 valueChanged = true;
@@ -389,7 +389,7 @@ final class PCommon implements IProject
      * @return LIGHT as default
      */
     @SuppressWarnings("JavaDoc")
-    protected static String GetPrefThemeName(final Context context)
+    private static String GetPrefThemeName(final Context context)
     {
         String themeName = "DARK";
 
@@ -430,7 +430,7 @@ final class PCommon implements IProject
      * @param context   Context
      * @param themeName Theme
      */
-    protected static void SetThemeName(final Context context, String themeName)
+    static void SetThemeName(final Context context, String themeName)
     {
         try
         {
@@ -466,7 +466,7 @@ final class PCommon implements IProject
      * Log (Release mode)
      * @param msg   Message
      */
-    protected static void LogR(final Context context, final String msg)
+    private static void LogR(final Context context, final String msg)
     {
         final String newMsg = ConcaT(TimeFunc(), "  ", msg);
 
@@ -480,7 +480,7 @@ final class PCommon implements IProject
      * @param resId RessourceId
      * @param args  Arguments (for String.format)
      */
-    protected static void LogR(final Context context, final int resId, final Object... args) {
+    private static void LogR(final Context context, final int resId, final Object... args) {
         LogR(context, String.format(context.getResources().getText(resId).toString(), args));
     }
 
@@ -489,7 +489,7 @@ final class PCommon implements IProject
      * @param context   Context
      * @param ex    Exception
      */
-    protected static void LogR(final Context context, final Exception ex)
+    static void LogR(final Context context, final Exception ex)
     {
         LogR(context, R.string.logErr, StackTraceToString(ex.getStackTrace()));
 
@@ -563,7 +563,7 @@ final class PCommon implements IProject
     /**
      * Clear logs (in variable)
      */
-    protected static void ClearErrorLogs(final Context context)
+    static void ClearErrorLogs(final Context context)
     {
         try
         {
@@ -585,7 +585,7 @@ final class PCommon implements IProject
      * @param resName   Resource name
      * @return Resource Id (-1 by default)
      */
-    protected static int GetResId(final Context context, final String resName)
+    static int GetResId(final Context context, final String resName)
     {
         int id = -1;
 
@@ -613,7 +613,7 @@ final class PCommon implements IProject
      * @param resName   Resource name
      * @return Resource Id (-1 by default)
      */
-    protected static int GetDrawableId(final Context context, final String resName)
+    static int GetDrawableId(final Context context, final String resName)
     {
         int id = -1;
 
@@ -640,7 +640,7 @@ final class PCommon implements IProject
      * @param context   Context
      * @return Count of threads running
      */
-    protected static int GetCountThreadRunning(final Context context)
+    private static int GetCountThreadRunning(final Context context)
     {
         int count = 0;
 
@@ -658,6 +658,7 @@ final class PCommon implements IProject
             }
 
             threadSet.clear();
+            //noinspection UnusedAssignment
             threadSet = null;
         }
         catch (Exception ex)
@@ -672,7 +673,7 @@ final class PCommon implements IProject
      * Try to quit application
      * @param context   Context
      */
-    protected static void TryQuitApplication(final Context context)
+    static void TryQuitApplication(final Context context)
     {
         try
         {
@@ -687,17 +688,14 @@ final class PCommon implements IProject
         {
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
-        finally
-        { }
 
-        QuitApplication(context);
+        QuitApplication();
     }
 
     /***
      * Quit application
-     * @param context   Context
      */
-    protected static void QuitApplication(final Context context)
+    private static void QuitApplication()
     {
         try
         {
@@ -722,8 +720,6 @@ final class PCommon implements IProject
             android.os.Process.killProcess(appId);
         }
         catch (Exception ex) { }
-        finally
-        { }
     }
 
     /**
@@ -733,12 +729,12 @@ final class PCommon implements IProject
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
      */
-    protected static void ShowNotification(final Context context, final String title, final String message, final int drawable)
+    static void ShowNotification(final Context context, final String title, final String message, final int drawable)
     {
-        NotificationManager nm = null;
-        NotificationCompat.Builder notification = null;
-        Intent intent = null;
-        PendingIntent pIntent = null;
+        @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
+        @SuppressWarnings("UnusedAssignment") NotificationCompat.Builder notification = null;
+        @SuppressWarnings("UnusedAssignment") Intent intent = null;
+        @SuppressWarnings("UnusedAssignment") PendingIntent pIntent = null;
 
         try
         {
@@ -764,9 +760,13 @@ final class PCommon implements IProject
         finally
         {
             //Cleaning
+            //noinspection UnusedAssignment
             notification = null;
+            //noinspection UnusedAssignment
             intent = null;
+            //noinspection UnusedAssignment
             pIntent = null;
+            //noinspection UnusedAssignment
             nm = null;
         }
     }
@@ -777,7 +777,7 @@ final class PCommon implements IProject
      * @param message   Message
      * @param duration  Duration (ex: Toast.LENGTH_SHORT...)
      */
-    protected static void ShowToast(final Context context, final int message, final int duration)
+    static void ShowToast(final Context context, final int message, final int duration)
     {
         final Toast toast = Toast.makeText(context, message, duration);
         toast.show();
@@ -789,7 +789,7 @@ final class PCommon implements IProject
      * @param label     Label
      * @param text      Text to copy
      */
-    protected static void CopyTextToClipboard(final Context context, final String label, final String text)
+    static void CopyTextToClipboard(final Context context, final String label, final String text)
     {
         final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
@@ -803,7 +803,7 @@ final class PCommon implements IProject
      * @param subject   Email subject
      * @param body      Email body
      */
-    protected static void SendEmail(final Context context, final String[] toList, final String subject, final String body)
+    static void SendEmail(final Context context, final String[] toList, final String subject, final String body)
     {
         try
         {
@@ -827,7 +827,7 @@ final class PCommon implements IProject
      * @param context   Context
      * @param text      Text to share
      */
-    protected static void ShareText(final Context context, final String text)
+    static void ShareText(final Context context, final String text)
     {
         try
         {
@@ -854,7 +854,7 @@ final class PCommon implements IProject
      * @return builder
      */
     @SuppressWarnings("JavaDoc")
-    protected static void SelectBibleLanguage(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
+    static void SelectBibleLanguage(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
     {
         try
         {
@@ -931,7 +931,7 @@ final class PCommon implements IProject
      * @param forceShowAllButtons  Force to show all buttons
      */
     @SuppressWarnings("JavaDoc")
-    protected static void SelectBibleLanguageMulti(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
+    static void SelectBibleLanguageMulti(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
     {
         try
         {
@@ -1020,17 +1020,17 @@ final class PCommon implements IProject
                 public void onClick(View view) {
                     //all selected toggle
                     final String currentTrad = PCommon.GetPrefTradBibleName(context, false);
-                    if (currentTrad == "") return;
+                    if (currentTrad.equals("")) return;
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, currentTrad.substring(0, 1));
                     builder.dismiss();
                 }
             });
 
             final String tradInit = PCommon.GetPrefTradBibleName(context, false);
-            if (tradInit.indexOf("k") >= 0) btnLanguageEN.setChecked(true);
-            if (tradInit.indexOf("v") >= 0) btnLanguageES.setChecked(true);
-            if (tradInit.indexOf("l") >= 0) btnLanguageFR.setChecked(true);
-            if (tradInit.indexOf("d") >= 0) btnLanguageIT.setChecked(true);
+            if (tradInit.contains("k")) btnLanguageEN.setChecked(true);
+            if (tradInit.contains("v")) btnLanguageES.setChecked(true);
+            if (tradInit.contains("l")) btnLanguageFR.setChecked(true);
+            if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
             final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
             tvTrad.setText(languageStack);
         }
@@ -1051,7 +1051,7 @@ final class PCommon implements IProject
      * @param chapterMax
      */
     @SuppressWarnings("JavaDoc")
-    protected static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, final String desc, final boolean isCancelable, final boolean forceShowAllButtons, final int chapterMax)
+    static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons, final int chapterMax)
     {
         try
         {
@@ -1143,7 +1143,7 @@ final class PCommon implements IProject
                 public void onClick(View view) {
                     //all selected toggle
                     final String currentTrad = PCommon.GetPrefTradBibleName(context, false);
-                    if (currentTrad == "") return;
+                    if (currentTrad.equals("")) return;
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, currentTrad.substring(0, 1));
                     PCommon.SavePref(context, APP_PREF_KEY.BOOK_CHAPTER_DIALOG, String.valueOf(npChapter.getValue()));
                     builder.dismiss();
@@ -1151,10 +1151,10 @@ final class PCommon implements IProject
             });
 
             final String tradInit = PCommon.GetPrefTradBibleName(context, false);
-            if (tradInit.indexOf("k") >= 0) btnLanguageEN.setChecked(true);
-            if (tradInit.indexOf("v") >= 0) btnLanguageES.setChecked(true);
-            if (tradInit.indexOf("l") >= 0) btnLanguageFR.setChecked(true);
-            if (tradInit.indexOf("d") >= 0) btnLanguageIT.setChecked(true);
+            if (tradInit.contains("k")) btnLanguageEN.setChecked(true);
+            if (tradInit.contains("v")) btnLanguageES.setChecked(true);
+            if (tradInit.contains("l")) btnLanguageFR.setChecked(true);
+            if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
             final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
             tvTrad.setText(languageStack);
         }
@@ -1171,7 +1171,7 @@ final class PCommon implements IProject
      * @param msgId
      */
     @SuppressWarnings("JavaDoc")
-    protected static void ShowDialog(final Activity activity, final int titleId, final int msgId)
+    static void ShowDialog(final Activity activity, final int titleId, final int msgId)
     {
         try
         {
@@ -1210,7 +1210,7 @@ final class PCommon implements IProject
      * @return Random int
      */
     @SuppressWarnings("JavaDoc")
-    protected static int GetRandomInt(final Context context, final int minRange, final int maxRange)
+    static int GetRandomInt(final Context context, final int minRange, final int maxRange)
     {
         int rndValue = minRange;
 
@@ -1237,7 +1237,7 @@ final class PCommon implements IProject
      * @return null has default typeface, so don't set it. Roboto?
      */
     @SuppressWarnings("JavaDoc")
-    protected static Typeface GetTypeface(final Context context)
+    static Typeface GetTypeface(final Context context)
     {
         try
         {
@@ -1261,7 +1261,7 @@ final class PCommon implements IProject
      * @param context
      */
     @SuppressWarnings("JavaDoc")
-    protected static int GetFontSize(final Context context)
+    static int GetFontSize(final Context context)
     {
         try
         {

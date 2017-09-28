@@ -25,7 +25,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuBooks">Books</string>
     <string name="mnuBook">Book</string>
     <string name="mnuDelete">Delete</string>
-    <string name="mnuEmpty" translatable="false"></string>
+    <string name="mnuEmpty" translatable="false"/>
     <string name="mnuFavClearFilter">Clear</string>
     <string name="mnuFavSort">Sort</string>
     <string name="mnuHelp">Help</string>
@@ -935,15 +935,12 @@ Some christians (several pastors), I watch on internet, please check their video
     <string name="languageEnShort" translatable="false">EN</string>
     <string name="languageItShort" translatable="false">IT</string>
     <string name="languageEsShort" translatable="false">ES</string>
-    <string name="mnuLanguageDesc" translatable="false" tools:ignore="UnusedResources"></string>
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>
     <string name="widgetTvText" translatable="false">T</string>
-    <string name="widgetConfigure" translatable="false">Configure</string>
-    <string name="widgetAdd" translatable="false">Add widget</string>
     <string name="widgetBtnForward" translatable="false">\u25b7</string>
     <string name="widgetBtnPrev" translatable="false">\u25c1</string>
     <string name="widgetBtnDown" translatable="false">..</string>
@@ -1001,7 +998,7 @@ Some christians (several pastors), I watch on internet, please check their video
 
     <!--suppress CheckTagEmptyBody -->
     <string-array name="FONT_VALUES_ARRAY" translatable="false">
-        <item></item>
+        <item/>
         <item>AveriaGruesaLibre.regular</item>
         <item>Bptypewrite.regular</item>
         <item>Caslon-os.regular</item>

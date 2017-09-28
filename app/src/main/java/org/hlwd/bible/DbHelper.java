@@ -3,7 +3,6 @@ package org.hlwd.bible;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Handler;
@@ -39,7 +38,7 @@ import java.io.InputStreamReader;
 /***
  * Use only LogD and LogE for logs, all is "hidden"
  */
-public class DbHelper extends SQLiteOpenHelper
+class DbHelper extends SQLiteOpenHelper
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
@@ -51,7 +50,7 @@ public class DbHelper extends SQLiteOpenHelper
 
     //<editor-fold defaultstate="collapsed" desc="-- Constructor --">
 
-    protected DbHelper(final Context context)
+    DbHelper(final Context context)
     {
         super(context, "bible.db", null, _version);
         _context = context;
@@ -371,7 +370,7 @@ public class DbHelper extends SQLiteOpenHelper
         if (PCommon._isDebugVersion) Log.e("DB", "Failure", ex);
     }
 
-    private void SetGlobalSettings() throws Exception
+    private void SetGlobalSettings()
     {
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
@@ -504,7 +503,7 @@ public class DbHelper extends SQLiteOpenHelper
     {
         try
         {
-            String sql = null;
+            @SuppressWarnings("UnusedAssignment") String sql = null;
 
             //Always
             sql = DropTable(tblName);
@@ -649,135 +648,128 @@ public class DbHelper extends SQLiteOpenHelper
 
                 private void ImportXmlBible(final String bbName) throws Exception
                 {
-                    try
+                    @SuppressWarnings("UnusedAssignment") int size = 0;
+                    int tot = 0;
+                    final String xmlName = bbName + ".xml";
+
+                    AssetManager am = _context.getAssets();
+                    InputStream is = am.open(xmlName);
+
+                    do
                     {
-                        int size = 0;
-                        int tot = 0;
-                        final String xmlName = bbName + ".xml";
-
-                        AssetManager am = _context.getAssets();
-                        InputStream is = am.open(xmlName);
-
-                        do
-                        {
-                            size = is.read();
-                            if (size >= 0) tot++;
-                        }
-                        while(size >= 0);
-
-                        is.close();
-                        is = am.open(xmlName);
-
-                        VTDGen vg = null;
-                        {
-                            byte[] b = new byte[(int) tot];
-                            is.read(b, 0, tot);
-
-                            vg = new VTDGen();
-                            vg.setDoc(b);
-                            vg.parse(false);
-
-                            b = null;
-                        }
-                        is.close();
-
-                        //Chapter infos
-                        is = am.open("ci.txt");
-                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                        String row;
-                        String[] cols;
-
-                        //Verses
-                        VTDNav vn = vg.getNav();
-                        AutoPilot apVerses = new AutoPilot();
-                        apVerses.bind(vn);
-
-                        String xpath, sql, vText;
-                        final String bbname = PCommon.AQ(bbName);
-                        final String insertSql = "INSERT INTO bible (id, bbName, bNumber, cNumber, vNumber, vText) VALUES (";
-
-                        xpath = PCommon.ConcaT("//BIBLEBOOK/CHAPTER/VERS");
-                        apVerses.selectXPath( xpath );
-
-                        int b, c, v, vCount, i;
-                        while ((row = br.readLine()) != null)
-                        {
-                            cols = row.split("\\|");
-                            if (cols.length != 3) break;
-
-                            b = Integer.parseInt( cols[0] );
-                            c = Integer.parseInt( cols[1] );
-                            vCount = Integer.parseInt( cols[2] );
-                            v = 0;
-
-                            for (i = 0; i < vCount; i++)
-                            {
-                                apVerses.evalXPath();
-
-                                v++;
-                                id++;
-                                vText = PCommon.AQ(PCommon.RQ(vn.getXPathStringVal()));
-                                sql = PCommon.ConcaT(insertSql, id, ",", bbname, ",", b, ",", c, ",", v, ",", vText, ")");
-
-                                //_db.beginTransaction();
-                                _db.execSQL(sql);
-                                //_db.setTransactionSuccessful();
-
-                                sql = null;
-                                vText = null;
-                            }
-
-                            cols = null;
-                            row = null;
-                        }
-
-                        apVerses.resetXPath();
-                        apVerses = null;
-                        vn = null;
-
-                        br.close();
-                        is.close();
+                        size = is.read();
+                        if (size >= 0) tot++;
                     }
-                    catch(Exception ex)
+                    while(size >= 0);
+
+                    is.close();
+                    is = am.open(xmlName);
+
+                    @SuppressWarnings("UnusedAssignment") VTDGen vg = null;
                     {
-                        throw ex;
+                        byte[] b = new byte[tot];
+                        is.read(b, 0, tot);
+
+                        vg = new VTDGen();
+                        vg.setDoc(b);
+                        vg.parse(false);
+
+                        //noinspection UnusedAssignment
+                        b = null;
                     }
+                    is.close();
+
+                    //Chapter infos
+                    is = am.open("ci.txt");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                    String row;
+                    String[] cols;
+
+                    //Verses
+                    VTDNav vn = vg.getNav();
+                    AutoPilot apVerses = new AutoPilot();
+                    apVerses.bind(vn);
+
+                    String xpath, sql, vText;
+                    final String bbname = PCommon.AQ(bbName);
+                    final String insertSql = "INSERT INTO bible (id, bbName, bNumber, cNumber, vNumber, vText) VALUES (";
+
+                    xpath = PCommon.ConcaT("//BIBLEBOOK/CHAPTER/VERS");
+                    apVerses.selectXPath( xpath );
+
+                    int b, c, v, vCount, i;
+                    while ((row = br.readLine()) != null)
+                    {
+                        cols = row.split("\\|");
+                        if (cols.length != 3) break;
+
+                        b = Integer.parseInt( cols[0] );
+                        c = Integer.parseInt( cols[1] );
+                        vCount = Integer.parseInt( cols[2] );
+                        v = 0;
+
+                        for (i = 0; i < vCount; i++)
+                        {
+                            apVerses.evalXPath();
+
+                            v++;
+                            id++;
+                            vText = PCommon.AQ(PCommon.RQ(vn.getXPathStringVal()));
+                            sql = PCommon.ConcaT(insertSql, id, ",", bbname, ",", b, ",", c, ",", v, ",", vText, ")");
+
+                            //_db.beginTransaction();
+                            _db.execSQL(sql);
+                            //_db.setTransactionSuccessful();
+
+                            //noinspection UnusedAssignment
+                            sql = null;
+                            //noinspection UnusedAssignment
+                            vText = null;
+                        }
+
+                        //noinspection UnusedAssignment
+                        cols = null;
+                        //noinspection UnusedAssignment
+                        row = null;
+                    }
+
+                    apVerses.resetXPath();
+                    //noinspection UnusedAssignment
+                    apVerses = null;
+                    //noinspection UnusedAssignment
+                    vn = null;
+
+                    br.close();
+                    is.close();
                 }
 
                 private void ImportBibleRef() throws Exception
                 {
-                    try
+                    final String fileName = "b.txt";
+                    String row;
+                    String[] cols;
+                    BibleRefBO ref = new BibleRefBO();
+
+                    AssetManager am = _context.getAssets();
+                    InputStream is = am.open(fileName);
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+                    while ((row = br.readLine()) != null)
                     {
-                        final String fileName = "b.txt";
-                        String row;
-                        String[] cols;
-                        BibleRefBO ref = new BibleRefBO();
+                        cols = row.split("\\|");
+                        if (cols.length != 4) break;
 
-                        AssetManager am = _context.getAssets();
-                        InputStream is = am.open(fileName);
-                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                        ref.bbName = cols[0];
+                        ref.bNumber = Integer.parseInt(cols[1]);
+                        ref.bName = cols[2];
+                        ref.bsName = cols[3];
 
-                        while ((row = br.readLine()) != null)
-                        {
-                            cols = row.split("\\|");
-                            if (cols.length != 4) break;
-
-                            ref.bbName = cols[0];
-                            ref.bNumber = Integer.parseInt(cols[1]);
-                            ref.bName = cols[2];
-                            ref.bsName = cols[3];
-
-                            AddBibleRef(ref);
-                        }
-
-                        br.close();
-                        is.close();
+                        AddBibleRef(ref);
                     }
-                    catch(Exception ex)
-                    {
-                        throw ex;
-                    }
-                }           
+
+                    br.close();
+                    is.close();
+                }
 
                 /***
                  * Add bible reference
@@ -785,29 +777,13 @@ public class DbHelper extends SQLiteOpenHelper
                  */
                 private void AddBibleRef(final BibleRefBO r) throws Exception
                 {
-                    String sql = null;
-
-                    try
-                    {
-                        sql = PCommon.ConcaT("INSERT INTO bibleRef (bbName, bNumber, bName, bsName) VALUES (",
+                    final String sql = PCommon.ConcaT("INSERT INTO bibleRef (bbName, bNumber, bName, bsName) VALUES (",
                                 PCommon.AQ(r.bbName), ",",
                                 r.bNumber, ",",
                                 PCommon.AQ(r.bName), ",",
                                 PCommon.AQ(r.bsName), ")");
 
-                        //_db.beginTransaction();
-                        _db.execSQL(sql);
-                        //_db.setTransactionSuccessful();
-                    }
-                    catch (SQLException ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        //_db.endTransaction();
-                        sql = null;
-                    }
+                    _db.execSQL(sql);
                 }
             };
             thread.setPriority(Thread.MIN_PRIORITY);
@@ -861,7 +837,9 @@ public class DbHelper extends SQLiteOpenHelper
 
                             _db.execSQL(sql);
 
+                            //noinspection UnusedAssignment
                             sql = null;
+                            //noinspection UnusedAssignment
                             row = null;
                         }
 

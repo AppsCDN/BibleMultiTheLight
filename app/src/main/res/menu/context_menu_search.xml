@@ -1,8 +1,6 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:id="@+id/mnu_open"
-          android:title="@string/mnuOpen">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/mnuOpen">
         <menu>
             <item
                 android:id="@+id/mnu_open_verse"
@@ -15,8 +13,8 @@
                 android:title="@string/mnuOpenResult" />
         </menu>
     </item>
-    <item android:id="@+id/mnu_copy"
-          android:title="@string/mnuCopy">
+    <item
+        android:title="@string/mnuCopy">
         <menu>
             <item
                 android:id="@+id/mnu_copy_verse_to_clipboard"
@@ -29,8 +27,8 @@
                 android:title="@string/mnuCopyResultToClipboard" />
         </menu>
     </item>
-    <item android:id="@+id/mnu_share"
-          android:title="@string/mnuShare">
+    <item
+        android:title="@string/mnuShare">
         <menu>
             <item
                 android:id="@+id/mnu_share_verse"
@@ -43,8 +41,8 @@
                 android:title="@string/mnuShareResult" />
         </menu>
     </item>
-    <item android:id="@+id/mnu_note"
-          android:title="@string/mnuNote">
+    <item
+        android:title="@string/mnuNote">
         <menu>
             <item
                 android:id="@+id/mnu_add_note"

@@ -1,16 +1,15 @@
 
 package org.hlwd.bible;
 
-public class BibleRefBO
+class BibleRefBO
 {
-    protected int id;
+    int id;
+    String bbName;
+    int bNumber;
+    String bName;
+    String bsName;
 
-    protected String bbName;
-    protected int bNumber;
-    protected String bName;
-    protected String bsName;
-
-    protected BibleRefBO()
+    BibleRefBO()
     {
         this.bbName = null;
         this.bNumber = -1;

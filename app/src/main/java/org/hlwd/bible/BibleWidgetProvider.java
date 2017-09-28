@@ -189,6 +189,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
 
             //*** Set Verse
             if (widgetVerse == null) widgetVerse = GetWidgetVerse(context);
+            if (widgetVerse == null) return;
 
             //*** Set params
             final Intent intent_LANG_CLICK = new Intent(WIDGET_LANG_CLICK);
@@ -285,8 +286,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             CheckLocalInstance(context);
 
             String bbName = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            if (bbName == "")
-                bbName = "k";
+            if (bbName.equals("")) bbName = "k";
 
             final int min = _s.GetBibleIdMin(bbName);
             final int max = _s.GetBibleIdMax(bbName);

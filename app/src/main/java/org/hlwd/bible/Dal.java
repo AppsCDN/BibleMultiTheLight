@@ -144,6 +144,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -175,11 +176,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -218,7 +221,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void AddLog(final String msg)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -233,6 +236,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -244,7 +248,7 @@ class Dal
     String GetAllLogs()
     {
         Cursor c = null;
-        StringBuilder sbLogs = null;
+        StringBuilder sbLogs = new StringBuilder("");
         String logs = "";
 
         try
@@ -252,8 +256,7 @@ class Dal
             final String[] fields = { "msg" };
             c = _db.query("log", fields, null, null, null, null, null, null);
 
-            sbLogs = new StringBuilder("");
-            String log = "";
+            String log;
             c.moveToFirst();
 
             while (!c.isAfterLast())
@@ -265,9 +268,9 @@ class Dal
                 c.moveToNext();
             }
 
+            //noinspection UnusedAssignment
             log = null;
-
-            if (sbLogs != null) logs = sbLogs.toString();
+            logs = sbLogs.toString();
         }
         catch (Exception ex)
         {
@@ -275,11 +278,12 @@ class Dal
         }
         finally
         {
-            if (sbLogs != null) sbLogs = null;
+            sbLogs = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -293,8 +297,7 @@ class Dal
     void DeleteAllLogs()
     {
         //TODO: check act size, _db size
-
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -308,6 +311,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -344,7 +348,7 @@ class Dal
      */
     int GetArticleTabId(final String artName)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int tabId = -1;
 
@@ -366,11 +370,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -386,7 +392,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     VerseBO GetVerse(final int bibleId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         VerseBO verse = null;
 
@@ -421,11 +427,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -444,9 +452,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<VerseBO> GetVerse(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -488,11 +496,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -512,9 +522,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<VerseBO> GetVerses(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -557,11 +567,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -586,8 +598,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
     {
-        String sql = null;
-        Cursor c = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -600,6 +611,7 @@ class Dal
             verse = lstVerseK.get(0);
             final int idKStart = verse.id;
             lstVerseK.clear();
+            //noinspection UnusedAssignment
             lstVerseK = null;
 
             lstVerseK = this.GetVerse("k", bNumberEnd, cNumberEnd, vNumberEnd);
@@ -607,6 +619,7 @@ class Dal
             verse = lstVerseK.get(0);
             final int idKEnd = verse.id;
             lstVerseK.clear();
+            //noinspection UnusedAssignment
             lstVerseK = null;
 
             String bbnameTo;
@@ -635,13 +648,8 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
-
-            if (c != null)
-            {
-                c.close();
-                c = null;
-            }
         }
 
         return false;
@@ -686,6 +694,7 @@ class Dal
             if (lstVerse != null)
             {
                 lstVerse.clear();
+                //noinspection UnusedAssignment
                 lstVerse = null;
             }
         }
@@ -703,9 +712,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -746,11 +755,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -796,6 +807,7 @@ class Dal
             if (lstVerse != null)
             {
                 lstVerse.clear();
+                //noinspection UnusedAssignment
                 lstVerse = null;
             }
         }
@@ -816,9 +828,9 @@ class Dal
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -862,11 +874,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -886,9 +900,9 @@ class Dal
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -931,11 +945,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -954,9 +970,9 @@ class Dal
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -998,11 +1014,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1023,9 +1041,9 @@ class Dal
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -1101,11 +1119,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1121,9 +1141,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<VerseBO> SearchBible(final int searchId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -1163,11 +1183,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1184,9 +1206,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<BibleRefBO> GetListBookByName(final String bbName, String searchString)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<BibleRefBO> lst = new ArrayList<BibleRefBO>();
+        ArrayList<BibleRefBO> lst = new ArrayList<>();
 
         try
         {
@@ -1219,11 +1241,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1239,9 +1263,9 @@ class Dal
     @SuppressWarnings("JavaDoc")
     ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<BibleRefBO> lst = new ArrayList<BibleRefBO>();
+        ArrayList<BibleRefBO> lst = new ArrayList<>();
 
         try
         {
@@ -1272,11 +1296,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1293,7 +1319,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetBookNumberByName(final String bbName, final String bName)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int bNumber = 0;
 
@@ -1318,11 +1344,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1339,7 +1367,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     BibleRefBO GetBookRef(final String bbName, final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         BibleRefBO ref = null;
 
@@ -1367,11 +1395,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1386,7 +1416,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     CacheTabBO GetCacheTab(final int tabId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         CacheTabBO t = null;
         Cursor c = null;
 
@@ -1421,11 +1451,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1438,7 +1470,7 @@ class Dal
      */
     CacheTabBO GetCacheTabFav()
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         CacheTabBO t = null;
         Cursor c = null;
 
@@ -1472,10 +1504,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1490,7 +1524,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     String GetCacheTabTitle(final int tabId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         String title = null;
         Cursor c = null;
 
@@ -1512,11 +1546,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1531,7 +1567,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void SaveCacheTab(final CacheTabBO t)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1560,6 +1596,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1571,7 +1608,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void SaveCacheTabFav(final CacheTabBO t)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1606,6 +1643,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1618,7 +1656,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void SaveCacheSearch(final int tabId, final ArrayList<Integer> lstBibleId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1639,6 +1677,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1653,7 +1692,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     boolean CopyCacheSearchForOtherBible(final int tabIdFrom, final int tabIdTo, final String tbbName)
     {
-        boolean insert = false;
+        @SuppressWarnings("UnusedAssignment") boolean insert = false;
 
         try
         {
@@ -1761,10 +1800,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sb = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1777,7 +1818,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     private void DeleteCacheSearch(final int tabId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1790,6 +1831,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1801,7 +1843,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void DeleteCache(final int tabId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1817,6 +1859,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1829,7 +1872,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void UpdateCacheId(final int fromTabId, final int toTabId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1845,6 +1888,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1854,7 +1898,7 @@ class Dal
      */
     int GetCacheTabVisibleCount()
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int count = 0;
         int max = 0;
@@ -1901,11 +1945,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -1920,7 +1966,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void SaveNote(final NoteBO noteBO)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1941,6 +1987,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1954,7 +2001,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     void DeleteNote(final int bNumber, final int cNumber, final int vNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -1971,6 +2018,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -1983,7 +2031,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetBibleIdMin(final String bbName)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int min = 0;
 
@@ -2004,10 +2052,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2023,7 +2073,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetBibleIdMax(final String bbName)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int max = 0;
 
@@ -2044,10 +2094,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2064,7 +2116,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetBookChapterMax(final String bbName, final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int max = -1;
 
@@ -2086,10 +2138,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2106,7 +2160,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     boolean IsBookExist(final String bbName, final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
 
         try
@@ -2127,10 +2181,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2194,7 +2250,7 @@ class Dal
      */
     int GetPlanDescIdMax()
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int max = 0;
 
@@ -2215,10 +2271,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2234,7 +2292,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     Integer[] GetBibleCiByBook(final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         final Integer[] ci = { 0, 0 };
 
@@ -2259,10 +2317,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2278,7 +2338,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     private int GetBookMinId(final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int id = -1;
 
@@ -2300,11 +2360,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2320,7 +2382,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     private int GetBookMaxId(final int bNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int id = -1;
 
@@ -2342,11 +2404,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2376,6 +2440,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -2387,7 +2452,7 @@ class Dal
      */
     void AddPlan(final PlanDescBO pd, final String strBookNumbers)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -2411,8 +2476,8 @@ class Dal
             _db.execSQL(sql);
 
             //Plan Calendar
-            int bNumberStart = 0, cNumberStart = 0, vNumberStart = 0;
-            int bNumberEnd = 0, cNumberEnd = 0, vNumberEnd = 0;
+            @SuppressWarnings("UnusedAssignment") int bNumberStart = 0, cNumberStart = 0, vNumberStart = 0;
+            @SuppressWarnings("UnusedAssignment") int bNumberEnd = 0, cNumberEnd = 0, vNumberEnd = 0;
             int dayNumber = 1;
             boolean shouldBreak = false;
 
@@ -2471,7 +2536,9 @@ class Dal
                         vNumberEnd,
                         ")");
                 _db.execSQL(sql);
+                //noinspection UnusedAssignment
                 sql = null;
+                //noinspection UnusedAssignment
                 startDtStr = null;
 
                 if (shouldBreak) break;
@@ -2487,6 +2554,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -2497,9 +2565,9 @@ class Dal
      */
     ArrayList<PlanDescBO> GetAllPlanDesc()
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<PlanDescBO> lstPd = new ArrayList<PlanDescBO>();
+        ArrayList<PlanDescBO> lstPd = new ArrayList<>();
 
         try
         {
@@ -2534,11 +2602,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2552,7 +2622,7 @@ class Dal
      */
     PlanDescBO GetPlanDesc(final int planId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         PlanDescBO pd = null;
 
@@ -2585,11 +2655,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2605,7 +2677,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     boolean IsPlanDescExist(final String planRef)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
 
         try
@@ -2626,10 +2698,12 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null) {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2646,9 +2720,9 @@ class Dal
      */
     ArrayList<PlanCalBO> GetPlanCal(final String bbName, final int planId, final int pageNr)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
-        ArrayList<PlanCalBO> lst = new ArrayList<PlanCalBO>();
+        ArrayList<PlanCalBO> lst = new ArrayList<>();
 
         try
         {
@@ -2701,11 +2775,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2721,7 +2797,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetCurrentDayNumberOfPlanCal(final int planId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int dayNumber = 0;
         final String dtFormat = "yyyyMMdd";
@@ -2749,11 +2825,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2770,7 +2848,7 @@ class Dal
      */
     PlanCalBO GetPlanCalByDay(final String bbName, final int planId, final int dayNumber)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         PlanCalBO pc = null;
 
@@ -2810,11 +2888,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2830,12 +2910,12 @@ class Dal
      */
     int GetPlanCalRowCount(final String bbName, final int planId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
 
         try
         {
-            PlanCalBO pc;
+            @SuppressWarnings("UnusedAssignment") PlanCalBO pc;
 
             sql = PCommon.ConcaT("SELECT COUNT(*)",
                     " FROM planCal c",
@@ -2858,11 +2938,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2878,7 +2960,7 @@ class Dal
     @SuppressWarnings("JavaDoc")
     int GetPlanCalDaysReadCount(final int planId)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int count = 0;
         final String dtFormat = "yyyyMMdd";
@@ -2886,7 +2968,7 @@ class Dal
         try
         {
             final Calendar now = Calendar.getInstance();
-            final String dayDt = DateFormat.format(dtFormat, now).toString();
+            @SuppressWarnings("UnusedAssignment") final String dayDt = DateFormat.format(dtFormat, now).toString();
 
             sql = PCommon.ConcaT("SELECT COUNT(*) ",
                     " FROM planCal c",
@@ -2907,11 +2989,13 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
 
             if (c != null)
             {
                 c.close();
+                //noinspection UnusedAssignment
                 c = null;
             }
         }
@@ -2927,7 +3011,7 @@ class Dal
      */
     void MarkPlanCal(final int planId, final int dayNumber, final int isRead)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -2941,6 +3025,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }
@@ -2953,7 +3038,7 @@ class Dal
      */
     void MarkAllAbovePlanCal(final int planId, final int dayNumber, final int isRead)
     {
-        String sql = null;
+        @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
@@ -2967,6 +3052,7 @@ class Dal
         }
         finally
         {
+            //noinspection UnusedAssignment
             sql = null;
         }
     }

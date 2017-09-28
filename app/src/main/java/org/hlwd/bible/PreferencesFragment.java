@@ -16,7 +16,7 @@ public class PreferencesFragment extends PreferenceFragment
 
         addPreferencesFromResource(R.xml.preferences);
 
-        final Preference prefThemeName = (Preference) findPreference("THEME_NAME");
+        final Preference prefThemeName = findPreference("THEME_NAME");
         if (prefThemeName != null)
         {
             prefThemeName.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -34,7 +34,7 @@ public class PreferencesFragment extends PreferenceFragment
             });
         }
 
-        final Preference prefLayoutColumn = (Preference) findPreference("LAYOUT_COLUMN");
+        final Preference prefLayoutColumn = findPreference("LAYOUT_COLUMN");
         if (prefLayoutColumn != null) {
             prefLayoutColumn.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

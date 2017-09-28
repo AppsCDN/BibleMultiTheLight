@@ -1,23 +1,23 @@
 
 package org.hlwd.bible;
 
-public class CacheTabBO
+class CacheTabBO
 {
-    protected int tabNumber;
-    protected String tabType;
-    protected String tabTitle;
-    protected String fullQuery;
-    protected int scrollPosY;
-    protected String bbName;
-    protected boolean isBook;
-    protected boolean isChapter;
-    protected boolean isVerse;
-    protected int bNumber;
-    protected int cNumber;
-    protected int vNumber;
-    protected String trad;
+    int tabNumber;
+    String tabType;
+    String tabTitle;
+    String fullQuery;
+    int scrollPosY;
+    String bbName;
+    boolean isBook;
+    boolean isChapter;
+    boolean isVerse;
+    int bNumber;
+    int cNumber;
+    int vNumber;
+    String trad;
 
-    protected CacheTabBO()
+    CacheTabBO()
     {
         this.tabNumber = -1;
         this.tabType = "S";         //F: FAV, S:SEARCH
@@ -34,9 +34,7 @@ public class CacheTabBO
         this.trad = this.bbName;
     }
 
-    protected CacheTabBO(final int tabNumber, final String tabType, final String tabTitle, final String fullQuery, final int scrollPosY,
-                         final String bbName, final boolean isBook, final boolean isChapter, final boolean isVerse,
-                         final int bNumber, final int cNumber, final int vNumber, final String trad)
+    CacheTabBO(final int tabNumber, final String tabType, final String tabTitle, final String fullQuery, final int scrollPosY, final String bbName, final boolean isBook, final boolean isChapter, final boolean isVerse, final int bNumber, final int cNumber, final int vNumber, final String trad)
     {
         this.tabNumber = tabNumber;
         this.tabType = tabType;

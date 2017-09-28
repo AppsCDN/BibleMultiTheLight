@@ -42,6 +42,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -201,7 +202,12 @@ public class MainActivity extends AppCompatActivity
                                 tabLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        tabLayout.getTabAt(restoreTabSelected).select();
+                                        try
+                                        {
+                                            //noinspection ConstantConditions
+                                            tabLayout.getTabAt(restoreTabSelected).select();
+                                        }
+                                        catch(Exception ex) { }
                                     }
                                 });
                             }
@@ -495,9 +501,7 @@ public class MainActivity extends AppCompatActivity
             if (tabLayout == null)
                 throw new Exception("tablayout is null!");
 
-            final int tabCount = tabLayout.getTabCount();
             isFavToShow = false;
-
             CacheTabBO cacheTabFav = _s.GetCacheTabFav();
             if (cacheTabFav == null)
             {
@@ -524,6 +528,7 @@ public class MainActivity extends AppCompatActivity
             if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
         }
 
+        //noinspection ConstantConditions
         return isFavToShow;
     }
 
@@ -538,7 +543,7 @@ public class MainActivity extends AppCompatActivity
             if (tabLayout == null) return;
 
             final int tabCount = tabLayout.getTabCount();
-            boolean isFavShow = false;
+            @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;
 
             CacheTabBO cacheTabFav = _s.GetCacheTabFav();
             if (cacheTabFav == null)
@@ -624,7 +629,7 @@ public class MainActivity extends AppCompatActivity
             for (BibleRefBO ref : lstRef)
             {
                 bNumber = ref.bNumber;
-                refNr = String.format("%2d", ref.bNumber);
+                refNr = String.format(Locale.US, "%2d", bNumber);
                 refText = PCommon.ConcaT(refNr, ": ", ref.bName, " (", ref.bsName, ")");
 
                 tvBook = new TextView(this);
@@ -634,7 +639,7 @@ public class MainActivity extends AppCompatActivity
                 tvBook.setTag( bNumber );
 
                 bNumberParam = (bNumber != 66) ? bNumber + 1 : 66;
-                isBookExist = (installStatus == 4) ? true : _s.IsBookExist( bNumberParam );
+                isBookExist = (installStatus == 4) || _s.IsBookExist(bNumberParam);
                 if (isBookExist)
                 {
                     tvBook.setOnClickListener(new View.OnClickListener() {
@@ -659,8 +664,7 @@ public class MainActivity extends AppCompatActivity
                                     @Override
                                     public void onDismiss(DialogInterface dialogInterface) {
                                         final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-                                        if (bbname == "")
-                                            return;
+                                        if (bbname.equals("")) return;
                                         final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
                                         final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1"));
                                         final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
@@ -791,7 +795,7 @@ public class MainActivity extends AppCompatActivity
                                 public void onDismiss(DialogInterface dialogInterface)
                                 {
                                     final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-                                    if (bbname == "") return;
+                                    if (bbname.equals("")) return;
                                     final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
                                     MainActivity.Tab.AddTab(view.getContext(), "S", tbbName, fullQuery);
                                 }
@@ -930,7 +934,12 @@ public class MainActivity extends AppCompatActivity
                 tabLayout.post(new Runnable() {
                     @Override
                     public void run() {
-                        tabLayout.getTabAt(artNameTabId).select();
+                        try
+                        {
+                            //noinspection ConstantConditions
+                            tabLayout.getTabAt(artNameTabId).select();
+                        }
+                        catch(Exception ex) { }
                     }
                 });
 
@@ -1068,7 +1077,7 @@ public class MainActivity extends AppCompatActivity
                 for (PlanDescBO pd : lstPd)
                 {
                     idx = 0;
-                    String plan = null;
+                    @SuppressWarnings("UnusedAssignment") String plan = null;
                     TextView tvStatus;
 
                     for (String planToFind : this.getResources().getStringArray(R.array.PLAN_ARRAY))
@@ -1124,6 +1133,7 @@ public class MainActivity extends AppCompatActivity
                             tvStatus = new TextView(this);
                             tvStatus.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                             tvStatus.setPadding(50, 10, 10, 0);
+                            //noinspection deprecation
                             tvStatus.setText(Html.fromHtml(text));
                             tvStatus.setTag(idx);
                             tvStatus.setOnClickListener(new View.OnClickListener()
@@ -1209,6 +1219,7 @@ public class MainActivity extends AppCompatActivity
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
             final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
+            //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
 
             final Button btnDelete = (Button) view.findViewById(R.id.btnDelete);
@@ -1250,7 +1261,7 @@ public class MainActivity extends AppCompatActivity
         try
         {
             final PlanDescBO pd = _s.GetPlanDesc(planId);
-            final boolean isNewPlan = pd == null ? true : false;
+            final boolean isNewPlan = pd == null;
             if (isNewPlan) return;
 
             int idx = 0, planIdx = -1;
@@ -1269,6 +1280,7 @@ public class MainActivity extends AppCompatActivity
             }
             if (planIdx < 0) return;
 
+            //noinspection ConstantConditions
             ShowPlan(isNewPlan, pd.planRef, planIdx, planId, pageNumber);
         }
         catch(Exception ex)
@@ -1311,14 +1323,14 @@ public class MainActivity extends AppCompatActivity
 
             final String plan = getApplicationContext().getResources().getStringArray(R.array.PLAN_ARRAY)[planIdx];
             final String[] cols = plan.split("\\|");
-            int bCount = 0, cCount = 0, vCount = 0, bNumber;
+            @SuppressWarnings("UnusedAssignment") int bCount = 0, cCount = 0, vCount = 0, bNumber;
             final PlanDescBO pd;
             final String dtFormat = "yyyyMMdd";
 
             if (isNewPlan)
             {
                 Integer[] ciTot = { 0, 0 };
-                Integer[] ci = null;
+                @SuppressWarnings("UnusedAssignment") Integer[] ci = null;
 
                 //for book: get nb chapters & nb verses
                 final String[] books = cols[1].split(",");
@@ -1341,7 +1353,9 @@ public class MainActivity extends AppCompatActivity
                 pd.cCount = cCount;
                 pd.vCount = vCount;
 
+                //noinspection UnusedAssignment
                 ci = null;
+                //noinspection UnusedAssignment
                 ciTot = null;
             }
             else
@@ -1527,16 +1541,19 @@ public class MainActivity extends AppCompatActivity
                 tvDay = new TextView(this);
                 tvDay.setLayoutParams(PCommon._layoutParamsWrap);
                 tvDay.setPadding(10, 10, 10, 10);
+                //noinspection deprecation
                 tvDay.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleDt).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvUntil = new TextView(this);
                 tvUntil.setLayoutParams(PCommon._layoutParamsWrap);
                 tvUntil.setPadding(10, 10, 10, 10);
+                //noinspection deprecation
                 tvUntil.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleUntil).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvTitleIsRead = new TextView(this);
                 tvTitleIsRead.setLayoutParams(PCommon._layoutParamsWrap);
                 tvTitleIsRead.setPadding(10, 10, 10, 10);
+                //noinspection deprecation
                 tvTitleIsRead.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleIsRead).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 glCal.addView(tvTitleIsRead);
@@ -1641,6 +1658,7 @@ public class MainActivity extends AppCompatActivity
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
             final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
+            //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
 
             final Button btnOpen = (Button) view.findViewById(R.id.btnOpen);
@@ -1669,7 +1687,7 @@ public class MainActivity extends AppCompatActivity
                                 public void onDismiss(DialogInterface dialogInterface)
                                 {
                                     final String bbnamed = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbname);
-                                    if (bbnamed == "") return;
+                                    if (bbnamed.equals("")) return;
                                     final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
                                     MainActivity.Tab.AddTab(getApplicationContext(), "P", tbbName, fullQuery);
                                     builder.dismiss();
@@ -1762,6 +1780,7 @@ public class MainActivity extends AppCompatActivity
                 tvReading = new TextView(this);
                 tvReading.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 tvReading.setPadding(10, 10, 10, 10);
+                //noinspection deprecation
                 tvReading.setText( Html.fromHtml(markText));
                 tvReading.setTag( fullQuery );
                 tvReading.setOnClickListener(new View.OnClickListener()
@@ -1785,7 +1804,7 @@ public class MainActivity extends AppCompatActivity
                                 public void onDismiss(DialogInterface dialogInterface)
                                 {
                                     final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-                                    if (bbname == "") return;
+                                    if (bbname.equals("")) return;
                                     final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
                                     MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery);
                                 }
@@ -1902,22 +1921,26 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    protected static class Tab
+    static class Tab
     {
         static SCommon _s = null;
 
-        protected static void SetCurrentTabTitle(final String title)
+        static void SetCurrentTabTitle(final String title)
         {
-            final int tabId = GetCurrentTabPosition();
-            if (tabId < 0)
-                return;
+            try
+            {
+                final int tabId = GetCurrentTabPosition();
+                if (tabId < 0)
+                    return;
 
-            tabLayout.getTabAt(tabId).setText(title);
-
-            PCommon.SavePref(tabLayout.getContext(), IProject.APP_PREF_KEY.TAB_SELECTED, Integer.toString(tabId));
+                //noinspection ConstantConditions
+                tabLayout.getTabAt(tabId).setText(title);
+                PCommon.SavePref(tabLayout.getContext(), IProject.APP_PREF_KEY.TAB_SELECTED, Integer.toString(tabId));
+            }
+            catch(Exception ex) { }
         }
 
-        protected static int GetCurrentTabPosition()
+        static int GetCurrentTabPosition()
         {
             if (tabLayout == null)
                 return -1;
@@ -1929,7 +1952,7 @@ public class MainActivity extends AppCompatActivity
             return tabSelected;
         }
 
-        protected static int GetTabCount()
+        static int GetTabCount()
         {
             if (tabLayout == null)
                 return -1;
@@ -1943,7 +1966,7 @@ public class MainActivity extends AppCompatActivity
          * @param context
          */
         @SuppressWarnings("JavaDoc")
-        protected static void AddTab(final Context context)
+        static void AddTab(final Context context)
         {
             try
             {
@@ -1969,7 +1992,7 @@ public class MainActivity extends AppCompatActivity
          * @param fullQuery
          */
         @SuppressWarnings("JavaDoc")
-        protected static void AddTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery)
+        static void AddTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery)
         {
             try
             {
@@ -2001,7 +2024,7 @@ public class MainActivity extends AppCompatActivity
          * @param fullQuery bNumber, cNumber, vNumberFrom, vNumberTo
          */
         @SuppressWarnings("JavaDoc")
-        protected static void AddTab(final Context context, final String cacheTabType, final String tbbName, final String fullQuery)
+        static void AddTab(final Context context, final String cacheTabType, final String tbbName, final String fullQuery)
         {
             try
             {
@@ -2067,7 +2090,7 @@ public class MainActivity extends AppCompatActivity
          * @param bbNameTo
          */
         @SuppressWarnings("JavaDoc")
-        protected static void AddTab(final Context context, final int tabNumberFrom, final String bbNameTo)
+        static void AddTab(final Context context, final int tabNumberFrom, final String bbNameTo)
         {
             try
             {
@@ -2099,7 +2122,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        protected static void RemoveCurrentTab(final Context context)
+        static void RemoveCurrentTab(final Context context)
         {
             try
             {
@@ -2118,7 +2141,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        protected static void RemoveTabAt(final Context context, final int tabNumberToRemove)
+        static void RemoveTabAt(final Context context, final int tabNumberToRemove)
         {
             try
             {
@@ -2150,7 +2173,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        protected static void RemoveTabFav(final Context context)
+        static void RemoveTabFav(final Context context)
         {
             try
             {
@@ -2224,17 +2247,22 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        if (direction == HorizontalScrollView.FOCUS_RIGHT)
+                        try
                         {
-                            final int tabId = tabLayout.getTabCount() - 1;
-                            tabLayout.getTabAt(tabId).select();
+                            if (direction == HorizontalScrollView.FOCUS_RIGHT)
+                            {
+                                final int tabId = tabLayout.getTabCount() - 1;
+                                //noinspection ConstantConditions
+                                tabLayout.getTabAt(tabId).select();
+                            }
+                            else if (direction == HorizontalScrollView.FOCUS_LEFT)
+                            {
+                                //noinspection ConstantConditions
+                                tabLayout.getTabAt(0).select();
+                            }
+                            tabLayout.fullScroll(direction);
                         }
-                        else if (direction == HorizontalScrollView.FOCUS_LEFT)
-                        {
-                            tabLayout.getTabAt(0).select();
-                        }
-
-                        tabLayout.fullScroll(direction);
+                        catch(Exception ex) { }
                     }
                 });
             }
@@ -2261,9 +2289,14 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public boolean onLongClick(final View view)
                                 {
-                                    Tab.RemoveTabAt(context, index);
-                                    final int tabSelect = (index == 0) ? 0 : index - 1;
-                                    tabLayout.getTabAt( tabSelect ).select();
+                                    try
+                                    {
+                                        Tab.RemoveTabAt(context, index);
+                                        final int tabSelect = (index == 0) ? 0 : index - 1;
+                                        //noinspection ConstantConditions
+                                        tabLayout.getTabAt( tabSelect ).select();
+                                    }
+                                    catch(Exception ex) { }
 
                                     return true;
                                 }

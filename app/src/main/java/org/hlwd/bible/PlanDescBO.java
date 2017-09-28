@@ -1,20 +1,20 @@
 
 package org.hlwd.bible;
 
-public class PlanDescBO
+class PlanDescBO
 {
-    protected int planId;
+    int planId;
 
-    protected String planRef;
-    protected String startDt;
-    protected String endDt;
-    protected int bCount;
-    protected int cCount;
-    protected int vCount;
-    protected int vDayCount;
-    protected int dayCount;
+    String planRef;
+    String startDt;
+    String endDt;
+    int bCount;
+    int cCount;
+    int vCount;
+    int vDayCount;
+    int dayCount;
 
-    protected PlanDescBO()
+    PlanDescBO()
     {
         planId = -1;
         planRef = null;

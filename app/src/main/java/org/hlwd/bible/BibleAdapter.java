@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
+class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
 {
-    @SuppressWarnings("WeakerAccess")
-    protected ArrayList<VerseBO> lstVerse = null;
+    ArrayList<VerseBO> lstVerse = null;
     private String markFav;
     private String markReading;
     private VerseBO verse;
@@ -21,7 +20,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
     private int tagPosition;
     private SCommon _s = null;
 
-    public BibleAdapter(final Context context)
+    BibleAdapter()
     {
         this.lstVerse = null;
     }
@@ -32,7 +31,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.markReading = context.getString(R.string.favSymbolReadingDefault);
     }
 
-    public BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber, final int vNumber)
+    BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -40,7 +39,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.lstVerse = _s.GetVerse(tbbName, bNumber, cNumber, vNumber);
     }
 
-    public BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
+    BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -62,7 +61,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.SaveCacheSearch(context);
     }
 */
-    public BibleAdapter(final Context context, final String bbName, final int bNumber, final int cNumber, final String searchString)
+    BibleAdapter(final Context context, final String bbName, final int bNumber, final int cNumber, final String searchString)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -72,7 +71,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.SaveCacheSearch(context);
     }
 
-    public BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber)
+    BibleAdapter(final Context context, final String tbbName, final int bNumber, final int cNumber)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -80,7 +79,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.lstVerse = _s.GetChapter(tbbName, bNumber, cNumber);
     }
 
-    public BibleAdapter(final Context context, final String bbName, final int bNumber, final String searchString)
+    BibleAdapter(final Context context, final String bbName, final int bNumber, final String searchString)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -90,7 +89,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.SaveCacheSearch(context);
     }
 
-    public BibleAdapter(final Context context, final String bbName, final String searchString)
+    BibleAdapter(final Context context, final String bbName, final String searchString)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -100,7 +99,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.SaveCacheSearch(context);
     }
 
-    public BibleAdapter(final Context context, final int searchId)
+    BibleAdapter(final Context context, final int searchId)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -117,7 +116,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
      * @param markType      Mark type (NULL to get all types)
      */
     @SuppressWarnings("JavaDoc")
-    public BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, final String markType)
+    BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, final String markType)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -125,14 +124,14 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.lstVerse = _s.SearchNotes(bbName, searchString, orderBy, markType);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    class ViewHolder extends RecyclerView.ViewHolder
     {
         //private LinearLayout card_recipient;
         private TextView tv_ref;
         private TextView tv_text;
-        protected TextView tv_mark;
+        private TextView tv_mark;
 
-        public ViewHolder(View view)
+        ViewHolder(View view)
         {
             super(view);
 
@@ -269,7 +268,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
     {
         try
         {
-            ArrayList<Integer> lstId = new ArrayList<Integer>();
+            ArrayList<Integer> lstId = new ArrayList<>();
 
             if (lstVerse != null)
             {

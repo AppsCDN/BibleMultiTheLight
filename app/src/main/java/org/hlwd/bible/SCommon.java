@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /***
  * Singleton
  */
-public class SCommon
+class SCommon
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
@@ -33,7 +33,7 @@ public class SCommon
 
     //</editor-fold>
 
-    protected static synchronized SCommon GetInstance(Context ctx)
+    static synchronized SCommon GetInstance(Context ctx)
     {
         if (_context == null)
         {
@@ -77,7 +77,7 @@ public class SCommon
     /***
      * CloseDb db
      */
-    protected void CloseDb()
+    void CloseDb()
     {
         try
         {
@@ -111,7 +111,7 @@ public class SCommon
      * Get db version
      * @return db version
      */
-    protected int GetDbVersion()
+    int GetDbVersion()
     {
         int dbVersion = -1;
 
@@ -127,26 +127,6 @@ public class SCommon
         return dbVersion;
     }
 
-    /***
-     *  Get last rowId
-     * @return Last identity inserted (-1 in case of error)
-     */
-    protected int GetLastRowId()
-    {
-        int id = -1;
-
-        try
-        {
-            id = _dal.GetLastRowId();
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-
-        return id;
-    }
-
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="-- Log --">
@@ -156,7 +136,7 @@ public class SCommon
      * @param msg
      */
     @SuppressWarnings("JavaDoc")
-    protected void AddLog(final String msg)
+    void AddLog(final String msg)
     {
         try
         {
@@ -172,7 +152,7 @@ public class SCommon
      * Get all logs from db (db should be open)
      * @return logs as string
      */
-    protected String GetAllLogs()
+    String GetAllLogs()
     {
         String logs = null;
 
@@ -191,7 +171,7 @@ public class SCommon
     /***
      * Delete all logs (db should be open for writing)
      */
-    protected void DeleteAllLogs()
+    void DeleteAllLogs()
     {
         try
         {
@@ -230,7 +210,7 @@ public class SCommon
      * @return verse
      */
     @SuppressWarnings("JavaDoc")
-    protected VerseBO GetVerse(final int bibleId)
+    VerseBO GetVerse(final int bibleId)
     {
         VerseBO verse = null;
 
@@ -255,9 +235,9 @@ public class SCommon
      * @return verse
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> GetVerse(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
+    ArrayList<VerseBO> GetVerse(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -281,9 +261,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> GetVerses(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
+    ArrayList<VerseBO> GetVerses(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -312,7 +292,7 @@ public class SCommon
      * @return true if copy was successful
      */
     @SuppressWarnings("JavaDoc")
-    protected boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
+    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
     {
         try
         {
@@ -337,7 +317,7 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected String GetVersesHtml(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
+    String GetVersesHtml(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom, final int vNumberTo)
     {
         final StringBuilder sbVerses = new StringBuilder("<blockquote>");
 
@@ -369,7 +349,7 @@ public class SCommon
      * @return text of verse
      */
     @SuppressWarnings("JavaDoc")
-    protected String GetVerseText(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
+    String GetVerseText(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
         String text = "";
 
@@ -393,9 +373,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
+    ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -417,7 +397,7 @@ public class SCommon
      * @return text of chapter
      */
     @SuppressWarnings("JavaDoc")
-    protected String GetChapterText(final String tbbName, final int bNumber, final int cNumber)
+    String GetChapterText(final String tbbName, final int bNumber, final int cNumber)
     {
         String text = "";
 
@@ -441,7 +421,7 @@ public class SCommon
      * @return text of all
      */
     @SuppressWarnings("JavaDoc")
-    protected String GetResultText(final int tabIdFrom, final int tabIdTo, final String tbbName)
+    String GetResultText(final int tabIdFrom, final int tabIdTo, final String tbbName)
     {
         String text = "";
 
@@ -466,9 +446,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final int cNumber, final String searchString)
+    ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final int cNumber, final String searchString)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -490,9 +470,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final String searchString)
+    ArrayList<VerseBO> SearchBible(final String bbName, final int bNumber, final String searchString)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -513,9 +493,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> SearchBible(final String bbName, final String searchString)
+    ArrayList<VerseBO> SearchBible(final String bbName, final String searchString)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -538,9 +518,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> SearchNotes(final String bbName, final String searchString, final int orderBy, final String markType)
+    ArrayList<VerseBO> SearchNotes(final String bbName, final String searchString, final int orderBy, final String markType)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -561,7 +541,7 @@ public class SCommon
      * @return list of books
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<BibleRefBO> GetListBookByName(final String bbName, final String searchString)
+    ArrayList<BibleRefBO> GetListBookByName(final String bbName, final String searchString)
     {
         return _dal.GetListBookByName(bbName, searchString);
     }
@@ -572,7 +552,7 @@ public class SCommon
      * @return list all books
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
+    ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
     {
         return _dal.GetListAllBookByName(bbName);
     }
@@ -583,9 +563,9 @@ public class SCommon
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    protected ArrayList<VerseBO> SearchBible(final int searchId)
+    ArrayList<VerseBO> SearchBible(final int searchId)
     {
-        ArrayList<VerseBO> lstVerse = new ArrayList<VerseBO>();
+        ArrayList<VerseBO> lstVerse = new ArrayList<>();
 
         try
         {
@@ -604,7 +584,7 @@ public class SCommon
      * @param artName   ART_NAME
      * @return Negative value if not found
      */
-    protected int GetArticleTabId(final String artName)
+    int GetArticleTabId(final String artName)
     {
         int tabId = -1;
 
@@ -627,7 +607,7 @@ public class SCommon
      * @return book number (0 if not found)
      */
     @SuppressWarnings("JavaDoc")
-    protected int GetBookNumberByName(final String bbName, final String bName)
+    int GetBookNumberByName(final String bbName, final String bName)
     {
         int bNumber = 0;
 
@@ -650,7 +630,7 @@ public class SCommon
      * @return book ref
      */
     @SuppressWarnings("JavaDoc")
-    protected BibleRefBO GetBookRef(final String bbName, final int bNumber)
+    BibleRefBO GetBookRef(final String bbName, final int bNumber)
     {
         return _dal.GetBookRef(bbName, bNumber);
     }
@@ -660,7 +640,7 @@ public class SCommon
      * @param tabId
      */
     @SuppressWarnings("JavaDoc")
-    protected CacheTabBO GetCacheTab(final int tabId)
+    CacheTabBO GetCacheTab(final int tabId)
     {
         CacheTabBO t = null;
 
@@ -679,7 +659,7 @@ public class SCommon
     /***
      * Get cache tab Fav
      */
-    protected CacheTabBO GetCacheTabFav()
+    CacheTabBO GetCacheTabFav()
     {
         CacheTabBO t = null;
 
@@ -700,7 +680,7 @@ public class SCommon
      * @param tabId
      */
     @SuppressWarnings("JavaDoc")
-    protected String GetCacheTabTitle(final int tabId)
+    String GetCacheTabTitle(final int tabId)
     {
         String title = null;
 
@@ -721,7 +701,7 @@ public class SCommon
      * @param t
      */
     @SuppressWarnings("JavaDoc")
-    protected void SaveCacheTab(final CacheTabBO t)
+    void SaveCacheTab(final CacheTabBO t)
     {
         try
         {
@@ -738,7 +718,7 @@ public class SCommon
      * @param t
      */
     @SuppressWarnings("JavaDoc")
-    protected void SaveCacheTabFav(final CacheTabBO t)
+    void SaveCacheTabFav(final CacheTabBO t)
     {
         try
         {
@@ -754,7 +734,7 @@ public class SCommon
      * Get current cache tab
      * @return current cache
      */
-    protected CacheTabBO GetCurrentCacheTab()
+    CacheTabBO GetCurrentCacheTab()
     {
         final int tabId = MainActivity.Tab.GetCurrentTabPosition();
         if (tabId < 0) return null;
@@ -769,7 +749,7 @@ public class SCommon
      * Save cache search
      */
     @SuppressWarnings("JavaDoc")
-    protected void SaveCacheSearch(final ArrayList<Integer> lstBibleId)
+    void SaveCacheSearch(final ArrayList<Integer> lstBibleId)
     {
         try
         {
@@ -788,28 +768,24 @@ public class SCommon
      * @param tabIdFrom
      * @param tabIdTo
      * @param bbNameTo
-     * @return true if copy was successful
      */
     @SuppressWarnings("JavaDoc")
-    protected boolean CopyCacheSearchForOtherBible(final int tabIdFrom, final int tabIdTo, final String bbNameTo)
+    void CopyCacheSearchForOtherBible(final int tabIdFrom, final int tabIdTo, final String bbNameTo)
     {
         try
         {
             final boolean res = _dal.CopyCacheSearchForOtherBible(tabIdFrom, tabIdTo, bbNameTo);
-            return res;
         }
         catch(Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
-
-        return false;
     }
 
     /***
      * Get cache tab count visible
      */
-    protected int GetCacheTabCount()
+    int GetCacheTabCount()
     {
         int count = 0;
 
@@ -830,7 +806,7 @@ public class SCommon
      * @param tabId
      */
     @SuppressWarnings("JavaDoc")
-    protected void DeleteCache(final int tabId)
+    void DeleteCache(final int tabId)
     {
         try
         {
@@ -848,7 +824,7 @@ public class SCommon
      * @param toTabId
      */
     @SuppressWarnings("JavaDoc")
-    protected void UpdateCacheId(final int fromTabId, final int toTabId)
+    void UpdateCacheId(final int fromTabId, final int toTabId)
     {
         try
         {
@@ -865,7 +841,7 @@ public class SCommon
      * @param noteBO
      */
     @SuppressWarnings("JavaDoc")
-    protected void SaveNote(final NoteBO noteBO)
+    void SaveNote(final NoteBO noteBO)
     {
         try
         {
@@ -884,7 +860,7 @@ public class SCommon
      * @param vNumber
      */
     @SuppressWarnings("JavaDoc")
-    protected void DeleteNote(final int bNumber, final int cNumber, final int vNumber)
+    void DeleteNote(final int bNumber, final int cNumber, final int vNumber)
     {
         try
         {
@@ -896,7 +872,7 @@ public class SCommon
         }
     }
 
-    protected int GetInstallStatus(final Context context)
+    int GetInstallStatus(final Context context)
     {
         final int INSTALL_STATUS = Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.INSTALL_STATUS, "1"));
 
@@ -909,7 +885,7 @@ public class SCommon
      * @return bibleId
      */
     @SuppressWarnings("JavaDoc")
-    protected int GetBibleIdMin(final String bbName)
+    int GetBibleIdMin(final String bbName)
     {
         int min = 0;
 
@@ -931,7 +907,7 @@ public class SCommon
      * @return bibleId
      */
     @SuppressWarnings("JavaDoc")
-    protected int GetBibleIdMax(final String bbName)
+    int GetBibleIdMax(final String bbName)
     {
         int max = 0;
 
@@ -953,7 +929,7 @@ public class SCommon
      * @return chapter count
      */
     @SuppressWarnings("JavaDoc")
-    protected int GetBookChapterMax(final int bNumber)
+    int GetBookChapterMax(final int bNumber)
     {
         int max = -1;
 
@@ -975,7 +951,7 @@ public class SCommon
      * @return true/false
      */
     @SuppressWarnings("JavaDoc")
-    protected boolean IsBookExist(final int bNumber)
+    boolean IsBookExist(final int bNumber)
     {
         boolean status = false;
 
@@ -995,7 +971,7 @@ public class SCommon
      * Get plan id max
      * @return Plan id max
      */
-    protected int GetPlanDescIdMax()
+    int GetPlanDescIdMax()
     {
         int max = 0;
 
@@ -1017,7 +993,7 @@ public class SCommon
      * @return chapter count, verse count of the book
      */
     @SuppressWarnings("JavaDoc")
-    protected Integer[] GetBibleCiByBook(final int bNumber)
+    Integer[] GetBibleCiByBook(final int bNumber)
     {
         Integer[] ci = { 0, 0 };
 
@@ -1038,7 +1014,7 @@ public class SCommon
      * Delete a plan
      * @param planId    Plan Id
      */
-    protected void DeletePlan(final int planId)
+    void DeletePlan(final int planId)
     {
         try
         {
@@ -1055,7 +1031,7 @@ public class SCommon
      * @param pd    Plan description
      * @param strBookNumbers List of book numbers
      */
-    protected void AddPlan(final PlanDescBO pd, final String strBookNumbers)
+    void AddPlan(final PlanDescBO pd, final String strBookNumbers)
     {
         try
         {
@@ -1071,9 +1047,9 @@ public class SCommon
      * Get all plan descriptions
      * @return List of all plan descriptions
      */
-    protected ArrayList<PlanDescBO> GetAllPlanDesc()
+    ArrayList<PlanDescBO> GetAllPlanDesc()
     {
-        ArrayList<PlanDescBO> lst = new ArrayList<PlanDescBO>();
+        ArrayList<PlanDescBO> lst = new ArrayList<>();
 
         try
         {
@@ -1091,7 +1067,7 @@ public class SCommon
      * Get a plan desc
      * @return Plan description
      */
-    protected PlanDescBO GetPlanDesc(final int planId)
+    PlanDescBO GetPlanDesc(final int planId)
     {
         PlanDescBO pd = null;
 
@@ -1114,9 +1090,9 @@ public class SCommon
      * @param pageNr    Page number
      * @return list of days
      */
-    protected ArrayList<PlanCalBO> GetPlanCal(final String bbName, final int planId, final int pageNr)
+    ArrayList<PlanCalBO> GetPlanCal(final String bbName, final int planId, final int pageNr)
     {
-        ArrayList<PlanCalBO> lst = new ArrayList<PlanCalBO>();
+        ArrayList<PlanCalBO> lst = new ArrayList<>();
 
         try
         {
@@ -1136,7 +1112,7 @@ public class SCommon
      * @return true/false
      */
     @SuppressWarnings("JavaDoc")
-    protected boolean IsPlanDescExist(final String planRef)
+    boolean IsPlanDescExist(final String planRef)
     {
         boolean status = false;
 
@@ -1159,7 +1135,7 @@ public class SCommon
      * @param dayNumber Day number
      * @return Plan cal of day
      */
-    protected PlanCalBO GetPlanCalByDay(final String bbName, final int planId, final int dayNumber)
+    PlanCalBO GetPlanCalByDay(final String bbName, final int planId, final int dayNumber)
     {
         PlanCalBO pc = null;
 
@@ -1181,7 +1157,7 @@ public class SCommon
      * @param planId    Plan Id
      * @return Row count for this calendar
      */
-    protected int GetPlanCalRowCount(final String bbName, final int planId)
+    int GetPlanCalRowCount(final String bbName, final int planId)
     {
         int count = 0;
 
@@ -1203,7 +1179,7 @@ public class SCommon
      * @return day number (0 if not found)
      */
     @SuppressWarnings("JavaDoc")
-    protected int GetCurrentDayNumberOfPlanCal(final int planId)
+    int GetCurrentDayNumberOfPlanCal(final int planId)
     {
         int dayNumber = 0;
 
@@ -1225,7 +1201,7 @@ public class SCommon
      * @param dayNumber Day number
      * @param isRead    Is read
      */
-    protected void MarkPlanCal(final int planId, final int dayNumber, final int isRead)
+    void MarkPlanCal(final int planId, final int dayNumber, final int isRead)
     {
         try
         {
@@ -1243,7 +1219,7 @@ public class SCommon
      * @param dayNumber Day number
      * @param isRead    Is read
      */
-    protected void MarkAllAbovePlanCal(final int planId, final int dayNumber, final int isRead)
+    void MarkAllAbovePlanCal(final int planId, final int dayNumber, final int isRead)
     {
         try
         {
@@ -1260,7 +1236,7 @@ public class SCommon
      * @param planId    Plan Id
      * @return Progress status as html code
      */
-    protected String GetPlanCalProgressStatus(final int planId)
+    String GetPlanCalProgressStatus(final int planId)
     {
         String pgrStatus = "";
 

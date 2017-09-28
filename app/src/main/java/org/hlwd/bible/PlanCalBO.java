@@ -1,22 +1,22 @@
 
 package org.hlwd.bible;
 
-public class PlanCalBO
+class PlanCalBO
 {
-    protected int planId;
-    protected int dayNumber;
-    protected String dayDt;
-    protected int isRead;
-    protected int bNumberStart;
-    protected int cNumberStart;
-    protected int vNumberStart;
-    protected int bNumberEnd;
-    protected int cNumberEnd;
-    protected int vNumberEnd;
-    protected String bsNameStart;
-    protected String bsNameEnd;
+    int planId;
+    int dayNumber;
+    String dayDt;
+    int isRead;
+    int bNumberStart;
+    int cNumberStart;
+    int vNumberStart;
+    int bNumberEnd;
+    int cNumberEnd;
+    int vNumberEnd;
+    String bsNameStart;
+    String bsNameEnd;
 
-    protected PlanCalBO()
+    PlanCalBO()
     {
         planId = -1;
         dayNumber = 0;
