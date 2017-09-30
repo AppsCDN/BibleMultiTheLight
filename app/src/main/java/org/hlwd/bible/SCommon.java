@@ -1,6 +1,7 @@
 
 package org.hlwd.bible;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import java.util.ArrayList;
 
@@ -11,8 +12,11 @@ class SCommon
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
+    @SuppressLint("StaticFieldLeak")
     private static SCommon uniqInstance = null;
+    @SuppressLint("StaticFieldLeak")
     private static Dal _dal = null;
+    @SuppressLint("StaticFieldLeak")
     private static Context _context = null;
 
     //</editor-fold>

@@ -1,6 +1,7 @@
 
 package org.hlwd.bible;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -47,6 +48,7 @@ final class PCommon implements IProject
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatch = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
+    @SuppressLint("StaticFieldLeak")
     private static SCommon _s = null;
 
     //</editor-fold>

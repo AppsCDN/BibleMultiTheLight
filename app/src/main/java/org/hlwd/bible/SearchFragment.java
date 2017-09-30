@@ -39,6 +39,7 @@ public class SearchFragment extends Fragment
 {
     private Context _context = null;
     private SCommon _s = null;
+    @SuppressLint("StaticFieldLeak")
     private static View v;
     private static FRAGMENT_TYPE fragmentType;
     private LinearLayout llBookTitle;
@@ -49,6 +50,7 @@ public class SearchFragment extends Fragment
     private String searchFullQuery;
     private int searchFullQueryLimit = 3;
     private SearchView searchView = null;
+    @SuppressLint("StaticFieldLeak")
     private static RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
 

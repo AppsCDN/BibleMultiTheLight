@@ -562,7 +562,7 @@ class DbHelper extends SQLiteOpenHelper
                     String[] cols;
 
                     //Verses
-                    VTDNav vn = vg.getNav();
+                    @SuppressWarnings("ConstantConditions") VTDNav vn = vg.getNav();
                     AutoPilot apVerses = new AutoPilot();
                     apVerses.bind(vn);
 

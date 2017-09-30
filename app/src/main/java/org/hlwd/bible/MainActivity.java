@@ -1,6 +1,7 @@
 
 package org.hlwd.bible;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -46,6 +47,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
+    @SuppressLint("StaticFieldLeak")
     private static TabLayout tabLayout;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
@@ -1923,6 +1925,7 @@ public class MainActivity extends AppCompatActivity
 
     static class Tab
     {
+        @SuppressLint("StaticFieldLeak")
         static SCommon _s = null;
 
         static void SetCurrentTabTitle(final String title)
