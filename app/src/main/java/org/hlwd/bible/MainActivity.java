@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity
                                 tabLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
+                                        //noinspection EmptyCatchBlock
                                         try
                                         {
                                             //noinspection ConstantConditions
@@ -936,6 +937,7 @@ public class MainActivity extends AppCompatActivity
                 tabLayout.post(new Runnable() {
                     @Override
                     public void run() {
+                        //noinspection EmptyCatchBlock
                         try
                         {
                             //noinspection ConstantConditions
@@ -1930,6 +1932,7 @@ public class MainActivity extends AppCompatActivity
 
         static void SetCurrentTabTitle(final String title)
         {
+            //noinspection EmptyCatchBlock
             try
             {
                 final int tabId = GetCurrentTabPosition();
@@ -2248,6 +2251,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
+                        //noinspection EmptyCatchBlock
                         try
                         {
                             if (direction == HorizontalScrollView.FOCUS_RIGHT)
@@ -2290,6 +2294,7 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public boolean onLongClick(final View view)
                                 {
+                                    //noinspection EmptyCatchBlock
                                     try
                                     {
                                         Tab.RemoveTabAt(context, index);

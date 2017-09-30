@@ -40,7 +40,7 @@
                 android:paddingRight="5dp"
                 android:gravity="top"
                 android:layout_weight="0"
-            />
+                tools:ignore="NestedWeights"/>
 
             <TextView
                 android:id="@+id/widget_tv_ref"
@@ -90,7 +90,7 @@
             android:paddingRight="10dp"
             android:gravity="center_vertical"
             android:layout_weight="0"
-        />
+            tools:ignore="NestedWeights"/>
 
         <TextView
             android:id="@+id/widget_tv_text"
@@ -142,6 +142,6 @@
             android:layout_marginRight="0dp"
             android:gravity="bottom|center"
             android:layout_weight="1"
-        />
+            tools:ignore="NestedWeights"/>
     </LinearLayout>
 </LinearLayout>

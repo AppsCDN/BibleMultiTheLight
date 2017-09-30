@@ -111,15 +111,11 @@ class Dal
      */
     void ShrinkDb(final Context context)
     {
-        String sql = null;
+        String sql = "VACUUM";
 
         try
         {
-            sql = "VACUUM";
-
-            //_db.beginTransaction();
             _db.execSQL(sql);
-            //_db.setTransactionSuccessful();
         }
         catch (Exception ex)
         {

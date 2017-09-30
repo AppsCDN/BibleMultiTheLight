@@ -661,6 +661,7 @@ final class PCommon implements IProject
      */
     private static void QuitApplication()
     {
+        //noinspection EmptyCatchBlock
         try
         {
 /*
@@ -678,6 +679,7 @@ final class PCommon implements IProject
             _s = null;
         }
 
+        //noinspection EmptyCatchBlock
         try
         {
             final int appId = android.os.Process.myPid();

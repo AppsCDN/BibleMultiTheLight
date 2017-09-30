@@ -95,7 +95,6 @@ public class BibleWidgetProvider extends AppWidgetProvider
             else if (WIDGET_LANG_CLICK.equals(intent.getAction()))
             {
                 //*** Get params
-                final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
                 final String bbName = intent.getStringExtra("BBNAME");
@@ -114,7 +113,6 @@ public class BibleWidgetProvider extends AppWidgetProvider
             else if (WIDGET_REFRESH_CLICK.equals(intent.getAction()))
             {
                 //*** Get params
-                final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
                 //*** Update widget
@@ -123,7 +121,6 @@ public class BibleWidgetProvider extends AppWidgetProvider
             else if (WIDGET_PREV_CLICK.equals(intent.getAction()))
             {
                 //*** Get params
-                final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1) - 1;
 
@@ -137,7 +134,6 @@ public class BibleWidgetProvider extends AppWidgetProvider
             else if (WIDGET_FORWARD_CLICK.equals(intent.getAction()))
             {
                 //*** Get params
-                final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1) + 1;
 
@@ -151,7 +147,6 @@ public class BibleWidgetProvider extends AppWidgetProvider
             else if (WIDGET_FAV_CLICK.equals(intent.getAction()))
             {
                 //*** Get params
-                final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1);
 

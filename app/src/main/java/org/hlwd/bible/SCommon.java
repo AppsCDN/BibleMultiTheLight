@@ -739,6 +739,7 @@ class SCommon
     {
         try
         {
+            @SuppressWarnings("UnusedAssignment")
             final boolean res = _dal.CopyCacheSearchForOtherBible(tabIdFrom, tabIdTo, bbNameTo);
         }
         catch(Exception ex)
