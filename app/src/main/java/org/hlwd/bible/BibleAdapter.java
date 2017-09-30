@@ -15,9 +15,6 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
     ArrayList<VerseBO> lstVerse = null;
     private String markFav;
     private String markReading;
-    private VerseBO verse;
-    private String ref;
-    private int tagPosition;
     private SCommon _s = null;
 
     BibleAdapter()
@@ -116,7 +113,7 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
      * @param markType      Mark type (NULL to get all types)
      */
     @SuppressWarnings("JavaDoc")
-    BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, final String markType)
+    BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, @SuppressWarnings("SameParameterValue") final String markType)
     {
         CheckLocalInstance(context);
         SetMark(context);
@@ -127,9 +124,9 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
     class ViewHolder extends RecyclerView.ViewHolder
     {
         //private LinearLayout card_recipient;
-        private TextView tv_ref;
-        private TextView tv_text;
-        private TextView tv_mark;
+        private final TextView tv_ref;
+        private final TextView tv_text;
+        private final TextView tv_mark;
 
         ViewHolder(View view)
         {
@@ -154,18 +151,16 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
     public BibleAdapter.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int viewType)
     {
         final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_recipient, viewGroup, false);
-        final ViewHolder viewHolder = new ViewHolder(view);
 
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final BibleAdapter.ViewHolder viewHolder, int position)
+    public void onBindViewHolder(final BibleAdapter.ViewHolder viewHolder, final int position)
     {
         //Current verse
-        verse = lstVerse.get(position);
-        ref = PCommon.ConcaT( verse.bName, " ", verse.cNumber, ".", verse.vNumber );
-        tagPosition = position;
+        VerseBO verse = lstVerse.get(position);
+        String ref = PCommon.ConcaT(verse.bName, " ", verse.cNumber, ".", verse.vNumber);
 
         //Mark
         switch (verse.mark)
@@ -194,11 +189,11 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
 
         viewHolder.tv_ref.setText(ref);
         viewHolder.tv_ref.setId(verse.id);
-        viewHolder.tv_ref.setTag(tagPosition);
+        viewHolder.tv_ref.setTag(position);
 
         viewHolder.tv_text.setText(verse.vText);
         viewHolder.tv_text.setId(verse.id);
-        viewHolder.tv_text.setTag(tagPosition);
+        viewHolder.tv_text.setTag(position);
 
         //Events
         viewHolder.tv_ref.setOnLongClickListener(new View.OnLongClickListener()

@@ -19,7 +19,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
     private final String WIDGET_DOWN_CLICK    = "org.hlwd.bible.WIDGET_DOWN_CLICK";
     private final String WIDGET_FAV_CLICK     = "org.hlwd.bible.WIDGET_FAV_CLICK";
 
-    private int    WIDGET_LAYOUT_ID = R.layout.bible_widget_row_light;
+    private int     WIDGET_LAYOUT_ID = R.layout.bible_widget_row_light;
     private boolean IS_WIDGET_LAYOUT_DARK = false;
 
     private static int INSTALL_STATUS = 1;
@@ -55,7 +55,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1);
                 final String vText = intent.getStringExtra("VTEXT");
 
@@ -96,7 +96,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
                 final String bbName = intent.getStringExtra("BBNAME");
                 final int bNumber = intent.getIntExtra("BNUMBER", -1);
@@ -115,7 +115,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
                 //*** Update widget
                 UpdateAppWidget(context, appWidgetId, null);
@@ -124,7 +124,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1) - 1;
 
                 //*** Update verse
@@ -138,7 +138,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1) + 1;
 
                 //*** Update verse
@@ -152,7 +152,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
             {
                 //*** Get params
                 final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                final int appWidgetId = intent.getIntExtra(appWidgetManager.EXTRA_APPWIDGET_ID, -1);
+                final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
                 final int id = intent.getIntExtra("ID", -1);
 
                 //*** Update verse
@@ -181,7 +181,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
         }
     }
 
-    protected void UpdateAppWidget(final Context context, final int appWidgetId, WidgetVerseBO widgetVerse)
+    private void UpdateAppWidget(final Context context, final int appWidgetId, WidgetVerseBO widgetVerse)
     {
         try
         {
@@ -301,9 +301,8 @@ public class BibleWidgetProvider extends AppWidgetProvider
 
             final String verseRef = PCommon.ConcaT(verse.bsName, " ", verse.cNumber, ".", verse.vNumber);
             final String verseText = verse.vText;
-            final WidgetVerseBO widgetVerse = new WidgetVerseBO(rndBibleId, verseRef, verseText, verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber, verse.mark);
 
-            return widgetVerse;
+            return new WidgetVerseBO(rndBibleId, verseRef, verseText, verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber, verse.mark);
         }
         catch(Exception ex)
         {
@@ -360,9 +359,8 @@ public class BibleWidgetProvider extends AppWidgetProvider
             final VerseBO verse = lstVerse.get(0);
             final String verseRef = PCommon.ConcaT(verse.bsName, " ", verse.cNumber, ".", verse.vNumber);
             final String verseText = verse.vText;
-            final WidgetVerseBO widgetVerse = new WidgetVerseBO(verse.id, verseRef, verseText, verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber, verse.mark);
 
-            return widgetVerse;
+            return new WidgetVerseBO(verse.id, verseRef, verseText, verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber, verse.mark);
         }
         catch(Exception ex)
         {

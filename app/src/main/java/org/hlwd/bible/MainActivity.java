@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     finally
                     {
-                        Tab.LongPress(tabLayout.getContext(), 0);
+                        Tab.LongPress(tabLayout.getContext());
                     }
                 }
 
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity
                         if (!(frag instanceof SearchFragment))
                             return;
 
-                        final int posY = ((SearchFragment) frag).GetScrollPosY();
+                        final int posY = SearchFragment.GetScrollPosY();
                         final CacheTabBO t = _s.GetCacheTab(tabId);
                         if (t == null)
                             return;
@@ -1578,7 +1578,7 @@ public class MainActivity extends AppCompatActivity
                             _s.MarkPlanCal(planId, dayNumber, isRead);
                         }
                     });
-                    chkIsRead.setChecked(pc.isRead == 1 ? true : false);
+                    chkIsRead.setChecked(pc.isRead == 1);
 
                     tvDay = new TextView(this);
                     tvDay.setLayoutParams(PCommon._layoutParamsWrap);
@@ -1957,8 +1957,7 @@ public class MainActivity extends AppCompatActivity
             if (tabLayout == null)
                 return -1;
 
-            final int tabCount = tabLayout.getTabCount();
-            return tabCount;
+            return tabLayout.getTabCount();
         }
 
         /***
@@ -2054,8 +2053,7 @@ public class MainActivity extends AppCompatActivity
                     final PlanDescBO pd =_s.GetPlanDesc(planId);
                     if (pd == null) return;
                     final int resId = PCommon.GetResId(context, pd.planRef);
-                    final String resString = context.getString(resId);
-                    tabTitle = resString;
+                    tabTitle = context.getString(resId);
                     t = new CacheTabBO(tabNumber, cacheTabType, tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
                     _s.SaveCacheTab(t);
 
@@ -2064,7 +2062,7 @@ public class MainActivity extends AppCompatActivity
                     final int bNumberStart = pc.bNumberStart, cNumberStart = pc.cNumberStart, vNumberStart = pc.vNumberStart;
                     final int bNumberEnd = pc.bNumberEnd, cNumberEnd = pc.cNumberEnd, vNumberEnd = pc.vNumberEnd;
                     final int tabIdTo = MainActivity.Tab.GetTabCount();
-                    final boolean copy =_s.CopyCacheSearchForOtherBible(tabIdTo, tbbName, planId, planDayNumber, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
+                    final boolean copy =_s.CopyCacheSearchForOtherBible(tabIdTo, tbbName, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
                     if (!copy) return;
                 }
                 else
@@ -2272,7 +2270,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        private static void LongPress(final Context context, final int tabNumberFrom)
+        private static void LongPress(final Context context)
         {
             tabLayout.post(new Runnable() {
                 @Override
@@ -2282,7 +2280,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         final View vw = tabLayout.getChildAt(0);
                         final int count = ((LinearLayout) vw).getChildCount();
-                        for(int i = tabNumberFrom; i < count; i++)
+                        for(int i = 0; i < count; i++)
                         {
                             final int index = i;
                             ((LinearLayout) vw).getChildAt( index ).setOnLongClickListener(new View.OnLongClickListener() {

@@ -51,7 +51,6 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuUnmarkAllAboveAsRead">Mark all above as not read</string>
     <string name="mnuSearchBibleName">-</string>
     <string name="mnuSearchAll">Search</string>
-    <string name="mnuLogClear">Clear all</string>
     <string name="mnuGroupSettings">Settings</string>
     <string name="mnuGroupBible">Bible (preferred)</string>
     <string name="mnuGroupLayoutDynamicTitle">Display</string>
@@ -582,7 +581,7 @@ Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <R>27 5 1 31</R>
 ]]></string>
     <string name="ART_APP_HELP">Help</string>
-    <string name="ART_APP_HELP_CONTENT"><![CDATA[
+    <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
 <h1><u>About</u></h1>
 <i>Hi,</i> I\'m a Christian programmer and made this application with my heart to serve the Lord. The end of time is close with tribulations, antichrist, Jesus and the final judgment.
 <i>Whattt! Are you serious?</i> Yes, I\'m serious, signs are everywhere. This application, giving the real Word of God, can help you be strong during this period when the devil will try to deceive you more than never and to be ready

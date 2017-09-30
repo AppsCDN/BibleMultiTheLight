@@ -50,7 +50,7 @@ public class PreferencesFontActivity extends AppCompatActivity
                         : Typeface.createFromAsset(context.getAssets(), PCommon.ConcaT("fonts/", fontName, ".ttf"));
 
                 radioFont = new RadioButton(context);
-                radioFont.setChecked( fontNameSelected.equalsIgnoreCase( fontName ) ? true : false );
+                radioFont.setChecked( fontNameSelected.equalsIgnoreCase( fontName ));
                 radioFont.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 radioFont.setText((fontName == null || fontName.length() == 0) ? getString(R.string.mnuTypefaceDefault) : fontName );
                 radioFont.setTag( fontName );

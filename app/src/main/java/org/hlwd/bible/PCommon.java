@@ -124,9 +124,7 @@ final class PCommon implements IProject
      */
     static String AQ(final String value)
     {
-        final String newValue = PCommon.ConcaT("'", value, "'");
-
-        return newValue;
+        return PCommon.ConcaT("'", value, "'");
     }
 
     /***
@@ -137,22 +135,9 @@ final class PCommon implements IProject
     static String RQ(final String value)
     {
         if (!value.contains("'"))
-        {
             return value;
-        }
 
-        final String newValue = value.replaceAll("'", "''");
-
-        return newValue;
-    }
-
-    /**
-     * Get current date time (E.G.: 23/09 14:34:20)
-     * @return NowFunc
-     */
-    static String NowFunc()
-    {
-        return DateFormat.format("dd/MM kk:mm:ss", new Date()).toString();
+        return value.replaceAll("'", "''");
     }
 
     /**
@@ -179,9 +164,7 @@ final class PCommon implements IProject
      */
     static String TimeFuncShort()
     {
-        final String now = DateFormat.format("kkmmss", new Date()).toString();
-
-        return now;
+        return DateFormat.format("kkmmss", new Date()).toString();
     }
 
     /**
@@ -198,7 +181,7 @@ final class PCommon implements IProject
 
         final SharedPreferences.Editor editor = appPrefs.edit();
         editor.putString(key.toString(), value);
-        editor.commit();
+        editor.apply();
     }
 
     /**
@@ -378,9 +361,7 @@ final class PCommon implements IProject
             }
         }
 
-        final String langStack = sb.toString().trim().replaceAll(" ", ", ");
-
-        return langStack;
+        return sb.toString().trim().replaceAll(" ", ", ");
     }
 
     /**
@@ -480,7 +461,7 @@ final class PCommon implements IProject
      * @param resId RessourceId
      * @param args  Arguments (for String.format)
      */
-    private static void LogR(final Context context, final int resId, final Object... args) {
+    private static void LogR(final Context context, @SuppressWarnings("SameParameterValue") final int resId, final Object... args) {
         LogR(context, String.format(context.getResources().getText(resId).toString(), args));
     }
 
@@ -559,25 +540,6 @@ final class PCommon implements IProject
         return logs;
     }
     */
-
-    /**
-     * Clear logs (in variable)
-     */
-    static void ClearErrorLogs(final Context context)
-    {
-        try
-        {
-            CheckLocalInstance(context);    //20160728 added but bug sometimes!!!
-
-            SavePref(context, APP_PREF_KEY.LOG_STATUS, "");
-
-            _s.DeleteAllLogs();
-        }
-        catch(Exception ex)
-        {
-            if (_isDebugVersion) PCommon.LogR(context, ex);
-        }
-    }
 
     /***
      * Get resource threadId
@@ -729,7 +691,7 @@ final class PCommon implements IProject
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
      */
-    static void ShowNotification(final Context context, final String title, final String message, final int drawable)
+    static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
     {
         @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
         @SuppressWarnings("UnusedAssignment") NotificationCompat.Builder notification = null;
@@ -789,7 +751,7 @@ final class PCommon implements IProject
      * @param label     Label
      * @param text      Text to copy
      */
-    static void CopyTextToClipboard(final Context context, final String label, final String text)
+    static void CopyTextToClipboard(final Context context, @SuppressWarnings("SameParameterValue") final String label, final String text)
     {
         final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
@@ -803,7 +765,7 @@ final class PCommon implements IProject
      * @param subject   Email subject
      * @param body      Email body
      */
-    static void SendEmail(final Context context, final String[] toList, final String subject, final String body)
+    static void SendEmail(final Context context, final String[] toList, final String subject, @SuppressWarnings("SameParameterValue") final String body)
     {
         try
         {
@@ -812,7 +774,7 @@ final class PCommon implements IProject
             intent.putExtra(Intent.EXTRA_EMAIL  , toList);
             intent.putExtra(Intent.EXTRA_SUBJECT, (subject == null) ? "" : subject);
             intent.putExtra(Intent.EXTRA_TEXT   , (body == null) ? "" : body);
-            intent.setFlags(intent.FLAG_ACTIVITY_NO_HISTORY);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
             context.startActivity(Intent.createChooser(intent, context.getResources().getString(R.string.emailChooser)));
         }
@@ -854,7 +816,7 @@ final class PCommon implements IProject
      * @return builder
      */
     @SuppressWarnings("JavaDoc")
-    static void SelectBibleLanguage(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
+    static void SelectBibleLanguage(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons)
     {
         try
         {
@@ -931,7 +893,7 @@ final class PCommon implements IProject
      * @param forceShowAllButtons  Force to show all buttons
      */
     @SuppressWarnings("JavaDoc")
-    static void SelectBibleLanguageMulti(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons)
+    static void SelectBibleLanguageMulti(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons)
     {
         try
         {
@@ -1051,7 +1013,7 @@ final class PCommon implements IProject
      * @param chapterMax
      */
     @SuppressWarnings("JavaDoc")
-    static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings("UnusedParameters") final String desc, final boolean isCancelable, final boolean forceShowAllButtons, final int chapterMax)
+    static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons, final int chapterMax)
     {
         try
         {
@@ -1242,11 +1204,10 @@ final class PCommon implements IProject
         try
         {
             final String tfName = PCommon.GetPref(context, APP_PREF_KEY.FONT_NAME, "");
-            final Typeface tf = (tfName == null || tfName.length() == 0)
+
+            return (tfName == null || tfName.length() == 0)
                     ? Typeface.defaultFromStyle(Typeface.NORMAL)
                     : Typeface.createFromAsset(context.getAssets(), PCommon.ConcaT("fonts/", tfName, ".ttf"));
-
-            return tf;
         }
         catch (Exception ex)
         {
@@ -1265,8 +1226,7 @@ final class PCommon implements IProject
     {
         try
         {
-            final int fontSize = Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.FONT_SIZE, "14"));
-            return fontSize;
+            return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.FONT_SIZE, "14"));
         }
         catch (Exception ex)
         {

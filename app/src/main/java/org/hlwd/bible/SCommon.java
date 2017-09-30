@@ -95,7 +95,8 @@ class SCommon
     /***
      * Shrink db
      */
-    protected void ShrinkDb(final Context context)
+    @SuppressWarnings("unused")
+    private void ShrinkDb(final Context context)
     {
         try
         {
@@ -149,26 +150,6 @@ class SCommon
     }
 
     /***
-     * Get all logs from db (db should be open)
-     * @return logs as string
-     */
-    String GetAllLogs()
-    {
-        String logs = null;
-
-        try
-        {
-            logs = _dal.GetAllLogs();
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-
-        return logs;
-    }
-
-    /***
      * Delete all logs (db should be open for writing)
      */
     void DeleteAllLogs()
@@ -186,23 +167,6 @@ class SCommon
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="-- Bible --">
-
-    /***
-     * Delete bible
-     * @param bbName
-     */
-    @SuppressWarnings("JavaDoc")
-    protected void DeleteBible(final String bbName)
-    {
-        try
-        {
-            _dal.DeleteBible(bbName);
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-    }
 
     /***
      * Get a verse
@@ -281,8 +245,6 @@ class SCommon
      * Copy cache search for other bible (data are deleted before copying)
      * @param tabIdTo
      * @param tbbName
-     * @param planId
-     * @param planDayNumber
      * @param bNumberStart
      * @param cNumberStart
      * @param vNumberStart
@@ -292,12 +254,11 @@ class SCommon
      * @return true if copy was successful
      */
     @SuppressWarnings("JavaDoc")
-    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
+    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
     {
         try
         {
-            final boolean res = _dal.CopyCacheSearchForOtherBible(tabIdTo, tbbName, planId, planDayNumber, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
-            return res;
+            return _dal.CopyCacheSearchForOtherBible(tabIdTo, tbbName, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
         }
         catch(Exception ex)
         {
@@ -874,9 +835,7 @@ class SCommon
 
     int GetInstallStatus(final Context context)
     {
-        final int INSTALL_STATUS = Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.INSTALL_STATUS, "1"));
-
-        return INSTALL_STATUS;
+        return Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.INSTALL_STATUS, "1"));
     }
 
     /***

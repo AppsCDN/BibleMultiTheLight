@@ -67,23 +67,6 @@ class Dal
     }
 
     /***
-     * Open db connection
-     */
-    protected void OpenRead()
-    {
-        try
-        {
-            _db = _dbHelper.getReadableDatabase();
-            //deprecated _db.setLockingEnabled(false);
-            _db.execSQL("PRAGMA synchronous=OFF");
-        }
-        catch (SQLException ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-    }
-
-    /***
      * CloseDb db connection
      */
     void CloseDb()
@@ -149,48 +132,7 @@ class Dal
         }
     }
 
-    /***
-     * Get last rowId
-     * @return Last identity inserted (-1 in case of error)
-     */
-    int GetLastRowId()
-    {
-        Cursor c = null;
-        int id = -1;
-
-        String sql = "SELECT last_insert_rowid()";
-
-        try
-        {
-            c = _db.rawQuery(sql, null);
-
-            c.moveToFirst();
-            if (!c.isAfterLast())
-            {
-                id = c.getInt(0);
-            }
-        }
-        catch (SQLException ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-        finally
-        {
-            //noinspection UnusedAssignment
-            sql = null;
-
-            if (c != null)
-            {
-                c.close();
-                //noinspection UnusedAssignment
-                c = null;
-            }
-        }
-
-        return id;
-    }
-
-    /***
+   /***
      * Get db version
      * @return db version
      */
@@ -242,56 +184,6 @@ class Dal
     }
 
     /***
-     * Get all logs
-     * @return logs as string
-     */
-    String GetAllLogs()
-    {
-        Cursor c = null;
-        StringBuilder sbLogs = new StringBuilder("");
-        String logs = "";
-
-        try
-        {
-            final String[] fields = { "msg" };
-            c = _db.query("log", fields, null, null, null, null, null, null);
-
-            String log;
-            c.moveToFirst();
-
-            while (!c.isAfterLast())
-            {
-                log = c.getString(0);
-                sbLogs.append(log);
-                sbLogs.append("\n");
-
-                c.moveToNext();
-            }
-
-            //noinspection UnusedAssignment
-            log = null;
-            logs = sbLogs.toString();
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-        finally
-        {
-            sbLogs = null;
-
-            if (c != null)
-            {
-                c.close();
-                //noinspection UnusedAssignment
-                c = null;
-            }
-        }
-
-        return logs;
-    }
-
-    /***
      * Delete all logs
      */
     void DeleteAllLogs()
@@ -319,27 +211,6 @@ class Dal
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="-- Bible --">
-
-    /***
-     * Delete bible
-     * @param bbName
-     */
-    @SuppressWarnings("JavaDoc")
-    void DeleteBible(final String bbName)
-    {
-        //TODO: check act size, _db size
-
-        try
-        {
-            final String sql = PCommon.ConcaT("delete from bible where bbName=", PCommon.AQ(bbName));
-
-            _db.execSQL(sql);
-        }
-        catch (SQLException ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-    }
 
     /***
      * Get tabId of an article
@@ -585,8 +456,6 @@ class Dal
      * Copy cache search for other bible (data are deleted before copying)
      * @param tabIdTo
      * @param tbbName
-     * @param planId
-     * @param planDayNumber
      * @param bNumberStart
      * @param cNumberStart
      * @param vNumberStart
@@ -596,7 +465,7 @@ class Dal
      * @return true if copy was successful
      */
     @SuppressWarnings("JavaDoc")
-    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
+    boolean CopyCacheSearchForOtherBible(final int tabIdTo, final String tbbName, final int bNumberStart, final int cNumberStart, final int vNumberStart, final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
 
@@ -2114,7 +1983,7 @@ class Dal
      * @return bibleId
      */
     @SuppressWarnings("JavaDoc")
-    int GetBookChapterMax(final String bbName, final int bNumber)
+    int GetBookChapterMax(@SuppressWarnings("SameParameterValue") final String bbName, final int bNumber)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
@@ -2158,7 +2027,7 @@ class Dal
      * @return true/false
      */
     @SuppressWarnings("JavaDoc")
-    boolean IsBookExist(final String bbName, final int bNumber)
+    boolean IsBookExist(@SuppressWarnings("SameParameterValue") final String bbName, final int bNumber)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
@@ -2200,7 +2069,7 @@ class Dal
      * @param fld   Table field to case (ex: b.bbName)
      * @return string with CASE clause for bbNameOrder
      */
-    private String CaseBible(final String fld, final String trad)
+    private String CaseBible(@SuppressWarnings("SameParameterValue") final String fld, final String trad)
     {
         //EX: CASE b.bbName WHEN 'f' THEN 1 WHEN 'k' THEN 2 END bbNameOrder
         final int size = trad.length();

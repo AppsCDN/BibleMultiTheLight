@@ -44,7 +44,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static int _version = 12;
+    private static final int _version = 12;
 
     //</editor-fold>
 
@@ -98,7 +98,11 @@ class DbHelper extends SQLiteOpenHelper
                 SetGlobalSettings();
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 1);
 
-                UpgradeTable("log", "msg", "TEXT");
+                sql = DropTable("log");
+                _db.execSQL(sql);
+
+                sql = "CREATE TABLE log (msg TEXT)";
+                _db.execSQL(sql);
 
                 sql = "DROP INDEX IF EXISTS cacheSearch_ndx";
                 _db.execSQL(sql);
@@ -430,141 +434,12 @@ class DbHelper extends SQLiteOpenHelper
     {
         try
         {
-            final String sql = PCommon.ConcaT("DROP TABLE IF EXISTS ", tblName);
-
-            return sql;
+            return PCommon.ConcaT("DROP TABLE IF EXISTS ", tblName);
         }
         catch(Exception ex)
         {
-            //Log
             return null;
         }
-    }
-
-    /***
-     * Create table
-     * @param tblName   Name of the table
-     * @param struct    Structure. E.G.: "ciId INTEGER AUTOINCREMENT, cat TEXT"
-     * @return sql
-     */
-    private String CreateTable(final String tblName, final String struct)
-    {
-        try
-        {
-            final String sql = PCommon.ConcaT("CREATE TABLE ", tblName,
-                    " (",
-                    struct,
-                    ")");
-            return sql;
-        }
-        catch(Exception ex)
-        {
-            //Log
-            LogE(ex);
-        }
-
-        return null;
-    }
-
-    /***
-     * Create index
-     * @param tblName
-     * @param fieldNames
-     */
-    @SuppressWarnings("JavaDoc")
-    private void CreateIndex(final String tblName, final String fieldNames)
-    {
-        try
-        {
-            final String sql = PCommon.ConcaT("CREATE INDEX ", tblName, "_idx ON ", tblName, " (", fieldNames, ")");
-            _db.execSQL(sql);
-        }
-        catch(Exception ex)
-        {
-            //Log
-            LogE(ex);
-        }
-    }
-
-    /***
-     * Upgrade table (from old version => to new version)
-     * @param tblName
-     * @param fromFieldNames
-     * @param fromFieldTypes
-     * @param toFieldNames
-     * @param toFieldTypes
-     * @param transformationOldToNew
-     */
-    @SuppressWarnings("JavaDoc")
-    private void UpgradeTable(final String tblName,
-                              final String fromFieldNames, final String fromFieldTypes,
-                              final String toFieldNames, final String toFieldTypes,
-                              final String transformationOldToNew)
-    {
-        try
-        {
-            @SuppressWarnings("UnusedAssignment") String sql = null;
-
-            //Always
-            sql = DropTable(tblName);
-            _db.execSQL(sql);
-
-            final String struct = TableDefinition(toFieldNames, toFieldTypes);
-
-            sql = CreateTable(tblName, struct);
-            _db.execSQL(sql);
-        }
-        catch(Exception ex)
-        {
-            LogE(ex);
-        }
-    }
-
-    /***
-     * Create table (previous version is lost)
-     * @param tblName
-     * @param toFieldNames
-     * @param toFieldTypes
-     */
-    @SuppressWarnings("JavaDoc")
-    private void UpgradeTable(final String tblName,
-                              final String toFieldNames, final String toFieldTypes
-    )
-    {
-        UpgradeTable(tblName, null, null, toFieldNames, toFieldTypes, null);
-    }
-
-    /***
-     * Returns the table definition
-     * @param fieldNames
-     * @param fieldTypes
-     * @return
-     */
-    @SuppressWarnings("JavaDoc")
-    private String TableDefinition(final String fieldNames, final String fieldTypes)
-    {
-        String result = "";
-
-        try
-        {
-            String[] names = fieldNames.split(",");
-            String[] types = fieldTypes.split(",");
-
-            final int idxTot = names.length;
-            for (int idx = 0; idx < idxTot; idx++)
-            {
-                result = PCommon.ConcaT(result, names[ idx ].trim(), " ", types[ idx ].trim());
-
-                //Don't add "," for the last
-                if ((idx + 1) < idxTot) result = PCommon.ConcaT(result, ",");
-            }
-        }
-        catch(Exception ex)
-        {
-            LogE(ex);
-        }
-
-        return result;
     }
 
     //</editor-fold>
@@ -665,15 +540,16 @@ class DbHelper extends SQLiteOpenHelper
                     is.close();
                     is = am.open(xmlName);
 
-                    @SuppressWarnings("UnusedAssignment") VTDGen vg = null;
+                    @SuppressWarnings("UnusedAssignment")
+                    VTDGen vg = null;
                     {
                         byte[] b = new byte[tot];
-                        is.read(b, 0, tot);
-
-                        vg = new VTDGen();
-                        vg.setDoc(b);
-                        vg.parse(false);
-
+                        if (is.read(b, 0, tot) != -1)
+                        {
+                            vg = new VTDGen();
+                            vg.setDoc(b);
+                            vg.parse(false);
+                        }
                         //noinspection UnusedAssignment
                         b = null;
                     }
@@ -775,7 +651,7 @@ class DbHelper extends SQLiteOpenHelper
                  * Add bible reference
                  * @param r Reference
                  */
-                private void AddBibleRef(final BibleRefBO r) throws Exception
+                private void AddBibleRef(final BibleRefBO r)
                 {
                     final String sql = PCommon.ConcaT("INSERT INTO bibleRef (bbName, bNumber, bName, bsName) VALUES (",
                                 PCommon.AQ(r.bbName), ",",

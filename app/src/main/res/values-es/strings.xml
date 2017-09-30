@@ -51,7 +51,6 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuUnmarkAllAboveAsRead">Marcar como no leído (por encima)</string>
     <string name="mnuSearchBibleName">-</string>
     <string name="mnuSearchAll">Buscar</string>
-    <string name="mnuLogClear">Cancellar</string>
     <string name="mnuGroupSettings">Parámetros</string>
     <string name="mnuGroupBible">Biblia (preferida)</string>
     <string name="mnuGroupLayoutDynamicTitle">Vista</string>

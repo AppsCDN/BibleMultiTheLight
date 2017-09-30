@@ -58,7 +58,7 @@ public class SearchFragment extends Fragment
 
     private int planId = -1, planDayNumber = -1, planPageNumber = -1;
 
-    protected enum FRAGMENT_TYPE
+    enum FRAGMENT_TYPE
     {
         FAV_TYPE,
         SEARCH_TYPE,
@@ -68,30 +68,30 @@ public class SearchFragment extends Fragment
 
     public SearchFragment()
     {
-        this.fragmentType = FRAGMENT_TYPE.SEARCH_TYPE;
+        fragmentType = FRAGMENT_TYPE.SEARCH_TYPE;
     }
 
     @SuppressLint("ValidFragment")
     public SearchFragment(final FRAGMENT_TYPE type)
     {
-        this.fragmentType = type;
+        fragmentType = type;
     }
 
-    public static int GetScrollPosY()
+    static int GetScrollPosY()
     {
         if (fragmentType != FRAGMENT_TYPE.ARTICLE_TYPE)
         {
             final LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
             if (lm == null)
                 return 0;
-            final int pos = lm.findFirstVisibleItemPosition();
-            return pos;
+
+            return lm.findFirstVisibleItemPosition();
         }
         else
         {
             final ScrollView svDesc = (ScrollView) v.findViewById(R.id.svDesc);
-            final int pos = svDesc.getScrollY();
-            return pos;
+
+            return svDesc.getScrollY();
         }
     }
 
@@ -223,7 +223,7 @@ public class SearchFragment extends Fragment
                 String[] from = {"text"};
                 int[] to = {android.R.id.text1};                                                                         //android.R.ciId.text1,  R.ciId.listBnameEntry
 
-                cursorAdapter = new SimpleCursorAdapter(_context, R.layout.book_entry_test, matrixCursor, from, to, SimpleCursorAdapter.NO_SELECTION); //android.R.layout.select_dialog_item,      R.layout.book_entry)
+                cursorAdapter = new SimpleCursorAdapter(_context, R.layout.book_entry, matrixCursor, from, to, SimpleCursorAdapter.NO_SELECTION); //android.R.layout.select_dialog_item,      R.layout.book_entry)
                 cursorAdapter.setFilterQueryProvider(new FilterQueryProvider()
                 {
                     @Override
@@ -1161,20 +1161,15 @@ public class SearchFragment extends Fragment
     {
         final ArrayList<VerseBO> lstVerse = _s.GetVerse(bbName, bNumber, cNumber, 1);
 
-        if (lstVerse == null) return false;
-        if (lstVerse.size() == 0) return false;
-
-        return true;
+        return !(lstVerse == null || lstVerse.size() == 0);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean IsVerseExist(final String bbName, final int bNumber, final int cNumber, final int vNumber)
     {
         final ArrayList<VerseBO> lstVerse = _s.GetVerse(bbName, bNumber, cNumber, vNumber);
 
-        if (lstVerse == null) return false;
-        if (lstVerse.size() == 0) return false;
-
-        return true;
+        return !(lstVerse == null || lstVerse.size() == 0);
     }
 
     /***
@@ -1259,15 +1254,14 @@ public class SearchFragment extends Fragment
             //Save
             final CacheTabBO t = _s.GetCacheTab(tabNumber());
             if (t == null) return;
-            final String fullQuery = PCommon.ConcaT(planId, " ", newPlanDayNumber, " ", planPageNumber);
-            t.fullQuery = fullQuery;
+            t.fullQuery = PCommon.ConcaT(planId, " ", newPlanDayNumber, " ", planPageNumber);
             t.scrollPosY = 0;
             _s.SaveCacheTab(t);
 
             final PlanCalBO pc =_s.GetPlanCalByDay(t.bbName, planId, newPlanDayNumber);
             final int bNumberStart = pc.bNumberStart, cNumberStart = pc.cNumberStart, vNumberStart = pc.vNumberStart;
             final int bNumberEnd = pc.bNumberEnd, cNumberEnd = pc.cNumberEnd, vNumberEnd = pc.vNumberEnd;
-            final boolean copy =_s.CopyCacheSearchForOtherBible(t.tabNumber, t.trad, planId, newPlanDayNumber, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
+            final boolean copy =_s.CopyCacheSearchForOtherBible(t.tabNumber, t.trad, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
             if (!copy) return;
 
             onResume();
@@ -1412,9 +1406,7 @@ public class SearchFragment extends Fragment
      */
     private int GetFavOrder()
     {
-        final int orderBy = Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_ORDER, "0"));
-
-        return orderBy;
+        return Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_ORDER, "0"));
     }
 
     /***
@@ -1787,8 +1779,6 @@ public class SearchFragment extends Fragment
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
-
-                return;
             }
         }
         catch(Exception ex)

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">Si vous avez des problèmes ou des suggestions, s\'il vous plaît contactez moi.</string>
     <string name="close">Fermer</string>
     <string name="favOrderTitle">Trier par?</string>
@@ -51,7 +51,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuUnmarkAllAboveAsRead">Marquer tous ceux au-dessus comme non lu</string>
     <string name="mnuSearchBibleName">-</string>
     <string name="mnuSearchAll">Chercher</string>
-    <string name="mnuLogClear">Effacer</string>
     <string name="mnuGroupSettings">Paramètres</string>
     <string name="mnuGroupBible">Bible (preférée)</string>
     <string name="mnuGroupLayoutDynamicTitle">Affichage</string>
@@ -581,7 +580,7 @@ De Daniel 5.25 (hébreu): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <R>27 5 1 31</R>
 ]]></string>
     <string name="ART_APP_HELP">Aide</string>
-    <string name="ART_APP_HELP_CONTENT"><![CDATA[
+    <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
 <h1><u>A propos</u></h1>
 <i>Salut,</i> je suis un programmeur chrétien et j\'ai fait cette application avec mon coeur pour servir le Seigneur. La fin des temps est proche avec les tribulations, l\'antéchrist, Jésus et le jugement final.
 <i>Whattt! Are you serious?</i> Oui, je suis sérieux, les signes sont partout. Cette application donnant la vraie parole de Dieu peut vous aider à être fort durant cette période quand le diable essayera de vous tromper plus que jamais et d\'être prêt quand le Christ reviendra.
@@ -687,8 +686,8 @@ Cette application restera totalement gratuite, sans publicité, redirections, ho
 Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<br>
 <br><br>
 ]]></string>
-    <string name="ART_APP_LOG">Logs</string>
-    <string name="ART_APP_LOG_CONTENT"><![CDATA[
+    <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
+    <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>2.7</H>
 • Articles & espace<br>

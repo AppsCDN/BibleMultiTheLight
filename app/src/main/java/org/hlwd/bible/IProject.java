@@ -17,8 +17,6 @@ public interface IProject
 
         BOOK_CHAPTER_DIALOG,
 
-        DATE_DIALOG,
-
         TRAD_BIBLE_NAME,
 
         BIBLE_ID,
