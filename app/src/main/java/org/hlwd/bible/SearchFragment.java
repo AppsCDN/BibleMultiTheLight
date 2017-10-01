@@ -947,7 +947,7 @@ public class SearchFragment extends Fragment
 
                         SearchBible(false);
 
-                        mnu_search_item.collapseActionView();                                       //TODO: LEVEL 14! => find solution for level 11
+                        mnu_search_item.collapseActionView();
 
                         return false;
                     }

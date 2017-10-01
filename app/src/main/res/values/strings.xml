@@ -691,6 +691,12 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.8</H>
+• Optimization of the code (performance and safety)<br>
+• Possibility of backing up the application with tools<br>
+• Open source GPL3<br>
+• Published on F-Droid<br>
+<br>
 <H>2.7</H>
 • Articles & space<br>
 <br>

@@ -689,6 +689,12 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.8</H>
+• Optimisation du code (performance & sécurité)<br>
+• Possibilité de backuper l\'application avec des outils<br>
+• Open Source GPL3<br>
+• Publié sur F-Droid<br>
+<br>
 <H>2.7</H>
 • Articles & espace<br>
 <br>
