@@ -18,6 +18,11 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    apply plugin: 'java'
+    compile 'com.ximpleware:vtd-xml:2.13.4'
 }
