@@ -42,7 +42,7 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    final static boolean _isDebugVersion = true;
+    final static boolean _isDebugVersion = false;
 
     final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

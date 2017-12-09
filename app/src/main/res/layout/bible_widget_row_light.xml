@@ -32,7 +32,7 @@
 
             <ImageView
                 android:id="@+id/widget_iv_fav"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/widgetIvFav"
                 android:src="@drawable/ic_star_border_black_18dp"
@@ -40,7 +40,7 @@
                 android:paddingRight="5dp"
                 android:gravity="top"
                 android:layout_weight="0"
-                tools:ignore="NestedWeights"/>
+                tools:ignore="InefficientWeight,NestedWeights"/>
 
             <TextView
                 android:id="@+id/widget_tv_ref"

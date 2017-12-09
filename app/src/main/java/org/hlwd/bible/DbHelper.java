@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 2.9,    DbVersion: 14 (8) 2017-12...
 // PROD: Bible 2.8,    DbVersion: 13 (8) 2017-10-10
 // PROD: Bible 2.7,    DbVersion: 12 (8) 2017-09-05
 // PROD: Bible 2.6,    DbVersion: 11 (8) 2017-08-27
@@ -45,7 +46,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 13;
+    private static final int _version = 14;
 
     //</editor-fold>
 
@@ -340,7 +341,7 @@ class DbHelper extends SQLiteOpenHelper
                 sql = DropTable("temp_planDesc");
                 _db.execSQL(sql);
             }
-            if (oldVersion < 13)    //1..12 => 13
+            if (oldVersion < 14)    //1..13 => 14
             {
                 //=== FOR LAST VERSION
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);

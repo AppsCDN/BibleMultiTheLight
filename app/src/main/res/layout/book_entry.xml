@@ -8,7 +8,6 @@
           android:layout_width="match_parent"
           android:layout_height="?android:attr/listPreferredItemHeight"
           android:ellipsize="marquee"
-          android:maxLines="1"
           android:textColor="@color/colorPrimary"
           android:background="@color/transparent"
-          tools:ignore="Overdraw"/>
+          tools:ignore="Overdraw" android:singleLine="true"/>
