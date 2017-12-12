@@ -75,6 +75,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="searchBibleHint">Search Bible</string><!-- was: book chapter expression -->
     <string name="searchFavHint">Search \u2606</string><!-- should be favHeader -->
     <string name="sendEmail">Email</string>
+    <string name="planCompleted">Completed</string>
     <string name="planCreate">Create</string>
     <string name="planCreating">Creating plan&#8230;</string>
     <string name="planDaySymbol">day</string>
@@ -691,6 +692,10 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.9</H>
+• Bug: widget (favorite)<br>
+• Bug: plans of reading<br>
+<br>
 <H>2.8</H>
 • Optimization of the code (performance and safety)<br>
 • Possibility of backing up the application with tools<br>

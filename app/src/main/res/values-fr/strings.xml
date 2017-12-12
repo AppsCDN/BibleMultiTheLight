@@ -75,6 +75,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->
     <string name="searchFavHint">Chercher \u2606</string><!-- should be favHeader -->
     <string name="sendEmail">Email</string>
+    <string name="planCompleted">Terminé</string>
     <string name="planCreate">Créer</string>
     <string name="planCreating">Création du plan&#8230;</string>
     <string name="planDaySymbol">jour</string>
@@ -689,6 +690,10 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.9</H>
+• Bug: widget (favori)<br>
+• Bug: plans de lecture<br>
+<br>
 <H>2.8</H>
 • Optimisation du code (performance & sécurité)<br>
 • Possibilité de backuper l\'application avec des outils<br>

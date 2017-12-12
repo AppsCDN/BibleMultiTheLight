@@ -1206,23 +1206,28 @@ class SCommon
 
         try
         {
-            final int currentDayNumber = _dal.GetCurrentDayNumberOfPlanCal(planId);
-
             final PlanDescBO pd = _dal.GetPlanDesc(planId);
             final int daysCount = (pd == null) ? 0 : pd.dayCount;
             final int daysRead = _dal.GetPlanCalDaysReadCount(planId);
-
             final int perc = (daysRead * 100) / daysCount;
-            final String sign = (daysRead > currentDayNumber) ? "+" : (daysRead < currentDayNumber) ? "-" : "";
-            final int diffDays = Math.abs(daysRead - currentDayNumber);
 
-            final String verboseDays = diffDays > 1 ? _context.getString(R.string.planDaysSymbol) : _context.getString(R.string.planDaySymbol);
-            final String verboseLate = sign.compareTo("+") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayEarlySymbol))
-                                     : sign.compareTo("-") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayLateSymbol))
-                                     : PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayLateSymbol));
+            if (perc != 100)
+            {
+                final int currentDayNumber = _dal.GetCurrentDayNumberOfPlanCal(planId);
+                final String sign = (daysRead > currentDayNumber) ? "+" : (daysRead < currentDayNumber) ? "-" : "";
+                final int diffDays = Math.abs(daysRead - currentDayNumber);
+                final String verboseDays = diffDays > 1 ? _context.getString(R.string.planDaysSymbol) : _context.getString(R.string.planDaySymbol);
+                final String verboseLate = sign.compareTo("+") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayEarlySymbol))
+                                         : sign.compareTo("-") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayLateSymbol))
+                                         : PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayLateSymbol));
 
-            pgrStatus = PCommon.ConcaT("<blockquote>&nbsp;", perc, "%&nbsp;&nbsp;<small>(", daysRead, "/", daysCount,")</small><br>&nbsp;", diffDays, "&nbsp;", verboseDays, verboseLate, "</blockquote>");
-            return pgrStatus;
+                pgrStatus = PCommon.ConcaT("<blockquote>&nbsp;", perc, "%&nbsp;&nbsp;<small>(", daysRead, "/", daysCount,")</small><br>&nbsp;", diffDays, "&nbsp;", verboseDays, verboseLate, "</blockquote>");
+            }
+            else
+            {
+                final String planCompleted = _context.getString(R.string.planCompleted);
+                pgrStatus = PCommon.ConcaT("<blockquote>&nbsp;", perc, "%&nbsp;&nbsp;<small>(", daysRead, "/", daysCount,")</small><br>&nbsp;", planCompleted, "</blockquote>");
+            }
         }
         catch(Exception ex)
         {
