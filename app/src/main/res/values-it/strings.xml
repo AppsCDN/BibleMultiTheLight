@@ -685,9 +685,13 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.10</H>
+• Fix: piani de lettura (giorni rimasti)<br>
+• Articoli<br>
+<br>
 <H>2.9</H>
-• Bug: widget (favorito)<br>
-• Bug: piani de lettura<br>
+• Fix: widget (favorito)<br>
+• Fix: piani de lettura (percentuale)<br>
 <br>
 <H>2.8</H>
 • Ottimizzazione del codice (prestazione & sicurezza)<br>
@@ -750,16 +754,18 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <blockquote><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></blockquote>
 ]]></string>
-    <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
-    <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>
-    <string name="ART29" tools:ignore="UnusedResources">Paura e poca fede</string>
-    <string name="ART30" tools:ignore="UnusedResources">Pregare, conseguenza</string>
-    <string name="ART31" tools:ignore="UnusedResources">Ravvedimento</string>
-    <string name="ART32" tools:ignore="UnusedResources">Tentazione (avvertimento)</string>
-    <string name="ART33" tools:ignore="UnusedResources">Figlioletti</string>
-    <string name="ART34" tools:ignore="UnusedResources">Sementi</string>
-    <string name="ART35" tools:ignore="UnusedResources">Lievito de Farisei e Sadducei (avvertimento)</string>
-    <string name="ART36" tools:ignore="UnusedResources">Legami</string>
-    <string name="ART37" tools:ignore="UnusedResources">Vendi</string>
-    <string name="ART38" tools:ignore="UnusedResources">10 versetti (2)</string>
+    <string name="ART27">Le dieci vergini</string>
+    <string name="ART28">Marchio della bestia</string>
+    <string name="ART29">Paura e poca fede</string>
+    <string name="ART30">Pregare, conseguenza</string>
+    <string name="ART31">Ravvedimento</string>
+    <string name="ART32">Tentazione (avvertimento)</string>
+    <string name="ART33">Figlioletti</string>
+    <string name="ART34">Sementi</string>
+    <string name="ART35">Lievito de Farisei e Sadducei (avvertimento)</string>
+    <string name="ART36">Legami</string>
+    <string name="ART37">Vendi</string>
+    <string name="ART38">10 versetti (2)</string>
+    <string name="ART39">Esorcismo (Paolo)</string>
+    <string name="ART40">Confessa Gesù</string>
 </resources>

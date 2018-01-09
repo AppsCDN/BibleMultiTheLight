@@ -683,9 +683,13 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.10</H>
+• Fix: planes de lectura (días restantes)<br>
+• Artículos<br>
+<br>
 <H>2.9</H>
-• Bug: widget (favorito)<br>
-• Bug: planes de lectura<br>
+• Fix: widget (favorito)<br>
+• Fix: planes de lectura (porcentaje)<br>
 <br>
 <H>2.8</H>
 • Optimización del código (realización y seguridad)<br>
@@ -760,4 +764,6 @@ Cualesquiera que sean los cristianos (varios pastores) que mire en internet, por
     <string name="ART36">Vínculos</string>
     <string name="ART37">Vende</string>
     <string name="ART38">10 versículos (2)</string>
+    <string name="ART39">Exorcismo (Pablo)</string>
+    <string name="ART40">Confiesa Jesús</string>
 </resources>

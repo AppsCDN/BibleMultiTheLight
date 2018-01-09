@@ -2677,11 +2677,13 @@ class Dal
                     " WHERE c.planId=", planId, " AND c.dayDt=", PCommon.AQ(dayDt), " limit 1");
 
             c = _db.rawQuery(sql, null);
-            c.moveToFirst();
-
-            if (!c.isAfterLast())
+            if (c.getCount() > 0)
             {
-                dayNumber = c.getInt(0);
+                c.moveToFirst();
+                if (!c.isAfterLast())
+                {
+                    dayNumber = c.getInt(0);
+                }
             }
         }
         catch (SQLException ex)
@@ -2828,13 +2830,9 @@ class Dal
         @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
         int count = 0;
-        final String dtFormat = "yyyyMMdd";
 
         try
         {
-            final Calendar now = Calendar.getInstance();
-            @SuppressWarnings("UnusedAssignment") final String dayDt = DateFormat.format(dtFormat, now).toString();
-
             sql = PCommon.ConcaT("SELECT COUNT(*) ",
                     " FROM planCal c",
                     " WHERE c.planId=", planId, " AND c.isRead=1",

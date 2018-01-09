@@ -690,9 +690,13 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.10</H>
+• Fix: plans de lecture (jours restants)<br>
+• Articles<br>
+<br>
 <H>2.9</H>
-• Bug: widget (favori)<br>
-• Bug: plans de lecture<br>
+• Fix: widget (favori)<br>
+• Fix: plans de lecture (pourcentage)<br>
 <br>
 <H>2.8</H>
 • Optimisation du code (performance & sécurité)<br>
@@ -767,5 +771,7 @@ Quelques chrétiens (plusieurs pasteurs) que je regarde sur internet, s\'il vous
     <string name="ART36">Liens</string>
     <string name="ART37">Vends</string>
     <string name="ART38">10 versets (2)</string>
+    <string name="ART39">Exorcisme (Paul)</string>
+    <string name="ART40">Confesse Jésus</string>
 </resources>
 

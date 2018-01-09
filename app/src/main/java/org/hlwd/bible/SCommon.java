@@ -3,7 +3,10 @@ package org.hlwd.bible;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.format.DateFormat;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /***
  * Singleton
@@ -1207,15 +1210,35 @@ class SCommon
         try
         {
             final PlanDescBO pd = _dal.GetPlanDesc(planId);
-            final int daysCount = (pd == null) ? 0 : pd.dayCount;
+            final int daysCount = pd.dayCount;
             final int daysRead = _dal.GetPlanCalDaysReadCount(planId);
             final int perc = (daysRead * 100) / daysCount;
-
             if (perc != 100)
             {
+                final String sign;
+                final int diffDays;
                 final int currentDayNumber = _dal.GetCurrentDayNumberOfPlanCal(planId);
-                final String sign = (daysRead > currentDayNumber) ? "+" : (daysRead < currentDayNumber) ? "-" : "";
-                final int diffDays = Math.abs(daysRead - currentDayNumber);
+                if (currentDayNumber == 0)
+                {
+                    final String dtFormat = "yyyyMMdd";
+                    final Calendar now = Calendar.getInstance();
+                    final String dayNow = DateFormat.format(dtFormat, now).toString();
+                    if (dayNow.compareTo(pd.startDt) < 0)
+                    {
+                        sign = "+";
+                        diffDays = daysRead;
+                    }
+                    else
+                    {
+                        sign = "-";
+                        diffDays = daysCount - daysRead;
+                    }
+                }
+                else
+                {
+                    sign = (daysRead > currentDayNumber) ? "+" : (daysRead < currentDayNumber) ? "-" : "";
+                    diffDays = Math.abs(daysRead - currentDayNumber);
+                }
                 final String verboseDays = diffDays > 1 ? _context.getString(R.string.planDaysSymbol) : _context.getString(R.string.planDaySymbol);
                 final String verboseLate = sign.compareTo("+") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayEarlySymbol))
                                          : sign.compareTo("-") == 0 ? PCommon.ConcaT("&nbsp;", _context.getString(R.string.planDayLateSymbol))
