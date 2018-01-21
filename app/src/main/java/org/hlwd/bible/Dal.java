@@ -2782,8 +2782,6 @@ class Dal
 
         try
         {
-            @SuppressWarnings("UnusedAssignment") PlanCalBO pc;
-
             sql = PCommon.ConcaT("SELECT COUNT(*)",
                     " FROM planCal c",
                     " INNER JOIN bibleRef rs ON rs.bbName=", PCommon.AQ(bbName), " AND c.bNumberStart=rs.bNumber",

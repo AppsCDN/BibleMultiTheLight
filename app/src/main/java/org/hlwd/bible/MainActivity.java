@@ -2022,7 +2022,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         /***
-         * Add tab for Open result PRBL | ARTICLE | PLAN
+         * Add tab for Open result PRBL | ARTICLE | PLAN | INTENT
          * @param context
          * @param cacheTabType
          * @param tbbName
@@ -2071,13 +2071,20 @@ public class MainActivity extends AppCompatActivity
                     final boolean copy =_s.CopyCacheSearchForOtherBible(tabIdTo, tbbName, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
                     if (!copy) return;
                 }
+                else if (cacheTabType.equalsIgnoreCase("I"))
+                {
+                    final int tabNameSize = Integer.parseInt(context.getString(R.string.tabSizeName));
+                    tabTitle = (fullQuery.length() <= tabNameSize) ? fullQuery.substring(0, tabNameSize) : fullQuery;
+                    t = new CacheTabBO(tabNumber, "S", tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
+                    _s.SaveCacheTab(t);
+                }
                 else
                 {
                     tabTitle = context.getString(R.string.tabTitleDefault);
                     t = new CacheTabBO(tabNumber, cacheTabType, tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
                     _s.SaveCacheTab(t);
                 }
-                final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.tabTitleDefault);
+                final TabLayout.Tab tab = tabLayout.newTab().setText(tabTitle);
                 tabLayout.addTab(tab);
                 FullScrollTab(context, HorizontalScrollView.FOCUS_RIGHT);
             }
