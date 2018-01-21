@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">If you have any issues or suggestions, please contact me.</string>
     <string name="close">Close</string>
+    <string name="btnClose">Close</string>
+    <string name="btnSelect">Select</string>
+    <string name="btnTrim">Trim</string>
     <string name="favOrderTitle">Order by?</string>
     <string name="installStart">Installing&#8230;</string>
     <string name="installQuit">Installing, please wait.</string>
@@ -106,6 +109,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tvBookOT">- Old Testament -</string>
     <string name="tvBookNT">- New Testament -</string>
     <string name="tvChapter">Chapter:</string>
+    <string name="tvLanguage">Language:</string>
     <string name="tvPlanBooks">- Books -</string>
     <string name="tvPlanThemes">- Themes -</string>
     <string name="tvPlanYourPlans">- Your plans -</string>
@@ -147,8 +151,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="PRBL28">The unjust judge</string>
     <string name="PRBL29">The Pharisee and the publican</string>
     <string name="PRBL30">Mines</string>
-    <string name="PRBL31">house on rock or sand (1)</string>
-    <string name="PRBL32">house on rock or sand (2)</string>
+    <string name="PRBL31">House on rock or sand (1)</string>
+    <string name="PRBL32">House on rock or sand (2)</string>
     <string name="PRBL33">Leaven (1)</string>
     <string name="PRBL34">Leaven (2)</string>
     <string name="PRBL35">The lost sheep (1)</string>
@@ -692,6 +696,10 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.11</H>
+• Articles, +2 Youtubers<br>
+• Share from other applications (test)<br>
+<br>
 <H>2.10</H>
 • Fix: plans of reading (days remaining)<br>
 • Articles<br>
@@ -762,10 +770,14 @@ Some christians (several pastors), I watch on internet, please check their video
 <H1>English</H1>
 <blockquote><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></blockquote>
+<blockquote><a href="https://www.youtube.com/user/NoLife127">Jason A</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></blockquote>
+<br><br>
+<H1>English & Spanish</H1>
+<blockquote><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></blockquote>
 <br><br>
 <H1>Spanish & French</H1>
 <blockquote><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></blockquote>
@@ -905,6 +917,23 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>63 1 6 11</R><br>
 <R>66 3 5 5</R>
 ]]></string>
+    <string name="ART41">Forgiveness and judgment</string>
+    <string name="ART41_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
+<HA/>
+Read this parable and learn the relationship between forgiveness and judgment.<br><br>
+<br><br>
+<h1><u>References</u></h1>
+<R>40 7 1 2</R><br>
+<R>42 6 37 37</R>
+<br><br>
+<h1><u>Parable</u></h1>
+<R>40 18 23 35</R>
+]]></string>
+    <string name="ART42">Good treasure of the heart</string>
+    <string name="ART42_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
+<HA/>
+<R>42 6 27 49</R>
+]]></string>
 
     <!-- ======================================================================================= -->
     <!--  DON'T COPY & DON'T TRANSLATE                                                           -->
@@ -923,6 +952,8 @@ Some christians (several pastors), I watch on internet, please check their video
 	    <item>ART35</item>
         <item>ART26</item>
 
+        <item>ART42</item>
+        <item>ART41</item>
         <item>ART40</item>
         <item>ART39</item>
         <item>ART38</item>
@@ -1112,7 +1143,7 @@ Some christians (several pastors), I watch on internet, please check their video
         <item>PRBL28|42 18 1 8</item>
         <item>PRBL29|42 18 9 14</item>
         <item>PRBL30|42 19 11 27</item>
-        <item>PRBL31|40 7 24 2</item>
+        <item>PRBL31|40 7 24 27</item>
         <item>PRBL32|42 6 47 49</item>
         <item>PRBL33|40 13 33 33</item>
         <item>PRBL34|42 13 20 21</item>

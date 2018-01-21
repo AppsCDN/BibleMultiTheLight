@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">Si vous avez des problèmes ou des suggestions, s\'il vous plaît contactez moi.</string>
     <string name="close">Fermer</string>
+    <string name="btnClose">Fermer</string>
+    <string name="btnSelect">Sélectionner</string>
+    <string name="btnTrim">Réduire</string>
     <string name="favOrderTitle">Trier par?</string>
     <string name="installStart">Installation&#8230;</string>
     <string name="installQuit">Installation&#8230; veuillez patienter.</string>
@@ -106,6 +109,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvBookOT">- Ancien Testament -</string>
     <string name="tvBookNT">- Nouveau Testament -</string>
     <string name="tvChapter">Chapitre:</string>
+    <string name="tvLanguage">Langue:</string>
     <string name="tvPlanBooks">- Livres -</string>
     <string name="tvPlanThemes">- Thèmes -</string>
     <string name="tvPlanYourPlans">- Vos plans -</string>
@@ -690,6 +694,10 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.11</H>
+• Articles, +2 Youtubers<br>
+• Partage à partir d\'autres applications (test)<br>
+<br>
 <H>2.10</H>
 • Fix: plans de lecture (jours restants)<br>
 • Articles<br>
@@ -747,10 +755,14 @@ Quelques chrétiens (plusieurs pasteurs) que je regarde sur internet, s\'il vous
 <H1>Anglais</H1>
 <blockquote><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></blockquote>
+<blockquote><a href="https://www.youtube.com/user/NoLife127">Jason A</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></blockquote>
+<br><br>
+<H1>Anglais & Espagnol</H1>
+<blockquote><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></blockquote>
 <br><br>
 <H1>Espagnol & Français</H1>
 <blockquote><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></blockquote>
@@ -773,5 +785,18 @@ Quelques chrétiens (plusieurs pasteurs) que je regarde sur internet, s\'il vous
     <string name="ART38">10 versets (2)</string>
     <string name="ART39">Exorcisme (Paul)</string>
     <string name="ART40">Confesse Jésus</string>
+    <string name="ART41">Pardon et jugement</string>
+    <string name="ART41_CONTENT"><![CDATA[
+<HA/>
+Lisez cette parabole et apprenez la relation entre le pardon et le jugement.<br><br>
+<br><br>
+<h1><u>Références</u></h1>
+<R>40 7 1 2</R><br>
+<R>42 6 37 37</R>
+<br><br>
+<h1><u>Parabole</u></h1>
+<R>40 18 23 35</R>
+]]></string>
+    <string name="ART42">Bon trésor du coeur</string>
 </resources>
 

@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">Se avete problemi o suggerimenti, si prega di contattare me.</string>
     <string name="close">Chiudere</string>
+    <string name="btnClose">Chiudere</string>
+    <string name="btnSelect">Selezionare</string>
+    <string name="btnTrim">Ridurre</string>
     <string name="favOrderTitle">Ordinare per?</string>
     <string name="installStart">Installazione&#8230;</string>
     <string name="installQuit">Installazione&#8230; Attendere prego.</string>
@@ -106,6 +109,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="tvBookOT">- Vecchio Testamento -</string>
     <string name="tvBookNT">- Nuovo Testamento -</string>
     <string name="tvChapter">Capitolo:</string>
+    <string name="tvLanguage">Lingua:</string>
     <string name="tvPlanBooks">- Libri -</string>
     <string name="tvPlanThemes">- Temi -</string>
     <string name="tvPlanYourPlans">- Vostri piani -</string>
@@ -685,6 +689,10 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>2.11</H>
+• Articoli, +2 Youtubers<br>
+• Condividere da altre applicazioni (prova)<br>
+<br>
 <H>2.10</H>
 • Fix: piani de lettura (giorni rimasti)<br>
 • Articoli<br>
@@ -742,10 +750,14 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <H1>Inglese</H1>
 <blockquote><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></blockquote>
+<blockquote><a href="https://www.youtube.com/user/NoLife127">Jason A</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></blockquote>
 <blockquote><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></blockquote>
 <blockquote><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></blockquote>
+<br><br>
+<H1>Inglese & Spagnolo</H1>
+<blockquote><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></blockquote>
 <br><br>
 <H1>Spagnolo & Francese</H1>
 <blockquote><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></blockquote>
@@ -768,4 +780,17 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
     <string name="ART38">10 versetti (2)</string>
     <string name="ART39">Esorcismo (Paolo)</string>
     <string name="ART40">Confessa Gesù</string>
+    <string name="ART41">Perdono e giudizio</string>
+    <string name="ART41_CONTENT"><![CDATA[
+<HA/>
+Leggete questa parabola ed imparate la relazione tra il perdono ed il giudizio.<br><br>
+<br><br>
+<h1><u>Riferimenti</u></h1>
+<R>40 7 1 2</R><br>
+<R>42 6 37 37</R>
+<br><br>
+<h1><u>Parabola</u></h1>
+<R>40 18 23 35</R>
+]]></string>
+    <string name="ART42">Buono tesoro del cuore</string>
 </resources>
