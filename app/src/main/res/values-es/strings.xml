@@ -104,6 +104,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vacío!</string>
     <string name="toastBookNotInstalled">Libro no instalado!</string>
+    <string name="toastNoAppsToShare">¡ Ninguno aplicaciones para compartir!</string>
     <string name="tvBookInstall">(instalación&#8230;)</string>
     <string name="tvBookTitle">Libro</string>
     <string name="tvBookOT">- Viejo Testamento -</string>
@@ -687,6 +688,9 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.12</H>
+• Desactivado temporalmente: compartir desde otras aplicaciones (prueba)<br>
+<br>
 <H>2.11</H>
 • Artículos, +2 Youtubers<br>
 • Compartir desde otras aplicaciones (prueba)<br>

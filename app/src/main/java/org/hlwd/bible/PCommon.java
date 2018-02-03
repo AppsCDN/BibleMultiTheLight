@@ -7,10 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -28,8 +30,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.io.*;
-import java.util.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Project Common Class
@@ -797,11 +804,38 @@ final class PCommon implements IProject
     {
         try
         {
-            final Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-            sendIntent.setType("text/plain");
-            context.startActivity(sendIntent);
+            final String mimeTypeTextPlain = "text/plain";
+            final Intent intentQuery = new Intent(Intent.ACTION_SEND);
+            intentQuery.setType(mimeTypeTextPlain);
+            intentQuery.putExtra(Intent.EXTRA_TEXT, text);
+
+            String packageName;
+            Intent intent;
+            final List<Intent> lstShareIntent = new ArrayList<Intent>();
+            final List<ResolveInfo> resInfos = context.getPackageManager().queryIntentActivities(intentQuery, 0);
+            if (!resInfos.isEmpty())
+            {
+                for (ResolveInfo resInfo : resInfos)
+                {
+                    packageName = resInfo.activityInfo.packageName;
+                    //TODO: UPDATE PACKAGE NAME
+                    if (!packageName.toLowerCase().startsWith("org.hlwd.bible"))
+                    {
+                        intent = new Intent(Intent.ACTION_SEND);
+                        intent.setComponent(new ComponentName(packageName, resInfo.activityInfo.name));
+                        intent.setType(mimeTypeTextPlain);
+                        intent.putExtra(Intent.EXTRA_TEXT, text);
+                        //intent.setPackage(packageName);
+
+                        lstShareIntent.add(intent);
+                    }
+                }
+                context.startActivity(Intent.createChooser(lstShareIntent.get(0), context.getResources().getString(R.string.mnuShare)));
+            }
+            else
+            {
+                PCommon.ShowToast(context, R.string.toastNoAppsToShare, Toast.LENGTH_LONG);
+            }
         }
         catch (Exception ex)
         {
