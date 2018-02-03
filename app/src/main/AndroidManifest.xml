@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="org.hlwd.bible"
-          android:installLocation="internalOnly"
-          android:versionCode="20180114"
-          android:versionName="2.11">
+    xmlns:tools="http://schemas.android.com/tools" package="org.hlwd.bible"
+    android:installLocation="internalOnly"
+    android:versionCode="20180203"
+    android:versionName="2.12">
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/appName">
+            android:label="@string/appName"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -31,27 +32,31 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".PreferencesFontActivity"
-                  android:label="@string/mnuGroupTypeface"
-                  android:exported="false">
+        <activity
+            android:name=".PreferencesFontActivity"
+            android:label="@string/mnuGroupTypeface"
+            android:exported="false"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="org.hlwd.bible.PreferencesFontActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShareActivity"
-                  android:label="@string/appName"
-                  android:exported="true"
-                  android:noHistory="true">
+        <activity
+            android:name=".ShareActivity"
+            android:label="@string/appName"
+            android:exported="false"
+            android:icon="@drawable/thelightlogo"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
+                <data android:mimeType="xext/xlain"/>
             </intent-filter>
         </activity>
-
-        <receiver android:name=".BibleWidgetProvider"
-                  android:exported="false">
+        <receiver
+            android:name=".BibleWidgetProvider"
+            android:exported="false">
             <intent-filter>
                 <action android:name="org.hlwd.bible.WIDGET_LANG_CLICK" />
                 <action android:name="org.hlwd.bible.WIDGET_REFRESH_CLICK" />

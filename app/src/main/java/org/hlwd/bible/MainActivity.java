@@ -1930,6 +1930,17 @@ public class MainActivity extends AppCompatActivity
         @SuppressLint("StaticFieldLeak")
         static SCommon _s = null;
 
+        static boolean IsTablayoutNull()
+        {
+            if (PCommon._isDebugVersion)
+            {
+                //System.out.println(PCommon.ConcaT("PackageName:", Application.class.getPackage().getName()));
+                System.out.println(PCommon.ConcaT("IsTabLayoutNull:", tabLayout == null));
+            }
+
+            return (tabLayout == null);
+        }
+
         static void SetCurrentTabTitle(final String title)
         {
             //noinspection EmptyCatchBlock
@@ -2070,13 +2081,6 @@ public class MainActivity extends AppCompatActivity
                     final int tabIdTo = MainActivity.Tab.GetTabCount();
                     final boolean copy =_s.CopyCacheSearchForOtherBible(tabIdTo, tbbName, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
                     if (!copy) return;
-                }
-                else if (cacheTabType.equalsIgnoreCase("I"))
-                {
-                    final int tabNameSize = Integer.parseInt(context.getString(R.string.tabSizeName));
-                    tabTitle = (fullQuery.length() <= tabNameSize) ? fullQuery.substring(0, tabNameSize) : fullQuery;
-                    t = new CacheTabBO(tabNumber, "S", tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
-                    _s.SaveCacheTab(t);
                 }
                 else
                 {

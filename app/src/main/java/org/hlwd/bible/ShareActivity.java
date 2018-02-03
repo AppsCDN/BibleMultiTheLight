@@ -1,6 +1,7 @@
 
 package org.hlwd.bible;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//TODO: bug: don't scroll
-//TODO: tab title too long
 public class ShareActivity extends AppCompatActivity
 {
     private SCommon _s = null;
@@ -119,7 +118,18 @@ public class ShareActivity extends AppCompatActivity
                                                 : bbNameLanguage.equalsIgnoreCase("FR") ? "l"
                                                 : bbNameLanguage.equalsIgnoreCase("IT") ? "d"
                                                 : "k";
-                                        MainActivity.Tab.AddTab(getApplicationContext(), "I", bbName, etSharedText.getText().toString());
+
+                                        final int tabNumber = _s.GetCacheTabCount();
+                                        final String tbbName = bbName;
+                                        final String fullQuery = etSharedText.getText().toString();
+
+                                        final CacheTabBO t = new CacheTabBO(tabNumber, "S", fullQuery, fullQuery, 0, tbbName, true, false, false, 0, 0, 0, tbbName);
+                                        _s.SaveCacheTab(t);
+                                        PCommon.SavePrefInt(getApplicationContext(), IProject.APP_PREF_KEY.TAB_SELECTED, tabNumber);
+
+                                        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        setResult(Activity.RESULT_OK);
                                         finish();
                                     }
                                     else
@@ -181,4 +191,23 @@ public class ShareActivity extends AppCompatActivity
 
         return "EN";
     }
+
+/*
+    public static boolean IsAppRunning(final Context context, final String packageName)     //"com.your.desired.app"
+    {
+        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+        if (procInfos != null)
+        {
+            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
+                if (processInfo.processName.equals(packageName)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+*/
+
 }

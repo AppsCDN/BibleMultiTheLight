@@ -104,6 +104,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
+    <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>
@@ -696,6 +697,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.12</H>
+• Deactivated temporarily: share from other applications (test)<br>
+<br>
 <H>2.11</H>
 • Articles, +2 Youtubers<br>
 • Share from other applications (test)<br>
