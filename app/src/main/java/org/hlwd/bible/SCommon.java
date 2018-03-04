@@ -298,6 +298,8 @@ class SCommon
                 sbVerses.append(PCommon.ConcaT("<b>", v.bName, " ", v.cNumber, ".", v.vNumber, ": </b><br>", v.vText, "<br><br>"));
             }
 
+            final int start = sbVerses.length() - 8;
+            sbVerses.delete(start, sbVerses.length());
             sbVerses.append("</blockquote>");
         }
         catch(Exception ex)
@@ -569,7 +571,7 @@ class SCommon
     }
 
     /***
-     * Get a verse
+     * Get book number
      * @param bbName
      * @param bName
      * @return book number (0 if not found)
@@ -582,6 +584,28 @@ class SCommon
         try
         {
             bNumber = _dal.GetBookNumberByName(bbName, bName);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return bNumber;
+    }
+
+    /***
+     * Get book number
+     * @param bName
+     * @return book number (0 if not found)
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetBookNumberByName(final String bName)
+    {
+        int bNumber = 0;
+
+        try
+        {
+            bNumber = _dal.GetBookNumberByName(bName);
         }
         catch(Exception ex)
         {

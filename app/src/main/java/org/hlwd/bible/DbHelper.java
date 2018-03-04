@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 2.13,   DbVersion: 18 (8) 2018-03-04
 // PROD: Bible 2.12,   DbVersion: 17 (8) 2018-02-03
 // PROD: Bible 2.11,   DbVersion: 16 (8) 2018-01-14
 // PROD: Bible 2.10,   DbVersion: 15 (8) 2018-01-07
@@ -49,7 +50,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 17;
+    private static final int _version = 18;
 
     //</editor-fold>
 
@@ -344,7 +345,15 @@ class DbHelper extends SQLiteOpenHelper
                 sql = DropTable("temp_planDesc");
                 _db.execSQL(sql);
             }
-            if (oldVersion < 17)    //1..16 => 17
+            if (oldVersion < 18)    //1..17 => 18
+            {
+                final String themeName = PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
+                if (themeName.equalsIgnoreCase("LIGHT_AND_BLUE"))
+                {
+                    PCommon.SavePref(_context, IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
+                }
+            }
+            if (oldVersion < 18)    //1..17 => 18
             {
                 //=== FOR LAST VERSION
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);

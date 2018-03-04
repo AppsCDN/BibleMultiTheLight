@@ -1224,6 +1224,52 @@ class Dal
     }
 
     /***
+     * Get book number by name
+     * @param bName
+     * @return book number (0 if not found)
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetBookNumberByName(final String bName)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        int bNumber = 0;
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT bNumber from bibleRef WHERE",
+                    " bName=", PCommon.AQ(PCommon.RQ(bName)),
+                    " LIMIT 1");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast())
+            {
+                bNumber = c.getInt(0);
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return bNumber;
+    }
+
+    /***
      * Get book ref
      * @param bbName
      * @param bNumber
