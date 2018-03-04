@@ -46,18 +46,6 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         this.SaveCacheSearch(context);
     }
 
-/*
-    public BibleAdapter(final Context context, final String tbbName, final int planId, final int planDayNumber, final int bNumberStart, final int cNumberStart, final int vNumberStart,  final int bNumberEnd, final int cNumberEnd, final int vNumberEnd)
-    {
-        CheckLocalInstance(context);
-        SetMark(context);
-
-        this.lstVerse = null;
-        final boolean copy = _s.CopyCacheSearchForOtherBible(tbbName, planId, planDayNumber, bNumberStart, cNumberStart, vNumberStart, bNumberEnd, cNumberEnd, vNumberEnd);
-
-        this.SaveCacheSearch(context);
-    }
-*/
     BibleAdapter(final Context context, final String bbName, final int bNumber, final int cNumber, final String searchString)
     {
         CheckLocalInstance(context);
@@ -134,7 +122,7 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
 
             tv_ref = (TextView)view.findViewById(R.id.tv_ref);
             tv_text = (TextView)view.findViewById(R.id.tv_text);
-            tv_mark = (TextView) view.findViewById(R.id.tv_mark);
+            tv_mark = (TextView)view.findViewById(R.id.tv_mark);
 
             final Typeface typeface = PCommon.GetTypeface(view.getContext());
             if (typeface != null)

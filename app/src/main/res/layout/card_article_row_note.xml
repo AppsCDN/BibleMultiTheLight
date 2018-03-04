@@ -1,0 +1,67 @@
+<RelativeLayout android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/tv_before"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:visibility="gone"
+        android:text="B"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:ignore="HardcodedText"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_below="@id/tv_before"
+        android:id="@+id/card_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        card_view:cardBackgroundColor="?attr/cardBgColor">
+
+        <TextView
+            android:layout_below="@id/tv_before"
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:text="T"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_below="@id/card_text"
+        android:id="@+id/tv_after"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:visibility="gone"
+        android:text="A"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        tools:ignore="HardcodedText"/>
+</RelativeLayout>

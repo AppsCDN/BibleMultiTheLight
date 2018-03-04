@@ -120,7 +120,7 @@ public class ShareActivity extends AppCompatActivity
                                                 : "k";
 
                                         final int tabNumber = _s.GetCacheTabCount();
-                                        final String tbbName = bbName;
+                                        @SuppressWarnings("UnnecessaryLocalVariable") final String tbbName = bbName;
                                         final String fullQuery = etSharedText.getText().toString();
 
                                         final CacheTabBO t = new CacheTabBO(tabNumber, "S", fullQuery, fullQuery, 0, tbbName, true, false, false, 0, 0, 0, tbbName);

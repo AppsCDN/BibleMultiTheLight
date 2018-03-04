@@ -811,7 +811,7 @@ final class PCommon implements IProject
 
             String packageName;
             Intent intent;
-            final List<Intent> lstShareIntent = new ArrayList<Intent>();
+            final List<Intent> lstShareIntent = new ArrayList<>();
             final List<ResolveInfo> resInfos = context.getPackageManager().queryIntentActivities(intentQuery, 0);
             if (!resInfos.isEmpty())
             {

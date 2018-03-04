@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -16,9 +15,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,8 +26,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FilterQueryProvider;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -81,20 +75,11 @@ public class SearchFragment extends Fragment
 
     static int GetScrollPosY()
     {
-        if (fragmentType != FRAGMENT_TYPE.ARTICLE_TYPE)
-        {
-            final LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
-            if (lm == null)
-                return 0;
+        final LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
+        if (lm == null)
+            return 0;
 
-            return lm.findFirstVisibleItemPosition();
-        }
-        else
-        {
-            final ScrollView svDesc = (ScrollView) v.findViewById(R.id.svDesc);
-
-            return svDesc.getScrollY();
-        }
+        return lm.findFirstVisibleItemPosition();
     }
 
     @Override
@@ -129,6 +114,7 @@ public class SearchFragment extends Fragment
 
                             if (cNumber > 1)
                             {
+                                scrollPosY = 0;
                                 cNumber--;
                                 searchFullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
                                 ShowChapter(bbName, bNumber, cNumber);
@@ -141,6 +127,7 @@ public class SearchFragment extends Fragment
                                     final int cNumberTry = _s.GetBookChapterMax(bNumberTry);
                                     if (IsChapterExist(bbName, bNumberTry, cNumberTry))
                                     {
+                                        scrollPosY = 0;
                                         bNumber = bNumberTry;
                                         cNumber = cNumberTry;
                                         searchFullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
@@ -177,6 +164,7 @@ public class SearchFragment extends Fragment
                             int cNumberTry = cNumber + 1;
                             if (IsChapterExist(bbName, bNumber, cNumberTry))
                             {
+                                scrollPosY = 0;
                                 cNumber = cNumberTry;
                                 searchFullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
                                 ShowChapter(bbName, bNumber, cNumber);
@@ -187,6 +175,7 @@ public class SearchFragment extends Fragment
                                 cNumberTry = 1;
                                 if (IsChapterExist(bbName, bNumberTry, cNumberTry))
                                 {
+                                    scrollPosY = 0;
                                     bNumber = bNumberTry;
                                     cNumber = cNumberTry;
                                     searchFullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
@@ -290,6 +279,7 @@ public class SearchFragment extends Fragment
 
                 final int favOrder = GetFavOrder();
                 recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, favOrder, null);
+                if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
@@ -303,6 +293,7 @@ public class SearchFragment extends Fragment
                 final CacheTabBO t = _s.GetCurrentCacheTab();
                 if (t == null)
                 {
+                    WhenTabIsEmptyOrNull(false);
                     return;
                 }
 
@@ -381,9 +372,14 @@ public class SearchFragment extends Fragment
 
                 // Set objects
                 SetTabTitle(tabTitle);
+                CreateRecyclerView();
 
                 //Show article
-                ShowArticle(t, scrollPosY);
+                final String artHtml = GetArticle(t);
+                recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artHtml);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.scrollToPosition(scrollPosY);
 
                 return;
             }
@@ -395,6 +391,7 @@ public class SearchFragment extends Fragment
             final CacheTabBO t = _s.GetCurrentCacheTab();
             if (t == null)
             {
+                WhenTabIsEmptyOrNull(false);
                 return;
             }
 
@@ -433,31 +430,59 @@ public class SearchFragment extends Fragment
         }
     }
 
-    /***
-     * Show and parse article
-     * @param t     CacheTabBO
-     * @param scrollPosY
-     */
-    @SuppressWarnings("JavaDoc")
-    private void ShowArticle(final CacheTabBO t, final int scrollPosY)
+    private boolean WhenTabIsEmptyOrNull(final boolean shouldCheckRecycler)
     {
         try
         {
-            //Set objects
-            SetTabTitle(tabTitle);
+            if (!shouldCheckRecycler)
+            {
+                CreateRecyclerView();
+            }
+            else
+            {
+                if (recyclerViewAdapter != null && recyclerViewAdapter.getItemCount() > 0)
+                {
+                    return false;
+                }
+            }
 
+            final String content = getString(R.string.tabEmpty);
+            recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, content);
+            recyclerView.setAdapter(recyclerViewAdapter);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.scrollToPosition(0);
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return false;
+    }
+
+    /***
+     * Get article
+     * @param t     CacheTabBO
+     */
+    @SuppressWarnings("JavaDoc")
+    private String GetArticle(final CacheTabBO t)
+    {
+        String artHtml = "";
+
+        try
+        {
+            //Set objects
             final int artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
             final String artTitle = getString(PCommon.GetResId(_context, t.fullQuery));
-            final String ha = PCommon.ConcaT("<h1>", artTitle, "</h1>");
-            String artHtml = getString(artId);
+            final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
+            artHtml = getString(artId);
 
-            int i;
+            int i = -1;
             int pos;
 
             //Parse <R></R>
-            i = -1;
-            //noinspection UnusedAssignment
-            pos = -1;
             String[] arrRef = artHtml.split("<R>");
             if (arrRef.length > 0)
             {
@@ -496,8 +521,6 @@ public class SearchFragment extends Fragment
             //Parse <HB></HB>
             i = -1;
             //noinspection UnusedAssignment
-            pos = -1;
-            //noinspection UnusedAssignment
             arrRef = null;
             arrRef = artHtml.split("<HB>");
             if (arrRef.length > 0)
@@ -517,7 +540,7 @@ public class SearchFragment extends Fragment
                             arrRef[ i ] = strRef;
                             String[] ref = strRef.replaceFirst("<HB>", "").replaceFirst("</HB>", "").split("\\s");
                             artHtml = artHtml.replaceFirst(strRef,
-                                    PCommon.ConcaT("<H>",_s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</H>"));
+                                    PCommon.ConcaT("<HS>", _s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</HS>"));
                             //noinspection UnusedAssignment
                             ref = null;
                         }
@@ -530,38 +553,19 @@ public class SearchFragment extends Fragment
             //Parse <T></T>,  <H></H>,  <HA/>
             artHtml = artHtml
                     .replaceFirst("<HA/>", ha)
-                    .replaceAll("<T>", "<p>")
-                    .replaceAll("</T>", "</p>")
-                    .replaceAll("<H>", "<br><h1><u>")
+                    .replaceAll("<HS>", "<br><span><u>")
+                    .replaceAll("</HS>", "</u></span>")
+                    .replaceAll("<H>", "<h1><u>")
                     .replaceAll("</H>", "</u></h1>");
-            //End Parser
-
-            @SuppressWarnings("deprecation") final Spanned spanned = Html.fromHtml( artHtml );
-            final TextView tvDesc = (TextView) v.findViewById(R.id.tvDesc);
-            tvDesc.setText(spanned);
-            if (artHtml.contains("</a>")) tvDesc.setMovementMethod(LinkMovementMethod.getInstance());
-            //tvDesc.setLinksClickable(true);
-
-            final Typeface typeface = PCommon.GetTypeface(v.getContext());
-            if (typeface != null)
-            {
-                tvDesc.setTypeface(typeface);
-            }
-            final int verseSize = PCommon.GetFontSize(v.getContext());
-            tvDesc.setTextSize(verseSize);
-
-            final ScrollView svDesc = (ScrollView) v.findViewById(R.id.svDesc);
-            svDesc.setVisibility(View.VISIBLE);
-            svDesc.post(new Runnable() {
-                public void run() {
-                    svDesc.scrollTo(0, scrollPosY);
-                }
-            });
+            //End Parse
+            //TODO FAB: see spannableString(builder) for titles without too much space after.
         }
         catch(Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
+
+        return artHtml;
     }
 
     @Override
@@ -572,17 +576,24 @@ public class SearchFragment extends Fragment
         final MenuInflater menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.context_menu_search, menu);
 
-        if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
+        if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
+        {
+            menu.findItem(R.id.mnu_open_result).setVisible(false);
+            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
+            menu.findItem(R.id.mnu_share_result).setVisible(false);
+
+            menu.findItem(R.id.mnu_open_verse).setVisible(false);
+            menu.findItem(R.id.mnu_copy_verse_to_clipboard).setVisible(false);
+            menu.findItem(R.id.mnu_share_verse).setVisible(false);
+
+            menu.findItem(R.id.mnu_fav).setVisible(false);
+        }
+        else if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
         {
             menu.findItem(R.id.mnu_open_result).setVisible(false);
             menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
             menu.findItem(R.id.mnu_share_result).setVisible(false);
         }
-
-        //AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        //if (info.position == 1)
-        //{
-        //}
     }
 
     @Override
@@ -620,7 +631,7 @@ public class SearchFragment extends Fragment
                             if (bbname.equals("")) return;
                             final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
-                            MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
+                            MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery, verse.vNumber);
                         }
                     });
                     builder.show();
@@ -639,7 +650,7 @@ public class SearchFragment extends Fragment
                             final String bbname = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, verse.bbName);
                             if (bbname.equals("")) return;
                             final String tbbName = PCommon.GetPrefTradBibleName(getContext(), true);
-                            MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
+                            MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery, verse.vNumber);
                         }
                     });
                     builder.show();
@@ -666,15 +677,15 @@ public class SearchFragment extends Fragment
                             if (isVerse)
                             {
                                 final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
-                                MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
+                                MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery, verse.vNumber);
                             }
                             else if (isChapter)
                             {
-                                MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery);
+                                MainActivity.Tab.AddTab(getContext(), tbbName, verse.bNumber, verse.cNumber, fullquery, verse.vNumber);
                             }
                             else
                             {
-                                MainActivity.Tab.AddTab(getContext(), tabIdFrom, tbbName);
+                                MainActivity.Tab.AddTab(getContext(), tabIdFrom, tbbName, verse.vNumber);
                             }
                         }
                     });
@@ -892,7 +903,7 @@ public class SearchFragment extends Fragment
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater menuInflater)
+    public void onCreateOptionsMenu(final Menu menu, MenuInflater menuInflater)
     {
         try
         {
@@ -974,7 +985,7 @@ public class SearchFragment extends Fragment
                         if (PCommon._isDebugVersion) System.out.println("Suggestion Click: pos=" + position);
 
                         //Get selected book
-                        final int bookId = matrixCursor.getInt(0);
+                        @SuppressWarnings("unused") final int bookId = matrixCursor.getInt(0);
                         final String bookName = matrixCursor.getString(1);
 
                         if (PCommon._isDebugVersion) System.out.println("Book (" + bookId + ") => " + bookName);
@@ -1056,6 +1067,7 @@ public class SearchFragment extends Fragment
                 SaveTab();
 
                 recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
+                if (WhenTabIsEmptyOrNull(true)) return true;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
@@ -1217,6 +1229,7 @@ public class SearchFragment extends Fragment
 
             //Get chapter
             recyclerViewAdapter = new BibleAdapter(_context, trad, bNumber, cNumber);
+            if (WhenTabIsEmptyOrNull(true)) return;
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.scrollToPosition(scrollPosY);
@@ -1293,6 +1306,7 @@ public class SearchFragment extends Fragment
 
             //Get verse
             recyclerViewAdapter = new BibleAdapter(_context, trad, bNumber, cNumber, vNumber);
+            if (WhenTabIsEmptyOrNull(true)) return;
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.scrollToPosition(0);
@@ -1322,6 +1336,7 @@ public class SearchFragment extends Fragment
 
             //Get verses
             recyclerViewAdapter = new BibleAdapter(_context, trad, bNumber, cNumber, vNumber, vNumberTo);
+            if (WhenTabIsEmptyOrNull(true)) return;
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.scrollToPosition(0);
@@ -1471,6 +1486,7 @@ public class SearchFragment extends Fragment
                         builder.dismiss();
 
                         recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
+                        if (WhenTabIsEmptyOrNull(true)) return;
                         recyclerView.setAdapter(recyclerViewAdapter);
                         recyclerView.setHasFixedSize(true);
                         recyclerView.scrollToPosition(scrollPosY);
@@ -1538,6 +1554,7 @@ public class SearchFragment extends Fragment
 
                 final int orderBy = GetFavOrder();
                 recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
+                if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
@@ -1675,6 +1692,7 @@ public class SearchFragment extends Fragment
                     SaveTab();
 
                     recyclerViewAdapter = new BibleAdapter(_context, bbName, bNumber, cNumber, searchExpr);
+                    if (WhenTabIsEmptyOrNull(true)) return;
                     recyclerView.setAdapter(recyclerViewAdapter);
                     recyclerView.setHasFixedSize(true);
                     recyclerView.scrollToPosition(scrollPosY);
@@ -1731,6 +1749,7 @@ public class SearchFragment extends Fragment
                     SaveTab();
 
                     recyclerViewAdapter = new BibleAdapter(_context, bbName, bNumber, searchExpr);
+                    if (WhenTabIsEmptyOrNull(true)) return;
                     recyclerView.setAdapter(recyclerViewAdapter);
                     recyclerView.setHasFixedSize(true);
                     recyclerView.scrollToPosition(scrollPosY);
@@ -1778,6 +1797,7 @@ public class SearchFragment extends Fragment
                 SaveTab();
 
                 recyclerViewAdapter = new BibleAdapter(_context, bbName, searchFullQuery);
+                if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);

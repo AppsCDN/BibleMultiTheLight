@@ -19,12 +19,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,13 +76,16 @@ public class MainActivity extends AppCompatActivity
         {
             super.onCreate(savedInstanceState);
 
+            CheckLocalInstance(getApplicationContext());
+
+            if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
+
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
             setContentView(R.layout.activity_main);
 
-            CheckLocalInstance(getApplicationContext());
-
-            if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
+            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
             tabLayout = (TabLayout) findViewById(R.id.tabLayout);
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -126,7 +129,6 @@ public class MainActivity extends AppCompatActivity
                             }
                         }
                         final Fragment frag = new SearchFragment(fragmentType);
-
                         ft.replace(R.id.content_frame, frag, Integer.toString(tabId));
                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         ft.commit();
@@ -298,8 +300,7 @@ public class MainActivity extends AppCompatActivity
     {
         try
         {
-            final MenuInflater menuInflater = getMenuInflater();
-            menuInflater.inflate(R.menu.menu_bible, menu);
+            getMenuInflater().inflate(R.menu.menu_bible, menu);
 
             final int INSTALL_STATUS = _s.GetInstallStatus(getApplicationContext());
             if (INSTALL_STATUS != 4)
@@ -671,7 +672,7 @@ public class MainActivity extends AppCompatActivity
                                         final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
                                         final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1"));
                                         final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
-                                        MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery);
+                                        MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery, 1);
                                     }
                                 });
                                 builderLanguages.show();
@@ -1778,7 +1779,7 @@ public class MainActivity extends AppCompatActivity
 
             for (VerseBO verse : lstVerse)
             {
-                fullQuery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber);
+                fullQuery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
                 markText = PCommon.ConcaT(getString(R.string.bulletDefault), " <b>", verse.bName, " ", verse.cNumber, ".", verse.vNumber, ":</b><br>", verse.vText);
 
                 tvReading = new TextView(this);
@@ -1794,11 +1795,13 @@ public class MainActivity extends AppCompatActivity
                     {
                         try
                         {
-                            final String fullQuery = (String) view.getTag();
-                            if (PCommon._isDebugVersion) System.out.println(fullQuery);
-                            final String[] ref = fullQuery.split(" ");
+                            final String tag = (String) view.getTag();
+                            if (PCommon._isDebugVersion) System.out.println(tag);
+                            final String[] ref = tag.split(" ");
                             final int bNumber = Integer.parseInt(ref[0]);
                             final int cNumber = Integer.parseInt(ref[1]);
+                            final int vNumber = Integer.parseInt(ref[2]);
+                            final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
 
                             final String msg = PCommon.ConcaT(getString(R.string.mnuReading), "");
                             PCommon.SelectBibleLanguageMulti(builderLanguages, view.getContext(), vllLanguages, msg, "", true, false);
@@ -1810,7 +1813,7 @@ public class MainActivity extends AppCompatActivity
                                     final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
                                     if (bbname.equals("")) return;
                                     final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
-                                    MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery);
+                                    MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery, vNumber);
                                 }
                             });
                             builderLanguages.show();
@@ -1930,17 +1933,6 @@ public class MainActivity extends AppCompatActivity
         @SuppressLint("StaticFieldLeak")
         static SCommon _s = null;
 
-        static boolean IsTablayoutNull()
-        {
-            if (PCommon._isDebugVersion)
-            {
-                //System.out.println(PCommon.ConcaT("PackageName:", Application.class.getPackage().getName()));
-                System.out.println(PCommon.ConcaT("IsTabLayoutNull:", tabLayout == null));
-            }
-
-            return (tabLayout == null);
-        }
-
         static void SetCurrentTabTitle(final String title)
         {
             //noinspection EmptyCatchBlock
@@ -1989,6 +1981,8 @@ public class MainActivity extends AppCompatActivity
                 if (tabLayout == null)
                     return;
 
+                CheckLocalInstance(context);
+
                 final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.tabTitleDefault);
                 tabLayout.addTab(tab);
                 FullScrollTab(context, HorizontalScrollView.FOCUS_RIGHT);
@@ -2006,9 +2000,10 @@ public class MainActivity extends AppCompatActivity
          * @param bNumber
          * @param cNumber
          * @param fullQuery
+         * @param vNumber
          */
         @SuppressWarnings("JavaDoc")
-        static void AddTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery)
+        static void AddTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, final int vNumber)
         {
             try
             {
@@ -2019,7 +2014,8 @@ public class MainActivity extends AppCompatActivity
 
                 final int tabNumber = tabLayout.getTabCount();
                 final String bbname = tbbName.substring(0, 1);
-                final CacheTabBO t = new CacheTabBO(tabNumber, "S", context.getString(R.string.tabTitleDefault), fullQuery, 0, bbname, true, true, false, bNumber, cNumber, 0, tbbName);
+                final int pos = (vNumber - 1) * tbbName.length();
+                final CacheTabBO t = new CacheTabBO(tabNumber, "S", context.getString(R.string.tabTitleDefault), fullQuery, pos, bbname, true, true, false, bNumber, cNumber, 0, tbbName);
                 _s.SaveCacheTab(t);
 
                 final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.tabTitleDefault);
@@ -2103,9 +2099,10 @@ public class MainActivity extends AppCompatActivity
          * @param context
          * @param tabNumberFrom
          * @param bbNameTo
+         * @param vNumber
          */
         @SuppressWarnings("JavaDoc")
-        static void AddTab(final Context context, final int tabNumberFrom, final String bbNameTo)
+        static void AddTab(final Context context, final int tabNumberFrom, final String bbNameTo, final int vNumber)
         {
             try
             {
@@ -2114,12 +2111,13 @@ public class MainActivity extends AppCompatActivity
 
                 CheckLocalInstance(context);
 
+                final int pos = (vNumber - 1) * bbNameTo.length();
                 final int tabNumberTo = tabLayout.getTabCount();
                 final CacheTabBO t = _s.GetCacheTab(tabNumberFrom);
                 t.tabType = "S";
                 t.tabNumber = tabNumberTo;
                 t.bbName = bbNameTo.substring(0, 1);
-                t.scrollPosY = 0;
+                t.scrollPosY = pos;
                 t.isBook = true;
                 t.isChapter = false;
                 t.isVerse = false;

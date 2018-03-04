@@ -100,6 +100,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
+    <string name="tabEmpty" translatable="false"><![CDATA[<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></string>
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
@@ -182,7 +183,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
 
     <string-array name="THEME_ARRAY">
         <item>Light</item>
-        <item>Light and blue</item>
+        <!--<item>Light and blue</item>-->
         <item>Dark</item>
     </string-array>
     <!--<item>Kaki</item>-->
@@ -270,7 +271,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
 <R>2 20 12 17</R>
 <HB>5</HB>
 <R>5 5 3 21</R>
-<H>Also</H>
+<HS>Also</HS>
 <R>41 12 29 34</R><br>
 <R>43 13 34 34</R><br>
 <R>43 15 12 12</R><br>
@@ -299,11 +300,11 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="ART5">Judgment (parables)</string>
     <string name="ART5_CONTENT"><![CDATA[
 <HA/>
-<H>Parable I</H>
+<HS>Parable I</HS>
 <R>40 22 2 14</R>
-<H>Parable II</H>
+<HS>Parable II</HS>
 <R>40 25 1 13</R>
-<H>Parable III</H>
+<HS>Parable III</HS>
 <R>40 25 14 30</R>
 ]]></string>
     <string name="ART6">Signs</string>
@@ -370,27 +371,27 @@ Very informative.<br>
     <string name="ART13">Temptation</string>
     <string name="ART13_CONTENT"><![CDATA[
 <HA/>
-<H>Temptation of God</H>
+<HS>Temptation of God</HS>
 <R>40 4 7 7</R><br>
 <R>42 4 12 12</R>
-<H>Temptation of Adam and Eve</H>
+<HS>Temptation of Adam and Eve</HS>
 <R>1 3 1 14</R>
-<H>Temptation of Jesus</H>
+<HS>Temptation of Jesus</HS>
 <R>40 4 1 11</R><br>
 <R>42 4 1 13</R>
-<H>Pray</H>
+<HS>Pray</HS>
 <R>40 6 13 13</R><br>
 <R>40 26 41 41</R>
-<H>Temptation of disciples</H>
+<HS>Temptation of disciples</HS>
 <R>41 14 27 41</R><br>
 <R>42 22 39 46</R><br>
 <R>40 26 31 45</R><br>
 <R>40 26 69 75</R>
-<H>Temptation of Judas</H>
+<HS>Temptation of Judas</HS>
 <R>40 26 46 50</R>
-<H>Temptation of Jesus</H>
+<HS>Temptation of Jesus</HS>
 <R>40 26 51 56</R>
-<H>Temptation of men</H>
+<HS>Temptation of men</HS>
 <R>46 10 13 14</R><br>
 <R>54 6 8 10</R><br>
 <R>59 1 12 15</R><br>
@@ -453,62 +454,62 @@ Very informative.<br>
     <string name="ART17_CONTENT"><![CDATA[
 <HA/>
 Subjects are separated by this symbol: ~~<br><br>
-<H>Definition</H>
+<HS>Definition</HS>
 <R>19 71 1 6</R><br>
 <R>58 11 1 1</R>
-<p>~~</p>
+<br>~~<br>
 <R>45 4 21 21</R><br>
 <R>58 11 11 11</R><br>
 <R>45 10 11 11</R>
-<H>Source of faith</H>
+<HS>Source of faith</HS>
 <R>45 10 17 17</R><br>
 <R>58 1 1 2</R>
-<p>~~</p>
+<br>~~<br>
 <R>45 10 14 17</R><br>
 <R>43 17 20 20</R>
-<p>~~</p>
+<br>~~<br>
 <R>49 1 13 13</R><br>
 <R>46 15 1 4</R>
-<H>Object of faith</H>
+<HS>Object of faith</HS>
 <R>55 1 12 14</R>
-<p>~~</p>
+<br>~~<br>
 <R>41 11 22 22</R><br>
 <R>43 14 1 1</R>
-<p>~~</p>
+<br>~~<br>
 <R>43 5 24 24</R><br>
 <R>43 12 46 48</R>
-<H>Visible acts of faith</H>
+<HS>Visible acts of faith</HS>
 <R>59 1 22 25</R><br>
 <R>59 2 14 17</R><br>
 <R>52 1 8 9</R>
-<H>Necessity of faith</H>
+<HS>Necessity of faith</HS>
 <R>49 2 8 8</R><br>
 <R>58 11 6 6</R><br>
 <R>58 6 11 12</R><br>
 <R>51 2 6 7</R>
-<H>Blessings of faith</H>
+<HS>Blessings of faith</HS>
 <R>48 3 6 8</R><br>
 <R>47 1 20 20</R>
-<p>~~</p>
+<br>~~<br>
 <R>48 2 16 16</R><br>
 <R>44 13 38 39</R><br>
 <R>43 3 16 16</R><br>
 <R>43 5 24 24</R>
-<p>~~</p>
+<br>~~<br>
 <R>48 3 2 2</R><br>
 <R>49 1 13 13</R>
-<p>~~</p>
+<br>~~<br>
 <R>49 3 12 12</R><br>
 <R>58 10 22 22</R><br>
 <R>62 1 3 3</R>
-<p>~~</p>
+<br>~~<br>
 <R>40 21 21 22</R>
-<p>~~</p>
+<br>~~<br>
 <R>60 5 8 9</R><br>
 <R>49 6 16 16</R>
-<p>~~</p>
+<br>~~<br>
 <R>60 1 5 5</R>
-<H>Hardship of faith</H>
+<HS>Hardship of faith</HS>
 <R>60 1 6 7</R><br>
 <R>59 1 2 4</R>
 ]]></string>
@@ -576,7 +577,7 @@ Subjects are separated by this symbol: ~~<br><br>
     <string name="ART24">Mene, Mene, Tekel, Upharsin</string>
     <string name="ART24_CONTENT"><![CDATA[
 <HA/>
-<H>References</H>
+<HS>References</HS>
 Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <R>k 27 5 25 25</R>
 <R>v 27 5 25 25</R>
@@ -588,17 +589,15 @@ Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 ]]></string>
     <string name="ART_APP_HELP">Help</string>
     <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
-<h1><u>About</u></h1>
+<HA/>
 <i>Hi,</i> I\'m a Christian programmer and made this application with my heart to serve the Lord. The end of time is close with tribulations, antichrist, Jesus and the final judgment.
 <i>Whattt! Are you serious?</i> Yes, I\'m serious, signs are everywhere. This application, giving the real Word of God, can help you be strong during this period when the devil will try to deceive you more than never and to be ready
 when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
 Don\'t remain in the darkness little children of God. Be good to your brothers and sisters, spread the light, love, pray, repent, have faith, joy,
 follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus, the good Shepherd, our only saviour&#8230; God bless you. Amen.<br>
-<br>
 <blockquote>
 <b>John 14.6:</b> Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.
 </blockquote>
-<R>k 27 5 25 25</R>
 <blockquote>
 <b>John 15.12:</b> This is my commandment, That ye love one another, as I have loved you.
 </blockquote>
@@ -615,49 +614,48 @@ follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus,
 <b>Psalms 23.6:</b> Surely goodness and mercy shall follow me all the days of my life: and I will dwell in the house of the LORD for ever.
 </blockquote>
 <blockquote>
-<b>1Cor 3.16:</b> Know ye not that ye are the temple of God, and that the Spirit of God dwelleth in you?<br>
+<b>1Corinthians 3.16:</b> Know ye not that ye are the temple of God, and that the Spirit of God dwelleth in you?<br>
 <br>
-<b>1Cor 3.17:</b> If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.
+<b>1Corinthians 3.17:</b> If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.
 </blockquote>
-<br><br>
-<h1><u>Search in the Bible</u></h1>
-<blockquote>
+<H>Search in the Bible</H>
+<p>
 <b>Syntax:</b> &lt;book&gt; <br>
 <b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; <br>
 <b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;verse&gt; <br>
 <b>Syntax:</b> &lt;book&gt; &lt;expression&gt; <br>
 <b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;expression&gt; <br>
 <b>Syntax:</b> &lt;expression&gt;
-</blockquote>
+</p>
 <br>
 <b>Examples:</b><br>
-<blockquote>Genesis<br>
+<p>• Genesis<br>
 Gives chapter 1 of Genesis by default
-</blockquote>
-<blockquote>Genesis 1<br>
+</p>
+<p>• Genesis 1<br>
 Gives chapter 1 of Genesis
-</blockquote>
-<blockquote>Genesis 1 5<br>
+</p>
+<p>• Genesis 1 5<br>
 Gives the verse 1.5 of Genesis :)
-</blockquote>
-<blockquote>Genesis fire<br>
+</p>
+<p>• Genesis fire<br>
 Searches in Genesis all occurrences of \'fire\'
-</blockquote>
-<blockquote>1 6 lord<br>
+</p>
+<p>• 1 6 lord<br>
 Searches in Genesis chapter 6 all occurrences of \'lord\'
-</blockquote>
-<blockquote>abraham<br>
+</p>
+<p>• abraham<br>
 Searches \'abraham\' in all the Bible
-</blockquote>
-<blockquote>Revelation horse<br>
+</p>
+<p>• Revelation horse<br>
 Searches the horses of the Revelation :)
-</blockquote>
-<blockquote>66 babylone<br>
+</p>
+<p>• 66 babylone<br>
 Searches \'babylone\' in book 66 (Revelation)
-</blockquote>
-<blockquote>peter%church<br>
+</p>
+<p>• peter%church<br>
 Searches in the order, \'peter\' and \'church\' in all the Bible
-</blockquote>
+</p>
 <br>
 <b>Remarks:</b><br>
 - The book names are case sensitive, so select them in the list.<br>
@@ -666,14 +664,14 @@ Example: j<u>é</u>zabel (French), jezebel (English)<br>
 - if a search gives no result, please check the title tab to be sure you are not filtering your favorites AND you are not searching in another Bible (other language)<br>
 Example: <u>É</u>lie (French), Elijah (English), Elia (Italian), El<u>í</u>as (Spanish)<br>
 <br><br>
-<h1><u>Translate</u></h1>
+<H>Translate</H>
 To get the translation of a verse, chapter, result (search result) into a language: make a long press on a verse. A dialog box will appear and it will be able to Open/Copy/Share it.
 You will see that translations are very close.<br>
 <br><br>
-<h1><u>Search in the Favorites</u></h1>
+<H>Search in the Favorites</H>
 Searching in the favorites will not search in the Bible. It will only filter the favorites you saved. There is a Clear button to clear the filter and get them all.<br>
 <br><br>
-<h1><u>Favorites</u></h1>
+<H>Favorites</H>
 There are two types of favorites:<br>
 - normal favorite: use it when you love a verse and want to read it again<br>
 - favorite reading (passage)<br>
@@ -681,22 +679,28 @@ There are two types of favorites:<br>
 You can change the normal favorite symbol in Settings menu.<br>
 In a next version, you will be able to change the Reading symbol.<br>
 <br><br>
-<h1><u>Tips</u></h1>
+<H>Tips</H>
 - Let the application resident, the memory is well managed<br>
 - Search result is useful to search verses in a language and get the exact same verses in another language, to learn, compare texts, check words&#8230;<br>
 - Use my widget<br>
 - Create a plan of reading to force you to read a complete book<br>
 <br><br>
-<h1><u>Agreement</u></h1>
+<H>Agreement</H>
 This application will remain totally free, without advertising, redirections, offline and will not be sold. It is not a demo but a complete version.<br>
 <br><br>
-<h1><u>Contact</u></h1>
+<H>Contact</H>
 For any issues or suggestions, please contact me (About menu).<br>
 <br><br>
 ]]></string>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>2.13</H>
+• Fix: force left to right layout direction in widget<br>
+• Collapsible toolbar<br>
+• Scroll to verse<br>
+• Verses are clickable in articles<br>
+<br>
 <H>2.12</H>
 • Deactivated temporarily: share from other applications (test)<br>
 <br>
@@ -769,33 +773,34 @@ For any issues or suggestions, please contact me (About menu).<br>
 ]]></string>
     <string name="ART26">Youtubers</string>
     <string name="ART26_CONTENT"><![CDATA[
+<HA/>
 Some christians (several pastors), I watch on internet, please check their videos. Activate the subtitles in Youtube.<br><br>
 <br><br>
-<H1>English</H1>
-<blockquote><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></blockquote>
-<blockquote><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></blockquote>
-<blockquote><a href="https://www.youtube.com/user/NoLife127">Jason A</a></blockquote>
-<blockquote><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></blockquote>
-<blockquote><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></blockquote>
-<blockquote><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></blockquote>
-<blockquote><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></blockquote>
+<HS>English</HS>
+<p><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></p>
+<p><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></p>
+<p><a href="https://www.youtube.com/user/NoLife127">Jason A</a></p>
+<p><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></p>
+<p><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></p>
+<p><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></p>
+<p><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></p>
 <br><br>
-<H1>English & Spanish</H1>
-<blockquote><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></blockquote>
+<HS>English & Spanish</HS>
+<p><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></p>
 <br><br>
-<H1>Spanish & French</H1>
-<blockquote><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></blockquote>
+<HS>Spanish & French</HS>
+<p><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></p>
 <br><br>
-<H1>French</H1>
-<blockquote><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></blockquote>
-<blockquote><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></blockquote>
+<HS>French</HS>
+<p><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></p>
+<p><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></p>
 ]]></string>
-    <string name="ART27">The ten virgins</string>
+    <string name="ART27" tools:ignore="UnusedResources">The ten virgins</string>
     <string name="ART27_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 25 1 13</R>
 ]]></string>
-    <string name="ART28">Mark of the beast</string>
+    <string name="ART28" tools:ignore="UnusedResources">Mark of the beast</string>
     <string name="ART28_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>66 13 1 18</R><br>
@@ -804,7 +809,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>66 19 20 21</R><br>
 <R>66 20 4 4</R>
 ]]></string>
-    <string name="ART29">Fear and little faith</string>
+    <string name="ART29" tools:ignore="UnusedResources">Fear and little faith</string>
     <string name="ART29_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 6 24 34</R><br>
@@ -812,14 +817,14 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>40 14 22 33</R><br>
 <R>42 12 22 32</R>
 ]]></string>
-    <string name="ART30">Pray, consequence</string>
+    <string name="ART30" tools:ignore="UnusedResources">Pray, consequence</string>
     <string name="ART30_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 21 22 22</R><br>
 <R>42 11 1 13</R><br>
 <R>42 18 1 14</R>
 ]]></string>
-    <string name="ART31">Repentance</string>
+    <string name="ART31" tools:ignore="UnusedResources">Repentance</string>
     <string name="ART31_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 3 7 11</R><br>
@@ -833,7 +838,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>47 8 2 2</R><br>
 <R>61 3 9 9</R><br>
 ]]></string>
-    <string name="ART32">Temptation (warning)</string>
+    <string name="ART32" tools:ignore="UnusedResources">Temptation (warning)</string>
     <string name="ART32_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>46 10 13 13</R><br>
@@ -842,7 +847,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>40 26 41 41</R><br>
 <R>66 3 10 11</R>
 ]]></string>
-    <string name="ART33">Little children</string>
+    <string name="ART33" tools:ignore="UnusedResources">Little children</string>
     <string name="ART33_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
     <HA/>
 <R>42 18 1 6</R><br>    
@@ -850,7 +855,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>41 9 33 37</R><br>
 <R>41 10 13 16</R><br>
 <R>42 18 15 17</R><br>
-<R>62 13 33 33</R><br>
+<R>43 13 33 33</R><br>
 <R>62 2 1 1</R><br>
 <R>62 2 12 12</R><br>
 <R>62 2 13 13</R><br>
@@ -861,17 +866,17 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>62 4 4 4</R><br>
 <R>62 5 21 21</R>
 ]]></string>
-    <string name="ART34">Seeds</string>
+    <string name="ART34" tools:ignore="UnusedResources">Seeds</string>
     <string name="ART34_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 13 1 30</R>
 ]]></string>
-    <string name="ART35">Leaven of Pharisees and Sadducees (warning)</string>
+    <string name="ART35" tools:ignore="UnusedResources">Leaven of Pharisees and Sadducees (warning)</string>
     <string name="ART35_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 16 1 12</R>
 ]]></string>
-    <string name="ART36">Links</string>
+    <string name="ART36" tools:ignore="UnusedResources">Links</string>
     <string name="ART36_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 16 19 19</R><br>
@@ -879,7 +884,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>43 14 6 6</R><br>
 <R>51 1 20 29</R>
 ]]></string>
-    <string name="ART37">Sell</string>
+    <string name="ART37" tools:ignore="UnusedResources">Sell</string>
     <string name="ART37_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 13 44 44</R><br>
@@ -888,7 +893,7 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>42 12 33 33</R><br>
 <R>42 18 22 22</R>
 ]]></string>
-    <string name="ART38">10 verses (2)</string>
+    <string name="ART38" tools:ignore="UnusedResources">10 verses (2)</string>
     <string name="ART38_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 12 36 37</R><br>
@@ -902,12 +907,12 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>49 6 10 17</R><br>
 <R>66 1 3 3</R>
 ]]></string>
-    <string name="ART39">Exorcism (Paul)</string>
+    <string name="ART39" tools:ignore="UnusedResources">Exorcism (Paul)</string>
     <string name="ART39_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>44 19 1 20</R>
 ]]></string>
-    <string name="ART40">Confess Jesus</string>
+    <string name="ART40" tools:ignore="UnusedResources">Confess Jesus</string>
     <string name="ART40_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>40 10 32 33</R><br>
@@ -921,19 +926,17 @@ Some christians (several pastors), I watch on internet, please check their video
 <R>63 1 6 11</R><br>
 <R>66 3 5 5</R>
 ]]></string>
-    <string name="ART41">Forgiveness and judgment</string>
+    <string name="ART41" tools:ignore="UnusedResources">Forgiveness and judgment</string>
     <string name="ART41_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 Read this parable and learn the relationship between forgiveness and judgment.<br><br>
-<br><br>
-<h1><u>References</u></h1>
+<HS>References</HS>
 <R>40 7 1 2</R><br>
 <R>42 6 37 37</R>
-<br><br>
-<h1><u>Parable</u></h1>
+<HS>Parable</HS>
 <R>40 18 23 35</R>
 ]]></string>
-    <string name="ART42">Good treasure of the heart</string>
+    <string name="ART42" tools:ignore="UnusedResources">Good treasure of the heart</string>
     <string name="ART42_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <R>42 6 27 49</R>
@@ -1046,7 +1049,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
 
     <string-array name="THEME_VALUES_ARRAY" translatable="false">
         <item>LIGHT</item>
-        <item>LIGHT_AND_BLUE</item>
+        <!--<item>LIGHT_AND_BLUE</item>-->
         <item>DARK</item>
     </string-array>
     <!--  <item>KAKI</item> -->

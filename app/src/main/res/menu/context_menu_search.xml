@@ -42,6 +42,7 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_fav"
         android:title="@string/mnuNote">
         <menu>
             <item
