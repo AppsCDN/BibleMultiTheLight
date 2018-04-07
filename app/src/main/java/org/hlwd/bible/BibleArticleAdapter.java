@@ -16,23 +16,43 @@ import java.util.ArrayList;
 
 class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewHolder>
 {
-    private final ArrayList<SectionBO> lstSection = new ArrayList<>();
+    private final ArrayList<SectionBO> _lstSection = new ArrayList<>();
     private SCommon _s = null;
-    private String _bbName = null;
+    private String bbName = null;
+    private boolean isUiTelevision = false;
+    private int id = -1;
+    private int blockId = -1;
+    private enum BLOCK_TYPE { BEFORE, CONTENT }
 
     BibleArticleAdapter(final Context context, final String tbbName, final String content)
     {
-        _bbName = tbbName.substring(0, 1);
-
         CheckLocalInstance(context);
 
-        SectionBO section;
-        int pos;
-        int i = -1;
-        String astrBQ;
-        String[] arrBQ = content.split("<blockquote>");
+        bbName = tbbName.substring(0, 1);
+        isUiTelevision = PCommon.IsUiTelevision(context);
+        if (isUiTelevision)
+        {
+            BuildListSectionForTv(context, content);
+        }
+        else
+        {
+            BuildListSectionForOther(context, content);
+        }
+    }
+
+    private void BuildListSectionForOther(final Context context, final String content)
+    {
+        final String mainDelimiterStart = "<blockquote>";
+        final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
+        final int mainDelimiterEndSize = mainDelimiterEnd.length();
+
+        String[] arrBQ = content.split(mainDelimiterStart);
         if (arrBQ.length > 0)
         {
+            SectionBO section;
+            int pos;
+            String astrBQ;
+
             for (String strBQ : arrBQ)
             {
                 if (strBQ == null)
@@ -46,15 +66,13 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     continue;
                 }
 
-                i++;
-
                 section = new SectionBO();
-                section.id = i;
+                section.id = ++id;
 
-                pos = strBQ.indexOf("</blockquote>");
+                pos = strBQ.indexOf(mainDelimiterEnd);
                 if (pos >= 0)
                 {
-                    pos += 13;
+                    pos += mainDelimiterEndSize;
 
                     if (strBQ.length() - 1 > pos)
                     {
@@ -68,7 +86,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     {
                         astrBQ = null;
                     }
-                    strBQ = strBQ.substring(0, pos - 13);
+                    strBQ = strBQ.substring(0, pos - mainDelimiterEndSize);
 
                     section.before = null;
                     section.content = strBQ;
@@ -81,7 +99,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     section.after = null;
                 }
 
-                this.lstSection.add(section);
+                this._lstSection.add(section);
             }
         }
 
@@ -89,11 +107,119 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         arrBQ = null;
     }
 
+    private void BuildListSectionForTv(final Context context, final String content)
+    {
+        final String mainDelimiterStart = "<blockquote>";
+        final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
+        final int mainDelimiterEndSize = mainDelimiterEnd.length();
+
+        String[] arrBQ = content.split(mainDelimiterStart);
+        if (arrBQ.length > 0)
+        {
+            int pos;
+            String astrBQ;
+
+            for (String strBQ : arrBQ)
+            {
+                if (strBQ == null)
+                {
+                    continue;
+                }
+
+                strBQ = strBQ.trim();
+                if (strBQ.equalsIgnoreCase("<br>") || strBQ.equalsIgnoreCase("<br><br>"))
+                {
+                    continue;
+                }
+
+                pos = strBQ.indexOf(mainDelimiterEnd);
+                if (pos >= 0)
+                {
+                    pos += mainDelimiterEndSize;
+
+                    if (strBQ.length() - 1 > pos)
+                    {
+                        astrBQ = strBQ.substring(pos);
+                        if (astrBQ.equalsIgnoreCase("<br>") || astrBQ.equalsIgnoreCase("<br><br>"))
+                        {
+                            astrBQ = null;
+                        }
+                    }
+                    else
+                    {
+                        astrBQ = null;
+                    }
+                    strBQ = strBQ.substring(0, pos - mainDelimiterEndSize);
+
+                    //Content = strBQ
+                    SplitStringForTv(strBQ, BLOCK_TYPE.CONTENT);
+
+                    //After = astrBQ
+                    if (astrBQ == null) continue;
+                    SplitStringForTv(astrBQ, BLOCK_TYPE.BEFORE);
+                }
+                else
+                {
+                    //Before = strBQ
+                    SplitStringForTv(strBQ, BLOCK_TYPE.BEFORE);
+                }
+            }
+        }
+
+        //noinspection UnusedAssignment
+        arrBQ = null;
+    }
+
+    private void SplitStringForTv(final String strToSplit, final BLOCK_TYPE blockType)
+    {
+        final String sentenceDelimiter = "<br> |<br>|(?<=\\. )";     //&#8230; |&#8230;
+        SectionBO section;
+        int blockSubId = -1;
+        final String blockRef = (blockType == BLOCK_TYPE.CONTENT) ? strToSplit.substring(0, strToSplit.indexOf(":")).replace(".", " ").replace("<b>", "") : null;
+
+        blockId++;
+        String[] arrStr = strToSplit.split(sentenceDelimiter);
+        for (String str : arrStr)
+        {
+            if (str == null)
+            {
+                continue;
+            }
+
+            section = new SectionBO();
+            section.id = ++id;
+            section.blockId = blockId;
+            section.blockSubId = ++blockSubId;
+            section.blockRef = blockRef;
+
+            if (blockType == BLOCK_TYPE.BEFORE)
+            {
+                section.before = str;
+                section.content = null;
+                section.after = null;
+            }
+            else
+            {
+                section.before = null;
+                section.content = str;
+                section.after = null;
+            }
+
+            this._lstSection.add(section);
+        }
+
+        //noinspection UnusedAssignment
+        arrStr = null;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder
     {
         private final TextView tv_before;
+        private final TextView tv_before0;
         private final TextView tv_text;
+        private final TextView tv_text0;
         private final TextView tv_after;
+        private final TextView tv_text_space_before;
 
         ViewHolder(View view)
         {
@@ -108,20 +234,42 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             {
                 tv_before.setTypeface(typeface);
                 tv_text.setTypeface(typeface);
-                tv_after.setTypeface(typeface);
+                if (tv_after != null) tv_after.setTypeface(typeface);
             }
 
             final int fontSize = PCommon.GetFontSize(view.getContext());
             tv_before.setTextSize(fontSize);
             tv_text.setTextSize(fontSize);
-            tv_after.setTextSize(fontSize);
+            if (tv_after != null) tv_after.setTextSize(fontSize);
+
+            if (isUiTelevision)
+            {
+                tv_before0 = (TextView)view.findViewById(R.id.tv_before0);
+                tv_text_space_before = (TextView)view.findViewById(R.id.tv_text_space_before);
+                tv_text0 = (TextView)view.findViewById(R.id.tv_text0);
+
+                tv_before0.setTypeface(typeface);
+                tv_text_space_before.setTypeface(typeface);
+                tv_text0.setTypeface(typeface);
+
+                tv_before0.setTextSize(fontSize);
+                tv_text_space_before.setTextSize(fontSize);
+                tv_text0.setTextSize(fontSize);
+            }
+            else
+            {
+                tv_before0 = null;
+                tv_text_space_before = null;
+                tv_text0 = null;
+            }
         }
     }
 
     @Override
     public BibleArticleAdapter.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int viewType)
     {
-        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_article_recipient, viewGroup, false);
+        final View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(isUiTelevision ? R.layout.card_article_recipient_tv : R.layout.card_article_recipient, viewGroup,false);
 
         return new ViewHolder(view);
     }
@@ -129,17 +277,19 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public void onBindViewHolder(final BibleArticleAdapter.ViewHolder viewHolder, final int position)
     {
-        SectionBO section = lstSection.get(position);
+        final SectionBO section = _lstSection.get(position);
         Spanned spanned;
 
         if (section.before != null)
         {
+            final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
             spanned = Html.fromHtml(section.before);
-            viewHolder.tv_before.setVisibility(View.VISIBLE);
-            viewHolder.tv_before.setText(spanned);
-            viewHolder.tv_before.setId(section.id);
-            viewHolder.tv_before.setTag(position);
-            if (section.before.contains("</a>")) viewHolder.tv_before.setMovementMethod(LinkMovementMethod.getInstance());
+            vwh_tv_before.setVisibility(View.VISIBLE);
+            vwh_tv_before.setText(spanned);
+            vwh_tv_before.setId(section.id);
+            vwh_tv_before.setTag(position);
+            if (section.before.trim().equalsIgnoreCase("")) vwh_tv_before.setFocusable(false);
+            if (section.before.contains("</a>")) vwh_tv_before.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         if (section.content != null)
@@ -147,13 +297,18 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             //test:
             //SpannableStringBuilder ssb = new SpannableStringBuilder();
             //ssb.append(spanned);
-
+            if (isUiTelevision && section.blockSubId == 0)
+            {
+                final TextView vwh_tv_space_text_before = viewHolder.tv_text_space_before;
+                vwh_tv_space_text_before.setVisibility(View.VISIBLE);
+            }
+            final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
             spanned = Html.fromHtml(section.content);
-            viewHolder.tv_text.setVisibility(View.VISIBLE);
-            viewHolder.tv_text.setText(spanned);
-            viewHolder.tv_text.setId(section.id);
-            viewHolder.tv_text.setTag(position);
-            viewHolder.tv_text.setOnLongClickListener(new View.OnLongClickListener()
+            vwh_tv_text.setVisibility(View.VISIBLE);
+            vwh_tv_text.setText(spanned);
+            if (isUiTelevision) vwh_tv_text.setTag(R.id.tv1, section.blockRef);
+            vwh_tv_text.setTag(position);
+            vwh_tv_text.setOnLongClickListener(new View.OnLongClickListener()
             {
                 @Override
                 public boolean onLongClick(View view)
@@ -162,16 +317,14 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     {
                         final TextView tvText = (TextView) view;
                         if (tvText == null) return false;
-
                         final String content = tvText.getText().toString();
-                        final int endRef = content.indexOf(":");
-                        final String completeRef = content.substring(0, endRef).replace(".", " ");
+                        final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
+                        if (completeRef == null) return false;
                         final String[] ref = completeRef.split("\\s");
                         final int bNumber = _s.GetBookNumberByName(ref[0]);
                         final int cNumber = Integer.parseInt(ref[1]);
                         final int vNumber = Integer.parseInt(ref[2]);
-                        final ArrayList<VerseBO> lstVerse = _s.GetVerse(_bbName, bNumber, cNumber, vNumber);
-
+                        final ArrayList<VerseBO> lstVerse = _s.GetVerse(bbName, bNumber, cNumber, vNumber);
                         final int bibleId = (lstVerse != null && lstVerse.size() > 0) ? lstVerse.get(0).id : 0;
                         final int position = Integer.parseInt( tvText.getTag().toString() );
                         PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, bibleId);
@@ -182,17 +335,22 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     return false;
                 }
             });
-            if (section.content.contains("</a>")) viewHolder.tv_text.setMovementMethod(LinkMovementMethod.getInstance());
+            if (section.content.trim().equalsIgnoreCase("")) vwh_tv_text.setFocusable(false);
+            if (section.content.contains("</a>")) vwh_tv_text.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
-        if (section.after != null)
+        if (!isUiTelevision)
         {
-            spanned = Html.fromHtml(section.after);
-            viewHolder.tv_after.setVisibility(View.VISIBLE);
-            viewHolder.tv_after.setText(spanned);
-            viewHolder.tv_after.setId(section.id);
-            viewHolder.tv_after.setTag(position);
-            if (section.after.contains("</a>")) viewHolder.tv_after.setMovementMethod(LinkMovementMethod.getInstance());
+            if (section.after != null)
+            {
+                final TextView vwh_tv_after = viewHolder.tv_after;
+                spanned = Html.fromHtml(section.after);
+                vwh_tv_after.setVisibility(View.VISIBLE);
+                vwh_tv_after.setText(spanned);
+                vwh_tv_after.setId(section.id);
+                vwh_tv_after.setTag(position);
+                if (section.after.contains("</a>")) vwh_tv_after.setMovementMethod(LinkMovementMethod.getInstance());
+            }
         }
 
         /*
@@ -209,7 +367,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public int getItemCount()
     {
-        return lstSection == null ? 0 : lstSection.size();
+        return _lstSection == null ? 0 : _lstSection.size();
     }
 
     @Override

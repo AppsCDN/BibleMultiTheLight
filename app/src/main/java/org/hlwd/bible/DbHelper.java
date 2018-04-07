@@ -353,7 +353,8 @@ class DbHelper extends SQLiteOpenHelper
                     PCommon.SavePref(_context, IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
                 }
             }
-            if (oldVersion < 18)    //1..17 => 18
+            //Last
+            if (oldVersion < _version)    //1..17 => 18
             {
                 //=== FOR LAST VERSION
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);
@@ -403,9 +404,9 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_2, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "3");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, "");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, "14");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, PCommon.IsUiTelevision(_context) ? "20" : "14");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FAV_SYMBOL, _context.getString(R.string.favSymbolFavDefault));
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_ORDER, 0);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.VIEW_POSITION, 0);

@@ -7,6 +7,9 @@ class SectionBO
     String before;
     String content;
     String after;
+    int blockId;
+    int blockSubId;
+    String blockRef;
 
     SectionBO()
     {
@@ -14,5 +17,8 @@ class SectionBO
         this.before = null;
         this.content = null;
         this.after = null;
+        this.blockId = -1;
+        this.blockSubId = -1;
+        this.blockRef = null;
     }
 }

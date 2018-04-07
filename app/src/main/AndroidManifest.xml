@@ -5,6 +5,25 @@
     android:versionCode="20180304"
     android:versionName="2.13">
 
+    <uses-feature android:name="android.hardware.touchscreen"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.faketouch"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.telephony"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.nfc"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone"
+                  android:required="false"/>
+    <uses-feature android:name="android.hardware.sensor"
+                  android:required="false"/>
+    <uses-feature android:name="android.software.leanback"
+                  android:required="false"/>
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -12,7 +31,7 @@
         android:label="@string/appName"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning,MissingTvBanner">
         <!--<meta-data android:name="android.max_aspect" android:value="4.3"/>-->
 
         <activity
@@ -22,6 +41,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity

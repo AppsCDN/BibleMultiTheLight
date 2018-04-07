@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FilterQueryProvider;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -36,7 +35,7 @@ public class SearchFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     private static View v;
     private static FRAGMENT_TYPE fragmentType;
-    private LinearLayout llBookTitle;
+    private View llBookTitle;
     private Button tvBookTitle;
 
     private SimpleCursorAdapter cursorAdapter;
@@ -94,11 +93,17 @@ public class SearchFragment extends Fragment
             v = inflater.inflate(R.layout.fragment_search, container, false);
             setHasOptionsMenu(true);
 
-            llBookTitle = (LinearLayout) v.findViewById(R.id.llBookTitle);
+            llBookTitle = v.findViewById(R.id.llBookTitle);
             tvBookTitle = (Button) v.findViewById(R.id.tvBookTitle);
-
             final Button btnBack = (Button) v.findViewById(R.id.btnBack);
             final Button btnForward = (Button) v.findViewById(R.id.btnForward);
+            if (PCommon.IsUiTelevision(v.getContext()))
+            {
+                final Drawable bg = PCommon.GetDrawable(v.getContext(), R.drawable.focus);
+                tvBookTitle.setBackground(bg);
+                btnBack.setBackground(bg);
+                btnForward.setBackground(bg);
+            }
             btnBack.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -195,17 +200,10 @@ public class SearchFragment extends Fragment
                     }
                 }
             });
-
-            //ThemeDev
-            final int themeId = PCommon.GetPrefThemeId(getContext());
-            if (themeId == R.style.AppThemeDev)
-            {
-                final int color = Color.WHITE;
-
-                btnBack.setTextColor(color);
-                tvBookTitle.setTextColor(color);
-                btnForward.setTextColor(color);
-            }
+            //TODO FAB: D-PAD LEFT TO DETECT
+            //v.onKeyUp(KeyEvent.KEYCODE_DPAD_LEFT, new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_LEFT){
+            //    int a = 5;
+            //});
 
             if (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE)
             {
@@ -620,6 +618,10 @@ public class SearchFragment extends Fragment
             {
                 case R.id.mnu_open_verse:
                 {
+                    //MainActivity.Slide(true);   //TODO FAB: to remove, uncomment block here under
+                    return true;
+
+                    /*
                     final String msg = PCommon.ConcaT(getString(R.string.mnuOpenVerse), "");
                     PCommon.SelectBibleLanguageMulti(builder, getContext(), vllLanguages, msg, "", true, false);
                     builder.setOnDismissListener(new DialogInterface.OnDismissListener()
@@ -637,6 +639,7 @@ public class SearchFragment extends Fragment
                     builder.show();
 
                     return true;
+                    */
                 }
                 case R.id.mnu_open_chapter:
                 {
@@ -1013,8 +1016,7 @@ public class SearchFragment extends Fragment
                         searchFullQuery = query;
 
                         SearchBible(false);
-
-                        mnu_search_item.collapseActionView();                                       //TODO: LEVEL 14! => find solution for level 11
+                        mnu_search_item.collapseActionView();
 
                         return false;
                     }
@@ -1132,6 +1134,7 @@ public class SearchFragment extends Fragment
             layoutManager = (dc <= 1) ? new LinearLayoutManager(_context) : new GridLayoutManager(_context, dc);
         }
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);             //TODO FAB: fixedsize ??
 
         registerForContextMenu(recyclerView);
     }
@@ -1347,7 +1350,7 @@ public class SearchFragment extends Fragment
         }
     }
 
-    private void ShowBookTitle(final boolean show)
+    private void ShowBookTitle(boolean show)
     {
         llBookTitle.setVisibility(show ? View.VISIBLE : View.GONE);
     }
@@ -1588,7 +1591,6 @@ public class SearchFragment extends Fragment
 
             @SuppressWarnings("UnusedAssignment") boolean isBook = false,  isChapter = false,  isVerse = false;
             @SuppressWarnings("UnusedAssignment") int     bNumber = 0,     cNumber = 0,        vNumber = 0;
-
             @SuppressWarnings("UnusedAssignment") int wCount = 0;
             final String[] words = searchFullQuery.split("\\s");
             final String patternDigit = "\\d+";

@@ -618,45 +618,43 @@ follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus,
 <br>
 <b>1Corinthians 3.17:</b> If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.
 </blockquote>
+<br><br>
 <H>Search in the Bible</H>
-<p>
-<b>Syntax:</b> &lt;book&gt; <br>
-<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; <br>
-<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;verse&gt; <br>
-<b>Syntax:</b> &lt;book&gt; &lt;expression&gt; <br>
-<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;expression&gt; <br>
-<b>Syntax:</b> &lt;expression&gt;
-</p>
-<br>
+<b>Syntax:</b> &lt;book&gt;<br>
+<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt;<br>
+<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;verse&gt;<br>
+<b>Syntax:</b> &lt;book&gt; &lt;expression&gt;<br>
+<b>Syntax:</b> &lt;book&gt; &lt;chapter&gt; &lt;expression&gt;<br>
+<b>Syntax:</b> &lt;expression&gt;<br>
+<br><br>
 <b>Examples:</b><br>
-<p>• Genesis<br>
-Gives chapter 1 of Genesis by default
-</p>
-<p>• Genesis 1<br>
-Gives chapter 1 of Genesis
-</p>
-<p>• Genesis 1 5<br>
-Gives the verse 1.5 of Genesis :)
-</p>
-<p>• Genesis fire<br>
-Searches in Genesis all occurrences of \'fire\'
-</p>
-<p>• 1 6 lord<br>
-Searches in Genesis chapter 6 all occurrences of \'lord\'
-</p>
-<p>• abraham<br>
-Searches \'abraham\' in all the Bible
-</p>
-<p>• Revelation horse<br>
-Searches the horses of the Revelation :)
-</p>
-<p>• 66 babylone<br>
-Searches \'babylone\' in book 66 (Revelation)
-</p>
-<p>• peter%church<br>
-Searches in the order, \'peter\' and \'church\' in all the Bible
-</p>
+• Genesis<br>
+Gives chapter 1 of Genesis by default<br>
 <br>
+• Genesis 1<br>
+Gives chapter 1 of Genesis<br>
+<br>
+• Genesis 1 5<br>
+Gives the verse 1.5 of Genesis :)<br>
+<br>
+• Genesis fire<br>
+Searches in Genesis all occurrences of \'fire\'<br>
+<br>
+• 1 6 lord<br>
+Searches in Genesis chapter 6 all occurrences of \'lord\'<br>
+<br>
+• abraham<br>
+Searches \'abraham\' in all the Bible<br>
+<br>
+• Revelation horse<br>
+Searches the horses of the Revelation :)<br>
+<br>
+• 66 babylone<br>
+Searches \'babylone\' in book 66 (Revelation)<br>
+<br>
+• peter%church<br>
+Searches in the order, \'peter\' and \'church\' in all the Bible<br>
+<br><br>
 <b>Remarks:</b><br>
 - The book names are case sensitive, so select them in the list.<br>
 - Put accents in your words if they have:<br>
@@ -774,26 +772,30 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART26">Youtubers</string>
     <string name="ART26_CONTENT"><![CDATA[
 <HA/>
-Some christians (several pastors), I watch on internet, please check their videos. Activate the subtitles in Youtube.<br><br>
+Some christians (several pastors), I watch on internet, please check their videos. Activate the subtitles in Youtube.<br>
 <br><br>
 <HS>English</HS>
-<p><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></p>
-<p><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></p>
-<p><a href="https://www.youtube.com/user/NoLife127">Jason A</a></p>
-<p><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></p>
-<p><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></p>
-<p><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></p>
-<p><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></p>
+<br><br>
+<a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
+<a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
+<a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
+<a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a><br><br>
+<a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a><br><br>
+<a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
+<a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
 <HS>English & Spanish</HS>
-<p><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></p>
+<br><br>
+<a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
 <HS>Spanish & French</HS>
-<p><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></p>
+<br><br>
+<a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
 <HS>French</HS>
-<p><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></p>
-<p><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></p>
+<br><br>
+<a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">The ten virgins</string>
     <string name="ART27_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[

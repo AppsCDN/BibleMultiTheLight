@@ -49,8 +49,14 @@ public class MainActivity extends AppCompatActivity
 {
     @SuppressLint("StaticFieldLeak")
     private static TabLayout tabLayout;
+    private static View slideViewMenu;
+    private static View slideViewMenuHandle;
+    private static View slideViewTab;
+    private static View slideViewTabHandleMain;
+    private static View slideViewTabHandle;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
+    private boolean _isUiTelevision = false;
 
     @Override
     protected void onStart()
@@ -80,12 +86,38 @@ public class MainActivity extends AppCompatActivity
 
             if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
 
+            _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
+
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
             setContentView(R.layout.activity_main);
 
+            slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
+            slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnu_handle) : null;
+            slideViewTab = (_isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
+            slideViewTabHandleMain = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
+            slideViewTabHandle = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
+
+            if (_isUiTelevision)
+            {
+                slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide( false );
+                    }
+                });
+                slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide( true );
+                    }
+                });
+            }
+
             final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+            if (toolbar != null) {
+                setSupportActionBar(toolbar);
+            }
 
             tabLayout = (TabLayout) findViewById(R.id.tabLayout);
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -694,6 +726,8 @@ public class MainActivity extends AppCompatActivity
                     if (!shouldWarn) shouldWarn = true;
                     tvBook.setEnabled( false );
                 }
+                tvBook.setFocusable(true);
+                tvBook.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                 //Font
                 if (typeface != null) { tvBook.setTypeface(typeface); }
@@ -816,6 +850,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvPrbl.setFocusable(true);
+                tvPrbl.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                 //Font
                 if (typeface != null) { tvPrbl.setTypeface(typeface); }
@@ -907,6 +943,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvArt.setFocusable(true);
+                tvArt.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                 //Font
                 if (typeface != null) { tvArt.setTypeface(typeface); }
@@ -1040,6 +1078,8 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 if (planExist) tvPlan.setEnabled(false);
+                tvPlan.setFocusable(true);
+                tvPlan.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                 //Font
                 if (typeface != null) { tvPlan.setTypeface(typeface); }
@@ -1133,6 +1173,8 @@ public class MainActivity extends AppCompatActivity
                                     return false;
                                 }
                             });
+                            tvPlan.setFocusable(true);
+                            tvPlan.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                             text = _s.GetPlanCalProgressStatus(planId);
                             tvStatus = new TextView(this);
@@ -1606,6 +1648,8 @@ public class MainActivity extends AppCompatActivity
                             ShowPlanMenu(builder, planId, dayNumber, fpageNumber);
                         }
                     });
+                    tvDay.setFocusable(true);
+                    tvDay.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                     tvUntil = new TextView(this);
                     tvUntil.setLayoutParams(PCommon._layoutParamsWrap);
@@ -1623,6 +1667,8 @@ public class MainActivity extends AppCompatActivity
                             ShowPlanMenu(builder, planId, dayNumber, fpageNumber);
                         }
                     });
+                    tvUntil.setFocusable(true);
+                    tvUntil.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                     glCal.addView(chkIsRead);
                     glCal.addView(tvDay);
@@ -1828,6 +1874,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvReading.setFocusable(true);
+                tvReading.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
 
                 //Font
                 if (typeface != null) { tvReading.setTypeface(typeface); }
@@ -2325,5 +2373,38 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
+    }
+
+    static void Slide(final boolean show)
+    {
+        if (slideViewMenu == null) return;
+
+        final int mnuTvVisibility = show ? View.VISIBLE : View.GONE;
+        final int tabVisibility = show ? View.GONE : View.VISIBLE;
+
+        /*
+        final TranslateAnimation animate = new TranslateAnimation(
+                0,           // fromXDelta
+                -1 * slideViewMenu.getWidth(),          // toXDelta
+                0,           // fromYDelta
+                0);            // toYDelta
+        animate.setDuration(500);
+        animate.setFillAfter(true);
+        */
+
+        slideViewMenu.setVisibility(mnuTvVisibility);
+        slideViewTabHandleMain.setVisibility(tabVisibility);
+        slideViewTab.setVisibility(tabVisibility);
+
+        if (show)
+        {
+            slideViewMenuHandle.requestFocus();
+        }
+        else
+        {
+            slideViewTabHandle.requestFocus();
+        }
+
+        //slideViewMenu.startAnimation(animate);
     }
 }

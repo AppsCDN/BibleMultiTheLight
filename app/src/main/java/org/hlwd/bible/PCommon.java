@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.UiModeManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
@@ -13,7 +14,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -604,6 +608,28 @@ final class PCommon implements IProject
         }
 
         return id;
+    }
+
+    /***
+     * Get drawable
+     * @param context   Context
+     * @param id    drawable Id
+     * @return drawable
+     */
+    static Drawable GetDrawable(final Context context, @SuppressWarnings("SameParameterValue") final int id)
+    {
+        try
+        {
+            final int version = Build.VERSION.SDK_INT;
+
+            return (version >= 22) ? ContextCompat.getDrawable(context, id) : context.getResources().getDrawable(id);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+
+        return null;
     }
 
     /***
@@ -1273,4 +1299,47 @@ final class PCommon implements IProject
 
         return 14;
     }
+
+    /***
+     * Is UI Television?
+     * @param context
+     * @return true/false
+     */
+    @SuppressWarnings("JavaDoc")
+    static boolean IsUiTelevision(final Context context)
+    {
+        final UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+
+        return uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+    }
+
+    /***
+     * Get Window size
+     * @return [0]=width, [1]=height. -1, -1  in case of error.
+    private int[] GetWindowSize()
+    {
+        int[] arr = { -1, -1 };
+
+        try
+        {
+            final Display display = getWindowManager().getDefaultDisplay();
+            final Point size = new Point();
+
+            display.getSize(size);
+
+            final int width = size.x;
+            final int height = size.y;
+            System.out.println(PCommon.ConcaT("width:", width, " height:", height));
+
+            arr[0] = width;
+            arr[1] = height;
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
+        }
+
+        return arr;
+    }
+    */
 }
