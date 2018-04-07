@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Screen elements that can render outside the overscan safe area go here -->
+
+    <!-- Nested RelativeLayout with overscan-safe margin -->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp" tools:ignore="UselessParent">
+
+        <!-- Screen elements that need to be within the overscan safe area go here -->
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/slideViewMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/mnu_tv02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:text="Quit"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv01"/>
+
+            <TextView
+                android:id="@+id/mnu_tv00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:text="Settings"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"/>
+
+            <TextView
+                android:id="@+id/mnu_tv01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:text="About"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv00"/>
+
+            <TextView
+                android:id="@+id/mnu_tv10"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="124dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="Option 1"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"/>
+
+            <TextView
+                android:id="@+id/mnu_tv11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="124dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="Option 2"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv10"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintVertical_chainStyle="packed"
+            />
+
+            <TextView
+                android:id="@+id/mnu_tv12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="124dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="Option 3"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv11"/>
+
+            <TextView
+                android:id="@+id/mnu_handle"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:gravity="center_vertical" android:padding="4dp"
+                android:text="..." app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/slideViewTabHandleMain"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/slideViewMenu"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/slideViewTabHandle"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:text="..."/>
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/slideViewTab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/slideViewTabHandleMain"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:context=".MainActivity"
+            tools:ignore="UselessParent">
+
+            <!--<android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar">-->
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
+            <!--</android.support.design.widget.AppBarLayout>-->
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:longClickable="true"/>
+
+            <FrameLayout
+                android:id="@+id/content_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
