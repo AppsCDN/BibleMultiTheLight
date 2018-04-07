@@ -28,16 +28,41 @@
             android:visibility="visible">
 
             <TextView
+                android:id="@+id/mnu_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="@string/mnuArticles"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv2"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv2"/>
+
+            <TextView
+                android:id="@+id/mnu_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="@string/mnuPrbl"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv3"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv12"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv12"/>
+
+            <TextView
                 android:id="@+id/mnu_tv02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
-                android:text="Quit"
+                android:text="@string/mnuQuit"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv01"
                 app:layout_constraintTop_toBottomOf="@+id/mnu_tv01"/>
 
             <TextView
@@ -47,7 +72,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
-                android:text="Settings"
+                android:text="@string/mnuGroupSettings"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnu_tv01"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,27 +83,26 @@
                 android:id="@+id/mnu_tv01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
-                android:text="About"
+                android:text="@string/mnuAbout"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnu_tv02"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv00"
                 app:layout_constraintTop_toBottomOf="@+id/mnu_tv00"/>
 
             <TextView
                 android:id="@+id/mnu_tv10"
-                android:layout_width="75dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="124dp"
+                android:layout_marginStart="48dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnu_handle"
-                android:text="Option 1"
+                android:text="Show_hide_fav"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnu_tv11"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mnu_tv01"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread"/>
 
@@ -86,50 +110,59 @@
                 android:id="@+id/mnu_tv11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="124dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnu_handle"
-                android:text="Option 2"
+                android:text="@string/mnuPlans"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/mnu_tv12"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mnu_tv10"
-                app:layout_constraintVertical_bias="0.3"
-                app:layout_constraintVertical_chainStyle="packed"
-            />
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv10"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv10"/>
 
             <TextView
                 android:id="@+id/mnu_tv12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="124dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnu_handle"
-                android:text="Option 3"
+                android:text="@string/mnuReading"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mnu_tv11"/>
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv2"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv"/>
+
+            <TextView
+                android:id="@+id/mnu_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/focus"
+                android:focusable="true"
+                android:nextFocusRight="@id/mnu_handle"
+                android:text="@string/mnuBooks"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/mnu_tv12"
+                app:layout_constraintStart_toStartOf="@+id/mnu_tv11"
+                app:layout_constraintTop_toBottomOf="@+id/mnu_tv11"
+                app:layout_constraintVertical_chainStyle="packed"/>
 
             <TextView
                 android:id="@+id/mnu_handle"
                 android:layout_width="wrap_content"
                 android:layout_height="53dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/focus"
                 android:focusable="true"
-                android:gravity="center_vertical" android:padding="4dp"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp" android:paddingTop="4dp"
                 android:text="..." app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
