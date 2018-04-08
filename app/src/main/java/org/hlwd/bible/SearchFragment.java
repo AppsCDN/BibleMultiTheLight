@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -25,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FilterQueryProvider;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -35,8 +35,9 @@ public class SearchFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     private static View v;
     private static FRAGMENT_TYPE fragmentType;
-    private View llBookTitle;
     private Button tvBookTitle;
+    private TextView btnBack;
+    private TextView btnForward;
 
     private SimpleCursorAdapter cursorAdapter;
     private MatrixCursor matrixCursor;
@@ -93,17 +94,9 @@ public class SearchFragment extends Fragment
             v = inflater.inflate(R.layout.fragment_search, container, false);
             setHasOptionsMenu(true);
 
-            llBookTitle = v.findViewById(R.id.llBookTitle);
             tvBookTitle = (Button) v.findViewById(R.id.tvBookTitle);
-            final Button btnBack = (Button) v.findViewById(R.id.btnBack);
-            final Button btnForward = (Button) v.findViewById(R.id.btnForward);
-            if (PCommon.IsUiTelevision(v.getContext()))
-            {
-                final Drawable bg = PCommon.GetDrawable(v.getContext(), R.drawable.focus);
-                tvBookTitle.setBackground(bg);
-                btnBack.setBackground(bg);
-                btnForward.setBackground(bg);
-            }
+            btnBack = (TextView) v.findViewById(R.id.btnBack);
+            btnForward = (TextView) v.findViewById(R.id.btnForward);
             btnBack.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -1352,7 +1345,9 @@ public class SearchFragment extends Fragment
 
     private void ShowBookTitle(boolean show)
     {
-        llBookTitle.setVisibility(show ? View.VISIBLE : View.GONE);
+        tvBookTitle.setVisibility(show ? View.VISIBLE : View.GONE);
+        btnBack.setVisibility(show ? View.VISIBLE : View.GONE);
+        btnForward.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void SaveRef(final boolean isBook, final boolean isChapter, final boolean isVerse, final int bNumber, final int cNumber, final int vNumber)
