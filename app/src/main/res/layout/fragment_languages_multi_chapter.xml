@@ -101,7 +101,7 @@
                 android:text="@string/languageClear"/>
 
             <Button
-                android:id="@+id/btnLanguageContinue"
+                android:id="@+id/btnSearchContinue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"

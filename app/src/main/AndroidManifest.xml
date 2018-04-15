@@ -30,8 +30,9 @@
         android:icon="@drawable/thelightlogo"
         android:label="@string/appName"
         android:supportsRtl="false"
+        android:banner="@drawable/thelightbanner"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning,MissingTvBanner">
+        tools:ignore="GoogleAppIndexingWarning">
         <!--<meta-data android:name="android.max_aspect" android:value="4.3"/>-->
 
         <activity

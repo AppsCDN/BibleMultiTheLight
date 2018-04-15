@@ -29,6 +29,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuBook">Livre</string>
     <string name="mnuDelete">Supprimer</string>
     <string name="mnuQuit">Quitter</string>
+    <string name="mnuFav">Favoris</string>
     <string name="mnuFavClearFilter">Effacer</string>
     <string name="mnuFavSort">Trier</string>
     <string name="mnuHelp">Aide</string>

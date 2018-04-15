@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -1039,7 +1040,7 @@ final class PCommon implements IProject
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
                 }
             });
-            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnLanguageContinue);
+            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnSearchContinue);
             if (installStatus <= 0) btnLanguageContinue.setEnabled(false);
             btnLanguageContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1162,7 +1163,7 @@ final class PCommon implements IProject
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
                 }
             });
-            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnLanguageContinue);
+            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnSearchContinue);
             if (installStatus <= 0) btnLanguageContinue.setEnabled(false);
             btnLanguageContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1183,6 +1184,73 @@ final class PCommon implements IProject
             if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
             final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
             tvTrad.setText(languageStack);
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Select item
+     * Response in TRAD_BIBLE_NAME
+     * @param context
+     * @param title
+     * @param fieldTitleId
+     * @param desc
+     * @param isCancelable
+     * @param forceShowAllButtons  Force to show all buttons
+     * @param itemMax
+     */
+    @SuppressWarnings("JavaDoc")
+    static void SelectItem(final AlertDialog builder, final Context context, final View view, final String title, final int fieldTitleId, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons, final int itemMax)
+    {
+        try
+        {
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+
+            final TextView tvFieldTitle = (TextView) view.findViewById(R.id.tvTitle);
+            tvFieldTitle.setText(fieldTitleId);
+
+            builder.setCancelable(isCancelable);
+            if (isCancelable) {
+                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
+                    }
+                });
+            }
+            builder.setTitle(title);
+            builder.setView(view);
+
+            final LinearLayout llItem = (LinearLayout) view.findViewById(R.id.llItem);
+            llItem.setTag(0);
+            for (int i = 0; i <= itemMax; i++)
+            {
+                final TextView tvItem = new TextView(context);
+                tvItem.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvItem.setPadding(10, 15, 10, 15);
+                tvItem.setText( i != 0 ? String.valueOf(i) : "ALL" );
+                tvItem.setTag( i );
+                tvItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int cnumber = (int) v.getTag();
+                        PCommon.SavePref(context, APP_PREF_KEY.BOOK_CHAPTER_DIALOG, String.valueOf(cnumber));
+                        builder.dismiss();
+                    }
+                });
+                tvItem.setFocusable(true);
+                tvItem.setBackground(PCommon.GetDrawable(context, R.drawable.focus));
+
+                //Font
+                if (typeface != null) { tvItem.setTypeface(typeface); }
+                tvItem.setTextSize(fontSize);
+
+                llItem.addView(tvItem);
+            }
         }
         catch (Exception ex)
         {

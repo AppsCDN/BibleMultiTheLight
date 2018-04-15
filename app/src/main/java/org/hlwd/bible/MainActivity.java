@@ -93,13 +93,16 @@ public class MainActivity extends AppCompatActivity
             setContentView(R.layout.activity_main);
 
             slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
-            slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnu_handle) : null;
+            slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
             slideViewTab = (_isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
             slideViewTabHandleMain = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
             slideViewTabHandle = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
 
-            if (_isUiTelevision)
-            {
+            if (!_isUiTelevision) {
+                final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                if (toolbar != null) { setSupportActionBar(toolbar); }
+            }
+            else {
                 slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -112,11 +115,85 @@ public class MainActivity extends AppCompatActivity
                         Slide( true );
                     }
                 });
-            }
-
-            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
+                final View mnuTvArticles = findViewById(R.id.mnuTvArticles);
+                mnuTvArticles.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowArticles();
+                    }
+                });
+                final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
+                mnuTvBooks.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowBooks();
+                    }
+                });
+                final View mnuTvFav = findViewById(R.id.mnuTvFav);
+                mnuTvFav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowFav("1");
+                    }
+                });
+                final View mnuTvReadings = findViewById(R.id.mnuTvReadings);
+                mnuTvReadings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowFav("2");
+                    }
+                });
+                final View mnuTvHelp = findViewById(R.id.mnuTvHelp);
+                mnuTvHelp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowArticle("ART_APP_HELP");
+                    }
+                });
+                final View mnuTvPlans = findViewById(R.id.mnuTvPlans);
+                mnuTvPlans.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowPlans();
+                    }
+                });
+                final View mnuTvPrbl = findViewById(R.id.mnuTvPrbl);
+                mnuTvPrbl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowPrbl();
+                    }
+                });
+                final View mnuTvSettings = findViewById(R.id.mnuTvSettings);
+                mnuTvSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        final Intent intent = new Intent(getApplicationContext(), PreferencesActivity.class);
+                        startActivityForResult(intent, 1);
+                    }
+                });
+                final View mnuTvAbout = findViewById(R.id.mnuTvAbout);
+                mnuTvAbout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowAbout(v.getContext());
+                    }
+                });
+                final View mnuTvQuit = findViewById(R.id.mnuTvQuit);
+                mnuTvQuit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PCommon.TryQuitApplication(v.getContext());
+                    }
+                });
             }
 
             tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -431,7 +508,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_reading:
 
-                    ShowReading();
+                    ShowFav("2");
                     return true;
 
                 case R.id.mnu_prbl:
@@ -1790,7 +1867,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void ShowReading()
+    /***
+     * @param markType 2:reading, 1:fav
+     */
+    private void ShowFav(final String markType)
     {
         try
         {
@@ -1807,7 +1887,6 @@ public class MainActivity extends AppCompatActivity
 
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             final int orderBy = 0;          //TODO: it's hardcoded => enum list
-            final String markType = "2";    //TODO: it's hardcoded => enum list
             final ArrayList<VerseBO> lstVerse =_s.SearchNotes(bbName, "", orderBy, markType);
             if (lstVerse.size() == 0)
             {
@@ -1885,7 +1964,7 @@ public class MainActivity extends AppCompatActivity
             }
             sv.addView(llReading);
 
-            builder.setTitle(R.string.mnuReading);
+            builder.setTitle(markType.equalsIgnoreCase("2") ? R.string.mnuReading : R.string.mnuFav);
             builder.setCancelable(true);
             builder.setView(sv);
             builder.show();
@@ -2375,12 +2454,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    static void Slide(final boolean show)
+    static void Slide(final boolean showMnu)
     {
         if (slideViewMenu == null) return;
 
-        final int mnuTvVisibility = show ? View.VISIBLE : View.GONE;
-        final int tabVisibility = show ? View.GONE : View.VISIBLE;
+        final int mnuTvVisibility = showMnu ? View.VISIBLE : View.GONE;
+        final int tabVisibility = showMnu ? View.GONE : View.VISIBLE;
 
         /*
         final TranslateAnimation animate = new TranslateAnimation(
@@ -2396,7 +2475,7 @@ public class MainActivity extends AppCompatActivity
         slideViewTabHandleMain.setVisibility(tabVisibility);
         slideViewTab.setVisibility(tabVisibility);
 
-        if (show)
+        if (showMnu)
         {
             slideViewMenuHandle.requestFocus();
         }

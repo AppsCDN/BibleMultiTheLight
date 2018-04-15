@@ -29,6 +29,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuBook">Book</string>
     <string name="mnuDelete">Delete</string>
     <string name="mnuEmpty" translatable="false"/>
+    <string name="mnuFav">Favorites</string>
     <string name="mnuFavClearFilter">Clear</string>
     <string name="mnuFavSort">Sort</string>
     <string name="mnuHelp">Help</string>

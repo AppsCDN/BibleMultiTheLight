@@ -29,10 +29,11 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuBook">Libro</string>
     <string name="mnuDelete">Eliminare</string>
     <string name="mnuQuit">Chiudere</string>
+    <string name="mnuFav">Favoriti</string>
     <string name="mnuFavClearFilter">Cancellare</string>
     <string name="mnuFavSort">Selezionare</string>
     <string name="mnuHelp">Aiuto</string>
-    <string name="mnuNote">Preferiti</string>
+    <string name="mnuNote">Favoriti</string>
     <string name="mnuNoteFavAdd">Aggiungere ai favoriti</string>
     <string name="mnuNoteReadingAdd">Aggiungere alle letture</string>
     <string name="mnuNoteRemove">Rimuovere dai favoriti/letture</string>
