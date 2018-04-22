@@ -20,27 +20,30 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     private SCommon _s = null;
     private String bbName = null;
     private boolean isUiTelevision = false;
+    private Context _context = null;
     private int id = -1;
     private int blockId = -1;
     private enum BLOCK_TYPE { BEFORE, CONTENT }
 
     BibleArticleAdapter(final Context context, final String tbbName, final String content)
     {
+        _context = context;
+
         CheckLocalInstance(context);
 
         bbName = tbbName.substring(0, 1);
         isUiTelevision = PCommon.IsUiTelevision(context);
         if (isUiTelevision)
         {
-            BuildListSectionForTv(context, content);
+            BuildListSectionForTv(content);
         }
         else
         {
-            BuildListSectionForOther(context, content);
+            BuildListSectionForOther(content);
         }
     }
 
-    private void BuildListSectionForOther(final Context context, final String content)
+    private void BuildListSectionForOther(final String content)
     {
         final String mainDelimiterStart = "<blockquote>";
         final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
@@ -107,7 +110,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         arrBQ = null;
     }
 
-    private void BuildListSectionForTv(final Context context, final String content)
+    private void BuildListSectionForTv(final String content)
     {
         final String mainDelimiterStart = "<blockquote>";
         final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
@@ -172,7 +175,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 
     private void SplitStringForTv(final String strToSplit, final BLOCK_TYPE blockType)
     {
-        final String sentenceDelimiter = "<br> |<br>|(?<=\\. )";     //&#8230; |&#8230;
+        final String sentenceDelimiter = "<br> |<br>|(?<=\\. )";
         SectionBO section;
         int blockSubId = -1;
         final String blockRef = (blockType == BLOCK_TYPE.CONTENT) ? strToSplit.substring(0, strToSplit.indexOf(":")).replace(".", " ").replace("<b>", "") : null;
@@ -277,80 +280,99 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public void onBindViewHolder(final BibleArticleAdapter.ViewHolder viewHolder, final int position)
     {
-        final SectionBO section = _lstSection.get(position);
-        Spanned spanned;
-
-        if (section.before != null)
+        try
         {
-            final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
-            spanned = Html.fromHtml(section.before);
-            vwh_tv_before.setVisibility(View.VISIBLE);
-            vwh_tv_before.setText(spanned);
-            vwh_tv_before.setId(section.id);
-            vwh_tv_before.setTag(position);
-            if (section.before.trim().equalsIgnoreCase("")) vwh_tv_before.setFocusable(false);
-            if (section.before.contains("</a>")) vwh_tv_before.setMovementMethod(LinkMovementMethod.getInstance());
-        }
+            final SectionBO section = _lstSection.get(position);
+            Spanned spanned;
 
-        if (section.content != null)
-        {
-            //test:
-            //SpannableStringBuilder ssb = new SpannableStringBuilder();
-            //ssb.append(spanned);
-            if (isUiTelevision && section.blockSubId == 0)
+            if (section.before != null)
             {
-                final TextView vwh_tv_space_text_before = viewHolder.tv_text_space_before;
-                vwh_tv_space_text_before.setVisibility(View.VISIBLE);
-            }
-            final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
-            spanned = Html.fromHtml(section.content);
-            vwh_tv_text.setVisibility(View.VISIBLE);
-            vwh_tv_text.setText(spanned);
-            if (isUiTelevision) vwh_tv_text.setTag(R.id.tv1, section.blockRef);
-            vwh_tv_text.setTag(position);
-            vwh_tv_text.setOnLongClickListener(new View.OnLongClickListener()
-            {
-                @Override
-                public boolean onLongClick(View view)
+                final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
+                spanned = Html.fromHtml(section.before);
+                vwh_tv_before.setVisibility(View.VISIBLE);
+                vwh_tv_before.setText(spanned);
+                vwh_tv_before.setId(section.id);
+                vwh_tv_before.setTag(position);
+                if (section.before.trim().equalsIgnoreCase("")) vwh_tv_before.setFocusable(false);
+                if (section.before.contains("</a>"))
                 {
-                    try
-                    {
-                        final TextView tvText = (TextView) view;
-                        if (tvText == null) return false;
-                        final String content = tvText.getText().toString();
-                        final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
-                        if (completeRef == null) return false;
-                        final String[] ref = completeRef.split("\\s");
-                        final int bNumber = _s.GetBookNumberByName(ref[0]);
-                        final int cNumber = Integer.parseInt(ref[1]);
-                        final int vNumber = Integer.parseInt(ref[2]);
-                        final ArrayList<VerseBO> lstVerse = _s.GetVerse(bbName, bNumber, cNumber, vNumber);
-                        final int bibleId = (lstVerse != null && lstVerse.size() > 0) ? lstVerse.get(0).id : 0;
-                        final int position = Integer.parseInt( tvText.getTag().toString() );
-                        PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, bibleId);
-                        PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
-                    }
-                    catch (Exception ignored) { }
-
-                    return false;
+                    vwh_tv_before.setMovementMethod(LinkMovementMethod.getInstance());
                 }
-            });
-            if (section.content.trim().equalsIgnoreCase("")) vwh_tv_text.setFocusable(false);
-            if (section.content.contains("</a>")) vwh_tv_text.setMovementMethod(LinkMovementMethod.getInstance());
-        }
-
-        if (!isUiTelevision)
-        {
-            if (section.after != null)
-            {
-                final TextView vwh_tv_after = viewHolder.tv_after;
-                spanned = Html.fromHtml(section.after);
-                vwh_tv_after.setVisibility(View.VISIBLE);
-                vwh_tv_after.setText(spanned);
-                vwh_tv_after.setId(section.id);
-                vwh_tv_after.setTag(position);
-                if (section.after.contains("</a>")) vwh_tv_after.setMovementMethod(LinkMovementMethod.getInstance());
             }
+
+            if (section.content != null)
+            {
+                //test:
+                //SpannableStringBuilder ssb = new SpannableStringBuilder();
+                //ssb.append(spanned);
+                if (isUiTelevision && section.blockSubId == 0)
+                {
+                    final TextView vwh_tv_space_text_before = viewHolder.tv_text_space_before;
+                    vwh_tv_space_text_before.setVisibility(View.VISIBLE);
+                }
+                final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
+                spanned = Html.fromHtml(section.content);
+                vwh_tv_text.setVisibility(View.VISIBLE);
+                vwh_tv_text.setText(spanned);
+                if (isUiTelevision) vwh_tv_text.setTag(R.id.tv1, section.blockRef);
+                vwh_tv_text.setTag(position);
+                vwh_tv_text.setOnLongClickListener(new View.OnLongClickListener()
+                {
+                    @Override
+                    public boolean onLongClick(View view)
+                    {
+                        try
+                        {
+                            final TextView tvText = (TextView) view;
+                            if (tvText == null) return false;
+                            final String content = tvText.getText().toString();
+                            final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
+                            if (completeRef == null) return false;
+                            final String[] ref = completeRef.split("\\s");
+                            final int bNumber = _s.GetBookNumberByName(ref[0]);
+                            final int cNumber = Integer.parseInt(ref[1]);
+                            final int vNumber = Integer.parseInt(ref[2]);
+                            final ArrayList<VerseBO> lstVerse = _s.GetVerse(bbName, bNumber, cNumber, vNumber);
+                            final int bibleId = (lstVerse != null && lstVerse.size() > 0) ? lstVerse.get(0).id : 0;
+                            final int position = Integer.parseInt( tvText.getTag().toString() );
+                            PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, bibleId);
+                            PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
+                        }
+                        catch (Exception ignored)
+                        {
+                            if (PCommon._isDebugVersion) PCommon.LogR(_context, ignored);
+                        }
+
+                        return false;
+                    }
+                });
+                if (section.content.trim().equalsIgnoreCase("")) vwh_tv_text.setFocusable(false);
+                if (section.content.contains("</a>"))
+                {
+                    vwh_tv_text.setMovementMethod(LinkMovementMethod.getInstance());
+                }
+            }
+
+            if (!isUiTelevision)
+            {
+                if (section.after != null)
+                {
+                    final TextView vwh_tv_after = viewHolder.tv_after;
+                    spanned = Html.fromHtml(section.after);
+                    vwh_tv_after.setVisibility(View.VISIBLE);
+                    vwh_tv_after.setText(spanned);
+                    vwh_tv_after.setId(section.id);
+                    vwh_tv_after.setTag(position);
+                    if (section.after.contains("</a>"))
+                    {
+                        vwh_tv_after.setMovementMethod(LinkMovementMethod.getInstance());
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
 
         /*

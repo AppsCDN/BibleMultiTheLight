@@ -91,7 +91,7 @@ public class PreferencesFontActivity extends AppCompatActivity
                     }
                 });
                 tvEx.setFocusable(true);
-                tvEx.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus));
+                tvEx.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                 radioGroup.addView(radioFont);
                 radioGroup.addView(tvEx);

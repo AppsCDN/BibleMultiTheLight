@@ -7,15 +7,15 @@
 
     <!-- Screen elements that can render outside the overscan safe area go here -->
 
-    <!-- Nested RelativeLayout with overscan-safe margin -->
+    <!-- Nested RelativeLayout with overscan-safe margin, was:27 and 48=>30 -->
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="27dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="48dp" tools:ignore="UselessParent">
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="40dp" tools:ignore="RtlHardcoded,UselessParent">
 
         <!-- Screen elements that need to be within the overscan safe area go here -->
         <android.support.constraint.ConstraintLayout
@@ -25,13 +25,13 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:visibility="gone">
+            android:visibility="gone" tools:ignore="InconsistentLayout">
 
             <TextView
                 android:id="@+id/mnuTvHelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusDown="@id/mnuTvAbout"
                 android:nextFocusUp="@id/mnuTvSettings"
@@ -41,13 +41,14 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvAbout"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvSettings"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvSettings"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvSettings"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvArticles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusDown="@id/mnuTvHandle"
                 android:nextFocusRight="@id/mnuTvHandle"
@@ -57,13 +58,14 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvPrbl"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvPrbl"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvPrbl"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvPrbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnuTvHandle"
                 android:padding="5dp"
@@ -72,14 +74,15 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvArticles"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvPlans"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvPlans"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvPlans"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvQuit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusDown="@id/mnuTvArticles"
                 android:nextFocusUp="@id/mnuTvAbout"
@@ -89,13 +92,14 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvAbout"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvAbout"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvAbout"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusDown="@id/mnuTvHelp"
                 android:nextFocusRight="@id/mnuTvBooks"
@@ -107,14 +111,15 @@
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvHelp"
                 app:layout_constraintStart_toStartOf="@+id/ivLogo"
                 app:layout_constraintTop_toBottomOf="@+id/ivLogo"
-                tools:ignore="RtlCompat"/>
+                tools:ignore="InconsistentLayout,RtlCompat"/>
 
             <TextView
                 android:id="@+id/mnuTvAbout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
+                android:nextFocusRight="@id/mnuTvPrbl"
                 android:nextFocusDown="@id/mnuTvQuit"
                 android:nextFocusUp="@id/mnuTvHelp"
                 android:padding="5dp"
@@ -123,14 +128,15 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvQuit"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvHelp"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvHelp"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvHelp"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnuTvHandle"
                 android:padding="5dp"
@@ -140,13 +146,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvReadings"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvBooks"
                 app:layout_constraintTop_toBottomOf="@+id/mnuTvBooks"
-                app:layout_constraintVertical_chainStyle="spread"/>
+                app:layout_constraintVertical_chainStyle="spread" tools:ignore="InconsistentLayout,RtlCompat"/>
 
             <TextView
                 android:id="@+id/mnuTvPlans"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusRight="@id/mnuTvHandle"
                 android:padding="5dp"
@@ -156,13 +162,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvPrbl"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvBooks"
                 app:layout_constraintTop_toBottomOf="@+id/mnuTvReadings"
-                tools:ignore="RtlCompat"/>
+                tools:ignore="InconsistentLayout,RtlCompat"/>
 
             <TextView
                 android:id="@+id/mnuTvReadings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusLeft="@id/mnuTvSettings"
                 android:nextFocusRight="@id/mnuTvHandle"
@@ -172,14 +178,15 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mnuTvPlans"
                 app:layout_constraintStart_toStartOf="@+id/mnuTvFav"
-                app:layout_constraintTop_toBottomOf="@+id/mnuTvFav"/>
+                app:layout_constraintTop_toBottomOf="@+id/mnuTvFav"
+                tools:ignore="InconsistentLayout"/>
 
             <TextView
                 android:id="@+id/mnuTvBooks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
                 android:nextFocusLeft="@id/mnuTvSettings"
                 android:nextFocusRight="@id/mnuTvHandle"
@@ -193,31 +200,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread"
-                tools:ignore="RtlCompat"/>
+                tools:ignore="InconsistentLayout,RtlCompat"/>
 
             <TextView
                 android:id="@+id/mnuTvHandle"
-                android:layout_width="wrap_content"
-                android:layout_height="53dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/focus"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
                 android:nextFocusDown="@id/mnuTvArticles"
                 android:nextFocusLeft="@id/mnuTvPlans"
                 android:nextFocusUp="@id/mnuTvBooks"
                 android:padding="4dp"
-                android:paddingBottom="4dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:paddingTop="4dp"
-                android:text="..."
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/rightHandle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlCompat"/>
+                tools:ignore="InconsistentLayout,RtlCompat"/>
 
             <ImageView
                 android:id="@+id/ivLogo"
@@ -229,7 +232,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread_inside"
-                app:srcCompat="@drawable/thelightlogo" tools:ignore="RtlCompat"/>
+                app:srcCompat="@drawable/thelightlogo" tools:ignore="ContentDescription,RtlCompat"/>
 
             <TextView
                 android:id="@+id/tvAppName"
@@ -241,7 +244,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/ivLogo"
                 app:layout_constraintStart_toEndOf="@+id/ivLogo"
                 app:layout_constraintTop_toTopOf="@+id/ivLogo"
-                tools:ignore="RtlCompat"/>
+                tools:ignore="HardcodedText,RtlCompat"/>
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -250,39 +253,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/slideViewMenu"
-            android:visibility="visible">
+            android:visibility="visible" tools:ignore="InconsistentLayout,RtlHardcoded">
 
             <TextView
                 android:id="@+id/slideViewTabHandle"
-                android:layout_width="wrap_content"
-                android:layout_height="53dp"
-                android:background="@drawable/focus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/focus_text"
                 android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingBottom="4dp"
-                android:paddingLeft="4dp" android:paddingRight="4dp"
-                android:paddingTop="4dp"
-                android:text="..."
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:nextFocusUp="@id/tabLayout"
+                android:nextFocusDown="@id/slideViewTabSearch"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="4dp"
+                android:text="@string/leftHandle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" tools:ignore="InconsistentLayout"/>
 
             <Button
                 android:id="@+id/slideViewTabSearch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@android:drawable/ic_menu_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/focus_search"
                 android:focusable="true"
+                android:nextFocusLeft="@id/slideViewTabHandle"
+                android:nextFocusUp="@id/slideViewTabHandle"
                 android:gravity="center_vertical"
                 android:paddingBottom="4dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:paddingTop="4dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintEnd_toEndOf="@+id/slideViewTabHandle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slideViewTabHandle"/>
+                app:layout_constraintStart_toStartOf="@+id/slideViewTabHandle"
+                app:layout_constraintTop_toBottomOf="@+id/slideViewTabHandle"
+                tools:ignore="InconsistentLayout"/>
         </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
@@ -296,23 +301,7 @@
             android:orientation="vertical"
             android:visibility="visible"
             tools:context=".MainActivity"
-            tools:ignore="RtlHardcoded,UselessParent">
-
-            <!--<android.support.design.widget.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar">-->
-
-            <!--
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:layout_scrollFlags="scroll|enterAlways"/>
-                -->
-            <!--</android.support.design.widget.AppBarLayout>-->
+            tools:ignore="InconsistentLayout,RtlHardcoded,UselessParent">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
@@ -325,6 +314,7 @@
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

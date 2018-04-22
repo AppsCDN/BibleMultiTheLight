@@ -12,55 +12,55 @@
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/focus"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/focus_text"
         android:focusable="true"
         android:foregroundGravity="left|center_vertical"
         android:gravity="left|center_vertical"
+        android:nextFocusRight="@id/tvBookTitle"
         android:paddingLeft="8dp"
         android:text="@string/btnBack"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toStartOf="@+id/tvBookTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" tools:ignore="ButtonStyle,RtlSymmetry"
-        android:nextFocusRight="@id/tvBookTitle"/>
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ButtonStyle,RtlSymmetry"/>
 
     <Button
         android:id="@+id/tvBookTitle"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:background="@drawable/focus"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/focus_text"
         android:focusable="true"
         android:foregroundGravity="center_vertical|center_horizontal|center"
         android:gravity="center_vertical|center_horizontal|center"
+        android:nextFocusLeft="@string/btnBack"
+        android:nextFocusRight="@id/btnForward"
         android:text="@string/tvBookTitle"
         android:textAllCaps="false"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toStartOf="@+id/btnForward"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="parent"
-        android:nextFocusLeft="@string/btnBack"
-        android:nextFocusRight="@id/btnForward"/>
+        app:layout_constraintHorizontal_bias="0" app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/btnForward"
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/focus"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/focus_text"
         android:focusable="true"
         android:foregroundGravity="right|center_vertical"
         android:gravity="right|center_vertical"
+        android:nextFocusLeft="@id/tvBookTitle"
         android:paddingRight="8dp"
         android:text="@string/btnForward"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/tvBookTitle"
-        app:layout_constraintTop_toTopOf="parent" tools:ignore="ButtonStyle,RtlSymmetry"
-        android:nextFocusLeft="@id/tvBookTitle"/>
+        app:layout_constraintStart_toEndOf="@+id/tvBookTitle" app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ButtonStyle,RtlSymmetry"/>
 
     <!-- Search -->
     <android.support.v7.widget.RecyclerView

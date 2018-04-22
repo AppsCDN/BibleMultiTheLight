@@ -20,7 +20,7 @@
         android:textStyle="normal"
         tools:ignore="HardcodedText"
         android:focusable="true"
-        android:background="@drawable/focus"/>
+        android:background="@drawable/focus_text"/>
 
     <android.support.v7.widget.CardView
         android:layout_below="@id/tv_before"
@@ -49,7 +49,7 @@
             android:visibility="gone"
             tools:ignore="HardcodedText"
             android:focusable="true"
-            android:background="@drawable/focus"
+            android:background="@drawable/focus_text"
         />
 
     </android.support.v7.widget.CardView>
@@ -70,5 +70,5 @@
         android:textStyle="normal"
         tools:ignore="HardcodedText"
         android:focusable="true"
-        android:background="@drawable/focus"/>
+        android:background="@drawable/focus_text"/>
 </RelativeLayout>

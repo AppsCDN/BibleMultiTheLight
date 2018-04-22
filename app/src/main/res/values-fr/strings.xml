@@ -15,6 +15,7 @@ Vous pouvez retourner dans l\'écran d\'acceuil, L\'installation continuera. Vou
 Entre-temps, vous pouvez lire la Bible en anglais (menu Livres), lire l\'Aide ou faire d\'autres choses avec votre appareil.\n\n
 S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des mises à jour.\n\n
 ]]></string>
+    <string name="itemAll">TOUT</string>
     <string name="languageInstalling">Installation&#8230;</string>
     <string name="languageEnInstalled">Version installée: EN…</string>
     <string name="languageEsInstalled">Versions installées: EN, ES…</string>
@@ -618,44 +619,41 @@ suivez les commandements, arrêtez vos péchés et semez abondamment. Suivons J�
 <b>1Corinthiens 3.17:</b> Si quelqu\'un détruit le temple de Dieu, Dieu le détruira; car le temple de Dieu est saint, et c\'est ce que vous êtes.
 </blockquote>
 <H>Chercher dans la Bible</H>
-<p>
 <b>Syntaxe:</b> &lt;livre&gt; <br>
 <b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; <br>
 <b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;verset&gt; <br>
 <b>Syntaxe:</b> &lt;livre&gt; &lt;expression&gt; <br>
 <b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;expression&gt; <br>
-<b>Syntaxe:</b> &lt;expression&gt;
-</p>
-<br>
+<b>Syntaxe:</b> &lt;expression&gt;<br>
+<br><br>
 <b>Exemples:</b><br>
-<p>• Genèse<br>
-Donne le chapitre 1 de la Genèse par défaut
-</p>
-<p>• Genèse 1<br>
-Donne le chapitre 1 de la Genèse
-</p>
-<p>• Genèse 1 5<br>
-Donne le verset 1.5 de la Genèse :)
-</p>
-<p>• Genèse feu<br>
-Cherche dans la Genèse toutes les occurrences de \'feu\'
-</p>
-<p>• 1 6 seigneur<br>
-Cherche dans la Genèse chapitre 6 toutes les occurences de \'seigneur\'
-</p>
-<p>• abraham<br>
-Cherche \'abraham\' dans toute la bible
-</p>
-<p>• Apocalypse cheval<br>
-Cherche les chevaux de l\'Apocalypse :)
-</p>
-<p>• 66 babylone<br>
-Cherche \'babylone\' dans le livre 66 (Apocalypse)
-</p>
-<p>• pierre%église<br>
-cherche dans l\'ordre, \'pierre\' et \'église\' dans toute la bible
-</p>
+• Genèse<br>
+Donne le chapitre 1 de la Genèse par défaut<br>
 <br>
+• Genèse 1<br>
+Donne le chapitre 1 de la Genèse<br>
+<br>
+• Genèse 1 5<br>
+Donne le verset 1.5 de la Genèse :)<br>
+<br>
+• Genèse feu<br>
+Cherche dans la Genèse toutes les occurrences de \'feu\'<br>
+<br>
+• 1 6 seigneur<br>
+Cherche dans la Genèse chapitre 6 toutes les occurences de \'seigneur\'<br>
+<br>
+• abraham<br>
+Cherche \'abraham\' dans toute la bible<br>
+<br>
+• Apocalypse cheval<br>
+Cherche les chevaux de l\'Apocalypse :)<br>
+<br>
+• 66 babylone<br>
+Cherche \'babylone\' dans le livre 66 (Apocalypse)<br>
+<br>
+• pierre%église<br>
+cherche dans l\'ordre, \'pierre\' et \'église\' dans toute la bible<br>
+<br><br>
 <b>Remarques:</b><br>
 - Les noms des livres sont sensibles à la casse, donc sélectionnez les dans la liste.<br>
 - Ajoutez des accents dans vos mots si ils en ont:<br>
@@ -694,6 +692,10 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.0</H>
+• Compatible avec Android TV et D-pad<br>
+(Long click sur le titre d\'un onglet pour fermer l\'onglet)<br>
+<br>
 <H>2.13</H>
 • Fix: force la direction de gauche à droite dans le widget<br>
 • Barre d\'outils pliante<br>
@@ -763,23 +765,23 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
 Quelques chrétiens (plusieurs pasteurs) que je regarde sur internet, s\'il vous plaît, consultez leurs vidéos. Activez les sous-titres dans Youtube.<br><br>
 <br><br>
 <HS>Anglais</HS>
-<p><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></p>
-<p><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></p>
-<p><a href="https://www.youtube.com/user/NoLife127">Jason A</a></p>
-<p><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></p>
-<p><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></p>
-<p><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></p>
-<p><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></p>
+<a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
+<a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
+<a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
+<a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a><br><br>
+<a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a><br><br>
+<a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
+<a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
 <HS>Anglais & Espagnol</HS>
-<p><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></p>
+<a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
 <HS>Espagnol & Français</HS>
-<p><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></p>
+<a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
 <HS>Français</HS>
-<p><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></p>
-<p><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></p>
+<a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Les dix vierges</string>
     <string name="ART28" tools:ignore="UnusedResources">Marque de la bête</string>

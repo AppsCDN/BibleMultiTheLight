@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.0,    DbVersion: 19 (8) 2018-04-22
 // PROD: Bible 2.13,   DbVersion: 18 (8) 2018-03-04
 // PROD: Bible 2.12,   DbVersion: 17 (8) 2018-02-03
 // PROD: Bible 2.11,   DbVersion: 16 (8) 2018-01-14
@@ -50,7 +51,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 18;
+    private static final int _version = 19;
 
     //</editor-fold>
 
@@ -354,7 +355,7 @@ class DbHelper extends SQLiteOpenHelper
                 }
             }
             //Last
-            if (oldVersion < _version)    //1..17 => 18
+            if (oldVersion < _version)    //1..18 => 19
             {
                 //=== FOR LAST VERSION
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);
@@ -392,6 +393,8 @@ class DbHelper extends SQLiteOpenHelper
 
     private void SetGlobalSettings()
     {
+        final boolean isUiTelevision = PCommon.IsUiTelevision(_context);
+
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LOG_STATUS, "");
@@ -405,8 +408,8 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "3");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, "");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, PCommon.IsUiTelevision(_context) ? "20" : "14");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FAV_SYMBOL, _context.getString(R.string.favSymbolFavDefault));
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_ORDER, 0);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.VIEW_POSITION, 0);

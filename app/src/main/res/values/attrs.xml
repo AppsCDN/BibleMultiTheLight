@@ -3,4 +3,8 @@
     <attr name="bookTitleForeground" format="color" />
     <attr name="cardBgColor" format="color" />
     <attr name="cardFgColor" format="color" />
+    <attr name="buttonNormalBgColor" format="color" />
+    <attr name="buttonFocusBorderColor" format="color" />
+    <attr name="buttonFocusBgColor" format="color" />
+    <attr name="textFocusBorderColor" format="color" />
 </resources>

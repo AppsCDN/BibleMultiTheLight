@@ -17,6 +17,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -30,7 +31,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -622,7 +622,6 @@ final class PCommon implements IProject
         try
         {
             final int version = Build.VERSION.SDK_INT;
-
             return (version >= 22) ? ContextCompat.getDrawable(context, id) : context.getResources().getDrawable(id);
         }
         catch(Exception ex)
@@ -687,13 +686,13 @@ final class PCommon implements IProject
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
 
-        QuitApplication();
+        QuitApplication(context);
     }
 
     /***
      * Quit application
      */
-    private static void QuitApplication()
+    private static void QuitApplication(final Context context)
     {
         //noinspection EmptyCatchBlock
         try
@@ -712,6 +711,13 @@ final class PCommon implements IProject
         {
             _s = null;
         }
+
+        //noinspection EmptyCatchBlock
+        try
+        {
+            PCommon.SetSound(context, false);
+        }
+        catch (Exception ex) { }
 
         //noinspection EmptyCatchBlock
         try
@@ -1068,142 +1074,18 @@ final class PCommon implements IProject
     }
 
     /***
-     * Select multiple bible language and chapter
-     * Response in TRAD_BIBLE_NAME
-     * @param context
-     * @param msg
-     * @param desc
-     * @param isCancelable
-     * @param forceShowAllButtons  Force to show all buttons
-     * @param chapterMax
-     */
-    @SuppressWarnings("JavaDoc")
-    static void SelectBibleLanguageMultiChapter(final AlertDialog builder, final Context context, final View view, final String msg, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons, final int chapterMax)
-    {
-        try
-        {
-            builder.setCancelable(isCancelable);
-            if (isCancelable) {
-                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
-                        PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
-                    }
-                });
-            }
-            builder.setTitle(msg);
-            builder.setView(view);
-
-            final int colorAccent = ContextCompat.getColor(context, R.color.colorAccent);
-            final String bbName = PCommon.GetPrefBibleName(context);
-            final int installStatus = (forceShowAllButtons) ? 4 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
-            final TextView tvTrad = (TextView) view.findViewById(R.id.tvTrad);
-            final NumberPicker npChapter = (NumberPicker) view.findViewById(R.id.npChapter);
-            npChapter.setMinValue(1);
-            npChapter.setMaxValue(chapterMax);
-
-            final ToggleButton btnLanguageEN = (ToggleButton) view.findViewById(R.id.btnLanguageEN);
-            if (installStatus < 1) btnLanguageEN.setEnabled(false);
-            if (bbName.compareToIgnoreCase("k") == 0) btnLanguageEN.setTextColor(colorAccent);
-            btnLanguageEN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    final int op = compoundButton.isChecked() ? 1 : -1;
-                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "k"));
-                    tvTrad.setText(languageStack);
-                }
-            });
-            final ToggleButton btnLanguageES = (ToggleButton) view.findViewById(R.id.btnLanguageES);
-            if (installStatus < 2) btnLanguageES.setEnabled(false);
-            if (bbName.compareToIgnoreCase("v") == 0) btnLanguageES.setTextColor(colorAccent);
-            btnLanguageES.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    final int op = compoundButton.isChecked() ? 1 : -1;
-                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "v"));
-                    tvTrad.setText(languageStack);
-                }
-            });
-            final ToggleButton btnLanguageFR = (ToggleButton) view.findViewById(R.id.btnLanguageFR);
-            if (installStatus < 3) btnLanguageFR.setEnabled(false);
-            if (bbName.compareToIgnoreCase("l") == 0) btnLanguageFR.setTextColor(colorAccent);
-            btnLanguageFR.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    final int op = compoundButton.isChecked() ? 1 : -1;
-                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "l"));
-                    tvTrad.setText(languageStack);
-                }
-            });
-            final ToggleButton btnLanguageIT = (ToggleButton) view.findViewById(R.id.btnLanguageIT);
-            if (installStatus < 4) btnLanguageIT.setEnabled(false);
-            if (bbName.compareToIgnoreCase("d") == 0) btnLanguageIT.setTextColor(colorAccent);
-            btnLanguageIT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    final int op = compoundButton.isChecked() ? 1 : -1;
-                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "d"));
-                    tvTrad.setText(languageStack);
-                }
-            });
-            final Button btnLanguageClear = (Button) view.findViewById(R.id.btnLanguageClear);
-            if (installStatus <= 0) btnLanguageClear.setEnabled(false);
-            btnLanguageClear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //clear all & select default
-                    final String currentTrad = "";
-                    PCommon.SavePref(context, APP_PREF_KEY.TRAD_BIBLE_NAME, currentTrad);
-                    btnLanguageEN.setChecked(false);
-                    btnLanguageES.setChecked(false);
-                    btnLanguageFR.setChecked(false);
-                    btnLanguageIT.setChecked(false);
-                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
-                    tvTrad.setText(languageStack);
-                    PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
-                }
-            });
-            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnSearchContinue);
-            if (installStatus <= 0) btnLanguageContinue.setEnabled(false);
-            btnLanguageContinue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //all selected toggle
-                    final String currentTrad = PCommon.GetPrefTradBibleName(context, false);
-                    if (currentTrad.equals("")) return;
-                    PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, currentTrad.substring(0, 1));
-                    PCommon.SavePref(context, APP_PREF_KEY.BOOK_CHAPTER_DIALOG, String.valueOf(npChapter.getValue()));
-                    builder.dismiss();
-                }
-            });
-
-            final String tradInit = PCommon.GetPrefTradBibleName(context, false);
-            if (tradInit.contains("k")) btnLanguageEN.setChecked(true);
-            if (tradInit.contains("v")) btnLanguageES.setChecked(true);
-            if (tradInit.contains("l")) btnLanguageFR.setChecked(true);
-            if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
-            final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
-            tvTrad.setText(languageStack);
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
-        }
-    }
-
-    /***
      * Select item
-     * Response in TRAD_BIBLE_NAME
+     * Response in BOOK_CHAPTER_DIALOG
      * @param context
      * @param title
      * @param fieldTitleId
      * @param desc
      * @param isCancelable
-     * @param forceShowAllButtons  Force to show all buttons
      * @param itemMax
+     * @param shouldAddAllitem  Should add ALL item?
      */
     @SuppressWarnings("JavaDoc")
-    static void SelectItem(final AlertDialog builder, final Context context, final View view, final String title, final int fieldTitleId, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, @SuppressWarnings("SameParameterValue") final boolean forceShowAllButtons, final int itemMax)
+    static void SelectItem(final AlertDialog builder, final Context context, final View view, final String title, @SuppressWarnings("SameParameterValue") final int fieldTitleId, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final String desc, @SuppressWarnings("SameParameterValue") final boolean isCancelable, final int itemMax, final boolean shouldAddAllitem)
     {
         try
         {
@@ -1227,12 +1109,13 @@ final class PCommon implements IProject
 
             final LinearLayout llItem = (LinearLayout) view.findViewById(R.id.llItem);
             llItem.setTag(0);
-            for (int i = 0; i <= itemMax; i++)
+            final int itemMin = shouldAddAllitem ? 0 : 1;
+            for (int i = itemMin; i <= itemMax; i++)
             {
                 final TextView tvItem = new TextView(context);
                 tvItem.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 tvItem.setPadding(10, 15, 10, 15);
-                tvItem.setText( i != 0 ? String.valueOf(i) : "ALL" );
+                tvItem.setText( i != 0 ? String.valueOf(i) : context.getString(R.string.itemAll));
                 tvItem.setTag( i );
                 tvItem.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1243,7 +1126,7 @@ final class PCommon implements IProject
                     }
                 });
                 tvItem.setFocusable(true);
-                tvItem.setBackground(PCommon.GetDrawable(context, R.drawable.focus));
+                tvItem.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvItem.setTypeface(typeface); }
@@ -1269,6 +1152,10 @@ final class PCommon implements IProject
     {
         try
         {
+            final Context context = activity.getApplicationContext();
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+
             final LayoutInflater inflater = activity.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
 
@@ -1279,6 +1166,8 @@ final class PCommon implements IProject
 
             final TextView tvMsg = (TextView) view.findViewById(R.id.tvMsg);
             tvMsg.setText(msgId);
+            if (typeface != null) { tvMsg.setTypeface(typeface); }
+            tvMsg.setTextSize(fontSize);
 
             final Button btnClose = (Button) view.findViewById(R.id.btnClose);
             btnClose.setOnClickListener(new View.OnClickListener() {
@@ -1382,32 +1271,45 @@ final class PCommon implements IProject
     }
 
     /***
-     * Get Window size
-     * @return [0]=width, [1]=height. -1, -1  in case of error.
-    private int[] GetWindowSize()
+     * Enable/disable sound
+     * @param context
+     * @param isSoundOff
+     */
+    @SuppressWarnings("JavaDoc")
+    static void SetSound(final Context context, final boolean isSoundOff)
     {
-        int[] arr = { -1, -1 };
-
         try
         {
-            final Display display = getWindowManager().getDefaultDisplay();
-            final Point size = new Point();
+            final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, isSoundOff);
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
 
-            display.getSize(size);
-
-            final int width = size.x;
-            final int height = size.y;
-            System.out.println(PCommon.ConcaT("width:", width, " height:", height));
-
-            arr[0] = width;
-            arr[1] = height;
+    /***
+     * Set text appareance
+     * @param tv
+     * @param context
+     * @param resId
+     */
+    @SuppressWarnings("JavaDoc")
+    static void SetTextAppareance(final TextView tv, final Context context, @SuppressWarnings("SameParameterValue") final int resId)
+    {
+        try
+        {
+            final int version = Build.VERSION.SDK_INT;
+            if (version < 23) {
+                tv.setTextAppearance(context, resId);
+            } else {
+                tv.setTextAppearance(resId);
+            }
         }
         catch(Exception ex)
         {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
-
-        return arr;
     }
-    */
 }
