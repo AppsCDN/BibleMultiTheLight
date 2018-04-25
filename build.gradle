@@ -24,7 +24,12 @@ repositories {
     google()
 }
 
+ext {
+    supportLibVersion = '25.2.0'
+}
+
 dependencies {
     apply plugin: 'java'
     compile 'com.ximpleware:vtd-xml:2.13.4'
+    compile "com.android.support:leanback-v17:${supportLibVersion}"
 }

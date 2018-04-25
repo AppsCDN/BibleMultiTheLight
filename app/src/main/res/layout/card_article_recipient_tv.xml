@@ -4,5 +4,5 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <include layout="@layout/card_row_note"/>
+    <include layout="@layout/card_article_row_note_tv"/>
 </LinearLayout>

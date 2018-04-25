@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -49,8 +50,14 @@ public class MainActivity extends AppCompatActivity
 {
     @SuppressLint("StaticFieldLeak")
     private static TabLayout tabLayout;
+    private View slideViewMenu;
+    private View slideViewMenuHandle;
+    private View slideViewTab;
+    private View slideViewTabHandleMain;
+    private View slideViewTabHandle;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
+    private boolean _isUiTelevision = false;
 
     @Override
     protected void onStart()
@@ -80,12 +87,123 @@ public class MainActivity extends AppCompatActivity
 
             if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
 
+            _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
+
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
             setContentView(R.layout.activity_main);
 
-            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+            slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
+            slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
+            slideViewTab = (_isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
+            slideViewTabHandleMain = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
+            slideViewTabHandle = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
+
+            if (!_isUiTelevision) {
+                final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                if (toolbar != null) { setSupportActionBar(toolbar); }
+            }
+            else
+            {
+                slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide( false );
+                    }
+                });
+                slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide( true );
+                    }
+                });
+                final View slideViewTabSearch = findViewById(R.id.slideViewTabSearch);
+                slideViewTabSearch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SearchTv(v.getContext(), true);
+                    }
+                });
+                final View mnuTvArticles = findViewById(R.id.mnuTvArticles);
+                mnuTvArticles.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowArticles();
+                    }
+                });
+                final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
+                mnuTvBooks.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowBooks(v.getContext());
+                    }
+                });
+                final View mnuTvFav = findViewById(R.id.mnuTvFav);
+                mnuTvFav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowFav("1");
+                    }
+                });
+                final View mnuTvReadings = findViewById(R.id.mnuTvReadings);
+                mnuTvReadings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowFav("2");
+                    }
+                });
+                final View mnuTvHelp = findViewById(R.id.mnuTvHelp);
+                mnuTvHelp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowArticle("ART_APP_HELP");
+                    }
+                });
+                final View mnuTvPlans = findViewById(R.id.mnuTvPlans);
+                mnuTvPlans.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowPlans();
+                    }
+                });
+                final View mnuTvPrbl = findViewById(R.id.mnuTvPrbl);
+                mnuTvPrbl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        ShowPrbl();
+                    }
+                });
+                final View mnuTvSettings = findViewById(R.id.mnuTvSettings);
+                mnuTvSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Slide(false);
+                        final Intent intent = new Intent(getApplicationContext(), PreferencesActivity.class);
+                        startActivityForResult(intent, 1);
+                    }
+                });
+                final View mnuTvAbout = findViewById(R.id.mnuTvAbout);
+                mnuTvAbout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowAbout(v.getContext());
+                    }
+                });
+                final View mnuTvQuit = findViewById(R.id.mnuTvQuit);
+                mnuTvQuit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PCommon.TryQuitApplication(v.getContext());
+                    }
+                });
+            }
 
             tabLayout = (TabLayout) findViewById(R.id.tabLayout);
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -102,8 +220,8 @@ public class MainActivity extends AppCompatActivity
                         final CacheTabBO cacheTab = _s.GetCacheTab(tabId);
                         final SearchFragment.FRAGMENT_TYPE fragmentType;
 
-                        FragmentManager fm = getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
+                        final FragmentManager fm = getSupportFragmentManager();
+                        final FragmentTransaction ft = fm.beginTransaction();
 
                         if (cacheTab == null)
                         {
@@ -242,6 +360,8 @@ public class MainActivity extends AppCompatActivity
         try
         {
             if (PCommon._isDebugVersion) System.out.println("Main: onPostResume");
+
+            PCommon.SetSound(getApplicationContext(), true);
 
             final String BIBLE_NAME = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "");
             if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0)
@@ -389,7 +509,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_books:
 
-                    ShowBooks();
+                    ShowBooks(this);
                     return true;
 
                 case R.id.mnu_plans:
@@ -399,7 +519,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_reading:
 
-                    ShowReading();
+                    ShowFav("2");
                     return true;
 
                 case R.id.mnu_prbl:
@@ -440,6 +560,13 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        PCommon.SetSound(getApplicationContext(), false);
     }
 
     @Override
@@ -596,32 +723,34 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void ShowBooks()
+    private void ShowBooks(final Context context)
     {
         try
         {
-            final int installStatus = _s.GetInstallStatus(getApplicationContext());
+            final int installStatus = _s.GetInstallStatus(context);
             if (installStatus < 1) return;
 
-            final AlertDialog builder = new AlertDialog.Builder(this).create();                     // R.style.DialogStyleKaki
-            final ScrollView sv = new ScrollView(this);
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+            final String bbnm = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
+
+            final AlertDialog builderBook = new AlertDialog.Builder(context).create();
+            final LayoutInflater inflater = getLayoutInflater();
+
+            final ScrollView sv = new ScrollView(context);
             sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
 
-            final LinearLayout llBooks = new LinearLayout(this);
+            final ArrayList<BibleRefBO> lstRef =_s.GetListAllBookByName(bbnm);
+            final LinearLayout llBooks = new LinearLayout(context);
             llBooks.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
             llBooks.setOrientation(LinearLayout.VERTICAL);
             llBooks.setPadding(0, 15, 0, 15);
 
-            final Typeface typeface = PCommon.GetTypeface(this);
-            final int fontSize = PCommon.GetFontSize(this);
+            final AlertDialog builderChapter = new AlertDialog.Builder(context).create();             //, R.style.DialogStyleKaki
+            final View vwSvSelection = inflater.inflate(R.layout.fragment_selection_items, (ViewGroup) findViewById(R.id.svSelection));
 
-            TextView tvBook;
-            final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            final ArrayList<BibleRefBO> lstRef =_s.GetListAllBookByName(bbName);
-
-            final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
-            final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi_chapter, (ViewGroup) findViewById(R.id.svLanguages));
+            final AlertDialog builderLanguages = new AlertDialog.Builder(context).create();
+            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
 
             int bNumber;
             String refText;
@@ -636,7 +765,7 @@ public class MainActivity extends AppCompatActivity
                 refNr = String.format(Locale.US, "%2d", bNumber);
                 refText = PCommon.ConcaT(refNr, ": ", ref.bName, " (", ref.bsName, ")");
 
-                tvBook = new TextView(this);
+                final TextView tvBook = new TextView(context);
                 tvBook.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 tvBook.setPadding(10, 15, 10, 15);
                 tvBook.setText( refText );
@@ -660,31 +789,40 @@ public class MainActivity extends AppCompatActivity
                                     PCommon.ShowToast(view.getContext(), R.string.toastBookNotInstalled, Toast.LENGTH_SHORT);
                                     return;
                                 }
-                                final String[] title = ((TextView)view).getText().toString().substring(3).split("\\(");
-                                final String msg = PCommon.ConcaT(getString(R.string.mnuBook), ": ", title[0]);
+                                final String[] titleArr = ((TextView)view).getText().toString().substring(3).split("\\(");
+                                final String title = PCommon.ConcaT(getString(R.string.mnuBook), ": ", titleArr[0]);
 
-                                PCommon.SelectBibleLanguageMultiChapter(builderLanguages, view.getContext(), vllLanguages, msg, "", true, false, chapterMax);
-                                builderLanguages.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                PCommon.SelectItem(builderChapter, view.getContext(), vwSvSelection, title, R.string.tvChapter, "", true, chapterMax, false);
+                                builderChapter.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                     @Override
                                     public void onDismiss(DialogInterface dialogInterface) {
-                                        final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-                                        if (bbname.equals("")) return;
-                                        final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
-                                        final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1"));
-                                        final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
-                                        MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery, 1);
+                                        PCommon.SelectBibleLanguageMulti(builderLanguages, view.getContext(), vllLanguages, title, "", true, false);
+                                        builderLanguages.setOnDismissListener(new DialogInterface.OnDismissListener()
+                                        {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialogInterface)
+                                            {
+                                                final String bbName = PCommon.GetPrefBibleName(context);
+                                                final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
+                                                if (bbname.equals("")) return;
+                                                final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
+                                                final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1"));
+                                                final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
+                                                MainActivity.Tab.AddTab(view.getContext(), "S", tbbName, fullQuery);
+                                            }
+                                        });
+                                        builderLanguages.show();
                                     }
                                 });
-                                builderLanguages.show();
+                                builderChapter.show();
                             }
                             catch (Exception ex)
                             {
-                                if (PCommon._isDebugVersion)
-                                    PCommon.LogR(view.getContext(), ex);
+                                if (PCommon._isDebugVersion) PCommon.LogR(view.getContext(), ex);
                             }
                             finally
                             {
-                                builder.dismiss();
+                                builderBook.dismiss();
                             }
                         }
                     });
@@ -694,6 +832,9 @@ public class MainActivity extends AppCompatActivity
                     if (!shouldWarn) shouldWarn = true;
                     tvBook.setEnabled( false );
                 }
+                //TODO FAB: slow GetDrawable
+                tvBook.setFocusable(true);
+                tvBook.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvBook.setTypeface(typeface); }
@@ -703,7 +844,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             final Typeface tfTitle = Typeface.defaultFromStyle(Typeface.BOLD);
-            final TextView tvNT = new TextView(this);
+            final TextView tvNT = new TextView(context);
             tvNT.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
             tvNT.setPadding(10, 20, 10, 20);
             tvNT.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -712,7 +853,7 @@ public class MainActivity extends AppCompatActivity
             tvNT.setTypeface( tfTitle );
             llBooks.addView(tvNT, 39);
 
-            final TextView tvOT = new TextView(this);
+            final TextView tvOT = new TextView(context);
             tvOT.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
             tvOT.setPadding(10, 20, 10, 20);
             tvOT.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -723,7 +864,7 @@ public class MainActivity extends AppCompatActivity
 
             if (shouldWarn)
             {
-                final TextView tvWarn = new TextView(this);
+                final TextView tvWarn = new TextView(context);
                 tvWarn.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 tvWarn.setPadding(10, 10, 10, 20);
                 tvWarn.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -733,14 +874,14 @@ public class MainActivity extends AppCompatActivity
             }
             sv.addView(llBooks);
 
-            builder.setTitle(R.string.mnuBooks);
-            builder.setCancelable(true);
-            builder.setView(sv);
-            builder.show();
+            builderBook.setTitle(R.string.mnuBooks);
+            builderBook.setCancelable(true);
+            builderBook.setView(sv);
+            builderBook.show();
         }
         catch (Exception ex)
         {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
     }
 
@@ -816,6 +957,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvPrbl.setFocusable(true);
+                tvPrbl.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvPrbl.setTypeface(typeface); }
@@ -859,6 +1002,11 @@ public class MainActivity extends AppCompatActivity
 
             for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
+                if (_isUiTelevision && artRef.equalsIgnoreCase("ART26"))
+                {
+                    nr++;
+                    continue;
+                }
                 if (nr == 2 || nr == 9 )
                 {
                     TextView tvSep = new TextView(this);
@@ -907,6 +1055,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvArt.setFocusable(true);
+                tvArt.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvArt.setTypeface(typeface); }
@@ -1040,6 +1190,8 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 if (planExist) tvPlan.setEnabled(false);
+                tvPlan.setFocusable(true);
+                tvPlan.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvPlan.setTypeface(typeface); }
@@ -1083,7 +1235,6 @@ public class MainActivity extends AppCompatActivity
                 {
                     idx = 0;
                     @SuppressWarnings("UnusedAssignment") String plan = null;
-                    TextView tvStatus;
 
                     for (String planToFind : this.getResources().getStringArray(R.array.PLAN_ARRAY))
                     {
@@ -1124,18 +1275,11 @@ public class MainActivity extends AppCompatActivity
                                     }
                                 }
                             });
-                            tvPlan.setOnLongClickListener(new View.OnLongClickListener()
-                            {
-                                @Override
-                                public boolean onLongClick(View view)
-                                {
-                                    ShowPlansMenu(builder, planId);
-                                    return false;
-                                }
-                            });
+                            tvPlan.setFocusable(true);
+                            tvPlan.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                             text = _s.GetPlanCalProgressStatus(planId);
-                            tvStatus = new TextView(this);
+                            final TextView tvStatus = new TextView(this);
                             tvStatus.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                             tvStatus.setPadding(50, 10, 10, 0);
                             //noinspection deprecation
@@ -1171,7 +1315,6 @@ public class MainActivity extends AppCompatActivity
                                     return false;
                                 }
                             });
-
                             //Font
                             if (typeface != null) { tvPlan.setTypeface(typeface); }
                             tvPlan.setTextSize(fontSize);
@@ -1213,6 +1356,9 @@ public class MainActivity extends AppCompatActivity
             final PlanDescBO pd = _s.GetPlanDesc(planId);
             if (pd == null) return;
 
+            final Typeface typeface = PCommon.GetTypeface(this);
+            final int fontSize = PCommon.GetFontSize(this);
+
             final LayoutInflater inflater = this.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_plans_menu, (ViewGroup) this.findViewById(R.id.llPlansMenu));
 
@@ -1226,6 +1372,8 @@ public class MainActivity extends AppCompatActivity
             final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
             //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
+            if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
+            tvPlanTitle.setTextSize(fontSize);
 
             final Button btnDelete = (Button) view.findViewById(R.id.btnDelete);
             btnDelete.setOnClickListener(new View.OnClickListener()
@@ -1306,6 +1454,9 @@ public class MainActivity extends AppCompatActivity
     {
         try
         {
+            final Typeface typeface = PCommon.GetTypeface(this);
+            final int fontSize = PCommon.GetFontSize(this);
+
             //Check PageNumber
             final String bbname = PCommon.GetPrefBibleName(this);
             final int planCalRowCount = _s.GetPlanCalRowCount(bbname, planId);
@@ -1404,7 +1555,7 @@ public class MainActivity extends AppCompatActivity
                 final int defaultVdayCount = 40;
                 final int maxVerses = 2000;
                 final int maxDays = 4444;
-                final GridLayout glPlanCalMeasures = (GridLayout) view.findViewById(R.id.glPlanCalMeasures);
+                final View glPlanCalMeasures = view.findViewById(R.id.glPlanCalMeasures);
                 glPlanCalMeasures.setVisibility(View.VISIBLE);
 
                 final NumberPicker npVerseCount = (NumberPicker) view.findViewById(R.id.npVerseCount);
@@ -1512,6 +1663,14 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
+                final Button btnDelete = (Button) view.findViewById(R.id.btnDelete);
+                btnDelete.setVisibility(View.VISIBLE);
+                btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowPlansMenu(builder, planId);
+                    }
+                });
                 final Button btnBack = (Button) view.findViewById(R.id.btnBack);
                 btnBack.setVisibility(View.VISIBLE);
                 btnBack.setOnClickListener(new View.OnClickListener() {
@@ -1522,6 +1681,11 @@ public class MainActivity extends AppCompatActivity
                         ShowPlan(planId, fpageNumber - 1);
                     }
                 });
+                if (_isUiTelevision) {
+                    btnDelete.setFocusable(true);
+                    btnDelete.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
+                    btnBack.requestFocus();
+                }
                 final Button btnForward = (Button) view.findViewById(R.id.btnForward);
                 btnForward.setVisibility(View.VISIBLE);
                 btnForward.setOnClickListener(new View.OnClickListener() {
@@ -1546,18 +1710,21 @@ public class MainActivity extends AppCompatActivity
                 tvDay = new TextView(this);
                 tvDay.setLayoutParams(PCommon._layoutParamsWrap);
                 tvDay.setPadding(10, 10, 10, 10);
+                PCommon.SetTextAppareance(tvDay, this, R.style.TextAppearance_AppCompat_Subhead);
                 //noinspection deprecation
                 tvDay.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleDt).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvUntil = new TextView(this);
                 tvUntil.setLayoutParams(PCommon._layoutParamsWrap);
                 tvUntil.setPadding(10, 10, 10, 10);
+                PCommon.SetTextAppareance(tvUntil, this, R.style.TextAppearance_AppCompat_Subhead);
                 //noinspection deprecation
                 tvUntil.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleUntil).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvTitleIsRead = new TextView(this);
                 tvTitleIsRead.setLayoutParams(PCommon._layoutParamsWrap);
                 tvTitleIsRead.setPadding(10, 10, 10, 10);
+                PCommon.SetTextAppareance(tvTitleIsRead, this, R.style.TextAppearance_AppCompat_Subhead);
                 //noinspection deprecation
                 tvTitleIsRead.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleIsRead).replaceFirst("\n", "<br><u>"), "</b>")));
 
@@ -1590,6 +1757,8 @@ public class MainActivity extends AppCompatActivity
                     tvDay.setPadding(10, 10, 10, 10);
                     strDay = PCommon.ConcaT(pc.dayNumber, "\n", pc.dayDt);
                     tvDay.setText( strDay );
+                    if (typeface != null) { tvDay.setTypeface(typeface); }
+                    tvDay.setTextSize(fontSize);
                     if (pc.dayNumber == nowDayNumber)
                     {
                         final Typeface tfBold = Typeface.defaultFromStyle(Typeface.BOLD);
@@ -1606,12 +1775,16 @@ public class MainActivity extends AppCompatActivity
                             ShowPlanMenu(builder, planId, dayNumber, fpageNumber);
                         }
                     });
+                    tvDay.setFocusable(true);
+                    tvDay.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                     tvUntil = new TextView(this);
                     tvUntil.setLayoutParams(PCommon._layoutParamsWrap);
                     tvUntil.setPadding(10, 10, 10, 10);
                     strUntil = PCommon.ConcaT(pc.bsNameStart, " ", pc.cNumberStart, ".", pc.vNumberStart, "\n", pc.bsNameEnd, " ", pc.cNumberEnd, ".", pc.vNumberEnd);
                     tvUntil.setText( strUntil );
+                    if (typeface != null) { tvUntil.setTypeface(typeface); }
+                    tvUntil.setTextSize(fontSize);
                     tvUntil.setTag(R.id.tv1, pc.planId);
                     tvUntil.setTag(R.id.tv2, pc.dayNumber);
                     tvUntil.setOnClickListener(new View.OnClickListener() {
@@ -1623,6 +1796,8 @@ public class MainActivity extends AppCompatActivity
                             ShowPlanMenu(builder, planId, dayNumber, fpageNumber);
                         }
                     });
+                    tvUntil.setFocusable(true);
+                    tvUntil.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                     glCal.addView(chkIsRead);
                     glCal.addView(tvDay);
@@ -1652,6 +1827,9 @@ public class MainActivity extends AppCompatActivity
             final PlanDescBO pd = _s.GetPlanDesc(planId);
             if (pd == null) return;
 
+            final Typeface typeface = PCommon.GetTypeface(this);
+            final int fontSize = PCommon.GetFontSize(this);
+
             final LayoutInflater inflater = this.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_plan_menu, (ViewGroup) this.findViewById(R.id.llPlanMenu));
 
@@ -1665,6 +1843,8 @@ public class MainActivity extends AppCompatActivity
             final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
             //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
+            if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
+            tvPlanTitle.setTextSize(fontSize);
 
             final Button btnOpen = (Button) view.findViewById(R.id.btnOpen);
             btnOpen.setOnClickListener(new View.OnClickListener() {
@@ -1744,7 +1924,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void ShowReading()
+    /***
+     * @param markType 2:reading, 1:fav
+     */
+    private void ShowFav(final String markType)
     {
         try
         {
@@ -1761,7 +1944,6 @@ public class MainActivity extends AppCompatActivity
 
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             final int orderBy = 0;          //TODO: it's hardcoded => enum list
-            final String markType = "2";    //TODO: it's hardcoded => enum list
             final ArrayList<VerseBO> lstVerse =_s.SearchNotes(bbName, "", orderBy, markType);
             if (lstVerse.size() == 0)
             {
@@ -1828,6 +2010,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 });
+                tvReading.setFocusable(true);
+                tvReading.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
 
                 //Font
                 if (typeface != null) { tvReading.setTypeface(typeface); }
@@ -1837,7 +2021,7 @@ public class MainActivity extends AppCompatActivity
             }
             sv.addView(llReading);
 
-            builder.setTitle(R.string.mnuReading);
+            builder.setTitle(markType.equalsIgnoreCase("2") ? R.string.mnuReading : R.string.mnuFav);
             builder.setCancelable(true);
             builder.setView(sv);
             builder.show();
@@ -1914,6 +2098,10 @@ public class MainActivity extends AppCompatActivity
                             "");
                 }
             });
+            if (_isUiTelevision) {
+                btnEmail.setFocusable(true);
+                btnEmail.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            }
             llSv.addView(btnEmail);
 
             //---
@@ -2324,6 +2512,362 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             });
+        }
+    }
+
+    private void Slide(final boolean showMnu)
+    {
+        if (slideViewMenu == null) return;
+        if (showMnu)
+        {
+            final int installStatus = _s.GetInstallStatus(getApplicationContext());
+            if (installStatus != 4)
+            {
+                PCommon.ShowToast(getApplicationContext(), R.string.installQuit, Toast.LENGTH_SHORT);
+                return;
+            }
+        }
+
+        final int mnuTvVisibility = showMnu ? View.VISIBLE : View.GONE;
+        final int tabVisibility = showMnu ? View.GONE : View.VISIBLE;
+
+        slideViewMenu.setVisibility(mnuTvVisibility);
+        slideViewTabHandleMain.setVisibility(tabVisibility);
+        slideViewTab.setVisibility(tabVisibility);
+
+        if (showMnu)
+        {
+            slideViewMenuHandle.requestFocus();
+        }
+        else
+        {
+            slideViewTabHandle.requestFocus();
+        }
+    }
+/*
+final TranslateAnimation animate = new TranslateAnimation(
+        0,           // fromXDelta
+        -1 * slideViewMenu.getWidth(),          // toXDelta
+        0,           // fromYDelta
+        0);            // toYDelta
+animate.setDuration(500);
+animate.setFillAfter(true);
+slideViewMenu.startAnimation(animate);
+*/
+
+    /***
+     * Search TV
+     * @param isSearchBible True=Search Bible, False=Search Fav
+     */
+    private void SearchTv(final Context context, @SuppressWarnings("SameParameterValue") final boolean isSearchBible)
+    {
+        //TODO FAB: cancel not working
+        try
+        {
+            final int searchFullQueryLimit = 3;
+            final int installStatus = _s.GetInstallStatus(context);
+            if (installStatus < 1) return;
+
+            final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
+            final AlertDialog builderText = new AlertDialog.Builder(context).create();
+            final LayoutInflater inflater = getLayoutInflater();
+            final View vw = inflater.inflate(R.layout.fragment_search_tv, (ViewGroup) findViewById(R.id.clSearch));
+            final EditText etSearchText = (EditText) vw.findViewById(R.id.etSearchText);
+            final String searchTextHint = PCommon.ConcaT("<i>", getString(isSearchBible ? R.string.searchBibleHint : R.string.searchFavHint, "</i>"));
+            etSearchText.setHint(Html.fromHtml(searchTextHint));
+
+            final NumberPicker npSearchLanguage = (NumberPicker) vw.findViewById(R.id.npSearchLanguage);
+            final String[] npLanguageValues = new String[] { getString(R.string.languageEn), getString(R.string.languageEs), getString(R.string.languageFr), getString(R.string.languageIt) };
+            npSearchLanguage.setDisplayedValues(npLanguageValues);
+            npSearchLanguage.setMinValue(1);
+            npSearchLanguage.setMaxValue(4);
+            npSearchLanguage.setValue(bbname.equalsIgnoreCase("k") ? 1 : bbname.equalsIgnoreCase("v") ? 2 : bbname.equalsIgnoreCase("l") ? 3 : 4);
+            npSearchLanguage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etSearchText.requestFocus();
+                }
+            });
+            final Button btnSearchContinue = (Button) vw.findViewById(R.id.btnSearchContinue);
+            btnSearchContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (etSearchText.getText().toString().length() < searchFullQueryLimit) {
+                        PCommon.ShowToast(v.getContext(), R.string.toastEmpty, Toast.LENGTH_SHORT);
+                        return;
+                    }
+                    builderText.dismiss();
+                }
+            });
+            final Button btnSearchClear = (Button) vw.findViewById(R.id.btnSearchClear);
+            btnSearchClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etSearchText.setText("");
+                    etSearchText.requestFocus();
+                }
+            });
+            builderText.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog)
+                {
+                    try
+                    {
+                       if (isSearchBible)
+                        {
+                            final String bbname = (npSearchLanguage.getValue() == 1) ? "k" : (npSearchLanguage.getValue() == 2) ? "v" : (npSearchLanguage.getValue() == 3) ? "l" : "d";
+                            PCommon.SavePref(etSearchText.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbname);
+                            SearchTvBook(context, etSearchText.getText().toString());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+                    }
+                }
+            });
+            builderText.setTitle(R.string.mnuBooks);
+            builderText.setCancelable(true);
+            builderText.setView(vw);
+            builderText.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+/* else
+{
+
+    final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
+    if (bbname.equals("")) return;
+    //not used: final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
+    final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "0"));
+    final String fullQuery = PCommon.ConcaT(bNumber,
+            cNumber != 0 ? PCommon.ConcaT( " ", cNumber) : "",
+            searchText != null ? PCommon.ConcaT(" ", searchText) : "");
+    MainActivity.Tab.AddTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 1);
+
+    //TODO FAB LATER: redo MainActivity.ShowHideFavClick() in Tab
+    //Set fullQuery in db, save Order in PREF and switch to tab. Here under is a test, please remove the code when done.
+    final int tabCount = MainActivity.Tab.GetTabCount();
+    @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;
+
+    CacheTabBO cacheTabFav = _s.GetCacheTabFav();
+    if (cacheTabFav == null)
+    {
+        isFavShow = false;
+
+        cacheTabFav = new CacheTabBO();
+        cacheTabFav.tabNumber = -1;
+        cacheTabFav.tabType = "F";
+        cacheTabFav.tabTitle = getString(R.string.favHeader);
+
+        _s.SaveCacheTabFav(cacheTabFav);
+    }
+    else
+    {
+        isFavShow = true;
+    }
+
+    isFavShow = !isFavShow;
+    if (isFavShow)
+    {
+        //Show fav tab
+        //############
+        for (int i=tabCount-1; i >= 0; i--)
+        {
+            _s.UpdateCacheId(i, i+1);
+        }
+
+        cacheTabFav.tabNumber = 0;
+        _s.SaveCacheTabFav(cacheTabFav);
+
+        final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.favHeader);
+        tabLayout.addTab(tab, 0);
+        MainActivity.Tab.FullScrollTab(getApplicationContext(), HorizontalScrollView.FOCUS_LEFT);
+    }
+    else
+    {
+        //Remove fav tab
+        //##############
+        MainActivity.Tab.RemoveTabFav(getApplicationContext());
+    }
+} */
+
+    private void SearchTvBook(final Context context, final String searchText)
+    {
+        try
+        {
+            //TODO FAB: rename 'ALL'
+            //TODO FAB: dico
+            final int installStatus = _s.GetInstallStatus(context);
+            if (installStatus < 1) return;
+
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+            final String bbnm = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
+
+            final AlertDialog builderBook = new AlertDialog.Builder(context).create();
+            final LayoutInflater inflater = getLayoutInflater();
+
+            final ScrollView sv = new ScrollView(context);
+            sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+
+            final ArrayList<BibleRefBO> lstRef =_s.GetListAllBookByName(bbnm);
+            final LinearLayout llBooks = new LinearLayout(context);
+            llBooks.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            llBooks.setOrientation(LinearLayout.VERTICAL);
+            llBooks.setPadding(0, 15, 0, 15);
+
+            final AlertDialog builderChapter = new AlertDialog.Builder(context).create();
+            final View vwSvSelection = inflater.inflate(R.layout.fragment_selection_items, (ViewGroup) findViewById(R.id.svSelection));
+
+            int bNumber;
+            String refText;
+            String refNr;
+            boolean isBookExist;
+            int bNumberParam;
+            boolean shouldWarn = false;
+
+            for (BibleRefBO ref : lstRef)
+            {
+                bNumber = ref.bNumber;
+                refNr = String.format(Locale.US, "%2d", bNumber);
+                refText = PCommon.ConcaT(refNr, ": ", ref.bName, " (", ref.bsName, ")");
+
+                final TextView tvBook = new TextView(context);
+                tvBook.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvBook.setPadding(10, 15, 10, 15);
+                tvBook.setText( refText );
+                tvBook.setTag( bNumber );
+
+                bNumberParam = (bNumber != 66) ? bNumber + 1 : 66;
+                isBookExist = (installStatus == 4) || _s.IsBookExist(bNumberParam);
+                if (isBookExist)
+                {
+                    tvBook.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View view) {
+                            try
+                            {
+                                final int bNumber = (int) view.getTag();
+                                final int chapterMax = _s.GetBookChapterMax(bNumber);
+                                if (chapterMax < 1)
+                                {
+                                    PCommon.ShowToast(view.getContext(), R.string.toastBookNotInstalled, Toast.LENGTH_SHORT);
+                                    return;
+                                }
+                                final String[] titleArr = ((TextView)view).getText().toString().substring(3).split("\\(");
+                                final String title = PCommon.ConcaT(getString(R.string.mnuBook), ": ", titleArr[0]);
+
+                                PCommon.SelectItem(builderChapter, view.getContext(), vwSvSelection, title, R.string.tvChapter, "", true, chapterMax, true);
+                                builderChapter.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialogInterface) {
+                                        final String bbName = PCommon.GetPrefBibleName(context);
+                                        final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
+                                        if (bbname.equals("")) return;
+                                        //not used: final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
+                                        final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "0"));
+                                        final String fullQuery = PCommon.ConcaT(bNumber,
+                                                cNumber != 0 ? PCommon.ConcaT( " ", cNumber) : "",
+                                                searchText != null ? PCommon.ConcaT(" ", searchText) : "");
+                                        MainActivity.Tab.AddTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 1);
+                                    }
+                                });
+                                builderChapter.show();
+                            }
+                            catch (Exception ex)
+                            {
+                                if (PCommon._isDebugVersion) PCommon.LogR(view.getContext(), ex);
+                            }
+                            finally
+                            {
+                                builderBook.dismiss();
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    if (!shouldWarn) shouldWarn = true;
+                    tvBook.setEnabled( false );
+                }
+                //TODO FAB: slow GetDrawable
+                tvBook.setFocusable(true);
+                tvBook.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+
+                //Font
+                if (typeface != null) { tvBook.setTypeface(typeface); }
+                tvBook.setTextSize(fontSize);
+
+                llBooks.addView(tvBook);
+            }
+
+            final Typeface tfTitle = Typeface.defaultFromStyle(Typeface.BOLD);
+            final TextView tvNT = new TextView(context);
+            tvNT.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            tvNT.setPadding(10, 20, 10, 20);
+            tvNT.setGravity(Gravity.CENTER_HORIZONTAL);
+            tvNT.setText( R.string.tvBookNT );
+            tvNT.setTextSize(fontSize);
+            tvNT.setTypeface( tfTitle );
+            llBooks.addView(tvNT, 39);
+
+            final TextView tvOT = new TextView(context);
+            tvOT.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            tvOT.setPadding(10, 20, 10, 20);
+            tvOT.setGravity(Gravity.CENTER_HORIZONTAL);
+            tvOT.setText( R.string.tvBookOT );
+            tvOT.setTextSize(fontSize);
+            tvOT.setTypeface( tfTitle );
+            llBooks.addView(tvOT, 0);
+
+            final String refNr0 = String.format(Locale.US, "%2d", 0);
+            final String refText0 = PCommon.ConcaT(refNr0, ": ", context.getString(R.string.itemAll));
+            final TextView tvALL = new TextView(context);
+            tvALL.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            tvALL.setPadding(10, 20, 10, 20);
+            tvALL.setText(refText0);
+            if (typeface != null) { tvALL.setTypeface(typeface); }
+            tvALL.setTextSize(fontSize);
+            //TODO FAB: slow GetDrawable
+            tvALL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String bbName = PCommon.GetPrefBibleName(context);
+                    final String bbname = PCommon.GetPref(v.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
+                    if (bbname.equals("")) return;
+                    MainActivity.Tab.AddTab(v.getContext(), "S", bbname, searchText);
+                    builderBook.dismiss();
+                }
+            });
+            tvALL.setFocusable(true);
+            tvALL.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+            llBooks.addView(tvALL, 0);
+
+            if (shouldWarn)
+            {
+                final TextView tvWarn = new TextView(context);
+                tvWarn.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvWarn.setPadding(10, 10, 10, 20);
+                tvWarn.setGravity(Gravity.CENTER_HORIZONTAL);
+                tvWarn.setText( R.string.tvBookInstall );
+                tvWarn.setTextSize(fontSize);
+                llBooks.addView(tvWarn, 0);
+            }
+            sv.addView(llBooks);
+
+            builderBook.setTitle(R.string.mnuBooks);
+            builderBook.setCancelable(true);
+            builderBook.setView(sv);
+            builderBook.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
     }
 }

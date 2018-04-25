@@ -62,7 +62,7 @@ public class ShareActivity extends AppCompatActivity
 
                     final String bbName = PCommon.GetPrefBibleName(getApplicationContext());
                     final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : (bbName.compareToIgnoreCase("l") == 0) ? "FR" : "EN";
-                    final Button btnLanguage = (Button) findViewById(R.id.btnLanguage);
+                    final Button btnLanguage = (Button) findViewById(R.id.btnLanguageEN);
                     btnLanguage.setText(bbNameLanguage);
                     btnLanguage.setOnClickListener(new View.OnClickListener() {
                         @Override

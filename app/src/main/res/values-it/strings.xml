@@ -15,6 +15,7 @@ Potete tornare nello schermo di acceuil, L\'installazione continuerà. Sarete av
 Intanto, potete leggere la Bibbia in inglese (menu Libri), leggere l\'Aiuto o fare altre cose col vostro apparecchio.\n\n
 Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca dei collocamento aggiornati.\n\n
 ]]></string>
+    <string name="itemAll">TUTTO</string>
     <string name="languageInstalling">Installazione&#8230;</string>
     <string name="languageEnInstalled">Versione installata: EN&#8230;</string>
     <string name="languageEsInstalled">Versioni installate: EN, ES&#8230;</string>
@@ -29,10 +30,11 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuBook">Libro</string>
     <string name="mnuDelete">Eliminare</string>
     <string name="mnuQuit">Chiudere</string>
+    <string name="mnuFav">Favoriti</string>
     <string name="mnuFavClearFilter">Cancellare</string>
     <string name="mnuFavSort">Selezionare</string>
     <string name="mnuHelp">Aiuto</string>
-    <string name="mnuNote">Preferiti</string>
+    <string name="mnuNote">Favoriti</string>
     <string name="mnuNoteFavAdd">Aggiungere ai favoriti</string>
     <string name="mnuNoteReadingAdd">Aggiungere alle letture</string>
     <string name="mnuNoteRemove">Rimuovere dai favoriti/letture</string>
@@ -617,44 +619,41 @@ fermate i vostri peccati e seminate abbondantemente. Seguiamo Gesù, il buono Pa
 <b>1Corinzi 3.17:</b> Se alcuno guasta il tempio di Dio, Iddio guasterà lui; perciocchè il tempio del Signore è santo, il quale siete voi.
 </blockquote>
 <H>Cerca la Bibbia</H>
-<p>
 <b>Sintassi:</b> &lt;libro&gt; <br>
 <b>Sintassi:</b> &lt;libro&gt; &lt;capitolo&gt; <br>
 <b>Sintassi:</b> &lt;libro&gt; &lt;capitolo&gt; &lt;versetto&gt; <br>
 <b>Sintassi:</b> &lt;libro&gt; &lt;expressione&gt; <br>
 <b>Sintassi:</b> &lt;libro&gt; &lt;capitolo&gt; &lt;expressione&gt; <br>
-<b>Sintassi:</b> &lt;expressione&gt;
-</p>
-<br>
+<b>Sintassi:</b> &lt;expressione&gt;<br>
+<br><br>
 <b>Esempi:</b><br>
-<p>• Genesi<br>
-Dare capitolo 1 della Genesi predefinito
-</p>
-<p>• Genesi 1<br>
-Dare capitolo 1 della Genesi
-</p>
-<p>• Genesi 1 5<br>
-Dare il versetto 1.5 della Genesi :)
-</p>
-<p>• Genesi fuoco<br>
-Cerca in Genesi tutte le occorrenze di \'fuoco\'
-</p>
-<p>• Genesi 6 signore<br>
-Cerca in Genesi capitolo 6 tutte le occorrenze di \'signore\'
-</p>
-<p>• Abramo<br>
-Cerca \'Abramo\' in tutta la Bibbia
-</p>
-<p>• Apocalisse caval
-Cerca i cavalli dell\'Apocalisse :)
-</p>
-<p>• 66 babilonia<br>
-Cerca \'babilonia\' nel libro 66 (Apocalisse)
-</p>
-<p>• pietro%chiesa<br>
-cerca nell\'ordine, \'pietro\' e \'chiesa\' in tutta la Bibbia
-</p>
+• Genesi<br>
+Dare capitolo 1 della Genesi predefinito<br>
 <br>
+• Genesi 1<br>
+Dare capitolo 1 della Genesi<br>
+<br>
+• Genesi 1 5<br>
+Dare il versetto 1.5 della Genesi :)<br>
+<br>
+• Genesi fuoco<br>
+Cerca in Genesi tutte le occorrenze di \'fuoco\'<br>
+<br>
+• Genesi 6 signore<br>
+Cerca in Genesi capitolo 6 tutte le occorrenze di \'signore\'<br>
+<br>
+• Abramo<br>
+Cerca \'Abramo\' in tutta la Bibbia<br>
+<br>
+• Apocalisse caval
+Cerca i cavalli dell\'Apocalisse :)<br>
+<br>
+• 66 babilonia<br>
+Cerca \'babilonia\' nel libro 66 (Apocalisse)<br>
+<br>
+• pietro%chiesa<br>
+cerca nell\'ordine, \'pietro\' e \'chiesa\' in tutta la Bibbia<br>
+<br><br>
 <b>Commenti:</b><br>
 - I nomi dei libri sono sensibili alla rompo, selezionate gli nell\'elenco dunque.<br>
 - Aggiungete degli accenti nelle vostre parole se ne hanno:<br>
@@ -688,6 +687,10 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.0</H>
+• Compatibile con Android TV e D-pad<br>
+(Lungo click sul titolo di un tab per chiudere il tab)<br>
+<br>
 <H>2.13</H>
 • Fix: costringi il direzione da sinistra a destra nel widget<br>
 • Barra degli strumenti pieghevole<br>
@@ -757,23 +760,23 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
 Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consultate i loro videi. Attivate i sottotitoli in Youtube.<br><br>
 <br><br>
 <HS>Inglese</HS>
-<p><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></p>
-<p><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></p>
-<p><a href="https://www.youtube.com/user/NoLife127">Jason A</a></p>
-<p><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></p>
-<p><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></p>
-<p><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></p>
-<p><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></p>
+<a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
+<a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
+<a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
+<a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a><br><br>
+<a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a><br><br>
+<a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
+<a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
 <HS>Inglese & Spagnolo</HS>
-<p><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></p>
+<a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
 <HS>Spagnolo & Francese</HS>
-<p><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></p>
+<a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
 <HS>Francese</HS>
-<p><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></p>
-<p><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></p>
+<a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
     <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>

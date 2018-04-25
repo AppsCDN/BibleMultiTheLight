@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSearch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <NumberPicker
+        android:id="@+id/npSearchLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true"
+        android:nextFocusRight="@id/etSearchText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" tools:ignore="RtlCompat"/>
+
+    <EditText
+        android:id="@+id/etSearchText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:focusable="true"
+        android:gravity="top|center_vertical"
+        android:imeOptions="flagNoExtractUi|flagNoFullscreen|actionDone"
+        android:inputType="text|textMultiLine"
+        android:maxLines="3"
+        android:minLines="3"
+        android:nextFocusDown="@id/btnSearchContinue"
+        android:nextFocusUp="@id/npSearchLanguage"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        app:layout_constraintBottom_toBottomOf="@+id/npSearchLanguage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/npSearchLanguage"
+        app:layout_constraintTop_toTopOf="@+id/npSearchLanguage"/>
+
+    <Button
+        android:id="@+id/btnSearchClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:nextFocusRight="@id/btnSearchContinue"
+        android:nextFocusUp="@id/etSearchText"
+        android:padding="5dp"
+        android:text="@string/languageClear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearchContinue"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/npSearchLanguage"
+        app:layout_constraintTop_toBottomOf="@+id/npSearchLanguage"
+        app:layout_constraintVertical_bias="0.0" tools:ignore="RtlCompat"/>
+
+    <Button
+        android:id="@+id/btnSearchContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:nextFocusLeft="@id/btnSearchClear"
+        android:nextFocusUp="@id/etSearchText"
+        android:padding="5dp"
+        android:text="@string/languageContinue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSearchClear"
+        app:layout_constraintTop_toTopOf="@+id/btnSearchClear"
+        app:layout_constraintVertical_bias="0.0"/>
+
+</android.support.constraint.ConstraintLayout>

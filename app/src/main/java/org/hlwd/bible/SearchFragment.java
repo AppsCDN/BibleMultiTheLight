@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -25,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.FilterQueryProvider;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -36,8 +35,9 @@ public class SearchFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     private static View v;
     private static FRAGMENT_TYPE fragmentType;
-    private LinearLayout llBookTitle;
     private Button tvBookTitle;
+    private TextView btnBack;
+    private TextView btnForward;
 
     private SimpleCursorAdapter cursorAdapter;
     private MatrixCursor matrixCursor;
@@ -94,11 +94,9 @@ public class SearchFragment extends Fragment
             v = inflater.inflate(R.layout.fragment_search, container, false);
             setHasOptionsMenu(true);
 
-            llBookTitle = (LinearLayout) v.findViewById(R.id.llBookTitle);
             tvBookTitle = (Button) v.findViewById(R.id.tvBookTitle);
-
-            final Button btnBack = (Button) v.findViewById(R.id.btnBack);
-            final Button btnForward = (Button) v.findViewById(R.id.btnForward);
+            btnBack = (TextView) v.findViewById(R.id.btnBack);
+            btnForward = (TextView) v.findViewById(R.id.btnForward);
             btnBack.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -195,17 +193,13 @@ public class SearchFragment extends Fragment
                     }
                 }
             });
-
-            //ThemeDev
-            final int themeId = PCommon.GetPrefThemeId(getContext());
-            if (themeId == R.style.AppThemeDev)
-            {
-                final int color = Color.WHITE;
-
-                btnBack.setTextColor(color);
-                tvBookTitle.setTextColor(color);
-                btnForward.setTextColor(color);
-            }
+            /*
+            tvBookTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+            */
 
             if (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE)
             {
@@ -1013,8 +1007,7 @@ public class SearchFragment extends Fragment
                         searchFullQuery = query;
 
                         SearchBible(false);
-
-                        mnu_search_item.collapseActionView();                                       //TODO: LEVEL 14! => find solution for level 11
+                        mnu_search_item.collapseActionView();
 
                         return false;
                     }
@@ -1132,6 +1125,7 @@ public class SearchFragment extends Fragment
             layoutManager = (dc <= 1) ? new LinearLayoutManager(_context) : new GridLayoutManager(_context, dc);
         }
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);             //TODO FAB: fixedsize ??
 
         registerForContextMenu(recyclerView);
     }
@@ -1347,9 +1341,11 @@ public class SearchFragment extends Fragment
         }
     }
 
-    private void ShowBookTitle(final boolean show)
+    private void ShowBookTitle(boolean show)
     {
-        llBookTitle.setVisibility(show ? View.VISIBLE : View.GONE);
+        tvBookTitle.setVisibility(show ? View.VISIBLE : View.GONE);
+        btnBack.setVisibility(show ? View.VISIBLE : View.GONE);
+        btnForward.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void SaveRef(final boolean isBook, final boolean isChapter, final boolean isVerse, final int bNumber, final int cNumber, final int vNumber)
@@ -1588,7 +1584,6 @@ public class SearchFragment extends Fragment
 
             @SuppressWarnings("UnusedAssignment") boolean isBook = false,  isChapter = false,  isVerse = false;
             @SuppressWarnings("UnusedAssignment") int     bNumber = 0,     cNumber = 0,        vNumber = 0;
-
             @SuppressWarnings("UnusedAssignment") int wCount = 0;
             final String[] words = searchFullQuery.split("\\s");
             final String patternDigit = "\\d+";

@@ -15,6 +15,7 @@ Usted puede regresar en la pantalla de acceuil, La instalación continuará. Ser
 Entre tanto, usted puede leer la Biblia en inglés (menu Libros), leer la Ayuda o hacer otras cosas con su aparato.\n\n
 Por favor, sea paciente, este proceso largo no se producirá más en el momento de las actualizaciones.\n\n
 ]]></string>
+    <string name="itemAll">TODO</string>
     <string name="languageInstalling">Instalación&#8230;</string>
     <string name="languageEnInstalled">Versión establecida: EN…</string>
     <string name="languageEsInstalled">Versiones establecidas: EN, ES…</string>
@@ -29,6 +30,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuBook">Libro</string>
     <string name="mnuDelete">Eliminar</string>
     <string name="mnuQuit">Cerrar</string>
+    <string name="mnuFav">Favoritos</string>
     <string name="mnuFavClearFilter">Cancelar</string>
     <string name="mnuFavSort">Seleccionar</string>
     <string name="mnuHelp">Ayuda</string>
@@ -615,44 +617,41 @@ No quede en las tinieblas chicos de Dios. Sea bueno con sus hermanos y hermanas,
 <b>1Corintios 3.17:</b> Si alguno violare el templo de Dios, Dios destruirá al tal: porque el templo de Dios, el cual sois vosotros, santo es.
 </blockquote>
 <H>Buscar en la Biblia</H>
-<p>
 <b>Sintaxis:</b> &lt;libro&gt; <br>
 <b>Sintaxis:</b> &lt;libro&gt; &lt;capítulo&gt; <br>
 <b>Sintaxis:</b> &lt;libro&gt; &lt;capítulo&gt; &lt;versículo&gt; <br>
 <b>Sintaxis:</b> &lt;libro&gt; &lt;expresión&gt; <br>
 <b>Sintaxis:</b> &lt;libro&gt; &lt;capítulo&gt; &lt;expresión&gt; <br>
-<b>Sintaxis:</b> &lt;expresión&gt;
-</p>
-<br>
+<b>Sintaxis:</b> &lt;expresión&gt;<br>
+<br><br>
 <b>Ejemplos:</b><br>
-<p>• Génesis<br>
-Dar el capítulo 1 del Génesis predeterminado
-</p>
-<p>• Génesis 1<br>
-Dar el capítulo 1 del Génesis
-</p>
-<p>• Génesis 1 5<br>
-Dar el versículo 1.5 de Génesis :)
-</p>
-<p>• Génesis \'fuego\'<br>
-Buscar en Génesis todas las apariciones de \'fuego\'
-</p>
-<p>• Génesis 6 señor<br>
-Buscar en Génesis capítulo 6 todas las apariciones de \'señor\'
-</p>
-<p>• Abram<br>
-Buscando Abram en la Biblia
-</p>
-<p>• Apocalipsis cabal<br>
-Buscando los caballos del Apocalipsis :)
-</p>
-<p>• 66 babilonia<br>
-Buscando \'babilonia\' en el libro 66 (Apocalipsis)
-</p>
-<p>• pedro%chiesa<br>
-Busca en la orden, \'pedro\' y \'iglesia\' en toda la Biblia
-</p>
+• Génesis<br>
+Dar el capítulo 1 del Génesis predeterminado<br>
 <br>
+• Génesis 1<br>
+Dar el capítulo 1 del Génesis<br>
+<br>
+• Génesis 1 5<br>
+Dar el versículo 1.5 de Génesis :)<br>
+<br>
+• Génesis \'fuego\'<br>
+Buscar en Génesis todas las apariciones de \'fuego\'<br>
+<br>
+• Génesis 6 señor<br>
+Buscar en Génesis capítulo 6 todas las apariciones de \'señor\'<br>
+<br>
+• Abram<br>
+Buscando Abram en la Biblia<br>
+<br>
+• Apocalipsis cabal<br>
+Buscando los caballos del Apocalipsis :)<br>
+<br>
+• 66 babilonia<br>
+Buscando \'babilonia\' en el libro 66 (Apocalipsis)<br>
+<br>
+• pedro%chiesa<br>
+Busca en la orden, \'pedro\' y \'iglesia\' en toda la Biblia<br>
+<br><br>
 <b>Comentarios:</b><br>
 - Los nombres de los libros son fragiles, pues seleccione en la lista.<br>
 - Añada acentos en sus palabras si lo tienen:<br>
@@ -686,6 +685,10 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.0</H>
+• Compatible con Android TV y D-pad<br>
+(Longitud click sobre el título de una pestaña por cerrar la pestaña)<br>
+<br>
 <H>2.13</H>
 • Fix: fuerza la dirección de izquierda a derecha en el widget<br>
 • Barra de herramientas plegable<br>
@@ -755,23 +758,23 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
 Cualesquiera que sean los cristianos (varios pastores) que mire en internet, por favor, consulte sus vídeos. Acelere los subtítulos en Youtube.<br><br>
 <br><br>
 <HS>Inglés</HS>
-<p><a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a></p>
-<p><a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a></p>
-<p><a href="https://www.youtube.com/user/NoLife127">Jason A</a></p>
-<p><a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a></p>
-<p><a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a></p>
-<p><a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a></p>
-<p><a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a></p>
+<a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
+<a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
+<a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
+<a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a><br><br>
+<a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a><br><br>
+<a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
+<a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
 <HS>Inglés & Español</HS>
-<p><a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a></p>
+<a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
 <HS>Español & Francés</HS>
-<p><a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a></p>
+<a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
 <HS>Francés</HS>
-<p><a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a></p>
-<p><a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a></p>
+<a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Las diez vírgenes</string>
     <string name="ART28" tools:ignore="UnusedResources">Marca de la bestia</string>
