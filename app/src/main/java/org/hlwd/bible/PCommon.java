@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
@@ -1258,6 +1259,17 @@ final class PCommon implements IProject
     }
 
     /***
+     * Get install status
+     * @param context
+     * @return
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetInstallStatus(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.INSTALL_STATUS, "1"));
+    }
+
+    /***
      * Is UI Television?
      * @param context
      * @return true/false
@@ -1265,9 +1277,109 @@ final class PCommon implements IProject
     @SuppressWarnings("JavaDoc")
     static boolean IsUiTelevision(final Context context)
     {
-        final UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        boolean isUiTelevision = false;
+        final String logHeader = "org.hlwd.bible: ";
 
-        return uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+        try
+        {
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(context);
+            if (INSTALL_STATUS == 4)
+            {
+                //No check needed
+                final String UI_LAYOUT = PCommon.GetPref(context, APP_PREF_KEY.UI_LAYOUT, "C");
+                isUiTelevision = UI_LAYOUT.equalsIgnoreCase("T");
+                return isUiTelevision;
+            }
+
+            //Checks
+            try
+            {
+                final UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+                final boolean isUiModeTypeTelevision = (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION);
+                System.out.println( PCommon.ConcaT(logHeader, "isUiModeTypeTelevision=", isUiModeTypeTelevision ));
+
+                if (isUiModeTypeTelevision)
+                {
+                    isUiTelevision = true;
+                    PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "T");
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            }
+
+            final PackageManager pm = context.getPackageManager();
+
+            try
+            {
+                if (Build.VERSION.SDK_INT >= 16)
+                {
+                    final boolean hasFeatureTelevision = pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
+                    System.out.println( PCommon.ConcaT(logHeader, "hasFeatureTelevision=", hasFeatureTelevision ));
+                    if (hasFeatureTelevision)
+                    {
+                        isUiTelevision = true;
+                        PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "T");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            }
+
+            try
+            {
+                if (Build.VERSION.SDK_INT >= 21)
+                {
+                    final boolean hasFeatureLeanback = pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+                    System.out.println( PCommon.ConcaT(logHeader, "hasFeatureLeanback=", hasFeatureLeanback ));
+                    if (hasFeatureLeanback)
+                    {
+                        isUiTelevision = true;
+                        PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "T");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            }
+
+            //Default
+            PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "C");
+        }
+        catch (Exception ex)
+        {
+            //TODO FAB: add check isDebug=true... (see TODO in finally)
+            System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+        }
+        finally
+        {
+            //TODO FAB: add check isDebug=true, but there is a bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
+            System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
+        }
+
+        return isUiTelevision;
+    }
+
+    /***
+     * Set UI layout
+     * @param context
+     * @param classicLayoutId
+     * @param tvLayoutId
+     * @return classic or tv layout
+     */
+    @SuppressWarnings("JavaDoc")
+    static int SetUILayout(final Context context, final int classicLayoutId, final int tvLayoutId)
+    {
+        final boolean isUiTelevision = PCommon.IsUiTelevision(context);
+
+        return (isUiTelevision) ? tvLayoutId : classicLayoutId;
     }
 
     /***

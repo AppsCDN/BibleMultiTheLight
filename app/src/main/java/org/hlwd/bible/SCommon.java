@@ -865,11 +865,6 @@ class SCommon
         }
     }
 
-    int GetInstallStatus(final Context context)
-    {
-        return Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.INSTALL_STATUS, "1"));
-    }
-
     /***
      * Get bibleId min
      * @param bbName

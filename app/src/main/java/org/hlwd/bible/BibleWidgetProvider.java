@@ -315,7 +315,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
     {
         try
         {
-            if (INSTALL_STATUS != 4) INSTALL_STATUS = _s.GetInstallStatus(context);
+            if (INSTALL_STATUS != 4) INSTALL_STATUS = PCommon.GetInstallStatus(context);
             switch (INSTALL_STATUS)
             {
                 case 1:

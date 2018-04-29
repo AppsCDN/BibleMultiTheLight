@@ -355,6 +355,11 @@ class DbHelper extends SQLiteOpenHelper
                     PCommon.SavePref(_context, IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
                 }
             }
+            if (oldVersion < 20)    //1..19 => 20
+            {
+                final boolean isUiTelevision = PCommon.IsUiTelevision(_context);
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.UI_LAYOUT, isUiTelevision ? "T" : "C");
+            }
             //Last
             if (oldVersion < _version)    //1..(last-1) => last
             {
@@ -394,6 +399,8 @@ class DbHelper extends SQLiteOpenHelper
 
     private void SetGlobalSettings()
     {
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.UI_LAYOUT, "C");
+
         final boolean isUiTelevision = PCommon.IsUiTelevision(_context);
 
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated

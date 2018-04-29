@@ -923,7 +923,7 @@ public class SearchFragment extends Fragment
             }
             else
             {
-                final int INSTALL_STATUS = _s.GetInstallStatus(_context);
+                final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
                 if (INSTALL_STATUS == 4) menuInflater.inflate(R.menu.menu_art, menu);
 
                 //No search
@@ -1384,7 +1384,7 @@ public class SearchFragment extends Fragment
     {
         try
         {
-            final int INSTALL_STATUS = _s.GetInstallStatus(_context);
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
             switch (INSTALL_STATUS)
             {
                 case 1:

@@ -422,7 +422,7 @@ public class MainActivity extends AppCompatActivity
         {
             getMenuInflater().inflate(R.menu.menu_bible, menu);
 
-            final int INSTALL_STATUS = _s.GetInstallStatus(getApplicationContext());
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
             if (INSTALL_STATUS != 4)
             {
                 menu.findItem(R.id.mnu_prbl).setVisible(false);
@@ -727,7 +727,7 @@ public class MainActivity extends AppCompatActivity
     {
         try
         {
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final Typeface typeface = PCommon.GetTypeface(context);
@@ -2520,7 +2520,7 @@ public class MainActivity extends AppCompatActivity
         if (slideViewMenu == null) return;
         if (showMnu)
         {
-            final int installStatus = _s.GetInstallStatus(getApplicationContext());
+            final int installStatus = PCommon.GetInstallStatus(getApplicationContext());
             if (installStatus != 4)
             {
                 PCommon.ShowToast(getApplicationContext(), R.string.installQuit, Toast.LENGTH_SHORT);
@@ -2565,7 +2565,7 @@ slideViewMenu.startAnimation(animate);
         try
         {
             final int searchFullQueryLimit = 3;
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
@@ -2702,7 +2702,7 @@ slideViewMenu.startAnimation(animate);
         {
             //TODO FAB: rename 'ALL'
             //TODO FAB: dico
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final Typeface typeface = PCommon.GetTypeface(context);
