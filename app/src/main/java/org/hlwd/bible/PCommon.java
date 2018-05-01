@@ -1158,7 +1158,7 @@ final class PCommon implements IProject
             final int fontSize = PCommon.GetFontSize(context);
 
             final LayoutInflater inflater = activity.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
+            final View view = inflater.inflate(PCommon.SetUILayout(context, R.layout.fragment_dialog, R.layout.fragment_dialog_tv), (ViewGroup) activity.findViewById(R.id.llDialog));
 
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
@@ -1282,16 +1282,39 @@ final class PCommon implements IProject
 
         try
         {
-            final int INSTALL_STATUS = PCommon.GetInstallStatus(context);
-            if (INSTALL_STATUS == 4)
-            {
-                //No check needed
-                final String UI_LAYOUT = PCommon.GetPref(context, APP_PREF_KEY.UI_LAYOUT, "C");
-                isUiTelevision = UI_LAYOUT.equalsIgnoreCase("T");
-                return isUiTelevision;
-            }
+            //No check needed
+            final String UI_LAYOUT = PCommon.GetPref(context, APP_PREF_KEY.UI_LAYOUT, "C");
+            isUiTelevision = UI_LAYOUT.equalsIgnoreCase("T");
 
-            //Checks
+            return isUiTelevision;
+        }
+        catch (Exception ex)
+        {
+            //TODO FAB: add check isDebug=true... (see TODO in finally)
+            System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+        }
+        finally
+        {
+            //TODO FAB: add check isDebug=true, but there is a bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
+            System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
+        }
+
+        return isUiTelevision;
+    }
+
+    /***
+     * Detect if it's running on a television
+     * @param context
+     * @return true/false
+     */
+    @SuppressWarnings("JavaDoc")
+    static boolean DetectIsUiTelevision(final Context context)
+    {
+        boolean isUiTelevision = false;
+        final String logHeader = "org.hlwd.bible: ";
+
+        try
+        {
             try
             {
                 final UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
@@ -1307,7 +1330,7 @@ final class PCommon implements IProject
             }
             catch(Exception ex)
             {
-                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+                System.out.println( PCommon.ConcaT(logHeader, "DetectIsUiTelevision (exception)=", ex ));
             }
 
             final PackageManager pm = context.getPackageManager();
@@ -1328,7 +1351,7 @@ final class PCommon implements IProject
             }
             catch (Exception ex)
             {
-                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+                System.out.println( PCommon.ConcaT(logHeader, "DetectIsUiTelevision (exception)=", ex ));
             }
 
             try
@@ -1347,7 +1370,7 @@ final class PCommon implements IProject
             }
             catch (Exception ex)
             {
-                System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+                System.out.println( PCommon.ConcaT(logHeader, "DetectIsUiTelevision (exception)=", ex ));
             }
 
             //Default
@@ -1356,12 +1379,12 @@ final class PCommon implements IProject
         catch (Exception ex)
         {
             //TODO FAB: add check isDebug=true... (see TODO in finally)
-            System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            System.out.println( PCommon.ConcaT(logHeader, "DetectIsUiTelevision (exception)=", ex ));
         }
         finally
         {
             //TODO FAB: add check isDebug=true, but there is a bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
-            System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
+            System.out.println( PCommon.ConcaT(logHeader, "DetectIsUiTelevision=", isUiTelevision ));
         }
 
         return isUiTelevision;

@@ -66,6 +66,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuGroupLayoutDynamic4">Vista por 4 lenguas</string>
     <string name="mnuGroupTheme">Tema</string>
     <string name="mnuGroupTypeface">Tipo de fuente</string>
+    <string name="mnuGroupUiLayout">Interfaz de usuario</string>
     <string name="mnuGroupFontSize">Tamaño de fuente</string>
     <string name="mnuGroupFavSymbol">Favoritos (simbolo)</string>
     <string name="mnuPrbl">Parábolas</string>

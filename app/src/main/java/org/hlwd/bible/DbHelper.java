@@ -401,7 +401,7 @@ class DbHelper extends SQLiteOpenHelper
     {
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.UI_LAYOUT, "C");
 
-        final boolean isUiTelevision = PCommon.IsUiTelevision(_context);
+        final boolean isUiTelevision = PCommon.DetectIsUiTelevision(_context);
 
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);

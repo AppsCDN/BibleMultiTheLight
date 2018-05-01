@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
-            setContentView(R.layout.activity_main);
+            setContentView(PCommon.SetUILayout(getApplicationContext(), R.layout.activity_main, R.layout.activity_main_tv));
 
             slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
             slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity
                 PCommon.SavePref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
 
                 final LayoutInflater inflater = getLayoutInflater();
-                final View view = inflater.inflate(R.layout.fragment_languages, (ViewGroup) findViewById(R.id.llLanguages));
+                final View view = inflater.inflate(PCommon.SetUILayout(getApplicationContext(), R.layout.fragment_languages, R.layout.fragment_languages_tv), (ViewGroup) findViewById(R.id.llLanguages));
                 final String msg = getString(R.string.mnuLanguage);
                 final String desc = "";
                 final AlertDialog builder = new AlertDialog.Builder(MainActivity.this).create();
@@ -750,7 +750,7 @@ public class MainActivity extends AppCompatActivity
             final View vwSvSelection = inflater.inflate(R.layout.fragment_selection_items, (ViewGroup) findViewById(R.id.svSelection));
 
             final AlertDialog builderLanguages = new AlertDialog.Builder(context).create();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(context, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             int bNumber;
             String refText;
@@ -909,7 +909,7 @@ public class MainActivity extends AppCompatActivity
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
             final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             for (String prblRef : this.getResources().getStringArray(R.array.PRBL_ARRAY))
             {
@@ -1360,7 +1360,7 @@ public class MainActivity extends AppCompatActivity
             final int fontSize = PCommon.GetFontSize(this);
 
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_plans_menu, (ViewGroup) this.findViewById(R.id.llPlansMenu));
+            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plans_menu, R.layout.fragment_plans_menu_tv), (ViewGroup) this.findViewById(R.id.llPlansMenu));
 
             final AlertDialog builder = new AlertDialog.Builder(this).create();
             builder.setCancelable(true);
@@ -1526,7 +1526,7 @@ public class MainActivity extends AppCompatActivity
 
             //Dialog
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_plan, (ViewGroup) this.findViewById(R.id.llPlan));
+            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plan, R.layout.fragment_plan_tv), (ViewGroup) this.findViewById(R.id.llPlan));
 
             final int planRefResId = PCommon.GetResId(getApplicationContext(), planRef);
             final String builderTitle = PCommon.ConcaT(getString(R.string.mnuPlan), ": ", getString(planRefResId));
@@ -1831,7 +1831,7 @@ public class MainActivity extends AppCompatActivity
             final int fontSize = PCommon.GetFontSize(this);
 
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_plan_menu, (ViewGroup) this.findViewById(R.id.llPlanMenu));
+            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plan_menu, R.layout.fragment_plan_menu_tv), (ViewGroup) this.findViewById(R.id.llPlanMenu));
 
             final AlertDialog builder = new AlertDialog.Builder(this).create();
             builder.setCancelable(true);
@@ -1863,7 +1863,7 @@ public class MainActivity extends AppCompatActivity
 
                             final AlertDialog builderLanguages = new AlertDialog.Builder(view.getContext()).create();             //, R.style.DialogStyleKaki
                             final LayoutInflater inflater = getLayoutInflater();
-                            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+                            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(view.getContext(), R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
                             final String msg = getString(R.string.mnuPlanReading);
                             PCommon.SelectBibleLanguageMulti(builderLanguages, view.getContext(), vllLanguages, msg, "", true, false);
                             builderLanguages.setOnDismissListener(new DialogInterface.OnDismissListener()
@@ -1957,7 +1957,7 @@ public class MainActivity extends AppCompatActivity
 
             final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
             final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             for (VerseBO verse : lstVerse)
             {

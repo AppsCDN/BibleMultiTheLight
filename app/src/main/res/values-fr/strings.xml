@@ -66,6 +66,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuGroupLayoutDynamic4">Affichage pour 4 langues</string>
     <string name="mnuGroupTheme">Thème</string>
     <string name="mnuGroupTypeface">Police</string>
+    <string name="mnuGroupUiLayout">Interface utilisateur</string>
     <string name="mnuGroupFontSize">Taille de la police</string>
     <string name="mnuGroupFavSymbol">Favoris (symbole)</string>
     <string name="mnuPrbl">Paraboles</string>

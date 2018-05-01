@@ -11,6 +11,15 @@
 
     <PreferenceCategory android:title="@string/mnuGroupLayoutDynamicTitle">
         <ListPreference
+            android:title="@string/mnuGroupUiLayout"
+            android:key="UI_LAYOUT"
+            android:entries="@array/UI_LAYOUT_ARRAY"
+            android:entryValues="@array/UI_LAYOUT_VALUES_ARRAY"
+            android:defaultValue="@string/mnuUiLayoutDefault"
+            android:persistent="true"
+        />
+
+        <ListPreference
             android:title="@string/mnuGroupTheme"
             android:key="THEME_NAME"
             android:entries="@array/THEME_ARRAY"
