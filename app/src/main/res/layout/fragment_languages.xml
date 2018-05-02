@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/llLanguages"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:rowCount="2"
-            android:columnCount="2"
-            android:padding="5dp"
-            android:gravity="center_horizontal">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llLanguages"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center_horizontal">
 
     <Button
         android:id="@+id/btnLanguageEN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:padding="5dp"
         android:text="@string/languageEn"
-        android:paddingBottom="10dp"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/btnLanguageES"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageES"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/languageEs"
-        android:paddingBottom="10dp"
-        />
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:padding="5dp" android:text="@string/languageEs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnLanguageEN"
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageEN"
+        tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageFR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:padding="5dp"
         android:text="@string/languageFr"
-        android:paddingBottom="10dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnLanguageEN"
+        app:layout_constraintTop_toBottomOf="@+id/btnLanguageEN"
+        tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageIT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/focus_button"
+        android:focusable="true"
+        android:padding="5dp"
         android:text="@string/languageIt"
-        android:paddingBottom="10dp"
-        />
+        app:layout_constraintStart_toStartOf="@+id/btnLanguageES"
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageFR"
+        tools:ignore="RtlCompat"/>
 
-</GridLayout>
+</android.support.constraint.ConstraintLayout>

@@ -11,7 +11,7 @@
     <string name="installMsg"><![CDATA[
 Les Bibles sont installées dans l\'ordre suivant: anglais, espagnol, français, italien.\n\n
 Selon l\'appareil, l\'installation peut être longue.\n\n
-Vous pouvez retourner dans l\'écran d\'acceuil, L\'installation continuera. Vous serez averti par des notifications lorsque ce sera terminé.\n\n
+Vous pouvez retourner dans l\'écran d\'acceuil, l\'installation continuera. Vous serez averti par des notifications lorsque ce sera terminé.\n\n
 Entre-temps, vous pouvez lire la Bible en anglais (menu Livres), lire l\'Aide ou faire d\'autres choses avec votre appareil.\n\n
 S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des mises à jour.\n\n
 ]]></string>
@@ -187,6 +187,11 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
         <item>Clair</item>
         <!--<item>Clair et bleu</item>-->
         <item>Foncé</item>
+    </string-array>
+
+    <string-array name="UI_LAYOUT_ARRAY">
+        <item>Smartphone, Tablette</item>
+        <item>Télévision</item>
     </string-array>
 
     <string name="PLAN_OT">Ancien Testament</string>
@@ -693,6 +698,13 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.1</H>
+• Compatible avec les Android set-top box via 2 interfaces utilisateur (menu Paramètres):<br>
+- Smartphone, tablette<br>
+- Télévision: pour Android TV, Android set-top box, tablettes, smarphones en mode paysage.<br>
+Destiné aux télévisions, il y un large bord autour du texte pour l\'overscan.<br>
+• Ajout d\'un bouton Gitlab (menu Contact)<br>
+<br>
 <H>3.0</H>
 • Compatible avec Android TV et D-pad<br>
 (Long click sur le titre d\'un onglet pour fermer l\'onglet)<br>

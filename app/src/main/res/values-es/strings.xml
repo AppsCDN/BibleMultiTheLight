@@ -11,8 +11,8 @@
     <string name="installMsg"><![CDATA[
 La Biblia está instalada en la orden siguiente: inglés, español, francés, italiano.\n\n
 Según el aparato, la instalación puede ser larga.\n\n
-Usted puede regresar en la pantalla de acceuil, La instalación continuará. Serás advertido por notificaciones cuando esto se acabará.\n\n
-Entre tanto, usted puede leer la Biblia en inglés (menu Libros), leer la Ayuda o hacer otras cosas con su aparato.\n\n
+Usted puede regresar en la pantalla de acceuil, la instalación continuará. Serás advertido por notificaciones cuando esto se acabará.\n\n
+Entre tanto, usted puede leer la Biblia en inglés (menú Libros), leer la Ayuda o hacer otras cosas con su aparato.\n\n
 Por favor, sea paciente, este proceso largo no se producirá más en el momento de las actualizaciones.\n\n
 ]]></string>
     <string name="itemAll">TODO</string>
@@ -23,7 +23,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="languageClear">Cancelar</string>
     <string name="languageContinue">Continuar</string>
     <string name="logErr">Errore: %s</string>
-    <string name="mnuAbout">A proposito / Contacto</string>
+    <string name="mnuAbout">A propósito / Contacto</string>
     <string name="mnuAddTab">Añadir pestaña</string>
     <string name="mnuArticles">Artículos</string>
     <string name="mnuBooks">Libros</string>
@@ -187,6 +187,11 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
         <item>Claro</item>
         <!--<item>Claro y azul</item>-->
         <item>Oscuro</item>
+    </string-array>
+
+    <string-array name="UI_LAYOUT_ARRAY">
+        <item>Smartphone, Tableta</item>
+        <item>Televisión</item>
     </string-array>
 
     <string name="PLAN_OT">Viejo Testamento</string>
@@ -686,6 +691,13 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.1</H>
+• Compatible con los Android set-top box vía 2 interfaces usuario (menú Parámetros):<br>
+- Smartphone, tableta<br>
+- Televisión: para Android TV, Android set-top box, tabletas, smarphones en modo paisaje.<br>
+Destinado a las televisiones, él ello un ancho bordo alrededor del texto por el overscan.<br>
+• Añadido de un botón Gitlab (menú Contacto)<br>
+<br>
 <H>3.0</H>
 • Compatible con Android TV y D-pad<br>
 (Longitud click sobre el título de una pestaña por cerrar la pestaña)<br>

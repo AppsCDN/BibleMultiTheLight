@@ -11,7 +11,7 @@
     <string name="installMsg"><![CDATA[
 Le Bibbie sono installate nel seguente ordine: inglese, spagnolo, francese, italiano.\n\n
 Secondo l\'apparecchio, l\'installazione può essere lunga.\n\n
-Potete tornare nello schermo di acceuil, L\'installazione continuerà. Sarete avvertiti dalle notificazioni quando questo sarà finito.\n\n
+Potete tornare nello schermo di acceuil, l\'installazione continuerà. Sarete avvertiti dalle notificazioni quando questo sarà finito.\n\n
 Intanto, potete leggere la Bibbia in inglese (menu Libri), leggere l\'Aiuto o fare altre cose col vostro apparecchio.\n\n
 Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca dei collocamento aggiornati.\n\n
 ]]></string>
@@ -187,6 +187,11 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
         <item>Chiaro</item>
         <!--<item>Chiaro e blu</item>-->
         <item>Scuro</item>
+    </string-array>
+
+    <string-array name="UI_LAYOUT_ARRAY">
+        <item>Smartphone, Tablet</item>
+        <item>Televisione</item>
     </string-array>
 
     <string name="PLAN_OT" tools:ignore="UnusedResources">Vecchio Testamento</string>
@@ -688,6 +693,13 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.1</H>
+• Compatibile con Android set-top box attraverso 2 interfaccie utenti (menu Parametri):<br>
+- Smartphone, tablet<br>
+- Televisione: per Android TV, Android set-top box, tablets, smartphones in moda paesaggio.<br>
+Destinato alle televisioni, egli c\'un largo bordo intorno al testo per il overscan.<br>
+• Aggiunta di un bottone Gitlab (menu Contatto)<br>
+<br>
 <H>3.0</H>
 • Compatibile con Android TV e D-pad<br>
 (Lungo click sul titolo di un tab per chiudere il tab)<br>

@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity
     private View slideViewTabHandle;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
-    private boolean _isUiTelevision = false;
 
     @Override
     protected void onStart()
@@ -87,8 +86,7 @@ public class MainActivity extends AppCompatActivity
 
             if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
 
-            _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
-
+            final boolean _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
             setContentView(PCommon.SetUILayout(getApplicationContext(), R.layout.activity_main, R.layout.activity_main_tv));
@@ -1002,7 +1000,7 @@ public class MainActivity extends AppCompatActivity
 
             for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (_isUiTelevision && artRef.equalsIgnoreCase("ART26"))
+                if (artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT, was: _isUiTelevision &&
                 {
                     nr++;
                     continue;
@@ -1360,7 +1358,7 @@ public class MainActivity extends AppCompatActivity
             final int fontSize = PCommon.GetFontSize(this);
 
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plans_menu, R.layout.fragment_plans_menu_tv), (ViewGroup) this.findViewById(R.id.llPlansMenu));
+            final View view = inflater.inflate(R.layout.fragment_plans_menu, (ViewGroup) this.findViewById(R.id.llPlansMenu));
 
             final AlertDialog builder = new AlertDialog.Builder(this).create();
             builder.setCancelable(true);
@@ -1526,7 +1524,7 @@ public class MainActivity extends AppCompatActivity
 
             //Dialog
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plan, R.layout.fragment_plan_tv), (ViewGroup) this.findViewById(R.id.llPlan));
+            final View view = inflater.inflate(R.layout.fragment_plan, (ViewGroup) this.findViewById(R.id.llPlan));
 
             final int planRefResId = PCommon.GetResId(getApplicationContext(), planRef);
             final String builderTitle = PCommon.ConcaT(getString(R.string.mnuPlan), ": ", getString(planRefResId));
@@ -1681,11 +1679,6 @@ public class MainActivity extends AppCompatActivity
                         ShowPlan(planId, fpageNumber - 1);
                     }
                 });
-                if (_isUiTelevision) {
-                    btnDelete.setFocusable(true);
-                    btnDelete.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
-                    btnBack.requestFocus();
-                }
                 final Button btnForward = (Button) view.findViewById(R.id.btnForward);
                 btnForward.setVisibility(View.VISIBLE);
                 btnForward.setOnClickListener(new View.OnClickListener() {
@@ -1803,6 +1796,7 @@ public class MainActivity extends AppCompatActivity
                     glCal.addView(tvDay);
                     glCal.addView(tvUntil);
                 }
+                btnGotoPlans.requestFocus();
             }
 
             builder.show();
@@ -1831,7 +1825,7 @@ public class MainActivity extends AppCompatActivity
             final int fontSize = PCommon.GetFontSize(this);
 
             final LayoutInflater inflater = this.getLayoutInflater();
-            final View view = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_plan_menu, R.layout.fragment_plan_menu_tv), (ViewGroup) this.findViewById(R.id.llPlanMenu));
+            final View view = inflater.inflate(R.layout.fragment_plan_menu, (ViewGroup) this.findViewById(R.id.llPlanMenu));
 
             final AlertDialog builder = new AlertDialog.Builder(this).create();
             builder.setCancelable(true);
@@ -2049,6 +2043,7 @@ public class MainActivity extends AppCompatActivity
 
             final ScrollView sv = new ScrollView(context);
             sv.setSmoothScrollingEnabled(false);
+            sv.setPadding(0,0,0, 10);
 
             final LinearLayout llSv = new LinearLayout(context);
             llSv.setOrientation(LinearLayout.VERTICAL);
@@ -2063,7 +2058,8 @@ public class MainActivity extends AppCompatActivity
             final String app = PCommon.ConcaT("Bible Multi\n", getString(R.string.appName));
             final String devName = PCommon.ConcaT("hot", "little", "white", "dog");
             final String devEmail = PCommon.ConcaT(devName, "@", "gm", "ail", ".", "co", "m");
-            final String aboutContent = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n\n", context.getString(R.string.aboutContactMe), "\n");
+            final String aboutDev = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n");
+            final String aboutContent =  PCommon.ConcaT(context.getString(R.string.aboutContactMe));
 
             //---
             final ImageView iv = new ImageView(context);
@@ -2074,15 +2070,53 @@ public class MainActivity extends AppCompatActivity
             llSv.addView(iv);
 
             //---
+            final TextView tvDev = new TextView(context);
+            tvDev.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            tvDev.setPadding(0, 5, 0, 0);
+            tvDev.setText(aboutDev);
+            tvDev.setGravity(Gravity.CENTER_HORIZONTAL);
+            tvDev.setCursorVisible(true);
+            if (typeface != null) { tvDev.setTypeface(typeface); }
+            tvDev.setTextSize(fontSize);
+            tvDev.setFocusable(false);
+            llSv.addView(tvDev);
+
+            //---
             final TextView tvContent = new TextView(context);
             tvContent.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-            tvContent.setPadding(0, 5, 0, 0);
+            tvContent.setPadding(0, 5, 0, 5);
             tvContent.setText(aboutContent);
             tvContent.setGravity(Gravity.CENTER_HORIZONTAL);
             tvContent.setCursorVisible(true);
             if (typeface != null) { tvContent.setTypeface(typeface); }
             tvContent.setTextSize(fontSize);
+            tvContent.setFocusable(true);
+            tvContent.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
             llSv.addView(tvContent);
+            //---
+            final TextView tv1 = new TextView(context);
+            tv1.setFocusable(false);
+            llSv.addView(tv1);
+
+            //---
+            final Button btnGitlab = new Button(context);
+            btnGitlab.setLayoutParams(PCommon._layoutParamsWrap);
+            btnGitlab.setText(R.string.btnGitlab);
+            btnGitlab.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View vw)
+                {
+                    PCommon.OpenUrl(vw.getContext(), "https://gitlab.com/hotlittlewhitedog/BibleMultiTheLight/issues");
+                }
+            });
+            btnGitlab.setFocusable(true);
+            btnGitlab.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            llSv.addView(btnGitlab);
+
+            //---
+            final TextView tv2 = new TextView(context);
+            tv2.setFocusable(false);
+            llSv.addView(tv2);
 
             //---
             final Button btnEmail = new Button(context);
@@ -2098,10 +2132,8 @@ public class MainActivity extends AppCompatActivity
                             "");
                 }
             });
-            if (_isUiTelevision) {
-                btnEmail.setFocusable(true);
-                btnEmail.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
-            }
+            btnEmail.setFocusable(true);
+            btnEmail.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
             llSv.addView(btnEmail);
 
             //---

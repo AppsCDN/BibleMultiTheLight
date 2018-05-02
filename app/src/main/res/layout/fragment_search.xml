@@ -22,8 +22,9 @@
         android:text="@string/btnBack"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toStartOf="@+id/tvBookTitle"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ButtonStyle,RtlSymmetry"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ButtonStyle,RtlCompat,RtlSymmetry"/>
 
     <Button
         android:id="@+id/tvBookTitle"
@@ -60,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/tvBookTitle" app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ButtonStyle,RtlSymmetry"/>
+        tools:ignore="ButtonStyle,RtlCompat,RtlSymmetry"/>
 
     <!-- Search -->
     <android.support.v7.widget.RecyclerView

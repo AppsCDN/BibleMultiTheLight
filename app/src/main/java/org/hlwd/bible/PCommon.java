@@ -19,6 +19,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -798,9 +799,16 @@ final class PCommon implements IProject
      */
     static void CopyTextToClipboard(final Context context, @SuppressWarnings("SameParameterValue") final String label, final String text)
     {
-        final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(label, text);
-        clipboard.setPrimaryClip(clip);
+        try
+        {
+            final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText(label, text);
+            clipboard.setPrimaryClip(clip);
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
     }
 
     /***
@@ -814,7 +822,7 @@ final class PCommon implements IProject
     {
         try
         {
-            Intent intent = new Intent(Intent.ACTION_SEND);
+            final Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_EMAIL  , toList);
             intent.putExtra(Intent.EXTRA_SUBJECT, (subject == null) ? "" : subject);
@@ -869,6 +877,27 @@ final class PCommon implements IProject
             else
             {
                 PCommon.ShowToast(context, R.string.toastNoAppsToShare, Toast.LENGTH_LONG);
+            }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Open url
+     * @param context   Context
+     * @param url       Url
+     */
+    static void OpenUrl(final Context context, @SuppressWarnings("SameParameterValue") final String url)
+    {
+        try
+        {
+            final Uri webpage = Uri.parse(url);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+            if (intent.resolveActivity(context.getPackageManager()) != null) {
+                context.startActivity(intent);
             }
         }
         catch (Exception ex)
@@ -1158,7 +1187,7 @@ final class PCommon implements IProject
             final int fontSize = PCommon.GetFontSize(context);
 
             final LayoutInflater inflater = activity.getLayoutInflater();
-            final View view = inflater.inflate(PCommon.SetUILayout(context, R.layout.fragment_dialog, R.layout.fragment_dialog_tv), (ViewGroup) activity.findViewById(R.id.llDialog));
+            final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
 
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
@@ -1285,8 +1314,6 @@ final class PCommon implements IProject
             //No check needed
             final String UI_LAYOUT = PCommon.GetPref(context, APP_PREF_KEY.UI_LAYOUT, "C");
             isUiTelevision = UI_LAYOUT.equalsIgnoreCase("T");
-
-            return isUiTelevision;
         }
         catch (Exception ex)
         {
@@ -1318,6 +1345,7 @@ final class PCommon implements IProject
             try
             {
                 final UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+                //noinspection ConstantConditions
                 final boolean isUiModeTypeTelevision = (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION);
                 System.out.println( PCommon.ConcaT(logHeader, "isUiModeTypeTelevision=", isUiModeTypeTelevision ));
 
@@ -1416,6 +1444,7 @@ final class PCommon implements IProject
         try
         {
             final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            //noinspection ConstantConditions
             audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, isSoundOff);
         }
         catch (Exception ex)
