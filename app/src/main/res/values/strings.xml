@@ -66,6 +66,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupLayoutDynamic4">Display for 4 languages</string>
     <string name="mnuGroupTheme">Theme</string>
     <string name="mnuGroupTypeface">Font style</string>
+    <string name="mnuGroupUiLayout">User interface</string>
     <string name="mnuGroupFontSize">Font size</string>
     <string name="mnuGroupFavSymbol">Favorite symbol</string>
     <string name="mnuPrbl">Parables</string>
@@ -189,6 +190,11 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
         <item>Dark</item>
     </string-array>
     <!--<item>Kaki</item>-->
+
+    <string-array name="UI_LAYOUT_ARRAY">
+        <item>Smartphone, Tablet</item>
+        <item>Television</item>
+    </string-array>
 
     <string name="PLAN_OT">Old Testament</string>
     <string name="PLAN_NT">New Testament</string>
@@ -695,6 +701,13 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.1</H>
+• Compatible with Android set-top boxes via 2 user interfaces (Settings menu):<br>
+- Smartphone, tablet<br>
+- Television: for Android TV, Android set-top boxes, tablets, smarphones in landscape.<br>
+Designed for television, there is a large border around the text for overscan.<br>
+• Gitlab button added (Contact menu)<br>
+<br>
 <H>3.0</H>
 • Compatible with Android TV and D-pad<br>
 (Long click on the tab title to close the tab)<br>
@@ -1024,6 +1037,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="bibleDefault" translatable="false">k</string>
     <string name="btnBack" translatable="false"> \u25c1</string>
     <string name="btnForward" translatable="false">\u25b7 </string>
+    <string name="btnGitlab" translatable="false">Gitlab</string>
     <string name="languageFr" translatable="false">Français</string>
     <string name="languageEn" translatable="false">English</string>
     <string name="languageIt" translatable="false">Italiano</string>
@@ -1056,6 +1070,11 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>v</item>
         <item>l</item>
         <item>d</item>
+    </string-array>
+
+    <string-array name="UI_LAYOUT_VALUES_ARRAY" translatable="false">
+        <item>C</item>
+        <item>T</item>
     </string-array>
 
     <string-array name="LAYOUT_COLUMN_VALUES_ARRAY" translatable="false">
@@ -1136,9 +1155,16 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>30</item>
         <item>32</item>
         <item>34</item>
+        <item>36</item>
         <item>38</item>
+        <item>40</item>
         <item>42</item>
+        <item>44</item>
         <item>45</item>
+        <item>46</item>
+        <item>48</item>
+        <item>50</item>
+        <item>52</item>
         <item>54</item>
     </string-array>
 
@@ -1290,6 +1316,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="separatorText" translatable="false" tools:ignore="UnusedResources">--</string>
     <string name="leftHandle" translatable="false">&lt;</string>
     <string name="rightHandle" translatable="false">&gt;</string>
+    <string name="mnuUiLayoutDefault" translatable="false">C</string>
 
     <!-- emoji
     <string name="favSymbolDefault">\u271e</string>

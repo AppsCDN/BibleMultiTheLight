@@ -25,7 +25,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnLanguageES"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat"/>
 
     <Button
@@ -40,7 +41,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnLanguageFR"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnLanguageEN"
-        app:layout_constraintTop_toTopOf="@+id/btnLanguageEN"/>
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageEN"
+        tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageFR"
@@ -54,7 +56,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnLanguageIT"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnLanguageES"
-        app:layout_constraintTop_toTopOf="@+id/btnLanguageES"/>
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageES"
+        tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageIT"
@@ -68,6 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnLanguageFR"
-        app:layout_constraintTop_toTopOf="@+id/btnLanguageFR"/>
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageFR"
+        tools:ignore="RtlCompat"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="0dp"
+    android:orientation="vertical"
     tools:ignore="RtlHardcoded">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,8 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:gravity="center_horizontal"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:layout_marginBottom="16dp">
 
         <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,117 +42,167 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/mnuDelete"
+                android:focusable="true"
+                android:background="@drawable/focus_button"
+                android:nextFocusDown="@id/btnGotoPlans"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:visibility="gone"
                 tools:ignore="RtlCompat"/>
         </android.support.constraint.ConstraintLayout>
 
-        <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/glPlanCalMeasures"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="0dp"
-                    android:columnCount="2"
-                    android:rowCount="3">
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/glPlanCalMeasures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
 
             <TextView
+                android:id="@+id/tvTitleVerseCount"
                 android:layout_width="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/planCalTitleVerseCount"
-                android:textAppearance="@style/TextAppearance.AppCompat"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@+id/npVerseCount"/>
 
             <TextView
+                android:id="@+id/tvTitleDayCount"
                 android:layout_width="wrap_content"
-                android:layout_gravity="top|center_horizontal"
+                android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/planCalTitleDayCount"
-                android:textAppearance="@style/TextAppearance.AppCompat"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@+id/npDayCount"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleVerseCount"/>
+
+            <TextView
+                android:id="@+id/tvTitleStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/planStartDate"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@+id/btnPlanSetStartDt"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleDayCount"/>
 
             <NumberPicker android:id="@+id/npVerseCount"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_gravity="top|center_horizontal"
+                          android:layout_marginTop="8dp"
                           android:focusable="true"
-                          android:nextFocusRight="@id/npDayCount"/>
+                          android:nextFocusRight="@id/npDayCount"
+                          app:layout_constraintEnd_toStartOf="@+id/npDayCount"
+                          app:layout_constraintHorizontal_bias="0.5"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/tvTitleVerseCount"/>
 
             <NumberPicker android:id="@+id/npDayCount"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_gravity="top|center_horizontal"
+                          android:layout_marginStart="8dp"
                           android:focusable="true"
                           android:nextFocusLeft="@id/npVerseCount"
-                          android:nextFocusRight="@id/btnPlanSetStartDt"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:text="@string/planStartDate"
-                android:textAppearance="@style/TextAppearance.AppCompat"/>
+                          android:nextFocusRight="@id/btnPlanSetStartDt"
+                          app:layout_constraintEnd_toStartOf="@+id/btnPlanSetStartDt"
+                          app:layout_constraintHorizontal_bias="0.5"
+                          app:layout_constraintStart_toEndOf="@+id/npVerseCount"
+                          app:layout_constraintTop_toTopOf="@+id/npVerseCount"
+                          tools:ignore="RtlCompat"/>
 
             <Button
                 android:id="@+id/btnPlanSetStartDt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/focus_button"
                 android:focusable="true"
-                android:nextFocusUp="@id/npDayCount"
-                android:nextFocusDown="@id/btnPlanCreate"/>
-        </GridLayout>
+                android:nextFocusDown="@id/btnPlanCreate"
+                android:nextFocusRight="@id/btnPlanCreate"
+                android:nextFocusLeft="@id/npDayCount"
+                app:layout_constraintBottom_toBottomOf="@+id/npDayCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/npDayCount"
+                app:layout_constraintTop_toTopOf="@+id/npDayCount"
+                tools:ignore="RtlCompat"/>
+        </android.support.constraint.ConstraintLayout>
 
         <Button
             android:id="@+id/btnPlanCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"
+            android:nextFocusUp="@id/btnPlanSetStartDt"
+            android:nextFocusLeft="@id/btnPlanSetStartDt"
             android:text="@string/planCreate"
-            android:layout_marginTop="10dp"
-            android:nextFocusUp="@id/btnPlanSetStartDt"/>
+            android:visibility="gone"
+            tools:ignore="RtlCompat"/>
 
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clPlanCal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
 
             <Button android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:text="@string/btnBack"
-                    android:textColor="?attr/colorControlNormal"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
                     android:focusable="true"
+                    android:background="@drawable/focus_button"
                     android:nextFocusRight="@id/btnGotoPlans"
-                    tools:ignore="ButtonStyle"/>
+                    android:text="@string/btnBack"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/btnGotoPlans"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ButtonStyle,RtlCompat"/>
 
             <Button android:id="@+id/btnGotoPlans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mnuPlans"
+                    android:layout_marginTop="8dp"
                     android:focusable="true"
+                    android:background="@drawable/focus_button"
                     android:nextFocusLeft="@string/btnBack"
                     android:nextFocusRight="@id/btnForward"
-                    tools:ignore="ButtonStyle"/>
+                    android:text="@string/mnuPlans"
+                    app:layout_constraintEnd_toStartOf="@+id/btnForward"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btnBack"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ButtonStyle,RtlCompat"/>
 
             <Button android:id="@+id/btnForward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:text="@string/btnForward"
-                    android:textColor="?attr/colorControlNormal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:focusable="true"
+                    android:background="@drawable/focus_button"
                     android:nextFocusLeft="@id/btnGotoPlans"
-                    tools:ignore="ButtonStyle"/>
-        </LinearLayout>
+                    android:nextFocusRight="@id/btnForward"
+                    android:nextFocusUp="@id/btnDelete"
+                    android:text="@string/btnForward"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btnGotoPlans"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ButtonStyle,RtlCompat"/>
+        </android.support.constraint.ConstraintLayout>
 
         <GridLayout
             android:id="@+id/glCal"
@@ -162,8 +213,9 @@
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
             android:layout_gravity="left"
-            android:layout_marginBottom="10dp"
-            tools:ignore="RtlSymmetry">
-        </GridLayout>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            tools:ignore="RtlCompat,RtlSymmetry"/>
     </LinearLayout>
 </ScrollView>

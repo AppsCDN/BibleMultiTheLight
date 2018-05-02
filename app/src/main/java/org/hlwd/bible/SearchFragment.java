@@ -604,7 +604,7 @@ public class SearchFragment extends Fragment
 
             final AlertDialog builder = new AlertDialog.Builder(getContext()).create();
             final LayoutInflater inflater = getActivity().getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) getActivity().findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(getContext(), R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) getActivity().findViewById(R.id.llLanguages));
 
             if ( itemId == R.id.mnu_open_chapter || itemId == R.id.mnu_open_result || itemId == R.id.mnu_open_verse || itemId == R.id.mnu_copy_verse_to_clipboard) {
                 SetLocalBibleName();
@@ -923,7 +923,7 @@ public class SearchFragment extends Fragment
             }
             else
             {
-                final int INSTALL_STATUS = _s.GetInstallStatus(_context);
+                final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
                 if (INSTALL_STATUS == 4) menuInflater.inflate(R.menu.menu_art, menu);
 
                 //No search
@@ -1384,7 +1384,7 @@ public class SearchFragment extends Fragment
     {
         try
         {
-            final int INSTALL_STATUS = _s.GetInstallStatus(_context);
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
             switch (INSTALL_STATUS)
             {
                 case 1:

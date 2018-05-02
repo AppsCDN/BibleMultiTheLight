@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.1,    DbVersion: 20 (8) 2018-05-01
 // PROD: Bible 3.0,    DbVersion: 19 (8) 2018-04-22
 // PROD: Bible 2.13,   DbVersion: 18 (8) 2018-03-04
 // PROD: Bible 2.12,   DbVersion: 17 (8) 2018-02-03
@@ -51,7 +52,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 19;
+    private static final int _version = 20;
 
     //</editor-fold>
 
@@ -354,8 +355,12 @@ class DbHelper extends SQLiteOpenHelper
                     PCommon.SavePref(_context, IProject.APP_PREF_KEY.THEME_NAME, "LIGHT");
                 }
             }
+            if (oldVersion < 20)    //1..19 => 20
+            {
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.UI_LAYOUT, "C");
+            }
             //Last
-            if (oldVersion < _version)    //1..18 => 19
+            if (oldVersion < _version)    //1..(last-1) => last
             {
                 //=== FOR LAST VERSION
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);
@@ -393,7 +398,8 @@ class DbHelper extends SQLiteOpenHelper
 
     private void SetGlobalSettings()
     {
-        final boolean isUiTelevision = PCommon.IsUiTelevision(_context);
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.UI_LAYOUT, "C");
+        final boolean isUiTelevision = PCommon.DetectIsUiTelevision(_context);
 
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
@@ -442,6 +448,7 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("VIEW_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.VIEW_POSITION)));
             System.out.println(PCommon.ConcaT("PLAN_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_ID)));
             System.out.println(PCommon.ConcaT("PLAN_PAGE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_PAGE)));
+            System.out.println(PCommon.ConcaT("UI_LAYOUT:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UI_LAYOUT)));
         }
         catch (Exception ex)
         {

@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:id="@+id/tvMsg"
@@ -28,7 +29,10 @@
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/close"/>
+            android:text="@string/close"
+            android:focusable="true"
+            android:background="@drawable/focus_button"
+            android:layout_marginBottom="16dp"/>
 
     </LinearLayout>
 </ScrollView>

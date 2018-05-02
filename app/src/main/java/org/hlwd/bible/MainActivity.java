@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity
     private View slideViewTabHandle;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
-    private boolean _isUiTelevision = false;
 
     @Override
     protected void onStart()
@@ -87,11 +86,10 @@ public class MainActivity extends AppCompatActivity
 
             if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
 
-            _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
-
+            final boolean _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
-            setContentView(R.layout.activity_main);
+            setContentView(PCommon.SetUILayout(getApplicationContext(), R.layout.activity_main, R.layout.activity_main_tv));
 
             slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
             slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
@@ -370,7 +368,7 @@ public class MainActivity extends AppCompatActivity
                 PCommon.SavePref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
 
                 final LayoutInflater inflater = getLayoutInflater();
-                final View view = inflater.inflate(R.layout.fragment_languages, (ViewGroup) findViewById(R.id.llLanguages));
+                final View view = inflater.inflate(PCommon.SetUILayout(getApplicationContext(), R.layout.fragment_languages, R.layout.fragment_languages_tv), (ViewGroup) findViewById(R.id.llLanguages));
                 final String msg = getString(R.string.mnuLanguage);
                 final String desc = "";
                 final AlertDialog builder = new AlertDialog.Builder(MainActivity.this).create();
@@ -422,7 +420,7 @@ public class MainActivity extends AppCompatActivity
         {
             getMenuInflater().inflate(R.menu.menu_bible, menu);
 
-            final int INSTALL_STATUS = _s.GetInstallStatus(getApplicationContext());
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
             if (INSTALL_STATUS != 4)
             {
                 menu.findItem(R.id.mnu_prbl).setVisible(false);
@@ -727,7 +725,7 @@ public class MainActivity extends AppCompatActivity
     {
         try
         {
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final Typeface typeface = PCommon.GetTypeface(context);
@@ -750,7 +748,7 @@ public class MainActivity extends AppCompatActivity
             final View vwSvSelection = inflater.inflate(R.layout.fragment_selection_items, (ViewGroup) findViewById(R.id.svSelection));
 
             final AlertDialog builderLanguages = new AlertDialog.Builder(context).create();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(context, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             int bNumber;
             String refText;
@@ -909,7 +907,7 @@ public class MainActivity extends AppCompatActivity
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
             final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             for (String prblRef : this.getResources().getStringArray(R.array.PRBL_ARRAY))
             {
@@ -1002,7 +1000,7 @@ public class MainActivity extends AppCompatActivity
 
             for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (_isUiTelevision && artRef.equalsIgnoreCase("ART26"))
+                if (artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT, was: _isUiTelevision &&
                 {
                     nr++;
                     continue;
@@ -1681,11 +1679,6 @@ public class MainActivity extends AppCompatActivity
                         ShowPlan(planId, fpageNumber - 1);
                     }
                 });
-                if (_isUiTelevision) {
-                    btnDelete.setFocusable(true);
-                    btnDelete.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
-                    btnBack.requestFocus();
-                }
                 final Button btnForward = (Button) view.findViewById(R.id.btnForward);
                 btnForward.setVisibility(View.VISIBLE);
                 btnForward.setOnClickListener(new View.OnClickListener() {
@@ -1803,6 +1796,7 @@ public class MainActivity extends AppCompatActivity
                     glCal.addView(tvDay);
                     glCal.addView(tvUntil);
                 }
+                btnGotoPlans.requestFocus();
             }
 
             builder.show();
@@ -1863,7 +1857,7 @@ public class MainActivity extends AppCompatActivity
 
                             final AlertDialog builderLanguages = new AlertDialog.Builder(view.getContext()).create();             //, R.style.DialogStyleKaki
                             final LayoutInflater inflater = getLayoutInflater();
-                            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+                            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(view.getContext(), R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
                             final String msg = getString(R.string.mnuPlanReading);
                             PCommon.SelectBibleLanguageMulti(builderLanguages, view.getContext(), vllLanguages, msg, "", true, false);
                             builderLanguages.setOnDismissListener(new DialogInterface.OnDismissListener()
@@ -1957,7 +1951,7 @@ public class MainActivity extends AppCompatActivity
 
             final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
             final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(R.layout.fragment_languages_multi, (ViewGroup) findViewById(R.id.llLanguages));
+            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
 
             for (VerseBO verse : lstVerse)
             {
@@ -2049,6 +2043,7 @@ public class MainActivity extends AppCompatActivity
 
             final ScrollView sv = new ScrollView(context);
             sv.setSmoothScrollingEnabled(false);
+            sv.setPadding(0,0,0, 10);
 
             final LinearLayout llSv = new LinearLayout(context);
             llSv.setOrientation(LinearLayout.VERTICAL);
@@ -2063,7 +2058,8 @@ public class MainActivity extends AppCompatActivity
             final String app = PCommon.ConcaT("Bible Multi\n", getString(R.string.appName));
             final String devName = PCommon.ConcaT("hot", "little", "white", "dog");
             final String devEmail = PCommon.ConcaT(devName, "@", "gm", "ail", ".", "co", "m");
-            final String aboutContent = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n\n", context.getString(R.string.aboutContactMe), "\n");
+            final String aboutDev = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n");
+            final String aboutContent =  PCommon.ConcaT(context.getString(R.string.aboutContactMe));
 
             //---
             final ImageView iv = new ImageView(context);
@@ -2074,15 +2070,53 @@ public class MainActivity extends AppCompatActivity
             llSv.addView(iv);
 
             //---
+            final TextView tvDev = new TextView(context);
+            tvDev.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            tvDev.setPadding(0, 5, 0, 0);
+            tvDev.setText(aboutDev);
+            tvDev.setGravity(Gravity.CENTER_HORIZONTAL);
+            tvDev.setCursorVisible(true);
+            if (typeface != null) { tvDev.setTypeface(typeface); }
+            tvDev.setTextSize(fontSize);
+            tvDev.setFocusable(false);
+            llSv.addView(tvDev);
+
+            //---
             final TextView tvContent = new TextView(context);
             tvContent.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-            tvContent.setPadding(0, 5, 0, 0);
+            tvContent.setPadding(0, 5, 0, 5);
             tvContent.setText(aboutContent);
             tvContent.setGravity(Gravity.CENTER_HORIZONTAL);
             tvContent.setCursorVisible(true);
             if (typeface != null) { tvContent.setTypeface(typeface); }
             tvContent.setTextSize(fontSize);
+            tvContent.setFocusable(true);
+            tvContent.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
             llSv.addView(tvContent);
+            //---
+            final TextView tv1 = new TextView(context);
+            tv1.setFocusable(false);
+            llSv.addView(tv1);
+
+            //---
+            final Button btnGitlab = new Button(context);
+            btnGitlab.setLayoutParams(PCommon._layoutParamsWrap);
+            btnGitlab.setText(R.string.btnGitlab);
+            btnGitlab.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View vw)
+                {
+                    PCommon.OpenUrl(vw.getContext(), "https://gitlab.com/hotlittlewhitedog/BibleMultiTheLight/issues");
+                }
+            });
+            btnGitlab.setFocusable(true);
+            btnGitlab.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            llSv.addView(btnGitlab);
+
+            //---
+            final TextView tv2 = new TextView(context);
+            tv2.setFocusable(false);
+            llSv.addView(tv2);
 
             //---
             final Button btnEmail = new Button(context);
@@ -2098,10 +2132,8 @@ public class MainActivity extends AppCompatActivity
                             "");
                 }
             });
-            if (_isUiTelevision) {
-                btnEmail.setFocusable(true);
-                btnEmail.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
-            }
+            btnEmail.setFocusable(true);
+            btnEmail.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
             llSv.addView(btnEmail);
 
             //---
@@ -2520,7 +2552,7 @@ public class MainActivity extends AppCompatActivity
         if (slideViewMenu == null) return;
         if (showMnu)
         {
-            final int installStatus = _s.GetInstallStatus(getApplicationContext());
+            final int installStatus = PCommon.GetInstallStatus(getApplicationContext());
             if (installStatus != 4)
             {
                 PCommon.ShowToast(getApplicationContext(), R.string.installQuit, Toast.LENGTH_SHORT);
@@ -2565,7 +2597,7 @@ slideViewMenu.startAnimation(animate);
         try
         {
             final int searchFullQueryLimit = 3;
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
@@ -2702,7 +2734,7 @@ slideViewMenu.startAnimation(animate);
         {
             //TODO FAB: rename 'ALL'
             //TODO FAB: dico
-            final int installStatus = _s.GetInstallStatus(context);
+            final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
 
             final Typeface typeface = PCommon.GetTypeface(context);

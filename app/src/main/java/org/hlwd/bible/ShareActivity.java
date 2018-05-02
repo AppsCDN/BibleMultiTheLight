@@ -163,7 +163,7 @@ public class ShareActivity extends AppCompatActivity
     {
         try
         {
-            final int INSTALL_STATUS = _s.GetInstallStatus(context);
+            final int INSTALL_STATUS = PCommon.GetInstallStatus(context);
             switch (INSTALL_STATUS)
             {
                 case 1:

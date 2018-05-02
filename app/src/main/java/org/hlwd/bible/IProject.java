@@ -45,6 +45,8 @@ public interface IProject
 
         PLAN_ID,
 
-        PLAN_PAGE
+        PLAN_PAGE,
+
+        UI_LAYOUT
     }
 }

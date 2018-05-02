@@ -46,5 +46,18 @@ public class PreferencesFragment extends PreferenceFragment
                 }
             });
         }
+
+        final Preference prefUiLayout = findPreference("UI_LAYOUT");
+        if (prefUiLayout != null) {
+            prefUiLayout.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object o) {
+                    final Intent returnIntent = new Intent();
+                    getActivity().setResult(Activity.RESULT_OK, returnIntent);
+
+                    return true;
+                }
+            });
+        }
     }
 }
