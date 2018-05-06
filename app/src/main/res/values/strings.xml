@@ -2,17 +2,17 @@
     <string name="aboutContactMe">If you have any issues or suggestions, please contact me.</string>
     <string name="close">Close</string>
     <string name="btnClose">Close</string>
+    <string name="btnRefresh">REFRESH</string>
     <string name="btnSelect">Select</string>
     <string name="btnTrim">Trim</string>
     <string name="favOrderTitle">Order by?</string>
-    <string name="installStart">Installing&#8230;</string>
     <string name="installQuit">Installing, please wait.</string>
     <string name="installFinish">Installation completed</string>
     <string name="installMsg"><![CDATA[
 The Bibles are installed in the following order: English, Spanish, French, Italian.\n\n
 According to the device, the installation could be long.\n\n
 If you return to your home screen, the installation will continue. You will be informed by the notifications when it will be finished.\n\n
-Meanwhile, you can read the Bible in English (Books menu), read the Help or make other things with your device.\n\n
+Meanwhile, you can read the Bible in English (Books menu), read the Help or make other things with your device.\n
 ]]></string>
     <string name="itemAll">ALL</string>
     <string name="languageInstalling">Installing&#8230;</string>
@@ -81,6 +81,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="searchBibleHint">Search Bible</string><!-- was: book chapter expression -->
     <string name="searchFavHint">Search \u2606</string><!-- should be favHeader -->
     <string name="sendEmail">Email</string>
+    <string name="optionsDisabledInstalling">Some menu options have been disabled during the installation.</string>
     <string name="planCompleted">Completed</string>
     <string name="planCreate">Create</string>
     <string name="planCreating">Creating plan&#8230;</string>
@@ -701,11 +702,13 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.2</H>
+• Installation status<br>
+<br>
 <H>3.1</H>
 • Compatible with Android set-top boxes via 2 user interfaces (Settings menu):<br>
-- Smartphone, tablet<br>
-- Television: for Android TV, Android set-top boxes, tablets, smarphones in landscape.<br>
-Designed for television, there is a large border around the text for overscan.<br>
+1) Smartphone, tablet<br>
+2) Television: for Android TV, Android set-top boxes, tablets, smarphones in landscape. Designed for television, there is a large border around the text for overscan.<br>
 • Gitlab button added (Contact menu)<br>
 <br>
 <H>3.0</H>

@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -50,11 +51,13 @@ public class MainActivity extends AppCompatActivity
 {
     @SuppressLint("StaticFieldLeak")
     private static TabLayout tabLayout;
+    private View llMain;
     private View slideViewMenu;
     private View slideViewMenuHandle;
     private View slideViewTab;
     private View slideViewTabHandleMain;
     private View slideViewTabHandle;
+    private boolean isUiTelevision = false;
     private static boolean isPlanSelectAlreadyWarned = false;
     private SCommon _s = null;
 
@@ -86,18 +89,19 @@ public class MainActivity extends AppCompatActivity
 
             if (PCommon._isDebugVersion) System.out.println("Main: onCreate");
 
-            final boolean _isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
+            isUiTelevision = PCommon.IsUiTelevision(getApplicationContext());
             final int themeId = PCommon.GetPrefThemeId( getApplicationContext() );
             setTheme(themeId);
             setContentView(PCommon.SetUILayout(getApplicationContext(), R.layout.activity_main, R.layout.activity_main_tv));
 
-            slideViewMenu = (_isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
-            slideViewMenuHandle = (_isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
-            slideViewTab = (_isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
-            slideViewTabHandleMain = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
-            slideViewTabHandle = (_isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
+            llMain = findViewById(isUiTelevision ? R.id.slideViewTab : R.id.llMain);
+            slideViewMenu = (isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
+            slideViewMenuHandle = (isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
+            slideViewTab = (isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
+            slideViewTabHandleMain = (isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
+            slideViewTabHandle = (isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
 
-            if (!_isUiTelevision) {
+            if (!isUiTelevision) {
                 final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                 if (toolbar != null) { setSupportActionBar(toolbar); }
             }
@@ -248,6 +252,18 @@ public class MainActivity extends AppCompatActivity
                         ft.replace(R.id.content_frame, frag, Integer.toString(tabId));
                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         ft.commit();
+
+                        if (isUiTelevision)
+                        {
+                            final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
+                            if (INSTALL_STATUS != 4)
+                            {
+                                final int perc = GetInstallStatusPerc();
+                                if (perc < 10) return;
+                                final String contentMsg = GetInstallStatusMsg();
+                                PCommon.ShowToast(getApplicationContext(), contentMsg, Toast.LENGTH_SHORT);
+                            }
+                        }
                     }
                     catch(Exception ex)
                     {
@@ -397,7 +413,7 @@ public class MainActivity extends AppCompatActivity
                         {
                             @Override
                             public void run() {
-                                PCommon.ShowDialog(MainActivity.this, R.string.languageInstalling, R.string.installMsg);
+                                PCommon.ShowDialog(MainActivity.this, R.string.languageInstalling, R.string.installMsg, R.string.optionsDisabledInstalling);
                             }
                         }, 1500);
                     }
@@ -420,13 +436,29 @@ public class MainActivity extends AppCompatActivity
         {
             getMenuInflater().inflate(R.menu.menu_bible, menu);
 
-            final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
-            if (INSTALL_STATUS != 4)
+            if (!isUiTelevision)
             {
-                menu.findItem(R.id.mnu_prbl).setVisible(false);
-                menu.findItem(R.id.mnu_articles).setVisible(false);
-                menu.findItem(R.id.mnu_plans).setVisible(false);
-                menu.findItem(R.id.mnu_group_settings).setVisible(false);
+                final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
+                if (INSTALL_STATUS != 4)
+                {
+                    menu.findItem(R.id.mnu_prbl).setEnabled(false);
+                    menu.findItem(R.id.mnu_articles).setEnabled(false);
+                    menu.findItem(R.id.mnu_plans).setEnabled(false);
+                    menu.findItem(R.id.mnu_group_settings).setEnabled(false);
+
+                    final String contentMsg = GetInstallStatusMsg();
+                    final String btnMsg = getString(R.string.btnRefresh);
+                    final Snackbar snackbar = Snackbar
+                            .make(llMain, contentMsg, Snackbar.LENGTH_LONG)
+                            .setAction(btnMsg, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view)
+                                {
+                                    invalidateOptionsMenu();
+                                }
+                            });
+                    snackbar.show();
+                }
             }
 
             //---
@@ -434,7 +466,7 @@ public class MainActivity extends AppCompatActivity
             final MenuItem showHideFavItem = menu.findItem(R.id.mnu_showhide_fav);
             showHideFavItem.setTitle(isFavToShow ? getString(R.string.mnuShowHideFavShow) : getString(R.string.mnuShowHideFavHide));
 
-/*
+/*WAS IN COMMENT before 3.1
             //---
             final int themeItemId = Integer.parseInt(PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.THEME_ID, PCommon.ConcaT(R.style.AppTheme)));
             final MenuItem themeItem = menu.findItem( themeItemId );
@@ -659,6 +691,30 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection ConstantConditions
         return isFavToShow;
+    }
+
+    /***
+     * Get install status percentage
+     * @return percentage
+     */
+    private int GetInstallStatusPerc()
+    {
+        final int pos = _s.GetBibleIdCount();
+        final int perc = Math.round((pos * 100) / 124408);
+
+        return perc;
+    }
+
+    /***
+     * Get install status msg
+     * @return Content msg
+     */
+    private String GetInstallStatusMsg()
+    {
+        final int perc = GetInstallStatusPerc();
+        final String contentMsg = PCommon.ConcaT(getString(R.string.languageInstalling), " (", perc == 0 ? 1 : perc, "%)");
+
+        return contentMsg;
     }
 
     /***
@@ -1000,7 +1056,7 @@ public class MainActivity extends AppCompatActivity
 
             for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT, was: _isUiTelevision &&
+                if (artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT, was: isUiTelevision &&
                 {
                     nr++;
                     continue;

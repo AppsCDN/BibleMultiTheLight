@@ -2,10 +2,10 @@
     <string name="aboutContactMe">Si vous avez des problèmes ou des suggestions, s\'il vous plaît contactez moi.</string>
     <string name="close">Fermer</string>
     <string name="btnClose">Fermer</string>
+    <string name="btnRefresh">RAFRAICHIR</string>
     <string name="btnSelect">Sélectionner</string>
     <string name="btnTrim">Réduire</string>
     <string name="favOrderTitle">Trier par?</string>
-    <string name="installStart">Installation&#8230;</string>
     <string name="installQuit">Installation&#8230; veuillez patienter.</string>
     <string name="installFinish">Installation terminée</string>
     <string name="installMsg"><![CDATA[
@@ -13,7 +13,7 @@ Les Bibles sont installées dans l\'ordre suivant: anglais, espagnol, français,
 Selon l\'appareil, l\'installation peut être longue.\n\n
 Vous pouvez retourner dans l\'écran d\'acceuil, l\'installation continuera. Vous serez averti par des notifications lorsque ce sera terminé.\n\n
 Entre-temps, vous pouvez lire la Bible en anglais (menu Livres), lire l\'Aide ou faire d\'autres choses avec votre appareil.\n\n
-S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des mises à jour.\n\n
+S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des mises à jour.\n
 ]]></string>
     <string name="itemAll">TOUT</string>
     <string name="languageInstalling">Installation&#8230;</string>
@@ -81,6 +81,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->
     <string name="searchFavHint">Chercher \u2606</string><!-- should be favHeader -->
     <string name="sendEmail">Email</string>
+    <string name="optionsDisabledInstalling">Quelques options du menu ont été désactivées durant l\'installation.</string>
     <string name="planCompleted">Terminé</string>
     <string name="planCreate">Créer</string>
     <string name="planCreating">Création du plan&#8230;</string>
@@ -698,11 +699,13 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.2</H>
+• Statut d\'installation<br>
+<br>
 <H>3.1</H>
 • Compatible avec les Android set-top box via 2 interfaces utilisateur (menu Paramètres):<br>
-- Smartphone, tablette<br>
-- Télévision: pour Android TV, Android set-top box, tablettes, smarphones en mode paysage.<br>
-Destiné aux télévisions, il y un large bord autour du texte pour l\'overscan.<br>
+1) Smartphone, tablette<br>
+2) Télévision: pour Android TV, Android set-top box, tablettes, smarphones en mode paysage. Destiné aux télévisions, il y un large bord autour du texte pour l\'overscan.<br>
 • Ajout d\'un bouton Gitlab (menu Contact)<br>
 <br>
 <H>3.0</H>
