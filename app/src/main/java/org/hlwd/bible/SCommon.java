@@ -910,6 +910,27 @@ class SCommon
     }
 
     /***
+     * Get bibleId count
+     * @return count
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetBibleIdCount()
+    {
+        int count = 0;
+
+        try
+        {
+            count = _dal.GetBibleIdCount();
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return count;
+    }
+
+    /***
      * Get number of chapters in a book
      * @param bNumber
      * @return chapter count

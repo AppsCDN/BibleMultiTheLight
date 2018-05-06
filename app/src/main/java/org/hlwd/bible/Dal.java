@@ -2019,6 +2019,48 @@ class Dal
     }
 
     /***
+     * Get Bible Id count
+     * @return bibleId
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetBibleIdCount()
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        int count = 0;
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT COUNT(*) from bible");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast()) {
+                count = c.getInt(0);
+            }
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null) {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return count;
+    }
+
+
+    /***
      * Get number of chapters in a book
      * @param bbName
      * @param bNumber

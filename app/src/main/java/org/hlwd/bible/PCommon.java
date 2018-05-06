@@ -792,6 +792,18 @@ final class PCommon implements IProject
     }
 
     /***
+     * Show Toast
+     * @param context   Context
+     * @param message   Message
+     * @param duration  Duration (ex: Toast.LENGTH_SHORT...)
+     */
+    static void ShowToast(final Context context, final String message, final int duration)
+    {
+        final Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
+    }
+
+    /***
      * Copy text to clipboard
      * @param context   Context
      * @param label     Label
@@ -1175,10 +1187,10 @@ final class PCommon implements IProject
      * Show simple dialog
      * @param activity
      * @param titleId
-     * @param msgId
+     * @param msgIds
      */
     @SuppressWarnings("JavaDoc")
-    static void ShowDialog(final Activity activity, final int titleId, final int msgId)
+    static void ShowDialog(final Activity activity, final int titleId, final int... msgIds)
     {
         try
         {
@@ -1188,16 +1200,23 @@ final class PCommon implements IProject
 
             final LayoutInflater inflater = activity.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
-
+            final LinearLayout llMsg = (LinearLayout) view.findViewById(R.id.llMsg);
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
             builder.setTitle(titleId);
             builder.setView(view);
 
-            final TextView tvMsg = (TextView) view.findViewById(R.id.tvMsg);
-            tvMsg.setText(msgId);
-            if (typeface != null) { tvMsg.setTypeface(typeface); }
-            tvMsg.setTextSize(fontSize);
+            for (int msgId : msgIds)
+            {
+                final TextView tvMsg = new TextView(context);
+                tvMsg.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvMsg.setText(msgId);
+                if (typeface != null) { tvMsg.setTypeface(typeface); }
+                tvMsg.setTextSize(fontSize);
+                tvMsg.setFocusable(true);
+                tvMsg.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+                llMsg.addView(tvMsg);
+            }
 
             final Button btnClose = (Button) view.findViewById(R.id.btnClose);
             btnClose.setOnClickListener(new View.OnClickListener() {

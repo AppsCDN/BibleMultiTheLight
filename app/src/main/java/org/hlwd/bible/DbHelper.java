@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.2,    DbVersion: 21 (8) 2018-05-05
 // PROD: Bible 3.1,    DbVersion: 20 (8) 2018-05-01
 // PROD: Bible 3.0,    DbVersion: 19 (8) 2018-04-22
 // PROD: Bible 2.13,   DbVersion: 18 (8) 2018-03-04
@@ -52,7 +53,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 20;
+    private static final int _version = 21;
 
     //</editor-fold>
 
@@ -500,16 +501,8 @@ class DbHelper extends SQLiteOpenHelper
                 {
                     try
                     {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                PCommon.ShowToast(_context, R.string.installStart, Toast.LENGTH_LONG);
-                            }
-                        });
-
                         ImportBibleRef();
 
-                        ShowNotification(R.string.languageInstalling);
                         ImportXmlBible("k");
                         ShowNotification(R.string.languageEnInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 1);
@@ -529,8 +522,6 @@ class DbHelper extends SQLiteOpenHelper
 
                         final String bbname = PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "k");
                         PCommon.SavePref(_context, IProject.APP_PREF_KEY.BIBLE_NAME, bbname);
-
-                        ShowNotification(R.string.installFinish);
                     }
                     catch(Exception ex)
                     {
