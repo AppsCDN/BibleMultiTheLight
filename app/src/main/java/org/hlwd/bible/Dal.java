@@ -1377,7 +1377,7 @@ class Dal
     }
 
     /***
-     * Get cache tab
+     * Get cache tab Fav
      */
     CacheTabBO GetCacheTabFav()
     {

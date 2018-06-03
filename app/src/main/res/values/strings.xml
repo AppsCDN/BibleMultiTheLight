@@ -108,6 +108,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
+    <string name="toastEmpty3">Empty (min. 3)!</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
@@ -121,12 +122,15 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tvPlanYourPlans">- Your plans -</string>
     <string name="tvTrad">Order:</string>
 
-    <!-- Fav order Text (to translate) -->
-    <string name="FAV_ORDER0">Mark (reading first)</string>
-    <string name="FAV_ORDER1">Date (recent first)</string>
-    <string name="FAV_ORDER2">Book (order)</string>
+    <string name="tvFavOrder">Order:</string>
+    <string name="favOrder0">Mark (reading first)</string>
+    <string name="favOrder1">Date (recent first)</string>
+    <string name="favOrder2">Book (order)</string>
 
-    <!-- Prbl Text (to translate) -->
+    <string name="favOrder0Short">Mark</string>
+    <string name="favOrder1Short">Date</string>
+    <string name="favOrder2Short">Book</string>
+
     <string name="PRBL1">The Good Shepherd</string>
     <string name="PRBL2">The wheat and the tares (1)</string>
     <string name="PRBL3">The wheat and the tares (2)</string>

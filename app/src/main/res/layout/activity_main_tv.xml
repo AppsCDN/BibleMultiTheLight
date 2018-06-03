@@ -278,9 +278,9 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/focus_search"
                 android:focusable="true"
+                android:gravity="center_vertical"
                 android:nextFocusLeft="@id/slideViewTabHandle"
                 android:nextFocusUp="@id/slideViewTabHandle"
-                android:gravity="center_vertical"
                 android:paddingBottom="4dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
@@ -288,6 +288,25 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="@+id/slideViewTabHandle"
                 app:layout_constraintTop_toBottomOf="@+id/slideViewTabHandle"
+                tools:ignore="InconsistentLayout"/>
+
+            <Button
+                android:id="@+id/slideViewTabFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/focus_search"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:nextFocusLeft="@id/slideViewTabHandle"
+                android:nextFocusUp="@id/slideViewTabSearch"
+                android:paddingBottom="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="4dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintStart_toStartOf="@+id/slideViewTabSearch"
+                app:layout_constraintTop_toBottomOf="@+id/slideViewTabSearch"
                 tools:ignore="InconsistentLayout"/>
         </android.support.constraint.ConstraintLayout>
 

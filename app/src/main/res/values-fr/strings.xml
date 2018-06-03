@@ -107,6 +107,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vide!</string>
+    <string name="toastEmpty3">Vide (min. 3)!</string>
     <string name="toastBookNotInstalled">Livre non installé!</string>
     <string name="toastNoAppsToShare">Aucune applications pour partager!</string>
     <string name="tvBookInstall">(installation&#8230;)</string>
@@ -120,12 +121,15 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvPlanYourPlans">- Vos plans -</string>
     <string name="tvTrad">Ordre:</string>
 
-    <!-- Fav order Text (to translate) -->
-    <string name="FAV_ORDER0">Favori (lecture en premier)</string>
-    <string name="FAV_ORDER1">Date (récent en premier)</string>
-    <string name="FAV_ORDER2">Livre (ordre)</string>
+    <string name="tvFavOrder">Ordre:</string>
+    <string name="favOrder0">Favori (lecture en premier)</string>
+    <string name="favOrder1">Date (récent en premier)</string>
+    <string name="favOrder2">Livre (ordre)</string>
 
-    <!-- Prbl Text (to translate) -->
+    <string name="favOrder0Short">Favori</string>
+    <string name="favOrder1Short">Date</string>
+    <string name="favOrder2Short">Livre</string>
+
     <string name="PRBL1">Le bon berger</string>
     <string name="PRBL2">Le bon grain et l\'ivraie (1)</string>
     <string name="PRBL3">Le bon grain et l\'ivraie (2)</string>

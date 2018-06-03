@@ -107,6 +107,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vuoto!</string>
+    <string name="toastEmpty3">Vuoto (min. 3)!</string>
     <string name="toastBookNotInstalled">Libro non installato!</string>
     <string name="toastNoAppsToShare">Nessune applicazioni per dividere!</string>
     <string name="tvBookInstall">(installazione&#8230;)</string>
@@ -120,12 +121,15 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="tvPlanYourPlans">- Vostri piani -</string>
     <string name="tvTrad">Ordine:</string>
 
-    <!-- Fav order Text (to translate) -->
-    <string name="FAV_ORDER0">Favorito (letture primo)</string>
-    <string name="FAV_ORDER1">Data (recenti primo)</string>
-    <string name="FAV_ORDER2">Libro (ordine)</string>
+    <string name="tvFavOrder">Ordine:</string>
+    <string name="favOrder0">Favorito (letture primo)</string>
+    <string name="favOrder1">Data (recenti primo)</string>
+    <string name="favOrder2">Libro (ordine)</string>
 
-    <!-- Prbl Text (to translate) -->
+    <string name="favOrder0Short">Favorito</string>
+    <string name="favOrder1Short">Data</string>
+    <string name="favOrder2Short">Libro</string>
+
     <string name="PRBL1" tools:ignore="UnusedResources">Il buon pastore</string>
     <string name="PRBL2" tools:ignore="UnusedResources">Il grano e la zizzania (1)</string>
     <string name="PRBL3" tools:ignore="UnusedResources">Il grano e la zizzania (2)</string>

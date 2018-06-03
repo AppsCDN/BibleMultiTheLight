@@ -134,7 +134,7 @@ public class ShareActivity extends AppCompatActivity
                                     }
                                     else
                                     {
-                                        PCommon.ShowToast(getApplicationContext(), R.string.toastEmpty, Toast.LENGTH_SHORT);
+                                        PCommon.ShowToast(getApplicationContext(), R.string.toastEmpty3, Toast.LENGTH_SHORT);
                                     }
                                 }
                             });

@@ -1336,13 +1336,12 @@ final class PCommon implements IProject
         }
         catch (Exception ex)
         {
-            //TODO FAB: add check isDebug=true... (see TODO in finally)
-            System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            if (PCommon._isDebugVersion) System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
         }
         finally
         {
-            //TODO FAB: add check isDebug=true, but there is a bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
-            System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
+            //TODO FAB: bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
+            if (PCommon._isDebugVersion) System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
         }
 
         return isUiTelevision;
