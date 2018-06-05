@@ -797,7 +797,7 @@ final class PCommon implements IProject
      * @param message   Message
      * @param duration  Duration (ex: Toast.LENGTH_SHORT...)
      */
-    static void ShowToast(final Context context, final String message, final int duration)
+    static void ShowToast(final Context context, final String message, @SuppressWarnings("SameParameterValue") final int duration)
     {
         final Toast toast = Toast.makeText(context, message, duration);
         toast.show();
@@ -1326,7 +1326,7 @@ final class PCommon implements IProject
     static boolean IsUiTelevision(final Context context)
     {
         boolean isUiTelevision = false;
-        final String logHeader = "org.hlwd.bible: ";
+        @SuppressWarnings("unused") final String logHeader = "org.hlwd.bible: ";
 
         try
         {

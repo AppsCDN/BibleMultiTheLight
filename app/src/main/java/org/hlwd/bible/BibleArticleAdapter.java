@@ -335,7 +335,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                         {
                             final TextView tvText = (TextView) view;
                             if (tvText == null) return false;
-                            final String content = tvText.getText().toString();
+                            @SuppressWarnings("unused") final String content = tvText.getText().toString();
                             @SuppressWarnings("ConstantConditions") final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
                             if (completeRef == null) return false;
                             final String[] ref = completeRef.split("\\s");
