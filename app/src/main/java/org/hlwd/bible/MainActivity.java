@@ -2364,51 +2364,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         /***
-         * Reload FAV tab
-         * @param context
-         * @param tbbName
-         * @param bNumber
-         * @param cNumber
-         * @param fullQuery
-         * @param vNumber
-         */
-        @SuppressWarnings("JavaDoc")
-        static void ReloadFavTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, @SuppressWarnings("SameParameterValue") final int vNumber)
-        {
-            try
-            {
-                if (tabLayout == null)
-                    return;
-
-                CheckLocalInstance(context);
-
-                //TODO NEXT: hide FAV if visible and show it at the end
-                final int tabNumber = 0;
-                final String bbname = tbbName.substring(0, 1);
-                final int pos = 0;
-                final CacheTabBO t = new CacheTabBO(tabNumber, "F", context.getString(R.string.tabTitleDefault), fullQuery, pos, bbname, false, false, false, bNumber, cNumber, vNumber, tbbName);
-                _s.SaveCacheTab(t);
-
-                final boolean isTab1Exist = Tab.GetTabCount() - 1 >= 1;
-                if (isTab1Exist)
-                {
-                    tabLayout.getTabAt(1).select();
-                }
-                else
-                {
-                    Tab.AddTab(context);
-                    tabLayout.getTabAt(1).select();
-                    Tab.RemoveTabAt(context, 1);
-                }
-                tabLayout.getTabAt(0).select();
-            }
-            catch (Exception ex)
-            {
-                if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
-            }
-        }
-
-        /***
          * Add tab for Open result PRBL | ARTICLE | PLAN | INTENT
          * @param context
          * @param cacheTabType
@@ -2709,6 +2664,43 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /***
+     * Reload FAV tab
+     * @param context
+     * @param tbbName
+     * @param bNumber
+     * @param cNumber
+     * @param fullQuery
+     * @param vNumber
+     */
+    private void ReloadFavTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, @SuppressWarnings("SameParameterValue") final int vNumber)
+    {
+        try
+        {
+            if (tabLayout == null)
+                return;
+
+            CheckLocalInstance(context);
+
+            final int tabNumber = 0;
+            final String bbname = tbbName.substring(0, 1);
+            final int pos = 0;
+            final CacheTabBO t = new CacheTabBO(tabNumber, "F", context.getString(R.string.tabTitleDefault), fullQuery, pos, bbname, false, false, false, bNumber, cNumber, vNumber, tbbName);
+            _s.SaveCacheTab(t);
+
+            final FragmentManager fm = getSupportFragmentManager();
+            final FragmentTransaction ft = fm.beginTransaction();
+            final Fragment frag = new SearchFragment(SearchFragment.FRAGMENT_TYPE.FAV_TYPE);
+            ft.replace(R.id.content_frame, frag, Integer.toString(tabNumber));
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
     private void Slide(final boolean showMnu)
     {
         if (slideViewMenu == null) return;
@@ -2941,8 +2933,6 @@ slideViewMenu.startAnimation(animate);
     }
 } */
 
-
-    //TODO NEXT: bug when it's ALL (no event) for FAV
     private void SearchTvBook(final Context context, final String searchText, final boolean isSearchBible)
     {
         try
@@ -2956,7 +2946,7 @@ slideViewMenu.startAnimation(animate);
                 final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
                 if (bbname.equals("")) return;
                 ShowFav();
-                MainActivity.Tab.ReloadFavTab(context, bbname, 0, 0, searchText, 0);
+                ReloadFavTab(context, bbname, 0, 0, searchText, 0);
                 return;
             }
 
@@ -3037,7 +3027,7 @@ slideViewMenu.startAnimation(animate);
                                         else
                                         {
                                             ShowFav();
-                                            MainActivity.Tab.ReloadFavTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 0);
+                                            ReloadFavTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 0);
                                         }
                                     }
                                 });
@@ -3113,7 +3103,7 @@ slideViewMenu.startAnimation(animate);
                     else
                     {
                         ShowFav();
-                        MainActivity.Tab.ReloadFavTab(v.getContext(), bbname, 0, 0, searchText, 0);
+                        ReloadFavTab(v.getContext(), bbname, 0, 0, searchText, 0);
                     }
                     builderBook.dismiss();
                 }

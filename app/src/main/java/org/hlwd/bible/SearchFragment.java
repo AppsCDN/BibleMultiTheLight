@@ -411,7 +411,7 @@ public class SearchFragment extends Fragment
             }
             else
             {
-                SearchBible(true);  //TODO if empty ???
+                SearchBible(true);
             }
         }
         catch(Exception ex)
@@ -1125,7 +1125,7 @@ public class SearchFragment extends Fragment
             layoutManager = (dc <= 1) ? new LinearLayoutManager(_context) : new GridLayoutManager(_context, dc);
         }
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);             //TODO FAB: fixedsize ??
+        recyclerView.setHasFixedSize(true);
 
         registerForContextMenu(recyclerView);
     }
