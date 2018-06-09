@@ -74,8 +74,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
     <string name="mnuShareVerse">Verse</string>
-    <string name="mnuShowHideFavShow">Show Favorites</string>
-    <string name="mnuShowHideFavHide">Hide Favorites</string>
+    <string name="mnuShowFav">Show Favorites</string>
     <string name="mnuThemeLight">Light</string>
     <string name="mnuTypefaceDefault">Default</string>
     <string name="searchBibleHint">Search Bible</string><!-- was: book chapter expression -->

@@ -74,8 +74,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuShareChapter">Chapitre</string>
     <string name="mnuShareResult">Tout</string>
     <string name="mnuShareVerse">Verset</string>
-    <string name="mnuShowHideFavShow">Montrer Favoris</string>
-    <string name="mnuShowHideFavHide">Cacher Favoris</string>
+    <string name="mnuShowFav">Montrer Favoris</string>
     <string name="mnuThemeLight">Clair</string>
     <string name="mnuTypefaceDefault">Défaut</string>
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->

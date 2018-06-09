@@ -74,8 +74,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuShareChapter">Capitolo</string>
     <string name="mnuShareResult">Tutto</string>
     <string name="mnuShareVerse">Versetto</string>
-    <string name="mnuShowHideFavShow">Mostrare favoriti</string>
-    <string name="mnuShowHideFavHide">Nascondere favoriti</string>
+    <string name="mnuShowFav">Mostrare favoriti</string>
     <string name="mnuThemeLight">Chiaro</string>
     <string name="mnuTypefaceDefault">Predefinito</string>
     <string name="searchBibleHint">Cercare Bibbia</string>

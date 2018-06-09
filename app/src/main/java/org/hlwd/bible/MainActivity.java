@@ -468,38 +468,6 @@ public class MainActivity extends AppCompatActivity
                     snackbar.show();
                 }
             }
-
-            //---
-            final boolean isFavToShow = IsFavToShow();
-            final MenuItem showHideFavItem = menu.findItem(R.id.mnu_showhide_fav);
-            showHideFavItem.setTitle(isFavToShow ? getString(R.string.mnuShowHideFavShow) : getString(R.string.mnuShowHideFavHide));
-
-/*WAS IN COMMENT before 3.1
-            //---
-            final int themeItemId = Integer.parseInt(PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.THEME_ID, PCommon.ConcaT(R.style.AppTheme)));
-            final MenuItem themeItem = menu.findItem( themeItemId );
-            if (themeItem != null) themeItem.setChecked(true);
-
-            //---
-            String BIBLE_NAME = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0 )
-            {
-                BIBLE_NAME = "k";
-            }
-
-            final int bibleItemId = (BIBLE_NAME.compareToIgnoreCase("k") == 0) ? R.ciId.mnu_bible_kjv :
-                    (BIBLE_NAME.compareToIgnoreCase("l") == 0) ? R.ciId.mnu_bible_lsv :
-                    (BIBLE_NAME.compareToIgnoreCase("d") == 0) ? R.ciId.mnu_bible_ddt :
-                    R.ciId.mnu_bible_rv;
-
-            final MenuItem bibleItem = menu.findItem( bibleItemId );
-            if (bibleItem != null) bibleItem.setChecked(true);
-
-            //---
-            int favSymbolId = Integer.parseInt(PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.FAV_SYMBOL_ID, "0"));
-            final MenuItem favSymbolItem = menu.findItem( favSymbolId );
-            if (favSymbolItem != null) favSymbolItem.setChecked(true);
-*/
         }
         catch(Exception ex)
         {
@@ -533,9 +501,9 @@ public class MainActivity extends AppCompatActivity
                     Tab.RemoveCurrentTab(getApplicationContext());
                     return true;
 
-                case R.id.mnu_showhide_fav:
+                case R.id.mnu_show_fav:
 
-                    ShowHideFavClick();
+                    ShowFav();
                     return true;
 
                 case R.id.mnu_plan:
@@ -658,50 +626,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     /***
-     * Fav status (to show or to hide?)
-     * @return True if we will show Fav
-     */
-    private boolean IsFavToShow()
-    {
-        boolean isFavToShow = false;
-
-        try
-        {
-            if (tabLayout == null)
-                throw new Exception("tablayout is null!");
-
-            isFavToShow = false;
-            CacheTabBO cacheTabFav = _s.GetCacheTabFav();
-            if (cacheTabFav == null)
-            {
-                isFavToShow = false;
-
-                cacheTabFav = new CacheTabBO();
-                cacheTabFav.tabNumber = -1;
-                cacheTabFav.tabType = "F";
-                cacheTabFav.tabTitle = getString(R.string.favHeader);
-
-                _s.SaveCacheTabFav(cacheTabFav);
-            }
-            else
-            {
-                isFavToShow = (cacheTabFav.tabNumber >= 0);
-            }
-
-            isFavToShow = !isFavToShow;
-
-            return isFavToShow;
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
-        }
-
-        //noinspection ConstantConditions
-        return isFavToShow;
-    }
-
-    /***
      * Get install status percentage
      * @return percentage
      */
@@ -724,67 +648,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /***
-     * Show or hide Fav
-     * Rem: same code has isFavToShow
-     */
-    private void ShowHideFavClick()
-    {
-        try
-        {
-            if (tabLayout == null) return;
-
-            final int tabCount = tabLayout.getTabCount();
-            @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;
-
-            CacheTabBO cacheTabFav = _s.GetCacheTabFav();
-            if (cacheTabFav == null)
-            {
-                isFavShow = false;
-
-                cacheTabFav = new CacheTabBO();
-                cacheTabFav.tabNumber = -1;
-                cacheTabFav.tabType = "F";
-                cacheTabFav.tabTitle = getString(R.string.favHeader);
-
-                _s.SaveCacheTabFav(cacheTabFav);
-            }
-            else
-            {
-                isFavShow = (cacheTabFav.tabNumber >= 0);
-            }
-
-            isFavShow = !isFavShow;
-            if (isFavShow)
-            {
-                //Show fav tab
-                //############
-                for (int i=tabCount-1; i >= 0; i--)
-                {
-                    _s.UpdateCacheId(i, i+1);
-                }
-
-                cacheTabFav.tabNumber = 0;
-                _s.SaveCacheTabFav(cacheTabFav);
-
-                final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.favHeader);
-                tabLayout.addTab(tab, 0);
-                Tab.FullScrollTab(getApplicationContext(), HorizontalScrollView.FOCUS_LEFT);
-            }
-            else
-            {
-                //Remove fav tab
-                //##############
-                Tab.RemoveTabFav(getApplicationContext());
-            }
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
-        }
-    }
-
-    /***
-     * Show Fav (open Fav or goto it, does not close Fav)
+     * Show Fav (open Fav or goto it)
      */
     private void ShowFav()
     {
@@ -1115,7 +979,7 @@ public class MainActivity extends AppCompatActivity
 
             for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT, was: isUiTelevision &&
+                if (isUiTelevision && artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT
                 {
                     nr++;
                     continue;
@@ -2673,7 +2537,7 @@ public class MainActivity extends AppCompatActivity
      * @param fullQuery
      * @param vNumber
      */
-    private void ReloadFavTab(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, @SuppressWarnings("SameParameterValue") final int vNumber)
+    private void ReloadFavTabTv(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, @SuppressWarnings("SameParameterValue") final int vNumber)
     {
         try
         {
@@ -2946,7 +2810,7 @@ slideViewMenu.startAnimation(animate);
                 final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
                 if (bbname.equals("")) return;
                 ShowFav();
-                ReloadFavTab(context, bbname, 0, 0, searchText, 0);
+                ReloadFavTabTv(context, bbname, 0, 0, searchText, 0);
                 return;
             }
 
@@ -3027,7 +2891,7 @@ slideViewMenu.startAnimation(animate);
                                         else
                                         {
                                             ShowFav();
-                                            ReloadFavTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 0);
+                                            ReloadFavTabTv(view.getContext(), bbname, bNumber, cNumber, fullQuery, 0);
                                         }
                                     }
                                 });
@@ -3103,7 +2967,7 @@ slideViewMenu.startAnimation(animate);
                     else
                     {
                         ShowFav();
-                        ReloadFavTab(v.getContext(), bbname, 0, 0, searchText, 0);
+                        ReloadFavTabTv(v.getContext(), bbname, 0, 0, searchText, 0);
                     }
                     builderBook.dismiss();
                 }
