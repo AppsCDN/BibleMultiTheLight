@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -291,12 +290,10 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         try
         {
             final SectionBO section = _lstSection.get(position);
-            Spanned spanned;
-
             if (section.before != null)
             {
                 @SuppressWarnings("ConstantConditions") final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
-                spanned = Html.fromHtml(section.before);
+                final Spanned spanned = Html.fromHtml(section.before);
                 vwh_tv_before.setVisibility(View.VISIBLE);
                 vwh_tv_before.setText(spanned);
                 vwh_tv_before.setId(section.id);
@@ -304,7 +301,12 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 if (section.before.trim().equalsIgnoreCase("")) vwh_tv_before.setFocusable(false);
                 if (section.before.contains("</a>"))
                 {
-                    vwh_tv_before.setMovementMethod(LinkMovementMethod.getInstance());
+                   vwh_tv_before.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           PCommon.OpenUrl(v.getContext(), vwh_tv_before.getUrls()[0].getURL());
+                       }
+                   });
                 }
             }
 
@@ -320,7 +322,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     vwh_tv_space_text_before.setVisibility(View.VISIBLE);
                 }
                 @SuppressWarnings("ConstantConditions") final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
-                spanned = Html.fromHtml(section.content);
+                final Spanned spanned = Html.fromHtml(section.content);
                 vwh_tv_text.setVisibility(View.VISIBLE);
                 vwh_tv_text.setText(spanned);
                 //noinspection ConstantConditions
@@ -359,7 +361,12 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 if (section.content.trim().equalsIgnoreCase("")) vwh_tv_text.setFocusable(false);
                 if (section.content.contains("</a>"))
                 {
-                    vwh_tv_text.setMovementMethod(LinkMovementMethod.getInstance());
+                    vwh_tv_text.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PCommon.OpenUrl(v.getContext(), vwh_tv_text.getUrls()[0].getURL());
+                        }
+                    });
                 }
             }
 
@@ -369,14 +376,19 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 if (section.after != null)
                 {
                     final TextView vwh_tv_after = viewHolder.tv_after;
-                    spanned = Html.fromHtml(section.after);
+                    final Spanned spanned = Html.fromHtml(section.after);
                     vwh_tv_after.setVisibility(View.VISIBLE);
                     vwh_tv_after.setText(spanned);
                     vwh_tv_after.setId(section.id);
                     vwh_tv_after.setTag(position);
                     if (section.after.contains("</a>"))
                     {
-                        vwh_tv_after.setMovementMethod(LinkMovementMethod.getInstance());
+                        vwh_tv_after.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PCommon.OpenUrl(v.getContext(), vwh_tv_after.getUrls()[0].getURL());
+                            }
+                        });
                     }
                 }
             }

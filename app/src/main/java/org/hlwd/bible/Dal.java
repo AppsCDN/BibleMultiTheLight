@@ -943,18 +943,15 @@ class Dal
             {
                 searchString = PCommon.ConcaT("%", searchString, "%");
 
-                sql = PCommon.ConcaT(sql,
-                        " AND b.vText like ", PCommon.AQ(PCommon.RQ(searchString)));
+                sql = PCommon.ConcaT(sql, " AND b.vText like ", PCommon.AQ(PCommon.RQ(searchString)));
             }
 
             if (markType != null)
             {
-                sql = PCommon.ConcaT(sql,
-                        " AND n.mark=", markType);
+                sql = PCommon.ConcaT(sql, " AND n.mark=", markType);
             }
 
-            sql = PCommon.ConcaT(sql,
-                    " ORDER BY ", orderByClause);
+            sql = PCommon.ConcaT(sql, " ORDER BY ", orderByClause);
 
             c = _db.rawQuery(sql, null);
             c.moveToFirst();
@@ -971,7 +968,6 @@ class Dal
                 verse.cNumber = c.getInt(2);
                 verse.vNumber = c.getInt(3);
                 verse.vText = c.getString(4);
-
                 verse.mark = c.getInt(7);
                 lstVerse.add(verse);
 

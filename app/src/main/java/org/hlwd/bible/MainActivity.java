@@ -977,13 +977,8 @@ public class MainActivity extends AppCompatActivity
             TextView tvArt;
             String text;
 
-            for (String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
+            for (final String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (isUiTelevision && artRef.equalsIgnoreCase("ART26"))       //TODO FAB: solve YT
-                {
-                    nr++;
-                    continue;
-                }
                 if (nr == 2 || nr == 9 )
                 {
                     TextView tvSep = new TextView(this);
@@ -993,7 +988,7 @@ public class MainActivity extends AppCompatActivity
 
                     final View vwSep = new View(this);
                     vwSep.setPadding(20, 0, 20, 0);
-                    vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+                    vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
                     vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
                     llArt.addView(vwSep);
 
@@ -2385,58 +2380,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        static void RemoveTabFav(final Context context)
-        {
-            try
-            {
-                if (PCommon.IsUiTelevision(context))
-                    return;
-
-                if (tabLayout == null)
-                    return;
-
-                CheckLocalInstance(context);
-
-                final CacheTabBO cacheTabFav = _s.GetCacheTabFav();
-                if (cacheTabFav == null) return;
-
-                final int tabNumberToRemove = cacheTabFav.tabNumber;
-                if (tabNumberToRemove < 0) return;
-
-                final int tabCount = tabLayout.getTabCount();
-                if (tabCount <= 1)
-                    return;
-
-                _s.UpdateCacheId(tabNumberToRemove, -1);
-
-                int toTabId;
-                for(int fromTabId = tabNumberToRemove + 1; fromTabId < tabCount; fromTabId++)
-                {
-                    toTabId = fromTabId - 1;
-
-                    _s.UpdateCacheId(fromTabId, toTabId);
-                }
-
-                //Finally
-                tabLayout.removeTabAt(tabNumberToRemove);
-
-/*
-                bug with menu Show/hide
-                tabLayout.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        final int tabSelect = (currentTabNumber == 0) ? 0 : currentTabNumber - 1;
-                        tabLayout.getTabAt( tabSelect ).select();
-                    }
-                });
-*/
-            }
-            catch (Exception ex)
-            {
-                if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
-            }
-        }
-
         private static void CheckLocalInstance(final Context context)
         {
             try
@@ -2528,15 +2471,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /***
-     * Reload FAV tab
-     * @param context
-     * @param tbbName
-     * @param bNumber
-     * @param cNumber
-     * @param fullQuery
-     * @param vNumber
-     */
     private void ReloadFavTabTv(final Context context, final String tbbName, final int bNumber, final int cNumber, final String fullQuery, @SuppressWarnings("SameParameterValue") final int vNumber)
     {
         try
@@ -2691,6 +2625,7 @@ slideViewMenu.startAnimation(animate);
             btnSearchContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    etSearchText.setText(etSearchText.getText().toString().replaceAll("\n", ""));
                     if (etSearchText.getText().toString().length() < searchFullQueryLimit) {
                         PCommon.ShowToast(v.getContext(), R.string.toastEmpty3, Toast.LENGTH_SHORT);
                         return;

@@ -106,9 +106,10 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vide!</string>
-    <string name="toastEmpty3">Vide (min. 3)!</string>
+    <string name="toastEmpty3">Min. 3 caractères!</string>
     <string name="toastBookNotInstalled">Livre non installé!</string>
     <string name="toastNoAppsToShare">Aucune applications pour partager!</string>
+    <string name="toastNoBrowser">Installez un browser.</string>
     <string name="tvBookInstall">(installation&#8230;)</string>
     <string name="tvBookTitle">Livre</string>
     <string name="tvBookOT">- Ancien Testament -</string>
@@ -800,7 +801,8 @@ Quelques chrétiens (plusieurs pasteurs) que je regarde sur internet, s\'il vous
 <br><br>
 <HS>Français</HS>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
-<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
+<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Les dix vierges</string>
     <string name="ART28" tools:ignore="UnusedResources">Marque de la bête</string>

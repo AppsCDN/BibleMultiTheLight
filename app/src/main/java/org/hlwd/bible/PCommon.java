@@ -908,9 +908,12 @@ final class PCommon implements IProject
         {
             final Uri webpage = Uri.parse(url);
             final Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(intent);
+            if (intent.resolveActivity(context.getPackageManager()) == null)
+            {
+                PCommon.ShowToast(context, R.string.toastNoBrowser, Toast.LENGTH_SHORT);
+                return;
             }
+            context.startActivity(intent);
         }
         catch (Exception ex)
         {

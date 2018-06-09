@@ -106,9 +106,10 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vuoto!</string>
-    <string name="toastEmpty3">Vuoto (min. 3)!</string>
+    <string name="toastEmpty3">Min. 3 caratteri!</string>
     <string name="toastBookNotInstalled">Libro non installato!</string>
     <string name="toastNoAppsToShare">Nessune applicazioni per dividere!</string>
+    <string name="toastNoBrowser">Installate un browser.</string>
     <string name="tvBookInstall">(installazione&#8230;)</string>
     <string name="tvBookTitle">Libro</string>
     <string name="tvBookOT">- Vecchio Testamento -</string>
@@ -795,7 +796,8 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <br><br>
 <HS>Francese</HS>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
-<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
+<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
     <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>

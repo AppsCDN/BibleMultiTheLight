@@ -107,9 +107,10 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
-    <string name="toastEmpty3">Empty (min. 3)!</string>
+    <string name="toastEmpty3">Min. 3 characters!</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
+    <string name="toastNoBrowser">Install a browser.</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>
@@ -821,7 +822,8 @@ Some christians (several pastors), I watch on internet, please check their video
 <HS>French</HS>
 <br><br>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
-<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
+<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">The ten virgins</string>
     <string name="ART27_CONTENT" tools:ignore="MissingTranslation,UnusedResources"
