@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.3,    DbVersion: 22 (8) 2018-06-10
 // PROD: Bible 3.2,    DbVersion: 21 (8) 2018-05-05
 // PROD: Bible 3.1,    DbVersion: 20 (8) 2018-05-01
 // PROD: Bible 3.0,    DbVersion: 19 (8) 2018-04-22
@@ -53,7 +54,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 21;
+    private static final int _version = 22;
 
     //</editor-fold>
 
@@ -418,7 +419,7 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FAV_SYMBOL, _context.getString(R.string.favSymbolFavDefault));
-        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_ORDER, 0);
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_ORDER, 1);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.VIEW_POSITION, 0);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.PLAN_ID, -1);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.PLAN_PAGE, -1);

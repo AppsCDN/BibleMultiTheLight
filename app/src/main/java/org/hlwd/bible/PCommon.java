@@ -797,7 +797,7 @@ final class PCommon implements IProject
      * @param message   Message
      * @param duration  Duration (ex: Toast.LENGTH_SHORT...)
      */
-    static void ShowToast(final Context context, final String message, final int duration)
+    static void ShowToast(final Context context, final String message, @SuppressWarnings("SameParameterValue") final int duration)
     {
         final Toast toast = Toast.makeText(context, message, duration);
         toast.show();
@@ -908,9 +908,12 @@ final class PCommon implements IProject
         {
             final Uri webpage = Uri.parse(url);
             final Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                context.startActivity(intent);
+            if (intent.resolveActivity(context.getPackageManager()) == null)
+            {
+                PCommon.ShowToast(context, R.string.toastNoBrowser, Toast.LENGTH_SHORT);
+                return;
             }
+            context.startActivity(intent);
         }
         catch (Exception ex)
         {
@@ -1326,7 +1329,7 @@ final class PCommon implements IProject
     static boolean IsUiTelevision(final Context context)
     {
         boolean isUiTelevision = false;
-        final String logHeader = "org.hlwd.bible: ";
+        @SuppressWarnings("unused") final String logHeader = "org.hlwd.bible: ";
 
         try
         {
@@ -1336,13 +1339,12 @@ final class PCommon implements IProject
         }
         catch (Exception ex)
         {
-            //TODO FAB: add check isDebug=true... (see TODO in finally)
-            System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
+            if (PCommon._isDebugVersion) System.out.println( PCommon.ConcaT(logHeader, "IsUiTelevision (exception)=", ex ));
         }
         finally
         {
-            //TODO FAB: add check isDebug=true, but there is a bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
-            System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
+            //TODO FAB: bug of Scommon dbOpening => to review. Set isDebug=true to get errors when installing app on emulator.
+            if (PCommon._isDebugVersion) System.out.println( PCommon.ConcaT(logHeader, "isUiTelevision=", isUiTelevision ));
         }
 
         return isUiTelevision;

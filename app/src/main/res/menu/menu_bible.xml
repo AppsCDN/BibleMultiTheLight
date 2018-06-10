@@ -12,9 +12,9 @@
         android:title="@string/mnuRemoveTab"
         app:showAsAction="never" />
     <item
-        android:id="@+id/mnu_showhide_fav"
+        android:id="@+id/mnu_show_fav"
         android:orderInCategory="3"
-        android:title=""
+        android:title="@string/mnuShowFav"
         app:showAsAction="never" />
     <item
         android:id="@+id/mnu_plans"

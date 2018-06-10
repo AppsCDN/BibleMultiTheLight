@@ -74,8 +74,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuShareChapter">Capitolo</string>
     <string name="mnuShareResult">Tutto</string>
     <string name="mnuShareVerse">Versetto</string>
-    <string name="mnuShowHideFavShow">Mostrare favoriti</string>
-    <string name="mnuShowHideFavHide">Nascondere favoriti</string>
+    <string name="mnuShowFav">Mostrare favoriti</string>
     <string name="mnuThemeLight">Chiaro</string>
     <string name="mnuTypefaceDefault">Predefinito</string>
     <string name="searchBibleHint">Cercare Bibbia</string>
@@ -107,8 +106,10 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="threadNfoPrefix">biblenfo</string>
     <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vuoto!</string>
+    <string name="toastEmpty3">Min. 3 caratteri!</string>
     <string name="toastBookNotInstalled">Libro non installato!</string>
     <string name="toastNoAppsToShare">Nessune applicazioni per dividere!</string>
+    <string name="toastNoBrowser">Installate un browser.</string>
     <string name="tvBookInstall">(installazione&#8230;)</string>
     <string name="tvBookTitle">Libro</string>
     <string name="tvBookOT">- Vecchio Testamento -</string>
@@ -120,12 +121,15 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="tvPlanYourPlans">- Vostri piani -</string>
     <string name="tvTrad">Ordine:</string>
 
-    <!-- Fav order Text (to translate) -->
-    <string name="FAV_ORDER0">Favorito (letture primo)</string>
-    <string name="FAV_ORDER1">Data (recenti primo)</string>
-    <string name="FAV_ORDER2">Libro (ordine)</string>
+    <string name="tvFavOrder">Ordine:</string>
+    <string name="favOrder0">Favorito (letture primo)</string>
+    <string name="favOrder1">Data (recenti primo)</string>
+    <string name="favOrder2">Libro (ordine)</string>
 
-    <!-- Prbl Text (to translate) -->
+    <string name="favOrder0Short">Favorito</string>
+    <string name="favOrder1Short">Data</string>
+    <string name="favOrder2Short">Libro</string>
+
     <string name="PRBL1" tools:ignore="UnusedResources">Il buon pastore</string>
     <string name="PRBL2" tools:ignore="UnusedResources">Il grano e la zizzania (1)</string>
     <string name="PRBL3" tools:ignore="UnusedResources">Il grano e la zizzania (2)</string>
@@ -694,6 +698,12 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.3</H>
+• Fix: menu<br>
+• Fix: articolo degli Youtubers<br>
+• Fix (TV): ricerca dei Favoriti<br>
+• +1 Youtuber<br>
+<br>
 <H>3.2</H>
 • Statuto di installazione<br>
 <br>
@@ -792,7 +802,8 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <br><br>
 <HS>Francese</HS>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
-<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
+<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
     <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>
