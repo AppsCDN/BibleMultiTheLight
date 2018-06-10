@@ -698,6 +698,12 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.3</H>
+• Fix: menu<br>
+• Fix: articolo degli Youtubers<br>
+• Fix (TV): ricerca dei Favoriti<br>
+• +1 Youtuber<br>
+<br>
 <H>3.2</H>
 • Statuto di installazione<br>
 <br>
