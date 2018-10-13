@@ -992,6 +992,184 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
 <HA/>
 <R>42 6 27 49</R>
 ]]></string>
+    <string name="ART43">Acts 12: Herod and Peter</string>
+    <string name="ART43_CONTENT"><![CDATA[
+<HA/>
+<R>44 12 1 23</R>
+]]></string>
+    <string name="ART44">Born again</string>
+    <string name="ART44_CONTENT"><![CDATA[
+<HA/>
+<R>43 3 1 8</R>
+<R>60 1 23 23</R>
+]]></string>
+    <string name="ART45">Visible acts of faith</string>
+    <string name="ART45_CONTENT"><![CDATA[
+<HA/>
+<R>59 1 22 25</R><br>
+<R>59 2 14 17</R><br>
+<R>52 1 8 9</R>
+]]></string>
+    <string name="ART46">Out!</string>
+    <string name="ART46_CONTENT"><![CDATA[
+<HA/>
+<R>46 6 9 10</R>
+<R>46 15 50 50</R>
+<R>48 5 19 21</R>
+<R>49 5 3 6</R>
+<R>66 21 8 9</R>
+<R>66 22 14 15</R>
+]]></string>
+    <string name="ART47">Earthquake</string>
+    <string name="ART47_CONTENT"><![CDATA[
+<HA/>
+<R>11 19 11 12</R>
+<R>23 29 6 6</R>
+<R>30 1 1 1</R>
+<R>38 14 5 5</R>
+<R>40 24 7 7</R>
+<R>40 27 54 54</R>
+<R>40 28 2 2</R>
+<R>41 13 8 8</R>
+<R>42 21 11 11</R>
+<R>44 16 26 26</R>
+<R>66 6 12 12</R>
+<R>66 8 5 5</R>
+<R>66 11 13 13</R>
+<R>66 11 19 19</R>
+<R>66 16 18 18</R>
+]]></string>
+    <string name="ART48">Vengeance of God</string>
+    <string name="ART48_CONTENT"><![CDATA[
+<HA/>
+<R>2 32 34 34</R>
+<R>5 32 35 35</R>
+<R>6 10 13 13</R>
+<R>19 58 10 10</R>
+<R>19 94 1 1</R>
+<R>20 6 34 34</R>
+<R>23 34 8 8</R>
+<R>23 35 4 4</R>
+<R>23 47 3 3</R>
+<R>23 61 2 2</R>
+<R>24 11 20 20</R>
+<R>24 20 12 12</R>
+<R>24 46 10 10</R>
+<R>24 50 15 15</R>
+<R>24 50 28 28</R>
+<R>24 51 6 6</R>
+<R>26 25 14 14</R>
+<R>26 25 17 17</R>
+<R>29 3 4 4</R>
+<R>29 3 7 7</R>
+<R>33 5 15 15</R>
+<R>42 21 22 22</R>
+<R>45 12 19 19</R>
+<R>45 13 4 4</R>
+<R>52 4 6 6</R>
+<R>58 10 30 30</R>
+<R>66 6 10 10</R>
+]]></string>
+    <string name="ART49">Relationship with others</string>
+    <string name="ART49_CONTENT"><![CDATA[
+<HA/>
+<R>40 24 42 51</R>
+<R>42 12 35 48</R>
+<R>46 5 9 13</R>
+]]></string>
+    <string name="ART50">Them that are without</string>
+    <string name="ART50_CONTENT"><![CDATA[
+<HA/>
+<R>46 5 9 13</R>
+<R>51 4 5 6</R>
+<R>52 4 9 12</R>
+]]></string>
+    <string name="ART51">Hope (1)</string>
+    <string name="ART51_CONTENT"><![CDATA[
+<HA/>
+<R>46 15 3 28</R>
+<R>52 4 13 14</R>
+<R>52 5 8 8</R>
+<R>60 1 3 5</R>
+<R>60 1 13 21</R>
+]]></string>
+    <string name="ART52">Hope (2)</string>
+    <string name="ART52_CONTENT"><![CDATA[
+<HA/>
+<R>18 11 20 20</R>
+<R>18 14 7 7</R>
+<R>18 27 8 8</R>
+<R>19 25 5 5</R>
+<R>19 39 7 7</R>
+<R>19 62 5 5</R>
+<R>19 71 5 5</R>
+<R>19 119 49 49</R>
+<R>20 19 18 18</R>
+<R>20 23 18 18</R>
+<R>22 9 4 4</R>
+<R>23 5 30 30</R>
+<R>24 7 4 4</R>
+<R>24 7 8 8</R>
+<R>24 17 7 7</R>
+<R>24 17 13 13</R>
+<R>24 29 11 11</R>
+<R>33 7 7 7</R>
+<R>43 5 45 45</R>
+<R>44 23 6 6</R>
+<R>45 5 5 5</R>
+<R>45 12 12 12</R>
+<R>45 15 13 13</R>
+<R>46 13 13 13</R>
+<R>48 5 5 5</R>
+<R>49 4 4 4</R>
+<R>52 1 2 3</R>
+<R>53 2 16 17</R>
+<R>54 1 1 2</R>
+<R>54 4 10 10</R>
+<R>54 6 17 17</R>
+<R>56 2 11 14</R>
+<R>58 3 4 6</R>
+<R>62 3 3 3</R>
+]]></string>
+    <string name="ART53">Rapture</string>
+    <string name="ART53_CONTENT"><![CDATA[
+<HA/>
+<R>12 2 9 12</R>
+<R>46 15 47 54</R>
+<R>52 4 13 18</R>
+<R>52 5 1 28</R>
+<R>58 11 5 5</R>
+]]></string>
+    <string name="ART54">Idolatry</string>
+    <string name="ART54_CONTENT"><![CDATA[
+<HA/>
+<R>2 20 4 4</R>
+<R>3 26 1 1</R>
+<R>5 4 15 19</R>
+<R>5 4 23 23</R>
+<R>5 5 8 8</R>
+<R>5 27 15 15</R>
+<R>7 17 3 4</R>
+<R>7 18 14 14</R>
+<R>14 33 7 7</R>
+<R>23 48 5 5</R>
+<R>24 10 14 15</R>
+<R>24 51 17 18</R>
+<R>35 2 18 19</R>
+]]></string>
+    <string name="ART55">Infallible proofs</string>
+    <string name="ART55_CONTENT"><![CDATA[
+<HA/>
+<R>40 27 62 66</R>
+<R>40 28 1 7</R>
+<R>42 24 1 8</R>
+<R>43 20 1 10</R>
+<R>44 1 1 8</R>
+<R>44 2 1 11</R>
+<R>44 10 38 41</R>
+<R>43 20 29 29</R>
+<R>43 3 36 36</R>
+]]></string>
 
     <!-- ======================================================================================= -->
     <!--  DON'T COPY & DON'T TRANSLATE                                                           -->
@@ -1010,6 +1188,19 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
 	    <item>ART35</item>
         <item>ART26</item>
 
+        <item>ART55</item>
+        <item>ART54</item>
+        <item>ART53</item>
+        <item>ART51</item>
+        <item>ART52</item>
+        <item>ART48</item>
+        <item>ART47</item>
+        <item>ART49</item>
+        <item>ART50</item>
+        <item>ART46</item>
+        <item>ART45</item>
+        <item>ART44</item>
+        <item>ART43</item>
         <item>ART42</item>
         <item>ART41</item>
         <item>ART40</item>
