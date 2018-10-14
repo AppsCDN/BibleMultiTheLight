@@ -698,6 +698,10 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.4</H>
+• 13 articoli<br>
+• 7 Youtubers<br>
+<br>
 <H>3.3</H>
 • Fix: menu<br>
 • Fix: articolo degli Youtubers<br>
@@ -785,7 +789,13 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
 <HA/>
 Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consultate i loro videi. Attivate i sottotitoli in Youtube.<br><br>
 <br><br>
-<HS>Inglese</HS>
+<H>Inglese</H>
+<a href="https://www.youtube.com/channel/UCQauB54U3zUYMYih2_-1DAg">GabeTheStreetPreacher </a><br><br>
+<a href="https://www.youtube.com/channel/UCC_2rswH-WYMID1aKu8oNww">David Lynn</a><br><br>
+<a href="https://www.youtube.com/channel/UC5k2gKT5wWo655t6XC7e-lg">Husky394xp </a><br><br>
+<a href="https://www.youtube.com/channel/UCQsYAEW0n3tGsRfMVfIRzRw">AoC Network</a><br><br>
+<a href="https://www.youtube.com/channel/UCxz5R9YQMRW5QqElbAlMqRw">BPEarthWatch</a><br><br>
+<a href="https://www.youtube.com/channel/UCQ-gqVS0v5a198vTFOP1qiQ">SoulJa Of GOD</a><br><br>
 <a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
 <a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
 <a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
@@ -794,16 +804,16 @@ Alcuni cristiani, parecchi pastori, che guardo su internet, per favore, consulta
 <a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
 <a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
-<HS>Inglese & Spagnolo</HS>
+<H>Inglese & Spagnolo</H>
 <a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
-<HS>Spagnolo & Francese</HS>
+<H>Spagnolo & Francese</H>
 <a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
-<HS>Francese</HS>
+<H>Francese</H>
+<a href="https://www.youtube.com/channel/UCqEqEU3pSv7F21zdPizHNKQ">Ministère des Affaires Éternelles</a><br><br>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
 <a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
-<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Le dieci vergini</string>
     <string name="ART28" tools:ignore="UnusedResources">Marchio della bestia</string>
@@ -830,17 +840,17 @@ Leggete questa parabola ed imparate la relazione tra il perdono ed il giudizio.<
 <R>40 18 23 35</R>
 ]]></string>
     <string name="ART42" tools:ignore="UnusedResources">Buono tesoro del cuore</string>
-    <string name="ART43">Atti 12: Erode e Pietro</string>
-    <string name="ART44">Nato di nuovo</string>
-    <string name="ART45">Atti visibili della fede</string>
-    <string name="ART46">Fuori!</string>
-    <string name="ART47">Terremoto</string>
-    <string name="ART48">Vendetta di Dio</string>
-    <string name="ART49">Relazione con gli altri</string>
-    <string name="ART50">Quelli di fuori</string>
-    <string name="ART51">Speranza (1)</string>
-    <string name="ART52">Speranza (2)</string>
-    <string name="ART53">Rapimento (rapture)</string>
-    <string name="ART54">Idolatria</string>
-    <string name="ART55">Prove infallibili</string>
+    <string name="ART43" tools:ignore="UnusedResources">Atti 12: Erode e Pietro</string>
+    <string name="ART44" tools:ignore="UnusedResources">Nato di nuovo</string>
+    <string name="ART45" tools:ignore="UnusedResources">Atti visibili della fede</string>
+    <string name="ART46" tools:ignore="UnusedResources">Fuori!</string>
+    <string name="ART47" tools:ignore="UnusedResources">Terremoto</string>
+    <string name="ART48" tools:ignore="UnusedResources">Vendetta di Dio</string>
+    <string name="ART49" tools:ignore="UnusedResources">Relazione con gli altri</string>
+    <string name="ART50" tools:ignore="UnusedResources">Quelli di fuori</string>
+    <string name="ART51" tools:ignore="UnusedResources">Speranza (1)</string>
+    <string name="ART52" tools:ignore="UnusedResources">Speranza (2)</string>
+    <string name="ART53" tools:ignore="UnusedResources">Rapimento (rapture)</string>
+    <string name="ART54" tools:ignore="UnusedResources">Idolatria</string>
+    <string name="ART55" tools:ignore="UnusedResources">Prove infallibili</string>
 </resources>
