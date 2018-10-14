@@ -406,7 +406,7 @@ class Dal
                     " AND b.cNumber=", cNumber,
                     " AND b.vNumber >= ", vNumberFrom,
                     " AND b.vNumber <= ", vNumberTo,
-                    " ORDER BY b.vNumber ASC");
+                    " ORDER BY b.vNumber ASC, bbNameOrder ASC");
 
             c = _db.rawQuery(sql, null);
             c.moveToFirst();

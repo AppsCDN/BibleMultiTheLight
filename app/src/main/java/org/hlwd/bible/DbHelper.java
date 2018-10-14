@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.4,    DbVersion: 23 (9) 2018-10-14
 // PROD: Bible 3.3,    DbVersion: 22 (8) 2018-06-10
 // PROD: Bible 3.2,    DbVersion: 21 (8) 2018-05-05
 // PROD: Bible 3.1,    DbVersion: 20 (8) 2018-05-01
@@ -54,7 +55,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 22;
+    private static final int _version = 23;
 
     //</editor-fold>
 
@@ -138,6 +139,9 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "DROP INDEX IF EXISTS bible_ndx";
                 _db.execSQL(sql);
 
+                sql = "DROP INDEX IF EXISTS bibleNumber_ndx";
+                _db.execSQL(sql);
+
                 sql = DropTable("bible");
                 _db.execSQL(sql);
 
@@ -150,6 +154,10 @@ class DbHelper extends SQLiteOpenHelper
                 _db.execSQL(sql);
 
                 sql = "CREATE UNIQUE INDEX bible_ndx on bible (id)";
+                _db.execSQL(sql);
+
+                //23
+                sql = "CREATE UNIQUE INDEX bibleNumber_ndx on bible (bbName, bNumber, cNumber, vNumber)";
                 _db.execSQL(sql);
 
                 //Mark: 1=Fav, 2=Bookmark | rating=0..5 | note=personal note | links? //was (never used): sql = "CREATE TABLE bibleNote (bNumber INTEGER, cNumber INTEGER, vNumber INTEGER, changeDt TEXT, mark INTEGER, rating INTEGER, note TEXT, PRIMARY KEY (bNumber, cNumber, vNumber))";
@@ -360,6 +368,14 @@ class DbHelper extends SQLiteOpenHelper
             if (oldVersion < 20)    //1..19 => 20
             {
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.UI_LAYOUT, "C");
+            }
+            if (oldVersion < 23)    //1..22 => 23
+            {
+                sql = "DROP INDEX IF EXISTS bibleNumber_ndx";
+                _db.execSQL(sql);
+
+                sql = "CREATE UNIQUE INDEX bibleNumber_ndx on bible (bbName, bNumber, cNumber, vNumber)";
+                _db.execSQL(sql);
             }
             //Last
             if (oldVersion < _version)    //1..(last-1) => last

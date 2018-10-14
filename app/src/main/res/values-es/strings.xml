@@ -696,6 +696,10 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.4</H>
+• 13 artículos<br>
+• 7 Youtubers<br>
+<br>
 <H>3.3</H>
 • Fix: menú<br>
 • Fix: artículo de los Youtubers<br>
@@ -783,7 +787,13 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
 <HA/>
 Cualesquiera que sean los cristianos (varios pastores) que mire en internet, por favor, consulte sus vídeos. Acelere los subtítulos en Youtube.<br><br>
 <br><br>
-<HS>Inglés</HS>
+<H>Inglés</H>
+<a href="https://www.youtube.com/channel/UCQauB54U3zUYMYih2_-1DAg">GabeTheStreetPreacher </a><br><br>
+<a href="https://www.youtube.com/channel/UCC_2rswH-WYMID1aKu8oNww">David Lynn</a><br><br>
+<a href="https://www.youtube.com/channel/UC5k2gKT5wWo655t6XC7e-lg">Husky394xp </a><br><br>
+<a href="https://www.youtube.com/channel/UCQsYAEW0n3tGsRfMVfIRzRw">AoC Network</a><br><br>
+<a href="https://www.youtube.com/channel/UCxz5R9YQMRW5QqElbAlMqRw">BPEarthWatch</a><br><br>
+<a href="https://www.youtube.com/channel/UCQ-gqVS0v5a198vTFOP1qiQ">SoulJa Of GOD</a><br><br>
 <a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
 <a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
 <a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
@@ -792,16 +802,16 @@ Cualesquiera que sean los cristianos (varios pastores) que mire en internet, por
 <a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
 <a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
 <br><br>
-<HS>Inglés & Español</HS>
+<H>Inglés & Español</H>
 <a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
 <br><br>
-<HS>Español & Francés</HS>
+<H>Español & Francés</H>
 <a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
 <br><br>
-<HS>Francés</HS>
+<H>Francés</H>
+<a href="https://www.youtube.com/channel/UCqEqEU3pSv7F21zdPizHNKQ">Ministère des Affaires Éternelles</a><br><br>
 <a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
 <a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
-<a href="https://www.youtube.com/user/HesTheLamb">HesTheLamb</a><br>
 ]]></string>
     <string name="ART27" tools:ignore="UnusedResources">Las diez vírgenes</string>
     <string name="ART28" tools:ignore="UnusedResources">Marca de la bestia</string>
@@ -828,4 +838,17 @@ Lea esta parábola y aprended la relación entre el perdón y el juicio.<br><br>
 <R>40 18 23 35</R>
 ]]></string>
     <string name="ART42" tools:ignore="UnusedResources">Buen tesoro del corazón</string>
+    <string name="ART43" tools:ignore="UnusedResources">Hechos 12: Herodes y Pedro</string>
+    <string name="ART44" tools:ignore="UnusedResources">Nacido de nuevo</string>
+    <string name="ART45" tools:ignore="UnusedResources">Actos visibles de la fe</string>
+    <string name="ART46" tools:ignore="UnusedResources">¡Largaos!</string>
+    <string name="ART47" tools:ignore="UnusedResources">Terremoto</string>
+    <string name="ART48" tools:ignore="UnusedResources">Venganza de Dios</string>
+    <string name="ART49" tools:ignore="UnusedResources">Relación con otras</string>
+    <string name="ART50" tools:ignore="UnusedResources">Los de fuera</string>
+    <string name="ART51" tools:ignore="UnusedResources">Esperanza (1)</string>
+    <string name="ART52" tools:ignore="UnusedResources">Esperanza (2)</string>
+    <string name="ART53" tools:ignore="UnusedResources">Rapto</string>
+    <string name="ART54" tools:ignore="UnusedResources">Idolatría</string>
+    <string name="ART55" tools:ignore="UnusedResources">Pruebas infalibles</string>
 </resources>
