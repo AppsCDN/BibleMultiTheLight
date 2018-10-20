@@ -535,6 +535,9 @@ class DbHelper extends SQLiteOpenHelper
                         ImportXmlBible("d");
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 4);
 
+                        ImportXmlBible("a");
+                        PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 5);
+
                         ImportCi();
 
                         final String bbname = PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "k");

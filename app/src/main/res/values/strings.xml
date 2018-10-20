@@ -1257,6 +1257,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="languageEnShort" translatable="false">EN</string>
     <string name="languageItShort" translatable="false">IT</string>
     <string name="languageEsShort" translatable="false">ES</string>
+    <string name="languagePtShort" translatable="false">PT</string>
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
@@ -1274,6 +1275,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>(ES) Reina Valera</item>
         <item>(FR) Louis Segond</item>
         <item>(IT) G. Diodati</item>
+        <item>(PT) Almeida</item>
     </string-array>
 
     <string-array name="BIBLE_VALUES_ARRAY" translatable="false">
@@ -1281,6 +1283,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>v</item>
         <item>l</item>
         <item>d</item>
+        <item>a</item>
     </string-array>
 
     <string-array name="UI_LAYOUT_VALUES_ARRAY" translatable="false">

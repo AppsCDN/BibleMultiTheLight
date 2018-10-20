@@ -375,6 +375,11 @@ final class PCommon implements IProject
                 sb.append(context.getString(R.string.languageItShort));
                 sb.append(" ");
             }
+            else if (bb.compareToIgnoreCase("a") == 0)
+            {
+                sb.append(context.getString(R.string.languagePtShort));
+                sb.append(" ");
+            }
         }
 
         return sb.toString().trim().replaceAll(" ", ", ");
@@ -950,7 +955,7 @@ final class PCommon implements IProject
 
             final int colorAccent = ContextCompat.getColor(context, R.color.colorAccent);
             final String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME, "");
-            final int installStatus = (forceShowAllButtons) ? 4 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
+            final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
             final Button btnLanguageEN = (Button) view.findViewById(R.id.btnLanguageEN);
             if (installStatus < 1) btnLanguageEN.setVisibility(View.INVISIBLE);
@@ -1027,7 +1032,7 @@ final class PCommon implements IProject
 
             final int colorAccent = ContextCompat.getColor(context, R.color.colorAccent);
             final String bbName = PCommon.GetPrefBibleName(context);
-            final int installStatus = (forceShowAllButtons) ? 4 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
+            final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
             final TextView tvTrad = (TextView) view.findViewById(R.id.tvTrad);
             final ToggleButton btnLanguageEN = (ToggleButton) view.findViewById(R.id.btnLanguageEN);

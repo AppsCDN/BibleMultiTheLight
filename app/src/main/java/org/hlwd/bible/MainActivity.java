@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
                         if (isUiTelevision)
                         {
                             final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
-                            if (INSTALL_STATUS != 4)
+                            if (INSTALL_STATUS != 5)
                             {
                                 final int perc = GetInstallStatusPerc();
                                 if (perc < 10) return;
@@ -447,7 +447,7 @@ public class MainActivity extends AppCompatActivity
             if (!isUiTelevision)
             {
                 final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
-                if (INSTALL_STATUS != 4)
+                if (INSTALL_STATUS != 5)
                 {
                     menu.findItem(R.id.mnu_prbl).setEnabled(false);
                     menu.findItem(R.id.mnu_articles).setEnabled(false);
@@ -633,7 +633,7 @@ public class MainActivity extends AppCompatActivity
     {
         final int pos = _s.GetBibleIdCount();
 
-        return Math.round((pos * 100) / 124408);
+        return Math.round((pos * 100) / 155510);
     }
 
     /***
