@@ -9,7 +9,7 @@
     <string name="installQuit">Installing, please wait.</string>
     <string name="installFinish">Installation completed</string>
     <string name="installMsg"><![CDATA[
-The Bibles are installed in the following order: English, Spanish, French, Italian.\n\n
+The Bibles are installed in the following order: English, Spanish, French, Italian, Portuguese.\n\n
 According to the device, the installation could be long.\n\n
 If you return to your home screen, the installation will continue. You will be informed by the notifications when it will be finished.\n\n
 Meanwhile, you can read the Bible in English (Books menu), read the Help or make other things with your device.\n
@@ -1253,12 +1253,13 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="languageEn" translatable="false">English</string>
     <string name="languageIt" translatable="false">Italiano</string>
     <string name="languageEs" translatable="false">Española</string>
+    <string name="languagePt" translatable="false">Português</string>
     <string name="languageFrShort" translatable="false">FR</string>
     <string name="languageEnShort" translatable="false">EN</string>
     <string name="languageItShort" translatable="false">IT</string>
     <string name="languageEsShort" translatable="false">ES</string>
     <string name="languagePtShort" translatable="false">PT</string>
-    <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua ?</string>
+    <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>

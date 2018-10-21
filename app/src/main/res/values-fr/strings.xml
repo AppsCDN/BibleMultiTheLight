@@ -9,7 +9,7 @@
     <string name="installQuit">Installation&#8230; veuillez patienter.</string>
     <string name="installFinish">Installation terminée</string>
     <string name="installMsg"><![CDATA[
-Les Bibles sont installées dans l\'ordre suivant: anglais, espagnol, français, italien.\n\n
+Les Bibles sont installées dans l\'ordre suivant: anglais, espagnol, français, italien, portugais.\n\n
 Selon l\'appareil, l\'installation peut être longue.\n\n
 Vous pouvez retourner dans l\'écran d\'acceuil, l\'installation continuera. Vous serez averti par des notifications lorsque ce sera terminé.\n\n
 Entre-temps, vous pouvez lire la Bible en anglais (menu Livres), lire l\'Aide ou faire d\'autres choses avec votre appareil.\n\n

@@ -17,7 +17,8 @@
         android:padding="5dp"
         android:text="@string/tvTrad"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat"/>
 
     <ToggleButton
@@ -39,6 +40,7 @@
         android:id="@+id/btnLanguageES"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:checked="false"
         android:focusable="true"
         android:nextFocusDown="@id/btnLanguageIT"
@@ -47,7 +49,7 @@
         android:paddingBottom="10dp"
         android:textOff="@string/languageEs"
         android:textOn="@string/languageEs"
-        app:layout_constraintStart_toStartOf="@+id/btnLanguageIT"
+        app:layout_constraintStart_toEndOf="@+id/btnLanguageEN"
         app:layout_constraintTop_toTopOf="@+id/btnLanguageEN"
         tools:ignore="RtlCompat"/>
 
@@ -73,34 +75,54 @@
         android:id="@+id/btnLanguageIT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:checked="false"
         android:focusable="true"
         android:nextFocusDown="@id/btnSearchContinue"
         android:nextFocusLeft="@id/btnLanguageFR"
-        android:nextFocusRight="@id/btnLanguageClear"
+        android:nextFocusRight="@id/btnLanguagePT"
         android:nextFocusUp="@id/btnLanguageES"
         android:paddingBottom="10dp"
         android:textOff="@string/languageIt"
         android:textOn="@string/languageIt"
-        app:layout_constraintStart_toEndOf="@+id/btnLanguageFR" app:layout_constraintTop_toTopOf="@+id/btnLanguageFR"
+        app:layout_constraintStart_toStartOf="@+id/btnLanguageES"
+        app:layout_constraintTop_toTopOf="@+id/btnLanguageFR"
+        tools:ignore="RtlCompat"/>
+
+    <ToggleButton
+        android:id="@+id/btnLanguagePT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:focusable="true"
+        android:nextFocusDown="@id/btnSearchContinue"
+        android:nextFocusLeft="@id/btnLanguageIT"
+        android:nextFocusRight="@id/btnLanguageClear"
+        android:nextFocusUp="@id/btnLanguageIT"
+        android:paddingBottom="10dp"
+        android:textOff="@string/languagePt"
+        android:textOn="@string/languagePt"
+        app:layout_constraintEnd_toEndOf="@+id/btnLanguageES"
+        app:layout_constraintStart_toStartOf="@+id/btnLanguageEN"
+        app:layout_constraintTop_toBottomOf="@+id/btnLanguageFR"
         tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnLanguageClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/focus_button"
         android:focusable="true"
-        android:nextFocusUp="@id/btnLanguageFR"
         android:nextFocusLeft="@id/btnLanguageIT"
         android:nextFocusRight="@id/btnSearchContinue"
+        android:nextFocusUp="@id/btnLanguagePT"
         android:padding="5dp"
-        android:text="@string/languageClear"
-        app:layout_constraintStart_toStartOf="@+id/btnLanguageFR"
-        app:layout_constraintTop_toBottomOf="@+id/btnLanguageFR"
-        tools:ignore="RtlCompat"/>
+        android:text="@string/languageClear" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLanguagePT" tools:ignore="RtlCompat"/>
 
     <Button
         android:id="@+id/btnSearchContinue"
@@ -110,7 +132,7 @@
         android:background="@drawable/focus_button"
         android:focusable="true"
         android:nextFocusLeft="@id/btnLanguageClear"
-        android:nextFocusUp="@id/btnLanguageIT"
+        android:nextFocusUp="@id/btnLanguagePT"
         android:padding="5dp"
         android:text="@string/languageContinue"
         app:layout_constraintBottom_toBottomOf="parent"

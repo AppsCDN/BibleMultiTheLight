@@ -997,6 +997,16 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
+            final Button btnLanguagePT = (Button) view.findViewById(R.id.btnLanguagePT);
+            if (installStatus < 5) btnLanguagePT.setVisibility(View.INVISIBLE);
+            if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
+            btnLanguagePT.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "a");
+                    builder.dismiss();
+                }
+            });
         }
         catch (Exception ex)
         {
@@ -1079,6 +1089,17 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
+            final ToggleButton btnLanguagePT = (ToggleButton) view.findViewById(R.id.btnLanguagePT);
+            if (installStatus < 5) btnLanguagePT.setEnabled(false);
+            if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
+            btnLanguagePT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    final int op = compoundButton.isChecked() ? 1 : -1;
+                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "a"));
+                    tvTrad.setText(languageStack);
+                }
+            });
             final Button btnLanguageClear = (Button) view.findViewById(R.id.btnLanguageClear);
             if (installStatus <= 0) btnLanguageClear.setEnabled(false);
             btnLanguageClear.setOnClickListener(new View.OnClickListener() {
@@ -1091,6 +1112,7 @@ final class PCommon implements IProject
                     btnLanguageES.setChecked(false);
                     btnLanguageFR.setChecked(false);
                     btnLanguageIT.setChecked(false);
+                    btnLanguagePT.setChecked(false);
                     final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
                     tvTrad.setText(languageStack);
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
@@ -1114,6 +1136,7 @@ final class PCommon implements IProject
             if (tradInit.contains("v")) btnLanguageES.setChecked(true);
             if (tradInit.contains("l")) btnLanguageFR.setChecked(true);
             if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
+            if (tradInit.contains("a")) btnLanguagePT.setChecked(true);
             final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
             tvTrad.setText(languageStack);
         }
