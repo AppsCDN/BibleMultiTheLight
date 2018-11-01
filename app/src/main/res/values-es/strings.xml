@@ -64,6 +64,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuGroupLayoutDynamic2">Vista por 2 lenguas</string>
     <string name="mnuGroupLayoutDynamic3">Vista por 3 lenguas</string>
     <string name="mnuGroupLayoutDynamic4">Vista por 4 lenguas</string>
+    <string name="mnuGroupLayoutDynamic5">Vista por 5 lenguas</string>
     <string name="mnuGroupTheme">Tema</string>
     <string name="mnuGroupTypeface">Tipo de fuente</string>
     <string name="mnuGroupUiLayout">Interfaz de usuario</string>

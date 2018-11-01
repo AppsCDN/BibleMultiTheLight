@@ -64,6 +64,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupLayoutDynamic2">Display for 2 languages</string>
     <string name="mnuGroupLayoutDynamic3">Display for 3 languages</string>
     <string name="mnuGroupLayoutDynamic4">Display for 4 languages</string>
+    <string name="mnuGroupLayoutDynamic5">Display for 5 languages</string>
     <string name="mnuGroupTheme">Theme</string>
     <string name="mnuGroupTypeface">Font style</string>
     <string name="mnuGroupUiLayout">User interface</string>

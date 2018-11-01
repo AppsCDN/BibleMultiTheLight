@@ -1,0 +1,861 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="aboutContactMe">Se você tiver problemas ou sugestões, entre em contato comigo.</string>
+    <string name="close">Perto</string>
+    <string name="btnClose">Perto</string>
+    <string name="btnRefresh">REFRESH</string>
+    <string name="btnSelect">Selecionar</string>
+    <string name="btnTrim">Reduzir</string>
+    <string name="favOrderTitle">Ordenar por?</string>
+    <string name="installQuit">Instalação&#8230; Por favor, aguarde.</string>
+    <string name="installFinish">Instalação concluída</string>
+    <string name="installMsg"><![CDATA[
+Bíblias são instalados na seguinte ordem: Inglês, Espanhol, Francês, Italiano, Português.\n\n
+Dependendo do dispositivo, a instalação pode ser longo.\n\n
+Você pode voltar para a tela inicial, a instalação continuará. Iremos enviar-lhe notificações quando isto acabar.\n\n
+Enquanto isso, você pode ler a Bíblia em Inglês (menu Livros), leia a Ajuda ou fazer outras coisas com o dispositivo.\n\n
+Por favor, seja paciente este longo processo não vai acontecer novamente durante as atualizações.\n
+]]></string>
+    <string name="itemAll">ALL</string>
+    <string name="languageInstalling">Instalação&#8230;</string>
+    <string name="languageEnInstalled">A versão instalada: EN…</string>
+    <string name="languageEsInstalled">Versões instaladas: en, es…</string>
+    <string name="languageFrInstalled">Versões instaladas: EN, ES, FR…</string>
+    <string name="languageClear">Apagar</string>
+    <string name="languageContinue">Continuar</string>
+    <string name="logErr">Erro: %s</string>
+    <string name="mnuAbout">Sobre / Contato</string>
+    <string name="mnuAddTab">Adicionar guia</string>
+    <string name="mnuArticles">Bens</string>
+    <string name="mnuBooks">Livros</string>
+    <string name="mnuBook">Livro</string>
+    <string name="mnuDelete">Remover</string>
+    <string name="mnuQuit">Deixar</string>
+    <string name="mnuFav">Favoritos</string>
+    <string name="mnuFavClearFilter">Apagar</string>
+    <string name="mnuFavSort">Tipo</string>
+    <string name="mnuHelp">Ajudar</string>
+    <string name="mnuNote">Favoritos</string>
+    <string name="mnuNoteFavAdd">Adicionar a favoritos</string>
+    <string name="mnuNoteReadingAdd">Adicionar a leituras</string>
+    <string name="mnuNoteRemove">Remover Favorito/leitura</string>
+    <string name="mnuOpen">Aberto</string>
+    <string name="mnuOpenChapter">Capítulo</string>
+    <string name="mnuOpenResult">Tudo</string>
+    <string name="mnuOpenVerse">Verso</string>
+    <string name="mnuPlan">Plano</string>
+    <string name="mnuPlans">Mapas</string>
+    <string name="mnuPlanReading">Plano de leitura</string>
+    <string name="mnuPlansReading">Planos de Leitura</string>
+    <string name="mnuReading">Fav. leituras</string>
+    <string name="mnuRemoveTab">Aba excluir</string>
+    <string name="mnuCopy">Copiar para o clipboard</string>
+    <string name="mnuCopyChapterToClipboard">Capítulo</string>
+    <string name="mnuCopyResultToClipboard">Tudo</string>
+    <string name="mnuCopyVerseToClipboard">Verso</string>
+    <string name="mnuMarkAllAboveAsRead">Marcar tudo como lido acima</string>
+    <string name="mnuUnmarkAllAboveAsRead">Marcar todos aqueles acima como não lida</string>
+    <string name="mnuSearchBibleName">-</string>
+    <string name="mnuSearchAll">Procurar</string>
+    <string name="mnuGroupSettings">Configurações</string>
+    <string name="mnuGroupBible">Bíblia (preferido)</string>
+    <string name="mnuGroupLayoutDynamicTitle">Visualizando</string>
+    <string name="mnuGroupLayoutDynamicSummary">Quantas colunas?</string>
+    <string name="mnuGroupLayoutDynamic1">Exibição para 1 idioma</string>
+    <string name="mnuGroupLayoutDynamic2">Exibição para 2 idiomas</string>
+    <string name="mnuGroupLayoutDynamic3">Exibição para 3 idiomas</string>
+    <string name="mnuGroupLayoutDynamic4">Exibição para 4 idiomas</string>
+    <string name="mnuGroupLayoutDynamic5">Exibição para 5 idiomas</string>
+    <string name="mnuGroupTheme">Tema</string>
+    <string name="mnuGroupTypeface">Polícia</string>
+    <string name="mnuGroupUiLayout">Interface de usuário</string>
+    <string name="mnuGroupFontSize">Tamanho da fonte</string>
+    <string name="mnuGroupFavSymbol">Favoritos (símbolo)</string>
+    <string name="mnuPrbl">Parábolas</string>
+    <string name="mnuShare">Ação</string>
+    <string name="mnuShareChapter">Capítulo</string>
+    <string name="mnuShareResult">Tudo</string>
+    <string name="mnuShareVerse">Verso</string>
+    <string name="mnuShowFav">Mostrar Favoritos</string>
+    <string name="mnuThemeLight">Claro</string>
+    <string name="mnuTypefaceDefault">Falha</string>
+    <string name="searchBibleHint">Pesquisa Bíblia</string>
+    <string name="searchFavHint">Pesquisa\ u2606</string>
+    <string name="sendEmail">Correio eletrônico</string>
+    <string name="optionsDisabledInstalling">Algumas opções de menu foram desativados durante a instalação.</string>
+    <string name="planCompleted">Acabado</string>
+    <string name="planCreate">Criar</string>
+    <string name="planCreating">Criando o mapa&#8230;</string>
+    <string name="planDaySymbol">Dia</string>
+    <string name="planDaysSymbol">Dias</string>
+    <string name="planDayLateSymbol">Atraso</string>
+    <string name="planDayEarlySymbol">Antecipadamente</string>
+    <string name="planSelect">Planos de Leitura</string>
+    <string name="planSelectMsg">Você não tem um plano de leitura. Por favor, selecione um tema ou um livro na lista.</string>
+    <string name="planStartDate">Data de início:\n(a/m/d)</string>
+    <string name="planBookCount">Livros</string>
+    <string name="planCalTitleDay">Dia:</string>
+    <string name="planCalTitleDt">Dia\n(a/m/d)</string>
+    <string name="planCalTitleUntil">Começando\nEnd</string>
+    <string name="planCalTitleIsRead">\nLido?</string>
+    <string name="planCalTitleDayCount">Dias:</string>
+    <string name="planCalTitleVerseCount">Versos\npor dia:</string>
+    <string name="planChapterCount">Capítulos</string>
+    <string name="planVerseCount">Versos</string>
+    <string name="emailChooser">Correio eletrônico</string>
+    <string name="seeGen2_2">Gênesis 2.2</string>
+    <string name="seeMat24_32">Mateus 24.32</string>
+    <string name="threadNfoPrefix">Biblenfo</string>
+    <string name="threadNfoGroup">Biblenfogrp</string>
+    <string name="toastEmpty">Vazio!</string>
+    <string name="toastEmpty3">Min. 3 caracteres!</string>
+    <string name="toastBookNotInstalled">Papel não está instalado!</string>
+    <string name="toastNoAppsToShare">Nenhum aplicativo para compartilhar!</string>
+    <string name="toastNoBrowser">Instalar um browser.</string>
+    <string name="tvBookInstall">(Instalação&#8230;)</string>
+    <string name="tvBookTitle">Livro</string>
+    <string name="tvBookOT">- Antigo Testamento -</string>
+    <string name="tvBookNT">- Novo Testamento -</string>
+    <string name="tvChapter">Capítulo:</string>
+    <string name="tvLanguage">Idioma:</string>
+    <string name="tvPlanBooks">- Livros -</string>
+    <string name="tvPlanThemes">- Tópicos -</string>
+    <string name="tvPlanYourPlans">- Seus planos -</string>
+    <string name="tvTrad">Ordem:</string>
+
+    <string name="tvFavOrder">Ordem:</string>
+    <string name="favOrder0">Lembre-se (primeira leitura)</string>
+    <string name="favOrder1">Data (mais recente primeiro)</string>
+    <string name="favOrder2">Livro (fim)</string>
+
+    <string name="favOrder0Short">Favorito</string>
+    <string name="favOrder1Short">Data</string>
+    <string name="favOrder2Short">Livro</string>
+
+    <string name="PRBL1">O bom pastor</string>
+    <string name="PRBL2">O trigo e o joio (1)</string>
+    <string name="PRBL3">O trigo e o joio (2)</string>
+    <string name="PRBL4">A pérola de grande valor</string>
+    <string name="PRBL5">A rede</string>
+    <string name="PRBL6">Perdão</string>
+    <string name="PRBL7">Os trabalhadores da 11ª hora</string>
+    <string name="PRBL8">Ambos filho</string>
+    <string name="PRBL9">O casamento do filho do rei</string>
+    <string name="PRBL10">As dez virgens</string>
+    <string name="PRBL11">Os dez talentos</string>
+    <string name="PRBL12">Ovinos e caprinos</string>
+    <string name="PRBL13">A semente que cresce secretamente</string>
+    <string name="PRBL14">O anfitrião</string>
+    <string name="PRBL15">Ambos os devedores</string>
+    <string name="PRBL16">O bom samaritano</string>
+    <string name="PRBL17">O amigo à meia-noite</string>
+    <string name="PRBL18">O homem rico e seus celeiros</string>
+    <string name="PRBL19">Os servos vigilantes</string>
+    <string name="PRBL20">Os fiéis racional e sábio</string>
+    <string name="PRBL21">A figueira estéril</string>
+    <string name="PRBL22">A grande ceia</string>
+    <string name="PRBL23">A Moeda Perdida</string>
+    <string name="PRBL24">O filho pródigo</string>
+    <string name="PRBL25">O mordomo</string>
+    <string name="PRBL26">O homem rico e Lázaro</string>
+    <string name="PRBL27">O escravo que retorna dos campos</string>
+    <string name="PRBL28">O juiz injusto</string>
+    <string name="PRBL29">O fariseu e do publicano</string>
+    <string name="PRBL30">As minas</string>
+    <string name="PRBL31">Casa na rocha ou areia (1)</string>
+    <string name="PRBL32">Casa na rocha ou areia (2)</string>
+    <string name="PRBL33">Fermento (1)</string>
+    <string name="PRBL34">A levedura (2)</string>
+    <string name="PRBL35">As ovelhas perdidas (1)</string>
+    <string name="PRBL36">As ovelhas perdidas (2)</string>
+    <string name="PRBL37">O terno roupa nova e antiga (1)</string>
+    <string name="PRBL38">O novo revestimento e o revestimento de idade (2)</string>
+    <string name="PRBL39">O novo revestimento e o revestimento de idade (3)</string>
+    <string name="PRBL40">Nova vinho em garrafas de idade (1)</string>
+    <string name="PRBL41">Nova vinho em garrafas velhas (2)</string>
+    <string name="PRBL42">Nova vinho em garrafas de idade (3)</string>
+    <string name="PRBL43">O semeador (1a)</string>
+    <string name="PRBL44">O semeador (1b)</string>
+    <string name="PRBL45">O semeador (2a)</string>
+    <string name="PRBL46">O semeador (2b)</string>
+    <string name="PRBL47">O semeador (3a)</string>
+    <string name="PRBL48">O semeador (3b)</string>
+    <string name="PRBL49">A semente de mostarda (1)</string>
+    <string name="PRBL50">A semente de mostarda (2)</string>
+    <string name="PRBL51">A semente de mostarda (3)</string>
+    <string name="PRBL52">Os produtores de vinho maus (1)</string>
+    <string name="PRBL53">Os produtores de vinho maus (2)</string>
+    <string name="PRBL54">Os produtores de vinho maus (3)</string>
+    <string name="PRBL55">A figueira e todas as árvores (1)</string>
+    <string name="PRBL56">A figueira e todas as árvores (2)</string>
+    <string name="PRBL57">A figueira e todas as árvores (3)</string>
+
+    <string-array name="THEME_ARRAY">
+        <item>Claro</item>
+        <item>Escuro</item>
+    </string-array>
+
+    <string-array name="UI_LAYOUT_ARRAY">
+        <item>Smartphone, Tablet</item>
+        <item>TV</item>
+    </string-array>
+
+    <string name="PLAN_OT">Velho Testamento</string>
+    <string name="PLAN_NT">Novo Testamento</string>
+    <string name="PLAN_PENTA">Pentateuco</string>
+    <string name="PLAN_HISTO">Livros históricos</string>
+    <string name="PLAN_POET">Livros poéticos</string>
+    <string name="PLAN_PROPHET">Profetas</string>
+    <string name="PLAN_EVG">Evangelhos</string>
+    <string name="PLAN_PAUL">Epístolas de Paulo</string>
+    <string name="PLAN_OEPT">Outras Epístolas</string>
+    <string name="PLAN_BOOK1">Gênesis</string>
+    <string name="PLAN_BOOK2">Êxodo</string>
+    <string name="PLAN_BOOK3">Levítico</string>
+    <string name="PLAN_BOOK4">Números</string>
+    <string name="PLAN_BOOK5">Deuteronômio</string>
+    <string name="PLAN_BOOK6">Josué</string>
+    <string name="PLAN_BOOK7">Juízes</string>
+    <string name="PLAN_BOOK8">Rute</string>
+    <string name="PLAN_BOOK9">1Samuel</string>
+    <string name="PLAN_BOOK10">2Samuel</string>
+    <string name="PLAN_BOOK11">1Reis</string>
+    <string name="PLAN_BOOK12">2Reis</string>
+    <string name="PLAN_BOOK13">1Crônicas</string>
+    <string name="PLAN_BOOK14">2Crônicas</string>
+    <string name="PLAN_BOOK15">Esdras</string>
+    <string name="PLAN_BOOK16">Neemias</string>
+    <string name="PLAN_BOOK17">Ester</string>
+    <string name="PLAN_BOOK18">Jó</string>
+    <string name="PLAN_BOOK19">Salmos</string>
+    <string name="PLAN_BOOK20">Provérbios</string>
+    <string name="PLAN_BOOK21">Eclesiastes</string>
+    <string name="PLAN_BOOK22">CânticoDosCânticos</string>
+    <string name="PLAN_BOOK23">Isaías</string>
+    <string name="PLAN_BOOK24">Jeremias</string>
+    <string name="PLAN_BOOK25">Lamentações</string>
+    <string name="PLAN_BOOK26">Ezequiel</string>
+    <string name="PLAN_BOOK27">Daniel</string>
+    <string name="PLAN_BOOK28">Oséias</string>
+    <string name="PLAN_BOOK29">Oséias</string>
+    <string name="PLAN_BOOK30">Amós</string>
+    <string name="PLAN_BOOK31">Abdias</string>
+    <string name="PLAN_BOOK32">Jonas</string>
+    <string name="PLAN_BOOK33">Miquéias</string>
+    <string name="PLAN_BOOK34" tools:ignore="Typos">Naum</string>
+    <string name="PLAN_BOOK35">Habacuc</string>
+    <string name="PLAN_BOOK36">Sofonias</string>
+    <string name="PLAN_BOOK37">Ageu</string>
+    <string name="PLAN_BOOK38">Zacarias</string>
+    <string name="PLAN_BOOK39">Malaquias</string>
+    <string name="PLAN_BOOK40">Mateus</string>
+    <string name="PLAN_BOOK41">Marcos</string>
+    <string name="PLAN_BOOK42">Lucas</string>
+    <string name="PLAN_BOOK43">João</string>
+    <string name="PLAN_BOOK44">Atos</string>
+    <string name="PLAN_BOOK45">Romanos</string>
+    <string name="PLAN_BOOK46">1Coríntios</string>
+    <string name="PLAN_BOOK47">2Coríntios</string>
+    <string name="PLAN_BOOK48">Gálatas</string>
+    <string name="PLAN_BOOK49">Efésios</string>
+    <string name="PLAN_BOOK50">Filipenses</string>
+    <string name="PLAN_BOOK51">Colossenses</string>
+    <string name="PLAN_BOOK52">1Tessalonicenses</string>
+    <string name="PLAN_BOOK53">2Tessalonicenses</string>
+    <string name="PLAN_BOOK54">1Timóteo</string>
+    <string name="PLAN_BOOK55">2Timóteo</string>
+    <string name="PLAN_BOOK56">Tito</string>
+    <string name="PLAN_BOOK57">Filêmon</string>
+    <string name="PLAN_BOOK58">Hebreus</string>
+    <string name="PLAN_BOOK59">Tiago</string>
+    <string name="PLAN_BOOK60">1Pedro</string>
+    <string name="PLAN_BOOK61">2Pedro</string>
+    <string name="PLAN_BOOK62">1João</string>
+    <string name="PLAN_BOOK63">2João</string>
+    <string name="PLAN_BOOK64">3João</string>
+    <string name="PLAN_BOOK65">Judas</string>
+    <string name="PLAN_BOOK66">Apocalipse</string>
+
+    <string name="ART_APP_HELP">Aide</string>
+    <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
+<HA/>
+<i>Salut,</i> je suis un programmeur chrétien et j\'ai fait cette application avec mon coeur pour servir le Seigneur. La fin des temps est proche avec les tribulations, l\'antéchrist, Jésus et le jugement final.
+<i>Whattt! Are you serious?</i> Oui, je suis sérieux, les signes sont partout. Cette application donnant la vraie parole de Dieu peut vous aider à être fort durant cette période quand le diable essayera de vous tromper plus que jamais et d\'être prêt quand le Christ reviendra.
+Rappelez-vous que le diable connaît les Écritures. Je n\'ai ajouté que de bonnes bibles originales (pas de re-édition) en plusieurs langues, que je peux comprendre, pour vous aider à trouver Jésus parce qu\'il est le seul chemin vers
+notre Père. Ne restez pas dans les ténèbres petits enfants de Dieu. Soyez bon avec vos frères et soeurs, répandez la lumière, l\'amour, priez, repentez-vous, ayez la foi, la joie,
+suivez les commandements, arrêtez vos péchés et semez abondamment. Suivons Jésus, le bon Berger, notre unique sauveur&#8230; Que Dieu vous bénisse. Amen.<br>
+<blockquote>
+<b>Jean 14.6:</b> Jésus lui dit: Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi.
+</blockquote>
+<blockquote>
+<b>Jean 15.12:</b> C\'est ici mon commandement: Aimez-vous les uns les autres, comme je vous ai aimés.
+</blockquote>
+<blockquote>
+<b>Jean 10.11:</b> Je suis le bon berger. Le bon berger donne sa vie pour ses brebis.
+</blockquote>
+<blockquote>
+<b>Psaumes 23.3:</b> Il restaure mon âme, Il me conduit dans les sentiers de la justice, A cause de son nom.<br>
+<br>
+<b>Psaumes 23.4:</b> Quand je marche dans la vallée de l\'ombre de la mort, Je ne crains aucun mal, car tu es avec moi: ta houlette et ton bâton me rassurent.<br>
+<br>
+<b>Psaumes 23.5:</b> Tu dresses devant moi une table, En face de mes adversaires; Tu oins d\'huile ma tête, Et ma coupe déborde.<br>
+<br>
+<b>Psaumes 23.6:</b> Oui, le bonheur et la grâce m\'accompagneront Tous les jours de ma vie, Et j\'habiterai dans la maison de l\'Éternel Jusqu\'à la fin de mes jours.
+</blockquote>
+<blockquote>
+<b>1Corinthiens 3.16:</b> Ne savez-vous pas que vous êtes le temple de Dieu, et que l\'Esprit de Dieu habite en vous?<br>
+<br>
+<b>1Corinthiens 3.17:</b> Si quelqu\'un détruit le temple de Dieu, Dieu le détruira; car le temple de Dieu est saint, et c\'est ce que vous êtes.
+</blockquote>
+<H>Chercher dans la Bible</H>
+<b>Syntaxe:</b> &lt;livre&gt; <br>
+<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; <br>
+<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;verset&gt; <br>
+<b>Syntaxe:</b> &lt;livre&gt; &lt;expression&gt; <br>
+<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;expression&gt; <br>
+<b>Syntaxe:</b> &lt;expression&gt;<br>
+<br><br>
+<b>Exemples:</b><br>
+• Genèse<br>
+Donne le chapitre 1 de la Genèse par défaut<br>
+<br>
+• Genèse 1<br>
+Donne le chapitre 1 de la Genèse<br>
+<br>
+• Genèse 1 5<br>
+Donne le verset 1.5 de la Genèse :)<br>
+<br>
+• Genèse feu<br>
+Cherche dans la Genèse toutes les occurrences de \'feu\'<br>
+<br>
+• 1 6 seigneur<br>
+Cherche dans la Genèse chapitre 6 toutes les occurences de \'seigneur\'<br>
+<br>
+• abraham<br>
+Cherche \'abraham\' dans toute la bible<br>
+<br>
+• Apocalypse cheval<br>
+Cherche les chevaux de l\'Apocalypse :)<br>
+<br>
+• 66 babylone<br>
+Cherche \'babylone\' dans le livre 66 (Apocalypse)<br>
+<br>
+• pierre%église<br>
+cherche dans l\'ordre, \'pierre\' et \'église\' dans toute la bible<br>
+<br><br>
+<b>Remarques:</b><br>
+- Les noms des livres sont sensibles à la casse, donc sélectionnez les dans la liste.<br>
+- Ajoutez des accents dans vos mots si ils en ont:<br>
+Exemple: j<u>é</u>zabel (français), jezebel (anglais)<br>
+- Si une recherche ne donne pas de résultat, vérifiez le titre de l\'onglet pour être certain que vous n\'êtes pas en train de filtrer vos favoris ET que vous n\'êtes pas en train de chercher dans une autre bible (autre langue)<br>
+Exemple: <u>É</u>lie (français), Elijah (anglais), Elia (italien), El<u>í</u>as (espagnol)<br>
+<br><br>
+<H>Traduire</H>
+Pour obtenir la traduction d\'un verset, chapitre, résultat (résultat de recherche) dans une langue: faites une longue pression sur un verset. Une boîte de dialogue apparaîtra et il sera possible de l\'ouvrir/copier/partager.
+Vous verrez que les traductions sont très proches.<br>
+<br><br>
+<H>Chercher dans les Favoris</H>
+Chercher dans les favoris ne cherchera pas dans la Bible. Cela filtrera uniquement les favoris que vous avez sauvés. Il y a un bouton Effacer pour vider le filtre et tous les afficher.<br>
+<br><br>
+<H>Favoris</H>
+Il y a deux types de favoris:<br>
+- favori normal: utilisez le quand vous aimez un verset, afin de le relire<br>
+- favori de lecture (passages)<br>
+<br>
+Vous pouvez changer le symbole du favori normal dans Paramètres.<br>
+Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
+<br><br>
+<H>Astuces</H>
+- Laissez l\'application résidente, la mémoire est bien gérée<br>
+- Les résultats de recherche sont utiles pour rechercher des versets dans une langue et obtenir les mêmes versets dans une autre langue, pour apprendre, étudier, comparer les textes, vérifier les mots&#8230;<br>
+- Utilisez mon widget<br>
+- Créez un plan de lecture pour vous forcer à lire un livre complètement<br>
+<br><br>
+<H>Accord</H>
+Cette application restera totalement gratuite, sans publicité, redirections, hors connexion et ne sera pas vendue. Ce n\'est pas une démo mais une version complète.<br>
+<br><br>
+<H>Contact</H>
+Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<br>
+<br><br>
+]]></string>
+    <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
+    <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
+<HA/>
+<H>3.4</H>
+• 13 articles<br>
+• 7 Youtubers<br>
+<br>
+<H>3.3</H>
+• Fix: menu<br>
+• Fix: article des Youtubers<br>
+• Fix (TV): recherche des Favoris<br>
+• +1 Youtuber<br>
+<br>
+<H>3.2</H>
+• Statut d\'installation<br>
+<br>
+<H>3.1</H>
+• Compatible avec les Android set-top box via 2 interfaces utilisateur (menu Paramètres):<br>
+1) Smartphone, tablette<br>
+2) Télévision: pour Android TV, Android set-top box, tablettes, smarphones en mode paysage. Destiné aux télévisions, il y un large bord autour du texte pour l\'overscan.<br>
+• Ajout d\'un bouton Gitlab (menu Contact)<br>
+<br>
+<H>3.0</H>
+• Compatible avec Android TV et D-pad<br>
+(Long click sur le titre d\'un onglet pour fermer l\'onglet)<br>
+<br>
+<H>2.13</H>
+• Fix: force la direction de gauche à droite dans le widget<br>
+• Barre d\'outils pliante<br>
+• Défilement jusqu\'au verset<br>
+• Versets peuvent être cliqués dans les articles<br>
+<br>
+<H>2.12</H>
+• Désactivé temporairement: partage à partir d\'autres applications (test)<br>
+<br>
+<H>2.11</H>
+• Articles, +2 Youtubers<br>
+• Partage à partir d\'autres applications (test)<br>
+<br>
+<H>2.10</H>
+• Fix: plans de lecture (jours restants)<br>
+• Articles<br>
+<br>
+<H>2.9</H>
+• Fix: widget (favori)<br>
+• Fix: plans de lecture (pourcentage)<br>
+<br>
+<H>2.8</H>
+• Optimisation du code (performance & sécurité)<br>
+• Possibilité de backuper l\'application avec des outils<br>
+• Open Source GPL3<br>
+• Publié sur F-Droid<br>
+<br>
+<H>2.7</H>
+• Articles & espace<br>
+<br>
+<H>2.6</H>
+• Plans de lecture: date de début&#8230;<br>
+• Articles<br>
+<br>
+<H>2.5</H>
+• Plans de lecture<br>
+<br>
+<H>2.4</H>
+• Processus d\'installation plus rapide (gain de 85%)<br>
+<br>
+<H>2.3</H>
+• Ajout du nr de chapitre (menu Livres)<br>
+• Passer d\'un chapitre à l\'autre entre les livres (Boutons: Précédant/Suivant)<br>
+• Aller à un article déjà ouvert (menu Articles)<br>
+<br>
+<H>2.2</H>
+• Long click sur le titre d\'un onglet fermera l\'onglet<br>
+• Position dans l\'article est sauvée<br>
+• Position de l\'onglet sélectionné est sauvée<br>
+• Support pour Android 7.1.1 (Nougat)<br>
+• Premiers tests d\'Android 8.0 (Android O)<br>
+• Titre court pour quelques articles<br>
+• Paraboles en plusieurs langues (menu Paraboles)<br>
+• Livres en plusieurs langues (menu Livres)<br>
+• Continuer la lecture en plusieurs langues (menu Continuer Lecture)<br>
+• Création de l\'article d\'Aide<br>
+• Création de l\'article de Logs<br>
+• Création de l\'article de 10 versets<br>
+• Lors de l\'installation, l\'article d\'Aide est affiché<br>
+• Lors d\'une mise à jour, l\'article de Logs est affiché<br>
+<br>
+]]></string>
+    <string name="ART1">Mandamentos</string>
+    <string name="ART1_CONTENT"><![CDATA[
+<HA/>
+<HB>2</HB>
+<R>2 20 12 17</R>
+<HB>5</HB>
+<R>5 5 3 21</R>
+<HS>Também</HS>
+<R>41 12 29 34</R><br>
+<R>43 13 34 34</R><br>
+<R>43 15 12 12</R><br>
+<R>60 1 22 22</R><br>
+<R>45 13 8 12</R><br>
+<R>40 19 18 19</R><br>
+<R>40 22 36 40</R>
+]]></string>
+    <string name="ART2">Como orar?</string>
+    <string name="ART2_CONTENT"><![CDATA[
+<HA/>
+<R>40 6 9 13</R>
+]]></string>
+    <string name="ART3">Perguntas</string>
+    <string name="ART3_CONTENT"><![CDATA[
+<HA/>
+- O que seu coração?<br><br>
+- Se ele fosse seu último dia / seus últimos 5 minutos<br>
+- Você mudou desde o ano passado&#8230;?<br><br>
+]]></string>
+    <string name="ART4">Julgamento</string>
+    <string name="ART4_CONTENT"><![CDATA[
+<HA/>
+<R>40 25 31 46</R>
+]]></string>
+    <string name="ART5">Julgamento (parábolas)</string>
+    <string name="ART5_CONTENT"><![CDATA[
+<HA/>
+<HS>Parábola I</HS>
+<R>40 22 2 14</R>
+<HS>Parábola II</HS>
+<R>40 25 1 13</R>
+<HS>Parábola III</HS>
+<R>40 25 14 30</R>
+]]></string>
+    <string name="ART6">Sinais</string>
+    <string name="ART6_CONTENT"><![CDATA[
+<HA/>
+<HB>23</HB>
+<R>23 13 9 13</R><br>
+<R>23 13 19 19</R>
+<HB>26</HB>
+<R>26 32 7 8</R>
+<HB>29</HB>
+<R>29 2 1 2</R><br>
+<R>29 2 10 10</R><br>
+<R>29 2 31 31</R><br>
+<R>29 3 15 15</R>
+<HB>40</HB>
+<R>40 24 3 51</R>
+<HB>41</HB>
+<R>41 13 21 27</R>
+&#8230;
+<HB>42</HB>
+<R>42 11 29 32</R><br>
+<R>42 21 25 28</R>
+<HB>44</HB>
+<R>44 2 17 21</R>
+<HB>66</HB>
+<R>66 6 12 17</R><br>
+<R>66 7 1 4</R>
+]]></string>
+    <string name="ART7">Jesus, o Pão da Vida</string>
+    <string name="ART7_CONTENT"><![CDATA[
+<HA/>
+Muito informativo.<br>
+<HB>43</HB>
+<R>43 6 16 71</R>
+]]></string>
+    <string name="ART9">Última refeição</string>
+    <string name="ART9_CONTENT"><![CDATA[
+<HA/>
+<HB>42</HB>
+<R>42 22 1 20</R>
+]]></string>
+    <string name="ART10">Jesus, seu corpo, seu sangue</string>
+    <string name="ART10_CONTENT"><![CDATA[
+<HA/>
+<HB>40</HB>
+<R>40 26 26 29</R>
+<HB>41</HB>
+<R>41 14 22 25</R>
+<HB>42</HB>
+<R>42 22 15 20</R>
+<HB>43</HB>
+<R>43 6 53 58</R>
+<HB>46</HB>
+<R>46 11 23 31</R>
+]]></string>
+    <string name="ART11">Próxima refeição</string>
+    <string name="ART11_CONTENT"><![CDATA[
+<HA/>
+<HB>66</HB>
+<R>66 3 20 21</R><br>
+<R>66 19 9 9</R>
+]]></string>
+    <string name="ART13">Tentação</string>
+    <string name="ART13_CONTENT"><![CDATA[
+<HA/>
+<HS>Tentação de Deus</HS>
+<R>40 4 7 7</R><br>
+<R>42 4 12 12</R>
+<HS>Tentação de Adão e Eva</HS>
+<R>1 3 1 14</R>
+<HS>Tentação de Jesus</HS>
+<R>40 4 1 11</R><br>
+<R>42 4 1 13</R>
+<HS>Rezai</HS>
+<R>40 6 13 13</R><br>
+<R>40 26 41 41</R>
+<HS>Tentação dos discípulos</HS>
+<R>41 14 27 41</R><br>
+<R>42 22 39 46</R><br>
+<R>40 26 31 45</R><br>
+<R>40 26 69 75</R>
+<HS>Tentação de Judas</HS>
+<R>40 26 46 50</R>
+<HS>Tentação de Jesus</HS>
+<R>40 26 51 56</R>
+<HS>Tentação de homens</HS>
+<R>46 10 13 14</R><br>
+<R>54 6 8 10</R><br>
+<R>59 1 12 15</R><br>
+<R>66 3 10 11</R>
+]]></string>
+    <string name="ART14">Hipocrisia</string>
+    <string name="ART14_CONTENT"><![CDATA[
+<HA/>
+<R>40 6 2 2</R><br>
+<R>40 6 5 5</R><br>
+<R>40 6 16 16</R><br>
+<R>40 22 18 18</R><br>
+<R>42 6 42 42</R>
+]]></string>
+    <string name="ART12">Zombaria</string>
+    <string name="ART12_CONTENT"><![CDATA[
+<HA/>
+<HB>19</HB>
+<R>19 1 1 1</R>
+<HB>20</HB>
+<R>20 9 7 8</R><br>
+<R>20 13 1 1</R><br>
+<R>20 15 12 12</R><br>
+<R>20 20 1 1</R><br>
+<R>20 21 24 24</R><br>
+<R>20 29 8 8</R>
+<HB>61</HB>
+<R>61 3 3 4</R>
+<HB>65</HB>
+<R>65 1 17 19</R>
+]]></string>
+    <string name="ART8">Amai os vossos inimigos</string>
+    <string name="ART8_CONTENT"><![CDATA[
+<HA/>
+<HB>40</HB>
+<R>40 5 38 48</R>
+<HB>42</HB>
+<R>42 6 27 36</R>
+]]></string>
+    <string name="ART15">Bom samaritano</string>
+    <string name="ART15_CONTENT"><![CDATA[
+<HA/>
+<R>42 10 30 37</R>
+]]></string>
+    <string name="ART16">10 versos importantes sobre fé</string>
+    <string name="ART16_CONTENT"><![CDATA[
+<HA/>
+<R>42 17 5 6</R><br>
+<R>45 5 1 2</R><br>
+<R>45 10 17 17</R><br>
+<R>45 12 3 3</R><br>
+<R>47 5 7 7</R><br>
+<R>58 11 1 1</R><br>
+<R>58 11 6 6</R><br>
+<R>60 1 7 9</R><br>
+<R>61 1 5 5</R><br>
+<R>62 5 4 4</R>
+]]></string>
+    <string name="ART17">Fé</string>
+    <string name="ART17_CONTENT"><![CDATA[
+<HA/>
+Os temas são separados por este símbolo: ~~<br>
+<HS>Definição</HS>
+<R>19 71 1 6</R><br>
+<R>58 11 1 1</R>
+<br>~~<br>
+<R>45 4 21 21</R><br>
+<R>58 11 11 11</R><br>
+<R>45 10 11 11</R>
+<HS>Fonte de fé</HS>
+<R>45 10 17 17</R><br>
+<R>58 1 1 2</R>
+<br>~~<br>
+<R>45 10 14 17</R><br>
+<R>43 17 20 20</R>
+<br>~~<br>
+<R>49 1 13 13</R><br>
+<R>46 15 1 4</R>
+<HS>Objeto de fé</HS>
+<R>55 1 12 14</R>
+<br>~~<br>
+<R>41 11 22 22</R><br>
+<R>43 14 1 1</R>
+<br>~~<br>
+<R>43 5 24 24</R><br>
+<R>43 12 46 48</R>
+<HS>Atos visíveis de fé</HS>
+<R>59 1 22 25</R><br>
+<R>59 2 14 17</R><br>
+<R>52 1 8 9</R>
+<HS>Necessidade da fé</HS>
+<R>49 2 8 8</R><br>
+<R>58 11 6 6</R><br>
+<R>58 6 11 12</R><br>
+<R>51 2 6 7</R>
+<HS>Bênçãos da Fé</HS>
+<R>48 3 6 8</R><br>
+<R>47 1 20 20</R>
+<br>~~<br>
+<R>48 2 16 16</R><br>
+<R>44 13 38 39</R><br>
+<R>43 3 16 16</R><br>
+<R>43 5 24 24</R>
+<br>~~<br>
+<R>48 3 2 2</R><br>
+<R>49 1 13 13</R>
+<br>~~<br>
+<R>49 3 12 12</R><br>
+<R>58 10 22 22</R><br>
+<R>62 1 3 3</R>
+<br>~~<br>
+<R>40 21 21 22</R>
+<br>~~<br>
+<R>60 5 8 9</R><br>
+<R>49 6 16 16</R>
+<br>~~<br>
+<R>60 1 5 5</R>
+<HS>Teste de fé</HS>
+<R>60 1 6 7</R><br>
+<R>59 1 2 4</R>
+]]></string>
+    <string name="ART18">Falsidade</string>
+    <string name="ART18_CONTENT"><![CDATA[
+<HA/>
+<R>45 1 25 25</R><br>
+<R>49 4 25 25</R><br>
+<R>53 2 8 12</R><br>
+<R>66 21 27 27</R><br>
+<R>66 22 14 15</R>
+]]></string>
+    <string name="ART19">Raiva</string>
+    <string name="ART19_CONTENT"><![CDATA[
+<HA/>
+<R>5 31 16 17</R><br>
+<R>20 22 24 24</R><br>
+<R>20 29 8 8</R><br>
+<R>23 13 9 13</R><br>
+<R>29 2 11 13</R><br>
+<R>36 2 1 3</R><br>
+<R>49 4 26 27</R><br>
+<R>49 4 31 32</R><br>
+<R>49 5 6 7</R><br>
+<R>52 5 9 11</R><br>
+<R>59 1 19 22</R><br>
+<R>66 12 12 12</R><br>
+<R>66 14 9 10</R>
+]]></string>
+    <string name="ART20">Honra a teu pai ea tua mãe</string>
+    <string name="ART20_CONTENT"><![CDATA[
+<HA/>
+<R>2 20 12 12</R><br>
+<R>40 15 4 4</R><br>
+<R>41 7 10 10</R>
+]]></string>
+    <string name="ART21">O que faz o seu coração?</string>
+    <string name="ART21_CONTENT"><![CDATA[
+<HA/>
+<R>40 15 1 20</R>
+]]></string>
+    <string name="ART22">Espíritos impuros</string>
+    <string name="ART22_CONTENT"><![CDATA[
+<HA/>
+<R>40 12 43 45</R><br>
+<R>61 2 1 22</R><br>
+<R>66 18 1 5</R>
+]]></string>
+    <string name="ART23">Sedução</string>
+    <string name="ART23_CONTENT"><![CDATA[
+<HA/>
+<R>40 7 15 20</R><br>
+<R>40 24 4 5</R><br>
+<R>40 24 11 24</R><br>
+<R>41 13 4 5</R><br>
+<R>45 16 17 18</R><br>
+<R>49 4 10 25</R><br>
+<R>49 5 6 7</R><br>
+<R>58 3 8 19</R><br>
+<R>53 2 1 12</R><br>
+<R>62 3 7 8</R><br>
+<R>66 19 20 20</R><br>
+<R>66 20 10 10</R>
+]]></string>
+    <string name="ART24">Mene, Mene, Tekel, Upharsin</string>
+    <string name="ART24_CONTENT"><![CDATA[
+<HA/>
+<HS>Referências</HS>
+Daniel 5.25 (hebraico): \'Mene, Mene, Tekel, Upharsin\'.<br>
+<R>k 27 5 25 25</R>
+<R>v 27 5 25 25</R>
+<R>l 27 5 25 25</R>
+<R>d 27 5 25 25</R>
+<HB>27</HB>
+<R>27 4 1 37</R>
+<R>27 5 1 31</R>
+]]></string>
+    <string name="ART25">10 versos</string>
+    <string name="ART26">Youtubers</string>
+    <string name="ART26_CONTENT"><![CDATA[
+<HA/>
+Alguns cristãos (muitos pastores) que eu procuro na internet, por favor, ver seus vídeos. Vire as legendas no Youtube.<br><br>
+<br><br>
+<H>Inglês</H>
+<a href="https://www.youtube.com/channel/UCQauB54U3zUYMYih2_-1DAg">GabeTheStreetPreacher</a><br><br>
+<a href="https://www.youtube.com/channel/UCC_2rswH-WYMID1aKu8oNww">David Lynn</a><br><br>
+<a href="https://www.youtube.com/channel/UC5k2gKT5wWo655t6XC7e-lg">Husky394xp</a><br><br>
+<a href="https://www.youtube.com/channel/UCQsYAEW0n3tGsRfMVfIRzRw">AoC Network</a><br><br>
+<a href="https://www.youtube.com/channel/UCxz5R9YQMRW5QqElbAlMqRw">BPEarthWatch</a><br><br>
+<a href="https://www.youtube.com/channel/UCQ-gqVS0v5a198vTFOP1qiQ">SoulJa Of GOD</a><br><br>
+<a href="https://www.youtube.com/user/paulbegley34">Paul Begley</a><br><br>
+<a href="https://www.youtube.com/channel/UC5EtLmidKchvadyrEotfENg">R$E</a><br><br>
+<a href="https://www.youtube.com/user/NoLife127">Jason A</a><br><br>
+<a href="https://www.youtube.com/user/TheMNSayre">Midnight Hour Oil</a><br><br>
+<a href="https://www.youtube.com/user/SuperHouseChurch">John Fenn</a><br><br>
+<a href="https://www.youtube.com/user/neartochrist2">Matthew Patrick Winfrey</a><br><br>
+<a href="https://www.youtube.com/channel/UCUg-xxvGXAFyO70YGQ0FzVw">Dan Shelley 777</a><br>
+<br><br>
+<H>Inglês e Espanhol</H>
+<a href="https://www.youtube.com/user/Robertbreaker3/">Robert Breaker</a><br>
+<br><br>
+<H>Espanhol e Francês</H>
+<a href="https://www.youtube.com/channel/UCrobn5N2e7GFcFlhX5CE-eg">C-Maias</a><br>
+<br><br>
+<H>Francês</H>
+<a href="https://www.youtube.com/channel/UCqEqEU3pSv7F21zdPizHNKQ">Ministère des Affaires Éternelles</a><br><br>
+<a href="https://www.youtube.com/user/PaindeVie">Mario Massicotte</a><br><br>
+<a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
+]]></string>
+    <string name="ART27">As dez virgens</string>
+    <string name="ART28">Marca da Besta</string>
+    <string name="ART29">Medo e falta de fé</string>
+    <string name="ART30">Ore conformidade</string>
+    <string name="ART31">Arrependimento</string>
+    <string name="ART32">Temptation (aviso)</string>
+    <string name="ART33">Netos</string>
+    <string name="ART34">Sementes</string>
+    <string name="ART35">Fermento fariseus e saduceus (aviso)</string>
+    <string name="ART36">Conexões</string>
+    <string name="ART37">Vender</string>
+    <string name="ART38">Versos 10 (2)</string>
+    <string name="ART39">Exorcismo (Paulo)</string>
+    <string name="ART40">Confessar Jesus</string>
+    <string name="ART41">Perdão e julgamento</string>
+    <string name="ART41_CONTENT"><![CDATA[
+<HA/>
+Leia esta parábola e aprender a relação entre perdão e julgamento.<br>
+<HS>Referências</HS>
+<R>40 7 1 2</R><br>
+<R>42 6 37 37</R>
+<HS>Parábola</HS>
+<R>40 18 23 35</R>
+]]></string>
+    <string name="ART42">Bom tesouro Hearted</string>
+    <string name="ART43">Atos 12: Herodes e Pedro</string>
+    <string name="ART44">Renascido</string>
+    <string name="ART45">Atos visíveis de fé</string>
+    <string name="ART46">Do lado de fora!</string>
+    <string name="ART47">Terremoto</string>
+    <string name="ART48">Vingança de Deus</string>
+    <string name="ART49">Relação com outros</string>
+    <string name="ART50">Aqueles que estão fora</string>
+    <string name="ART51">Hope (1)</string>
+    <string name="ART52">Hope (2)</string>
+    <string name="ART53">Remoção</string>
+    <string name="ART54">Idolatria</string>
+    <string name="ART55">Infalíveis provas</string>
+</resources>

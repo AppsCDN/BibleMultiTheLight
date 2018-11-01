@@ -1457,6 +1457,11 @@ public class SearchFragment extends Fragment
                 dc = Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "1"));
                 break;
             }
+            case 5:
+            {
+                dc = Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1"));
+                break;
+            }
             default:
             {
                 dc = 1;

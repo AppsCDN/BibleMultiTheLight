@@ -91,5 +91,15 @@
             android:title="@string/mnuGroupLayoutDynamic4"
             android:summary="@string/mnuGroupLayoutDynamicSummary"
         />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:entryValues="@array/LAYOUT_COLUMN_VALUES_ARRAY"
+            android:key="LAYOUT_DYNAMIC_5"
+            android:persistent="true"
+            android:title="@string/mnuGroupLayoutDynamic5"
+            android:summary="@string/mnuGroupLayoutDynamicSummary"
+        />
     </PreferenceCategory>
 </PreferenceScreen>
