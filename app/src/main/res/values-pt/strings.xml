@@ -87,8 +87,8 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="planCreating">Criando o plano&#8230;</string>
     <string name="planDaySymbol">Dia</string>
     <string name="planDaysSymbol">Dias</string>
-    <string name="planDayLateSymbol">Atraso</string>
-    <string name="planDayEarlySymbol">Antecipadamente</string>
+    <string name="planDayLateSymbol">atraso</string>
+    <string name="planDayEarlySymbol">antecipadamente</string>
     <string name="planSelect">Planos de Leitura</string>
     <string name="planSelectMsg">Você não tem um plano de leitura. Por favor, selecione um tema ou um livro na lista.</string>
     <string name="planStartDate">Data de início:\n(a/m/d)</string>
@@ -305,38 +305,38 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
 <b>1Corintios 3.17:</b> Se alguém destruir o templo de Deus, Deus o destruirá; porque o templo de Deus, que sois vós, é santo.
 </blockquote>
 <br><br>
-<H>Pesquisar a Bíblia</H>
+<H>Procure na Bíblia</H>
 <b>Sintaxe:</b> &lt;livro&gt; <br>
-<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; <br>
-<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; &lt; V &gt; <br>
-<b>Sintaxe:</b> &lt;livro&gt; &lt; expressão &gt; <br>
-<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; &lt; expressão &gt; <br>
-<b>Sintaxe:</b> &lt;expressão &gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt;capítulo&gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt;capítulo&gt; &lt;verso&gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt;expressão&gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt;capítulo&gt; &lt;expressão&gt; <br>
+<b>Sintaxe:</b> &lt;expressão&gt;<br>
 <br><br>
 <b>Exemplos:</b><br>
-• Genesis<br>
-O Capítulo 1 apresenta o padrão Genesis<br>
+• Gênesis<br>
+Dê capítulo 1 do Gênesis por defeito<br>
 <br>
-• Genesis 1<br>
-Dê capítulo 1 do Genesis<br>
+• Gênesis 1<br>
+Dê capítulo 1 do Gênesis<br>
 <br>
-• Genesis 1 5<br>
-Dê o verso 1.5 do Genesis :)<br>
+• Gênesis 1 5<br>
+Dê verso 1.5 do Gênesis :)<br>
 <br>
-• Genesis fogo<br>
+• Gênesis fogo<br>
 Pesquisa em Gênesis todas as ocorrências de \'fogo\'<br>
 <br>
 • 1 6 senhor<br>
 Pesquisa em Gênesis capítulo 6 todas as ocorrências de \'senhor\'<br>
 <br>
-• Abraham<br>
-Buscando \'abraham\' em toda a Bíblia<br>
+• Abraão<br>
+Buscando \'Abraão\' em toda a Bíblia<br>
 <br>
-• Apocalypse cavalo<br>
+• Apocalipse cavalo<br>
 Procura os cavalos do Apocalipse :)<br>
 <br>
-• 66 Babylon<br>
-Buscando \'Babylon\' no livro 66 (Apocalypse)<br>
+• 66 Babilónia<br>
+Buscando \'Babilónia\' no livro 66 (Apocalipse)<br>
 <br>
 • pedra%igreja<br>
 Buscando em ordem, \'pedra\' e \'igreja\' em toda a Bíblia<br>
@@ -354,6 +354,7 @@ Você verá que as traduções estão muito próximas.<br>
 <H>Dicas</H>
 - Deixe o aplicativo residente, a memória é bem gerenciada<br>
 - Os resultados da pesquisa são úteis para procurar versículos em um idioma e obter os mesmos versículos em outro idioma para aprender, estudar, comparar textos, checar palavras&#8230;<br>
+- Use meu widget<br>
 - Crie um plano de leitura para forçá-lo a ler um livro completamente<br>
 <br><br>
 <H>Acordo</H>
