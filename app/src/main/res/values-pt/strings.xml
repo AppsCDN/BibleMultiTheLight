@@ -2,7 +2,7 @@
     <string name="aboutContactMe">Se você tiver problemas ou sugestões, entre em contato comigo.</string>
     <string name="close">Perto</string>
     <string name="btnClose">Perto</string>
-    <string name="btnRefresh">REFRESH</string>
+    <string name="btnRefresh">REFRESCAR</string>
     <string name="btnSelect">Selecionar</string>
     <string name="btnTrim">Reduzir</string>
     <string name="favOrderTitle">Ordenar por?</string>
@@ -15,7 +15,7 @@ Você pode voltar para a tela inicial, a instalação continuará. Iremos enviar
 Enquanto isso, você pode ler a Bíblia em Inglês (menu Livros), leia a Ajuda ou fazer outras coisas com o dispositivo.\n\n
 Por favor, seja paciente este longo processo não vai acontecer novamente durante as atualizações.\n
 ]]></string>
-    <string name="itemAll">ALL</string>
+    <string name="itemAll">TUDO</string>
     <string name="languageInstalling">Instalação&#8230;</string>
     <string name="languageEnInstalled">A versão instalada: EN…</string>
     <string name="languageEsInstalled">Versões instaladas: en, es…</string>
@@ -23,39 +23,39 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="languageClear">Apagar</string>
     <string name="languageContinue">Continuar</string>
     <string name="logErr">Erro: %s</string>
-    <string name="mnuAbout">Sobre / Contato</string>
-    <string name="mnuAddTab">Adicionar guia</string>
-    <string name="mnuArticles">Bens</string>
+    <string name="mnuAbout">A propósito / Contato</string>
+    <string name="mnuAddTab">Adicionar página</string>
+    <string name="mnuArticles">Artigos</string>
     <string name="mnuBooks">Livros</string>
     <string name="mnuBook">Livro</string>
     <string name="mnuDelete">Remover</string>
     <string name="mnuQuit">Deixar</string>
     <string name="mnuFav">Favoritos</string>
     <string name="mnuFavClearFilter">Apagar</string>
-    <string name="mnuFavSort">Tipo</string>
-    <string name="mnuHelp">Ajudar</string>
+    <string name="mnuFavSort">Ordenar</string>
+    <string name="mnuHelp">Ajuda</string>
     <string name="mnuNote">Favoritos</string>
     <string name="mnuNoteFavAdd">Adicionar a favoritos</string>
     <string name="mnuNoteReadingAdd">Adicionar a leituras</string>
-    <string name="mnuNoteRemove">Remover Favorito/leitura</string>
-    <string name="mnuOpen">Aberto</string>
+    <string name="mnuNoteRemove">Remover favorito/leitura</string>
+    <string name="mnuOpen">Abrir</string>
     <string name="mnuOpenChapter">Capítulo</string>
     <string name="mnuOpenResult">Tudo</string>
     <string name="mnuOpenVerse">Verso</string>
     <string name="mnuPlan">Plano</string>
-    <string name="mnuPlans">Mapas</string>
+    <string name="mnuPlans">Planos</string>
     <string name="mnuPlanReading">Plano de leitura</string>
     <string name="mnuPlansReading">Planos de Leitura</string>
     <string name="mnuReading">Fav. leituras</string>
-    <string name="mnuRemoveTab">Aba excluir</string>
+    <string name="mnuRemoveTab">Remover página</string>
     <string name="mnuCopy">Copiar para o clipboard</string>
     <string name="mnuCopyChapterToClipboard">Capítulo</string>
     <string name="mnuCopyResultToClipboard">Tudo</string>
     <string name="mnuCopyVerseToClipboard">Verso</string>
-    <string name="mnuMarkAllAboveAsRead">Marcar tudo como lido acima</string>
-    <string name="mnuUnmarkAllAboveAsRead">Marcar todos aqueles acima como não lida</string>
+    <string name="mnuMarkAllAboveAsRead">Marcar todos aqueles acima como lidos</string>
+    <string name="mnuUnmarkAllAboveAsRead">Marcar todos aqueles acima como não lidos</string>
     <string name="mnuSearchBibleName">-</string>
-    <string name="mnuSearchAll">Procurar</string>
+    <string name="mnuSearchAll">Buscar</string>
     <string name="mnuGroupSettings">Configurações</string>
     <string name="mnuGroupBible">Bíblia (preferido)</string>
     <string name="mnuGroupLayoutDynamicTitle">Visualizando</string>
@@ -66,25 +66,25 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuGroupLayoutDynamic4">Exibição para 4 idiomas</string>
     <string name="mnuGroupLayoutDynamic5">Exibição para 5 idiomas</string>
     <string name="mnuGroupTheme">Tema</string>
-    <string name="mnuGroupTypeface">Polícia</string>
+    <string name="mnuGroupTypeface">Fonte</string>
     <string name="mnuGroupUiLayout">Interface de usuário</string>
     <string name="mnuGroupFontSize">Tamanho da fonte</string>
     <string name="mnuGroupFavSymbol">Favoritos (símbolo)</string>
     <string name="mnuPrbl">Parábolas</string>
-    <string name="mnuShare">Ação</string>
+    <string name="mnuShare">Partilhar</string>
     <string name="mnuShareChapter">Capítulo</string>
     <string name="mnuShareResult">Tudo</string>
     <string name="mnuShareVerse">Verso</string>
     <string name="mnuShowFav">Mostrar Favoritos</string>
     <string name="mnuThemeLight">Claro</string>
-    <string name="mnuTypefaceDefault">Falha</string>
-    <string name="searchBibleHint">Pesquisa Bíblia</string>
-    <string name="searchFavHint">Pesquisa\ u2606</string>
-    <string name="sendEmail">Correio eletrônico</string>
+    <string name="mnuTypefaceDefault">Predefinido</string>
+    <string name="searchBibleHint">Buscar Bíblia</string>
+    <string name="searchFavHint">Buscar \u2606</string>
+    <string name="sendEmail">Email</string>
     <string name="optionsDisabledInstalling">Algumas opções de menu foram desativados durante a instalação.</string>
     <string name="planCompleted">Acabado</string>
     <string name="planCreate">Criar</string>
-    <string name="planCreating">Criando o mapa&#8230;</string>
+    <string name="planCreating">Criando o plano&#8230;</string>
     <string name="planDaySymbol">Dia</string>
     <string name="planDaysSymbol">Dias</string>
     <string name="planDayLateSymbol">Atraso</string>
@@ -95,19 +95,19 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="planBookCount">Livros</string>
     <string name="planCalTitleDay">Dia:</string>
     <string name="planCalTitleDt">Dia\n(a/m/d)</string>
-    <string name="planCalTitleUntil">Começando\nEnd</string>
+    <string name="planCalTitleUntil">Início\nFim</string>
     <string name="planCalTitleIsRead">\nLido?</string>
     <string name="planCalTitleDayCount">Dias:</string>
     <string name="planCalTitleVerseCount">Versos\npor dia:</string>
     <string name="planChapterCount">Capítulos</string>
     <string name="planVerseCount">Versos</string>
-    <string name="emailChooser">Correio eletrônico</string>
+    <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Gênesis 2.2</string>
     <string name="seeMat24_32">Mateus 24.32</string>
     <string name="threadNfoPrefix">Biblenfo</string>
     <string name="threadNfoGroup">Biblenfogrp</string>
     <string name="toastEmpty">Vazio!</string>
-    <string name="toastEmpty3">Min. 3 caracteres!</string>
+    <string name="toastEmpty3">Mín. 3 caracteres!</string>
     <string name="toastBookNotInstalled">Papel não está instalado!</string>
     <string name="toastNoAppsToShare">Nenhum aplicativo para compartilhar!</string>
     <string name="toastNoBrowser">Instalar um browser.</string>
@@ -125,7 +125,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="tvFavOrder">Ordem:</string>
     <string name="favOrder0">Lembre-se (primeira leitura)</string>
     <string name="favOrder1">Data (mais recente primeiro)</string>
-    <string name="favOrder2">Livro (fim)</string>
+    <string name="favOrder2">Livro (ordem)</string>
 
     <string name="favOrder0Short">Favorito</string>
     <string name="favOrder1Short">Data</string>
@@ -163,15 +163,15 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="PRBL30">As minas</string>
     <string name="PRBL31">Casa na rocha ou areia (1)</string>
     <string name="PRBL32">Casa na rocha ou areia (2)</string>
-    <string name="PRBL33">Fermento (1)</string>
+    <string name="PRBL33">A levedura (1)</string>
     <string name="PRBL34">A levedura (2)</string>
     <string name="PRBL35">As ovelhas perdidas (1)</string>
     <string name="PRBL36">As ovelhas perdidas (2)</string>
-    <string name="PRBL37">O terno roupa nova e antiga (1)</string>
+    <string name="PRBL37">O novo revestimento e o revestimento de idade (1)</string>
     <string name="PRBL38">O novo revestimento e o revestimento de idade (2)</string>
     <string name="PRBL39">O novo revestimento e o revestimento de idade (3)</string>
     <string name="PRBL40">Nova vinho em garrafas de idade (1)</string>
-    <string name="PRBL41">Nova vinho em garrafas velhas (2)</string>
+    <string name="PRBL41">Nova vinho em garrafas de idade (2)</string>
     <string name="PRBL42">Nova vinho em garrafas de idade (3)</string>
     <string name="PRBL43">O semeador (1a)</string>
     <string name="PRBL44">O semeador (1b)</string>
@@ -196,7 +196,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
 
     <string-array name="UI_LAYOUT_ARRAY">
         <item>Smartphone, Tablet</item>
-        <item>TV</item>
+        <item>Televisão</item>
     </string-array>
 
     <string name="PLAN_OT">Velho Testamento</string>
@@ -275,194 +275,100 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="PLAN_BOOK65">Judas</string>
     <string name="PLAN_BOOK66">Apocalipse</string>
 
-    <string name="ART_APP_HELP">Aide</string>
+    <string name="ART_APP_HELP">Ajuda</string>
     <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
 <HA/>
-<i>Salut,</i> je suis un programmeur chrétien et j\'ai fait cette application avec mon coeur pour servir le Seigneur. La fin des temps est proche avec les tribulations, l\'antéchrist, Jésus et le jugement final.
-<i>Whattt! Are you serious?</i> Oui, je suis sérieux, les signes sont partout. Cette application donnant la vraie parole de Dieu peut vous aider à être fort durant cette période quand le diable essayera de vous tromper plus que jamais et d\'être prêt quand le Christ reviendra.
-Rappelez-vous que le diable connaît les Écritures. Je n\'ai ajouté que de bonnes bibles originales (pas de re-édition) en plusieurs langues, que je peux comprendre, pour vous aider à trouver Jésus parce qu\'il est le seul chemin vers
-notre Père. Ne restez pas dans les ténèbres petits enfants de Dieu. Soyez bon avec vos frères et soeurs, répandez la lumière, l\'amour, priez, repentez-vous, ayez la foi, la joie,
-suivez les commandements, arrêtez vos péchés et semez abondamment. Suivons Jésus, le bon Berger, notre unique sauveur&#8230; Que Dieu vous bénisse. Amen.<br>
+<i>Oi,</i> eu sou um programador cristão e eu criei este aplicativo com meu coração para servir ao Senhor. O fim dos tempos está próximo das tribulações, do anticristo, de Jesus e do julgamento final.<br>
+<i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, espalhe a luz, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
+<br>
 <blockquote>
-<b>Jean 14.6:</b> Jésus lui dit: Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi.
+<b>João 14.6:</b> Disse-lhe Jesus: Eu sou o caminho, e a verdade e a vida; ninguém vem ao Pai, senão por mim.
 </blockquote>
 <blockquote>
-<b>Jean 15.12:</b> C\'est ici mon commandement: Aimez-vous les uns les autres, comme je vous ai aimés.
+<b>João 15.12:</b> O meu mandamento é este: Que vos ameis uns aos outros, assim como eu vos amei.
 </blockquote>
 <blockquote>
-<b>Jean 10.11:</b> Je suis le bon berger. Le bon berger donne sa vie pour ses brebis.
+<b>João 10.11:</b> Eu sou o bom Pastor; o bom Pastor dá a sua vida pelas ovelhas.
 </blockquote>
 <blockquote>
-<b>Psaumes 23.3:</b> Il restaure mon âme, Il me conduit dans les sentiers de la justice, A cause de son nom.<br>
+<b>Salmos 23.3:</b> Refrigera a minha alma; guia-me pelas veredas da justiça, por amor do seu nome.<br>
 <br>
-<b>Psaumes 23.4:</b> Quand je marche dans la vallée de l\'ombre de la mort, Je ne crains aucun mal, car tu es avec moi: ta houlette et ton bâton me rassurent.<br>
+<b>Salmos 23.4:</b> Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.<br>
 <br>
-<b>Psaumes 23.5:</b> Tu dresses devant moi une table, En face de mes adversaires; Tu oins d\'huile ma tête, Et ma coupe déborde.<br>
+<b>Salmos 23.5:</b> Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda.<br>
 <br>
-<b>Psaumes 23.6:</b> Oui, le bonheur et la grâce m\'accompagneront Tous les jours de ma vie, Et j\'habiterai dans la maison de l\'Éternel Jusqu\'à la fin de mes jours.
+<b>Salmos 23.6:</b> Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do SENHOR por longos dias.
 </blockquote>
 <blockquote>
-<b>1Corinthiens 3.16:</b> Ne savez-vous pas que vous êtes le temple de Dieu, et que l\'Esprit de Dieu habite en vous?<br>
+<b>1Corintios 3.16:</b> Não sabeis vós que sois o templo de Deus e que o Espírito de Deus habita em vós?<br>
 <br>
-<b>1Corinthiens 3.17:</b> Si quelqu\'un détruit le temple de Dieu, Dieu le détruira; car le temple de Dieu est saint, et c\'est ce que vous êtes.
+<b>1Corintios 3.17:</b> Se alguém destruir o templo de Deus, Deus o destruirá; porque o templo de Deus, que sois vós, é santo.
 </blockquote>
-<H>Chercher dans la Bible</H>
-<b>Syntaxe:</b> &lt;livre&gt; <br>
-<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; <br>
-<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;verset&gt; <br>
-<b>Syntaxe:</b> &lt;livre&gt; &lt;expression&gt; <br>
-<b>Syntaxe:</b> &lt;livre&gt; &lt;chapitre&gt; &lt;expression&gt; <br>
-<b>Syntaxe:</b> &lt;expression&gt;<br>
 <br><br>
-<b>Exemples:</b><br>
-• Genèse<br>
-Donne le chapitre 1 de la Genèse par défaut<br>
-<br>
-• Genèse 1<br>
-Donne le chapitre 1 de la Genèse<br>
-<br>
-• Genèse 1 5<br>
-Donne le verset 1.5 de la Genèse :)<br>
-<br>
-• Genèse feu<br>
-Cherche dans la Genèse toutes les occurrences de \'feu\'<br>
-<br>
-• 1 6 seigneur<br>
-Cherche dans la Genèse chapitre 6 toutes les occurences de \'seigneur\'<br>
-<br>
-• abraham<br>
-Cherche \'abraham\' dans toute la bible<br>
-<br>
-• Apocalypse cheval<br>
-Cherche les chevaux de l\'Apocalypse :)<br>
-<br>
-• 66 babylone<br>
-Cherche \'babylone\' dans le livre 66 (Apocalypse)<br>
-<br>
-• pierre%église<br>
-cherche dans l\'ordre, \'pierre\' et \'église\' dans toute la bible<br>
+<H>Pesquisar a Bíblia</H>
+<b>Sintaxe:</b> &lt;livro&gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; &lt; V &gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt; expressão &gt; <br>
+<b>Sintaxe:</b> &lt;livro&gt; &lt; secção &gt; &lt; expressão &gt; <br>
+<b>Sintaxe:</b> &lt;expressão &gt; <br>
 <br><br>
-<b>Remarques:</b><br>
-- Les noms des livres sont sensibles à la casse, donc sélectionnez les dans la liste.<br>
-- Ajoutez des accents dans vos mots si ils en ont:<br>
-Exemple: j<u>é</u>zabel (français), jezebel (anglais)<br>
-- Si une recherche ne donne pas de résultat, vérifiez le titre de l\'onglet pour être certain que vous n\'êtes pas en train de filtrer vos favoris ET que vous n\'êtes pas en train de chercher dans une autre bible (autre langue)<br>
-Exemple: <u>É</u>lie (français), Elijah (anglais), Elia (italien), El<u>í</u>as (espagnol)<br>
-<br><br>
-<H>Traduire</H>
-Pour obtenir la traduction d\'un verset, chapitre, résultat (résultat de recherche) dans une langue: faites une longue pression sur un verset. Une boîte de dialogue apparaîtra et il sera possible de l\'ouvrir/copier/partager.
-Vous verrez que les traductions sont très proches.<br>
-<br><br>
-<H>Chercher dans les Favoris</H>
-Chercher dans les favoris ne cherchera pas dans la Bible. Cela filtrera uniquement les favoris que vous avez sauvés. Il y a un bouton Effacer pour vider le filtre et tous les afficher.<br>
-<br><br>
-<H>Favoris</H>
-Il y a deux types de favoris:<br>
-- favori normal: utilisez le quand vous aimez un verset, afin de le relire<br>
-- favori de lecture (passages)<br>
+<b>Exemplos:</b><br>
+• Genesis<br>
+O Capítulo 1 apresenta o padrão Genesis<br>
 <br>
-Vous pouvez changer le symbole du favori normal dans Paramètres.<br>
-Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
+• Genesis 1<br>
+Dê capítulo 1 do Genesis<br>
+<br>
+• Genesis 1 5<br>
+Dê o verso 1.5 do Genesis :)<br>
+<br>
+• Genesis fogo<br>
+Pesquisa em Gênesis todas as ocorrências de \'fogo\'<br>
+<br>
+• 1 6 senhor<br>
+Pesquisa em Gênesis capítulo 6 todas as ocorrências de \'senhor\'<br>
+<br>
+• Abraham<br>
+Buscando \'abraham\' em toda a Bíblia<br>
+<br>
+• Apocalypse cavalo<br>
+Procura os cavalos do Apocalipse :)<br>
+<br>
+• 66 Babylon<br>
+Buscando \'Babylon\' no livro 66 (Apocalypse)<br>
+<br>
+• pedra%igreja<br>
+Buscando em ordem, \'pedra\' e \'igreja\' em toda a Bíblia<br>
 <br><br>
-<H>Astuces</H>
-- Laissez l\'application résidente, la mémoire est bien gérée<br>
-- Les résultats de recherche sont utiles pour rechercher des versets dans une langue et obtenir les mêmes versets dans une autre langue, pour apprendre, étudier, comparer les textes, vérifier les mots&#8230;<br>
-- Utilisez mon widget<br>
-- Créez un plan de lecture pour vous forcer à lire un livre complètement<br>
+<b>Notas:</b><br>
+- Os nomes dos livros são caso sensível, por isso escolha na.<br>
+- Adicionar acentos em suas palavras, se eles têm:<br>
+Exemplo: j<u>é</u>zabel (Francês), jezebel (Inglês)<br>
+Exemplo: <u>E</u>lie (Francês), Elijah (Inglês), Elia (Italiano), El<u>í</u>as (Espanhol)<br>
 <br><br>
-<H>Accord</H>
-Cette application restera totalement gratuite, sans publicité, redirections, hors connexion et ne sera pas vendue. Ce n\'est pas une démo mais une version complète.<br>
+<H>Traduzir</H>
+Para obter a tradução de um verso, capítulo, resultado (resultado da pesquisa) em um idioma: fazer uma longa imprensa sobre um verso. Uma caixa de diálogo aparecerá e será possível abrir/copiar/ação.
+Você verá que as traduções estão muito próximas.<br>
 <br><br>
-<H>Contact</H>
-Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<br>
+<H>Dicas</H>
+- Deixe o aplicativo residente, a memória é bem gerenciada<br>
+- Os resultados da pesquisa são úteis para procurar versículos em um idioma e obter os mesmos versículos em outro idioma para aprender, estudar, comparar textos, checar palavras&#8230;<br>
+- Crie um plano de leitura para forçá-lo a ler um livro completamente<br>
+<br><br>
+<H>Acordo</H>
+Esta aplicação permanecerá totalmente livre, sem anúncios, redirecionamentos, off-line e não será vendido. Este não é um demo, mas uma versão completa.<br>
+<br><br>
+<H>Contacto</H>
+Se você tiver algum problema ou sugestão, entre em contato comigo (menu A propósito).<br>
 <br><br>
 ]]></string>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
-<H>3.4</H>
-• 13 articles<br>
-• 7 Youtubers<br>
-<br>
-<H>3.3</H>
-• Fix: menu<br>
-• Fix: article des Youtubers<br>
-• Fix (TV): recherche des Favoris<br>
-• +1 Youtuber<br>
-<br>
-<H>3.2</H>
-• Statut d\'installation<br>
-<br>
-<H>3.1</H>
-• Compatible avec les Android set-top box via 2 interfaces utilisateur (menu Paramètres):<br>
-1) Smartphone, tablette<br>
-2) Télévision: pour Android TV, Android set-top box, tablettes, smarphones en mode paysage. Destiné aux télévisions, il y un large bord autour du texte pour l\'overscan.<br>
-• Ajout d\'un bouton Gitlab (menu Contact)<br>
-<br>
-<H>3.0</H>
-• Compatible avec Android TV et D-pad<br>
-(Long click sur le titre d\'un onglet pour fermer l\'onglet)<br>
-<br>
-<H>2.13</H>
-• Fix: force la direction de gauche à droite dans le widget<br>
-• Barre d\'outils pliante<br>
-• Défilement jusqu\'au verset<br>
-• Versets peuvent être cliqués dans les articles<br>
-<br>
-<H>2.12</H>
-• Désactivé temporairement: partage à partir d\'autres applications (test)<br>
-<br>
-<H>2.11</H>
-• Articles, +2 Youtubers<br>
-• Partage à partir d\'autres applications (test)<br>
-<br>
-<H>2.10</H>
-• Fix: plans de lecture (jours restants)<br>
-• Articles<br>
-<br>
-<H>2.9</H>
-• Fix: widget (favori)<br>
-• Fix: plans de lecture (pourcentage)<br>
-<br>
-<H>2.8</H>
-• Optimisation du code (performance & sécurité)<br>
-• Possibilité de backuper l\'application avec des outils<br>
-• Open Source GPL3<br>
-• Publié sur F-Droid<br>
-<br>
-<H>2.7</H>
-• Articles & espace<br>
-<br>
-<H>2.6</H>
-• Plans de lecture: date de début&#8230;<br>
-• Articles<br>
-<br>
-<H>2.5</H>
-• Plans de lecture<br>
-<br>
-<H>2.4</H>
-• Processus d\'installation plus rapide (gain de 85%)<br>
-<br>
-<H>2.3</H>
-• Ajout du nr de chapitre (menu Livres)<br>
-• Passer d\'un chapitre à l\'autre entre les livres (Boutons: Précédant/Suivant)<br>
-• Aller à un article déjà ouvert (menu Articles)<br>
-<br>
-<H>2.2</H>
-• Long click sur le titre d\'un onglet fermera l\'onglet<br>
-• Position dans l\'article est sauvée<br>
-• Position de l\'onglet sélectionné est sauvée<br>
-• Support pour Android 7.1.1 (Nougat)<br>
-• Premiers tests d\'Android 8.0 (Android O)<br>
-• Titre court pour quelques articles<br>
-• Paraboles en plusieurs langues (menu Paraboles)<br>
-• Livres en plusieurs langues (menu Livres)<br>
-• Continuer la lecture en plusieurs langues (menu Continuer Lecture)<br>
-• Création de l\'article d\'Aide<br>
-• Création de l\'article de Logs<br>
-• Création de l\'article de 10 versets<br>
-• Lors de l\'installation, l\'article d\'Aide est affiché<br>
-• Lors d\'une mise à jour, l\'article de Logs est affiché<br>
+<H>3.5</H>
+• Versão portuguesa<br>
+• Bíblia portuguesa: Almeida Corrigida Fiel<br>
 <br>
 ]]></string>
     <string name="ART1">Mandamentos</string>

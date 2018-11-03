@@ -167,7 +167,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="PRBL34">Levadura (2)</string>
     <string name="PRBL35">La oveja perdida (1)</string>
     <string name="PRBL36">La oveja perdida (2)</string>
-    <string name="PRBL37">El nuevo traje y la capa vieja (1)</string>
+    <string name="PRBL37">El traje nuevo y el viejo abrigo (1)</string>
     <string name="PRBL38">El traje nuevo y el viejo abrigo (2)</string>
     <string name="PRBL39">El traje nuevo y el viejo escudo (3)</string>
     <string name="PRBL40">El vino nuevo en odres viejos (1)</string>
@@ -603,7 +603,7 @@ De Daniel 5.25 (hebreo): \'Mene, Mene, Tekel, Upharsin\'.<br>
     <string name="ART_APP_HELP_CONTENT"><![CDATA[
 <HA/>
 <i>Ola,</i> soy un programador cristiano e hice esta aplicación con mi corazón para servir al Señor. El fin de los tiempos es próximo con las tribulaciones, el antéchrist, el Jesús y el juicio final.
-<i>Whattt! Are you serious?</i> Sí, soy serio, los signos están por todas partes. Esta aplicación que concede la verdadera palabra(voz) de Dios puede ayudarle a ser fuerte durante este período cuando el diablo tratará de engañarle más que nunca y de estar listo cuando el Cristo volverá. Recuerde que el diablo conoce las Escrituras. Añadí sólo la buenas Biblia originales (ninguna re-edición) en varias lenguas, que puedo comprender, para ayudarse a encontrar a Jesús porque es el solo camino hacia nuestro Padre.
+<i>Whattt! Are you serious?</i> Sí, soy serio, los signos están por todas partes. Esta aplicación que concede la verdadera palabra(voz) de Dios puede ayudarle a ser fuerte durante este período cuando el diablo tratará de engañarle más que nunca y de estar listo cuando el Cristo volverá. Recuerde que el diablo conoce las Escrituras. Añadí sólo la buenas Biblia originales (ninguna re-edición cuando es posible) en varias lenguas, que puedo comprender, para ayudarse a encontrar a Jesús porque es el solo camino hacia nuestro Padre.
 No quede en las tinieblas chicos de Dios. Sea bueno con sus hermanos y hermanas, difunda la luz, el amor, reugue, arrepiéntase, tenga la fe, la alegría, siga los mandos, pare(detenga) sus pecados y siembre abundantemente. Sigamos a Jesús, el buen Pastor, nuestro salvador único&#8230; Qué Dios le bendiga. Amen.<br>
 <blockquote>
 <b>Juan 14.6:</b> Jesús le dice: Yo soy el camino, y la verdad, y la vida: nadie viene al Padre, sino por mí.
@@ -697,6 +697,10 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.5</H>
+• Versión portuguesa<br>
+• Biblia portuguesa: Almeida Corrigida Fiel<br>
+<br>
 <H>3.4</H>
 • 13 artículos<br>
 • 7 Youtubers<br>

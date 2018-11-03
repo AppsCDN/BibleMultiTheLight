@@ -606,7 +606,7 @@ Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <HA/>
 <i>Hi,</i> I\'m a Christian programmer and made this application with my heart to serve the Lord. The end of time is close with tribulations, antichrist, Jesus and the final judgment.
 <i>Whattt! Are you serious?</i> Yes, I\'m serious, signs are everywhere. This application, giving the real Word of God, can help you be strong during this period when the devil will try to deceive you more than never and to be ready
-when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
+when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition where possible) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
 Don\'t remain in the darkness little children of God. Be good to your brothers and sisters, spread the light, love, pray, repent, have faith, joy,
 follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus, the good Shepherd, our only saviour&#8230; God bless you. Amen.<br>
 <blockquote>
@@ -707,6 +707,10 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.5</H>
+• Portuguese version<br>
+• Portuguese Bible: Almeida Corrigida Fiel<br>
+<br>
 <H>3.4</H>
 • 13 articles<br>
 • 7 Youtubers<br>
@@ -1298,6 +1302,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="LAYOUT_DYNAMIC_VALUES_ARRAY" translatable="false"
