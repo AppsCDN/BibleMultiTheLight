@@ -226,9 +226,10 @@ public class BibleWidgetProvider extends AppWidgetProvider
             //*** Set components
             SaveTheme(context);
             final String lang = widgetVerse.bbName.compareToIgnoreCase("k") == 0 ? "EN"
+                    : widgetVerse.bbName.compareToIgnoreCase("v") == 0 ? "ES"
                     : widgetVerse.bbName.compareToIgnoreCase("l") == 0 ? "FR"
                     : widgetVerse.bbName.compareToIgnoreCase("d") == 0 ? "IT"
-                    : "ES";
+                    : "PT";
 
             final RemoteViews views = new RemoteViews(context.getPackageName(), WIDGET_LAYOUT_ID);
             views.setTextViewText(R.id.widget_tv_lang, lang);
@@ -333,6 +334,10 @@ public class BibleWidgetProvider extends AppWidgetProvider
                 case 4:
                 {
                     return (bbName.compareToIgnoreCase("l") == 0) ? "d" : (bbName.compareToIgnoreCase("v") == 0) ? "l" : (bbName.compareToIgnoreCase("k") == 0) ? "v" : "k";
+                }
+                case 5:
+                {
+                    return (bbName.compareToIgnoreCase("l") == 0) ? "d" : (bbName.compareToIgnoreCase("v") == 0) ? "l" : (bbName.compareToIgnoreCase("d") == 0) ? "a" : (bbName.compareToIgnoreCase("k") == 0) ? "v" : "k";
                 }
             }
         }
