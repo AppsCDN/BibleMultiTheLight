@@ -296,7 +296,7 @@ a|31|Obadias|Oba
 a|32|Jonas|Jon
 a|33|Miquéias|Mic
 a|34|Naum|Nah
-a|35|Habacuc|Hab
+a|35|Habacuque|Hab
 a|36|Sofonias|Zep
 a|37|Ageu|Hag
 a|38|Zacarias|Zec

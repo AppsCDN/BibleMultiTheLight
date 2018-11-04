@@ -382,11 +382,13 @@ class DbHelper extends SQLiteOpenHelper
             {
                 //--- New setting
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
-
+            }
+            //Last
+            if (oldVersion < 24)   //1..23 ==> 24.  This check should be the last before the version
+            {
                 //--- PT
                 FillDbWithPt();
             }
-            //Last
             if (oldVersion < _version)    //1..(last-1) => last
             {
                 //=== FOR LAST VERSION
