@@ -742,7 +742,7 @@ final class PCommon implements IProject
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
      */
-    static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
+    private static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
     {
         @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
         @SuppressWarnings("UnusedAssignment") NotificationCompat.Builder notification = null;

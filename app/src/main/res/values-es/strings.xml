@@ -17,9 +17,9 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
 ]]></string>
     <string name="itemAll">TODO</string>
     <string name="languageInstalling">Instalación&#8230;</string>
-    <string name="languageEnInstalled">Versión establecida: EN…</string>
-    <string name="languageEsInstalled">Versiones establecidas: EN, ES…</string>
-    <string name="languageFrInstalled">Versiones establecidas: EN, ES, FR…</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">Versión establecida: EN…</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versiones establecidas: EN, ES…</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versiones establecidas: EN, ES, FR…</string>
     <string name="languageClear">Cancelar</string>
     <string name="languageContinue">Continuar</string>
     <string name="logErr">Errore: %s</string>

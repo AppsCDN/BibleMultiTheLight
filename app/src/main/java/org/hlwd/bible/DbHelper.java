@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
-// PROD: Bible 3.5,    DbVersion: 24 (10)2018-11-04
+// PROD: Bible 3.5,    DbVersion: 24 (10)2018-11-10
 // PROD: Bible 3.4,    DbVersion: 23 (9) 2018-10-14
 // PROD: Bible 3.3,    DbVersion: 22 (8) 2018-06-10
 // PROD: Bible 3.2,    DbVersion: 21 (8) 2018-05-05
@@ -88,6 +88,7 @@ class DbHelper extends SQLiteOpenHelper
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion)
     {
@@ -523,10 +524,6 @@ class DbHelper extends SQLiteOpenHelper
                     FillDbTask();
                 }
 
-                private void ShowNotification(final int msgId) {
-                    PCommon.ShowNotification(_context, _context.getString(R.string.appName), _context.getString(msgId), R.drawable.thelightnotif);
-                }
-
                 private void FillDbTask()
                 {
                     try
@@ -534,15 +531,12 @@ class DbHelper extends SQLiteOpenHelper
                         ImportBibleRef();
 
                         ImportXmlBible("k");
-                        ShowNotification(R.string.languageEnInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 1);
 
                         ImportXmlBible("v");
-                        ShowNotification(R.string.languageEsInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 2);
 
                         ImportXmlBible("l");
-                        ShowNotification(R.string.languageFrInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 3);
 
                         ImportXmlBible("d");
@@ -730,6 +724,7 @@ class DbHelper extends SQLiteOpenHelper
         {
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
             final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            //noinspection SameParameterValue
             final Thread thread = new Thread(threadGroup, threadName)
             {
                 int id = 124408;
@@ -739,10 +734,6 @@ class DbHelper extends SQLiteOpenHelper
                 public void run()
                 {
                     FillDbWithPtTask();
-                }
-
-                private void ShowNotification(final int msgId) {
-                    PCommon.ShowNotification(_context, _context.getString(R.string.appName), _context.getString(msgId), R.drawable.thelightnotif);
                 }
 
                 private void FillDbWithPtTask()
@@ -769,6 +760,7 @@ class DbHelper extends SQLiteOpenHelper
                     }
                 }
 
+                @SuppressWarnings("SameParameterValue")
                 private void ImportXmlBible(final String bbName) throws Exception
                 {
                     @SuppressWarnings("UnusedAssignment") int size = 0;

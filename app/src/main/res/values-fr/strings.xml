@@ -17,9 +17,9 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
 ]]></string>
     <string name="itemAll">TOUT</string>
     <string name="languageInstalling">Installation&#8230;</string>
-    <string name="languageEnInstalled">Version installée: EN…</string>
-    <string name="languageEsInstalled">Versions installées: EN, ES…</string>
-    <string name="languageFrInstalled">Versions installées: EN, ES, FR…</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">Version installée: EN…</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versions installées: EN, ES…</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versions installées: EN, ES, FR…</string>
     <string name="languageClear">Effacer</string>
     <string name="languageContinue">Continuer</string>
     <string name="logErr">Erreur: %s</string>

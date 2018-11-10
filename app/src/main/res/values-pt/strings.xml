@@ -17,9 +17,9 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
 ]]></string>
     <string name="itemAll">TUDO</string>
     <string name="languageInstalling">Instalação&#8230;</string>
-    <string name="languageEnInstalled">A versão instalada: EN…</string>
-    <string name="languageEsInstalled">Versões instaladas: en, es…</string>
-    <string name="languageFrInstalled">Versões instaladas: EN, ES, FR…</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">A versão instalada: EN…</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versões instaladas: en, es…</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versões instaladas: EN, ES, FR…</string>
     <string name="languageClear">Apagar</string>
     <string name="languageContinue">Continuar</string>
     <string name="logErr">Erro: %s</string>
@@ -276,7 +276,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="PLAN_BOOK66">Apocalipse</string>
 
     <string name="ART_APP_HELP">Ajuda</string>
-    <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount"><![CDATA[
+    <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount,Typos"><![CDATA[
 <HA/>
 <i>Oi,</i> eu sou um programador cristão e eu criei este aplicativo com meu coração para servir ao Senhor. O fim dos tempos está próximo das tribulações, do anticristo, de Jesus e do julgamento final.<br>
 <i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, espalhe a luz, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
@@ -728,7 +728,7 @@ Alguns cristãos (muitos pastores) que eu procuro na internet, por favor, ver se
 <a href="https://www.youtube.com/user/LadySentinelle">Raymond Bourgier</a><br><br>
 ]]></string>
     <string name="ART27">As dez virgens</string>
-    <string name="ART28">Marca da Besta</string>
+    <string name="ART28">Marca da besta</string>
     <string name="ART29">Medo e falta de fé</string>
     <string name="ART30">Ore conformidade</string>
     <string name="ART31">Arrependimento</string>

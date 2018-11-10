@@ -16,9 +16,9 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
 ]]></string>
     <string name="itemAll">ALL</string>
     <string name="languageInstalling">Installing&#8230;</string>
-    <string name="languageEnInstalled">Version installed: EN…</string>
-    <string name="languageEsInstalled">Versions installed: EN, ES…</string>
-    <string name="languageFrInstalled">Versions installed: EN, ES, FR…</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">Version installed: EN…</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES…</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES, FR…</string>
     <string name="languageClear">Clear</string>
     <string name="languageContinue">Continue</string>
     <string name="logErr">Error: %s</string>
@@ -705,7 +705,7 @@ For any issues or suggestions, please contact me (About menu).<br>
 <br><br>
 ]]></string>
     <string name="ART_APP_LOG">Logs</string>
-    <string name="ART_APP_LOG_CONTENT"><![CDATA[
+    <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
 <H>3.5</H>
 • Portuguese version<br>
