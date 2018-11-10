@@ -9,7 +9,7 @@
     <string name="installQuit">Installazione&#8230; Attendere prego.</string>
     <string name="installFinish">Installazione completa</string>
     <string name="installMsg"><![CDATA[
-Le Bibbie sono installate nel seguente ordine: inglese, spagnolo, francese, italiano.\n\n
+Le Bibbie sono installate nel seguente ordine: inglese, spagnolo, francese, italiano, portoghese.\n\n
 Secondo l\'apparecchio, l\'installazione può essere lunga.\n\n
 Potete tornare nello schermo di acceuil, l\'installazione continuerà. Sarete avvertiti dalle notificazioni quando questo sarà finito.\n\n
 Intanto, potete leggere la Bibbia in inglese (menu Libri), leggere l\'Aiuto o fare altre cose col vostro apparecchio.\n\n
@@ -17,9 +17,9 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
 ]]></string>
     <string name="itemAll">TUTTO</string>
     <string name="languageInstalling">Installazione&#8230;</string>
-    <string name="languageEnInstalled">Versione installata: EN&#8230;</string>
-    <string name="languageEsInstalled">Versioni installate: EN, ES&#8230;</string>
-    <string name="languageFrInstalled">Versioni installate: EN, ES, FR&#8230;</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">Versione installata: EN&#8230;</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versioni installate: EN, ES&#8230;</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versioni installate: EN, ES, FR&#8230;</string>
     <string name="languageClear">Cancellare</string>
     <string name="languageContinue">Continuare</string>
     <string name="logErr">Errore: %s</string>
@@ -64,6 +64,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuGroupLayoutDynamic2">Vista per 2 lingue</string>
     <string name="mnuGroupLayoutDynamic3">Vista per 3 lingue</string>
     <string name="mnuGroupLayoutDynamic4">Vista per 4 lingue</string>
+    <string name="mnuGroupLayoutDynamic5">Vista per 5 lingue</string>
     <string name="mnuGroupTheme">Tema</string>
     <string name="mnuGroupTypeface">Stile carattere</string>
     <string name="mnuGroupUiLayout">Interfaccia utente</string>
@@ -603,7 +604,7 @@ Di Daniele 5.25 (ebraico): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <HA/>
 <i>Ciao,</i> sono un programmatore cristiano e ho fatto questa applicazione col il mio cuore per servire il Signore. La fine dei tempi è vicini con le tribolazioni, l\'anticristo, Gesù ed il giudizio finale.
 <i>Whattt! Are you serious?</i> Sì, sono serio, i segni sono dovunque. Questa applicazione che dà la vera parola di Dio può aiutarvi ad essere forti durante questo periodo quando il diavolo provera di ingannarvi più che mai e di essere pronto quando il Cristo ritornerà.
-Ricordatevi che il diavolo conosce le Scritture. Ho aggiunto che le buone Bibbie originali (non re-edizione) in diverse lingue, che posso capire, per aiutarvi a trovare Gesù, perché è la sola strada verso nostro Padre.
+Ricordatevi che il diavolo conosce le Scritture. Ho aggiunto che le buone Bibbie originali (non re-edizione quando è possibile) in diverse lingue, che posso capire, per aiutarvi a trovare Gesù, perché è la sola strada verso nostro Padre.
 Non restate nelle tenebre piccoli bambini di Dio. Siate buono coi vostri fratelli e sorelle, spargete la luce, l\'amore, pregate, pentitesivi, abbiate la fede, la gioia, segua i comandi,
 fermate i vostri peccati e seminate abbondantemente. Seguiamo Gesù, il buono Pastore, il nostro unico salvatore&#8230; Che Dio vi benedicesse. Amen.<br>
 <blockquote>
@@ -698,6 +699,10 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.5</H>
+• Versione portoghese<br>
+• Bibbia portoghese: Almeida Corrigida Fiel<br>
+<br>
 <H>3.4</H>
 • 13 articoli<br>
 • 7 Youtubers<br>

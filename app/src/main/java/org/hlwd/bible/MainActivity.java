@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
                         if (isUiTelevision)
                         {
                             final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
-                            if (INSTALL_STATUS != 4)
+                            if (INSTALL_STATUS != 5)
                             {
                                 final int perc = GetInstallStatusPerc();
                                 if (perc < 10) return;
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity
             PCommon.SetSound(getApplicationContext(), true);
 
             final String BIBLE_NAME = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "");
-            if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0)
+            if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0 && BIBLE_NAME.compareToIgnoreCase("a") != 0 )
             {
                 //Forced temporary
                 PCommon.SavePref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
@@ -447,7 +447,7 @@ public class MainActivity extends AppCompatActivity
             if (!isUiTelevision)
             {
                 final int INSTALL_STATUS = PCommon.GetInstallStatus(getApplicationContext());
-                if (INSTALL_STATUS != 4)
+                if (INSTALL_STATUS != 5)
                 {
                     menu.findItem(R.id.mnu_prbl).setEnabled(false);
                     menu.findItem(R.id.mnu_articles).setEnabled(false);
@@ -633,7 +633,7 @@ public class MainActivity extends AppCompatActivity
     {
         final int pos = _s.GetBibleIdCount();
 
-        return Math.round((pos * 100) / 124408);
+        return Math.round((pos * 100) / 155510);
     }
 
     /***
@@ -749,7 +749,7 @@ public class MainActivity extends AppCompatActivity
                 tvBook.setTag( bNumber );
 
                 bNumberParam = (bNumber != 66) ? bNumber + 1 : 66;
-                isBookExist = (installStatus == 4) || _s.IsBookExist(bNumberParam);
+                isBookExist = (installStatus == 5) || _s.IsBookExist(bNumberParam);
                 if (isBookExist)
                 {
                     tvBook.setOnClickListener(new View.OnClickListener() {
@@ -2505,7 +2505,7 @@ public class MainActivity extends AppCompatActivity
         if (showMnu)
         {
             final int installStatus = PCommon.GetInstallStatus(getApplicationContext());
-            if (installStatus != 4)
+            if (installStatus != 5)
             {
                 PCommon.ShowToast(getApplicationContext(), R.string.installQuit, Toast.LENGTH_SHORT);
                 return;
@@ -2610,10 +2610,10 @@ slideViewMenu.startAnimation(animate);
                 btnOrder2.setVisibility(View.INVISIBLE);
             }
 
-            final String[] npLanguageValues = new String[] { getString(R.string.languageEn), getString(R.string.languageEs), getString(R.string.languageFr), getString(R.string.languageIt) };
+            final String[] npLanguageValues = new String[] { getString(R.string.languageEn), getString(R.string.languageEs), getString(R.string.languageFr), getString(R.string.languageIt), getString(R.string.languagePt) };
             npSearchLanguage.setDisplayedValues(npLanguageValues);
             npSearchLanguage.setMinValue(1);
-            npSearchLanguage.setMaxValue(4);
+            npSearchLanguage.setMaxValue(5);
             npSearchLanguage.setValue(bbname.equalsIgnoreCase("k") ? 1 : bbname.equalsIgnoreCase("v") ? 2 : bbname.equalsIgnoreCase("l") ? 3 : 4);
             npSearchLanguage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -2788,7 +2788,7 @@ slideViewMenu.startAnimation(animate);
                 tvBook.setTag( bNumber );
 
                 bNumberParam = (bNumber != 66) ? bNumber + 1 : 66;
-                isBookExist = (installStatus == 4) || _s.IsBookExist(bNumberParam);
+                isBookExist = (installStatus == 5) || _s.IsBookExist(bNumberParam);
                 if (isBookExist)
                 {
                     tvBook.setOnClickListener(new View.OnClickListener() {

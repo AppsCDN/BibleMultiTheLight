@@ -910,7 +910,7 @@ public class SearchFragment extends Fragment
                 menuInflater.inflate(R.menu.menu_search, menu);
 
                 final MenuItem mnu_search_bible_name_item = menu.findItem(R.id.mnu_search_bible_name);
-                final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : "FR";
+                final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : (bbName.compareToIgnoreCase("l") == 0) ? "FR" : "PT";
                 mnu_search_bible_name_item.setTitle(bbNameLanguage);
             }
             else if (fragmentType == FRAGMENT_TYPE.PLAN_TYPE)
@@ -924,7 +924,7 @@ public class SearchFragment extends Fragment
             else
             {
                 final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
-                if (INSTALL_STATUS == 4) menuInflater.inflate(R.menu.menu_art, menu);
+                if (INSTALL_STATUS == 5) menuInflater.inflate(R.menu.menu_art, menu);
 
                 //No search
                 return;
@@ -1040,7 +1040,7 @@ public class SearchFragment extends Fragment
 
                 bbName = RollBookName(bbName);
 
-                final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : "FR";
+                final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : (bbName.compareToIgnoreCase("l") == 0) ? "FR" : "PT";
                 item.setTitle(bbNameLanguage);
 
                 return true;
@@ -1403,6 +1403,10 @@ public class SearchFragment extends Fragment
                 {
                     return (bbName.compareToIgnoreCase("l") == 0) ? "d" : (bbName.compareToIgnoreCase("v") == 0) ? "l" : (bbName.compareToIgnoreCase("k") == 0) ? "v" : "k";
                 }
+                case 5:
+                {
+                    return (bbName.compareToIgnoreCase("l") == 0) ? "d" : (bbName.compareToIgnoreCase("v") == 0) ? "l" : (bbName.compareToIgnoreCase("d") == 0) ? "a" : (bbName.compareToIgnoreCase("k") == 0) ? "v" : "k";
+                }
             }
         }
         catch (Exception ex)
@@ -1451,6 +1455,11 @@ public class SearchFragment extends Fragment
             case 4:
             {
                 dc = Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "1"));
+                break;
+            }
+            case 5:
+            {
+                dc = Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1"));
                 break;
             }
             default:

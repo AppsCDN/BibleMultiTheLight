@@ -29,6 +29,8 @@ public interface IProject
 
         LAYOUT_DYNAMIC_4,
 
+        LAYOUT_DYNAMIC_5,
+
         THEME_NAME,
 
         FONT_NAME,

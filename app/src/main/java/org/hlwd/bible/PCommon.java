@@ -375,6 +375,11 @@ final class PCommon implements IProject
                 sb.append(context.getString(R.string.languageItShort));
                 sb.append(" ");
             }
+            else if (bb.compareToIgnoreCase("a") == 0)
+            {
+                sb.append(context.getString(R.string.languagePtShort));
+                sb.append(" ");
+            }
         }
 
         return sb.toString().trim().replaceAll(" ", ", ");
@@ -737,7 +742,7 @@ final class PCommon implements IProject
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
      */
-    static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
+    private static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
     {
         @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
         @SuppressWarnings("UnusedAssignment") NotificationCompat.Builder notification = null;
@@ -950,7 +955,7 @@ final class PCommon implements IProject
 
             final int colorAccent = ContextCompat.getColor(context, R.color.colorAccent);
             final String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME, "");
-            final int installStatus = (forceShowAllButtons) ? 4 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
+            final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
             final Button btnLanguageEN = (Button) view.findViewById(R.id.btnLanguageEN);
             if (installStatus < 1) btnLanguageEN.setVisibility(View.INVISIBLE);
@@ -992,6 +997,16 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
+            final Button btnLanguagePT = (Button) view.findViewById(R.id.btnLanguagePT);
+            if (installStatus < 5) btnLanguagePT.setVisibility(View.INVISIBLE);
+            if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
+            btnLanguagePT.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "a");
+                    builder.dismiss();
+                }
+            });
         }
         catch (Exception ex)
         {
@@ -1027,7 +1042,7 @@ final class PCommon implements IProject
 
             final int colorAccent = ContextCompat.getColor(context, R.color.colorAccent);
             final String bbName = PCommon.GetPrefBibleName(context);
-            final int installStatus = (forceShowAllButtons) ? 4 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
+            final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
             final TextView tvTrad = (TextView) view.findViewById(R.id.tvTrad);
             final ToggleButton btnLanguageEN = (ToggleButton) view.findViewById(R.id.btnLanguageEN);
@@ -1074,6 +1089,17 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
+            final ToggleButton btnLanguagePT = (ToggleButton) view.findViewById(R.id.btnLanguagePT);
+            if (installStatus < 5) btnLanguagePT.setEnabled(false);
+            if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
+            btnLanguagePT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    final int op = compoundButton.isChecked() ? 1 : -1;
+                    final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, op, "a"));
+                    tvTrad.setText(languageStack);
+                }
+            });
             final Button btnLanguageClear = (Button) view.findViewById(R.id.btnLanguageClear);
             if (installStatus <= 0) btnLanguageClear.setEnabled(false);
             btnLanguageClear.setOnClickListener(new View.OnClickListener() {
@@ -1086,6 +1112,7 @@ final class PCommon implements IProject
                     btnLanguageES.setChecked(false);
                     btnLanguageFR.setChecked(false);
                     btnLanguageIT.setChecked(false);
+                    btnLanguagePT.setChecked(false);
                     final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
                     tvTrad.setText(languageStack);
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
@@ -1109,6 +1136,7 @@ final class PCommon implements IProject
             if (tradInit.contains("v")) btnLanguageES.setChecked(true);
             if (tradInit.contains("l")) btnLanguageFR.setChecked(true);
             if (tradInit.contains("d")) btnLanguageIT.setChecked(true);
+            if (tradInit.contains("a")) btnLanguagePT.setChecked(true);
             final String languageStack = PCommon.ConcaT(context.getString(R.string.tvTrad), " ", PCommon.ManageTradBibleName(context, 0, ""));
             tvTrad.setText(languageStack);
         }

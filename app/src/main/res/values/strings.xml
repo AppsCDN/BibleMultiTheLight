@@ -9,16 +9,16 @@
     <string name="installQuit">Installing, please wait.</string>
     <string name="installFinish">Installation completed</string>
     <string name="installMsg"><![CDATA[
-The Bibles are installed in the following order: English, Spanish, French, Italian.\n\n
+The Bibles are installed in the following order: English, Spanish, French, Italian, Portuguese.\n\n
 According to the device, the installation could be long.\n\n
 If you return to your home screen, the installation will continue. You will be informed by the notifications when it will be finished.\n\n
 Meanwhile, you can read the Bible in English (Books menu), read the Help or make other things with your device.\n
 ]]></string>
     <string name="itemAll">ALL</string>
     <string name="languageInstalling">Installing&#8230;</string>
-    <string name="languageEnInstalled">Version installed: EN…</string>
-    <string name="languageEsInstalled">Versions installed: EN, ES…</string>
-    <string name="languageFrInstalled">Versions installed: EN, ES, FR…</string>
+    <string name="languageEnInstalled" tools:ignore="UnusedResources">Version installed: EN…</string>
+    <string name="languageEsInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES…</string>
+    <string name="languageFrInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES, FR…</string>
     <string name="languageClear">Clear</string>
     <string name="languageContinue">Continue</string>
     <string name="logErr">Error: %s</string>
@@ -64,6 +64,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupLayoutDynamic2">Display for 2 languages</string>
     <string name="mnuGroupLayoutDynamic3">Display for 3 languages</string>
     <string name="mnuGroupLayoutDynamic4">Display for 4 languages</string>
+    <string name="mnuGroupLayoutDynamic5">Display for 5 languages</string>
     <string name="mnuGroupTheme">Theme</string>
     <string name="mnuGroupTypeface">Font style</string>
     <string name="mnuGroupUiLayout">User interface</string>
@@ -605,7 +606,7 @@ Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <HA/>
 <i>Hi,</i> I\'m a Christian programmer and made this application with my heart to serve the Lord. The end of time is close with tribulations, antichrist, Jesus and the final judgment.
 <i>Whattt! Are you serious?</i> Yes, I\'m serious, signs are everywhere. This application, giving the real Word of God, can help you be strong during this period when the devil will try to deceive you more than never and to be ready
-when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
+when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition where possible) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
 Don\'t remain in the darkness little children of God. Be good to your brothers and sisters, spread the light, love, pray, repent, have faith, joy,
 follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus, the good Shepherd, our only saviour&#8230; God bless you. Amen.<br>
 <blockquote>
@@ -704,8 +705,12 @@ For any issues or suggestions, please contact me (About menu).<br>
 <br><br>
 ]]></string>
     <string name="ART_APP_LOG">Logs</string>
-    <string name="ART_APP_LOG_CONTENT"><![CDATA[
+    <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.5</H>
+• Portuguese version<br>
+• Portuguese Bible: Almeida Corrigida Fiel<br>
+<br>
 <H>3.4</H>
 • 13 articles<br>
 • 7 Youtubers<br>
@@ -1253,11 +1258,13 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="languageEn" translatable="false">English</string>
     <string name="languageIt" translatable="false">Italiano</string>
     <string name="languageEs" translatable="false">Española</string>
+    <string name="languagePt" translatable="false">Português</string>
     <string name="languageFrShort" translatable="false">FR</string>
     <string name="languageEnShort" translatable="false">EN</string>
     <string name="languageItShort" translatable="false">IT</string>
     <string name="languageEsShort" translatable="false">ES</string>
-    <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua ?</string>
+    <string name="languagePtShort" translatable="false">PT</string>
+    <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
@@ -1274,6 +1281,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>(ES) Reina Valera</item>
         <item>(FR) Louis Segond</item>
         <item>(IT) G. Diodati</item>
+        <item>(PT) Almeida</item>
     </string-array>
 
     <string-array name="BIBLE_VALUES_ARRAY" translatable="false">
@@ -1281,6 +1289,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>v</item>
         <item>l</item>
         <item>d</item>
+        <item>a</item>
     </string-array>
 
     <string-array name="UI_LAYOUT_VALUES_ARRAY" translatable="false">
@@ -1293,6 +1302,7 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="LAYOUT_DYNAMIC_VALUES_ARRAY" translatable="false"

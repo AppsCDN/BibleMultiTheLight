@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.5,    DbVersion: 24 (10)2018-11-10
 // PROD: Bible 3.4,    DbVersion: 23 (9) 2018-10-14
 // PROD: Bible 3.3,    DbVersion: 22 (8) 2018-06-10
 // PROD: Bible 3.2,    DbVersion: 21 (8) 2018-05-05
@@ -55,7 +56,7 @@ class DbHelper extends SQLiteOpenHelper
 
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 23;
+    private static final int _version = 24;
 
     //</editor-fold>
 
@@ -87,6 +88,7 @@ class DbHelper extends SQLiteOpenHelper
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion)
     {
@@ -209,7 +211,7 @@ class DbHelper extends SQLiteOpenHelper
 //sql = "CREATE TABLE planHistory (startDt TEXT NOT NULL, endDt TEXT NOT NULL, desc TEXT NOT NULL)";
 //_db.execSQL(sql);
 
-                FillDb();
+                FillDbWithAll();
 
                 //Last version
                 _db.setVersion(_version);
@@ -377,7 +379,17 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE UNIQUE INDEX bibleNumber_ndx on bible (bbName, bNumber, cNumber, vNumber)";
                 _db.execSQL(sql);
             }
+            if (oldVersion < 24)   //1..23 ==> 24
+            {
+                //--- New setting
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
+            }
             //Last
+            if (oldVersion < 24)   //1..23 ==> 24.  This check should be the last before the version
+            {
+                //--- PT
+                FillDbWithPt();
+            }
             if (oldVersion < _version)    //1..(last-1) => last
             {
                 //=== FOR LAST VERSION
@@ -431,6 +443,7 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_2, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "3");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
@@ -458,6 +471,7 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_2:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_2)));
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_3:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3)));
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_4:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4)));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_5:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5)));
             System.out.println(PCommon.ConcaT("THEME_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME)));
             System.out.println(PCommon.ConcaT("FONT_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_NAME)));
             System.out.println(PCommon.ConcaT("FONT_SIZE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_SIZE)));
@@ -491,9 +505,9 @@ class DbHelper extends SQLiteOpenHelper
     //<editor-fold defaultstate="collapsed" desc="-- Bible Methods --">
 
     /***
-     * Fill db
+     * Fill db with All
      */
-    private void FillDb()
+    private void FillDbWithAll()
     {
         try
         {
@@ -510,10 +524,6 @@ class DbHelper extends SQLiteOpenHelper
                     FillDbTask();
                 }
 
-                private void ShowNotification(final int msgId) {
-                    PCommon.ShowNotification(_context, _context.getString(R.string.appName), _context.getString(msgId), R.drawable.thelightnotif);
-                }
-
                 private void FillDbTask()
                 {
                     try
@@ -521,19 +531,19 @@ class DbHelper extends SQLiteOpenHelper
                         ImportBibleRef();
 
                         ImportXmlBible("k");
-                        ShowNotification(R.string.languageEnInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 1);
 
                         ImportXmlBible("v");
-                        ShowNotification(R.string.languageEsInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 2);
 
                         ImportXmlBible("l");
-                        ShowNotification(R.string.languageFrInstalled);
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 3);
 
                         ImportXmlBible("d");
                         PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 4);
+
+                        ImportXmlBible("a");
+                        PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 5);
 
                         ImportCi();
 
@@ -692,6 +702,202 @@ class DbHelper extends SQLiteOpenHelper
                                 r.bNumber, ",",
                                 PCommon.AQ(r.bName), ",",
                                 PCommon.AQ(r.bsName), ")");
+
+                    _db.execSQL(sql);
+                }
+            };
+            thread.setPriority(Thread.MIN_PRIORITY);
+            thread.start();
+        }
+        catch(Exception ex)
+        {
+            LogE(ex);
+        }
+    }
+
+    /***
+     * Fill db with PT
+     */
+    private void FillDbWithPt()
+    {
+        try
+        {
+            final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            //noinspection SameParameterValue
+            final Thread thread = new Thread(threadGroup, threadName)
+            {
+                int id = 124408;
+                final Handler handler = new Handler();
+
+                @Override
+                public void run()
+                {
+                    FillDbWithPtTask();
+                }
+
+                private void FillDbWithPtTask()
+                {
+                    try
+                    {
+                        ImportBiblePtRef();
+
+                        ImportXmlBible("a");
+                        PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, 5);
+                    }
+                    catch(Exception ex)
+                    {
+                        LogE(ex);
+                    }
+                    finally
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                PCommon.ShowToast(_context, R.string.installFinish, Toast.LENGTH_LONG);
+                            }
+                        });
+                    }
+                }
+
+                @SuppressWarnings("SameParameterValue")
+                private void ImportXmlBible(final String bbName) throws Exception
+                {
+                    @SuppressWarnings("UnusedAssignment") int size = 0;
+                    int tot = 0;
+                    final String xmlName = bbName + ".xml";
+
+                    AssetManager am = _context.getAssets();
+                    InputStream is = am.open(xmlName);
+
+                    do
+                    {
+                        size = is.read();
+                        if (size >= 0) tot++;
+                    }
+                    while(size >= 0);
+
+                    is.close();
+                    is = am.open(xmlName);
+
+                    @SuppressWarnings("UnusedAssignment")
+                    VTDGen vg = null;
+                    {
+                        byte[] b = new byte[tot];
+                        if (is.read(b, 0, tot) != -1)
+                        {
+                            vg = new VTDGen();
+                            vg.setDoc(b);
+                            vg.parse(false);
+                        }
+                        //noinspection UnusedAssignment
+                        b = null;
+                    }
+                    is.close();
+
+                    //Chapter infos
+                    is = am.open("ci.txt");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                    String row;
+                    String[] cols;
+
+                    //Verses
+                    @SuppressWarnings("ConstantConditions") VTDNav vn = vg.getNav();
+                    AutoPilot apVerses = new AutoPilot();
+                    apVerses.bind(vn);
+
+                    String xpath, sql, vText;
+                    final String bbname = PCommon.AQ(bbName);
+                    final String insertSql = "INSERT INTO bible (id, bbName, bNumber, cNumber, vNumber, vText) VALUES (";
+
+                    xpath = PCommon.ConcaT("//BIBLEBOOK/CHAPTER/VERS");
+                    apVerses.selectXPath( xpath );
+
+                    int b, c, v, vCount, i;
+                    while ((row = br.readLine()) != null)
+                    {
+                        cols = row.split("\\|");
+                        if (cols.length != 3) break;
+
+                        b = Integer.parseInt( cols[0] );
+                        c = Integer.parseInt( cols[1] );
+                        vCount = Integer.parseInt( cols[2] );
+                        v = 0;
+
+                        for (i = 0; i < vCount; i++)
+                        {
+                            apVerses.evalXPath();
+
+                            v++;
+                            id++;
+                            vText = PCommon.AQ(PCommon.RQ(vn.getXPathStringVal()));
+                            sql = PCommon.ConcaT(insertSql, id, ",", bbname, ",", b, ",", c, ",", v, ",", vText, ")");
+
+                            //_db.beginTransaction();
+                            _db.execSQL(sql);
+                            //_db.setTransactionSuccessful();
+
+                            //noinspection UnusedAssignment
+                            sql = null;
+                            //noinspection UnusedAssignment
+                            vText = null;
+                        }
+
+                        //noinspection UnusedAssignment
+                        cols = null;
+                        //noinspection UnusedAssignment
+                        row = null;
+                    }
+
+                    apVerses.resetXPath();
+                    //noinspection UnusedAssignment
+                    apVerses = null;
+                    //noinspection UnusedAssignment
+                    vn = null;
+
+                    br.close();
+                    is.close();
+                }
+
+                private void ImportBiblePtRef() throws Exception
+                {
+                    final String fileName = "a.txt";
+                    String row;
+                    String[] cols;
+                    BibleRefBO ref = new BibleRefBO();
+
+                    AssetManager am = _context.getAssets();
+                    InputStream is = am.open(fileName);
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+                    while ((row = br.readLine()) != null)
+                    {
+                        cols = row.split("\\|");
+                        if (cols.length != 4) break;
+
+                        ref.bbName = cols[0];
+                        ref.bNumber = Integer.parseInt(cols[1]);
+                        ref.bName = cols[2];
+                        ref.bsName = cols[3];
+
+                        AddBibleRef(ref);
+                    }
+
+                    br.close();
+                    is.close();
+                }
+
+                /***
+                 * Add bible reference
+                 * @param r Reference
+                 */
+                private void AddBibleRef(final BibleRefBO r)
+                {
+                    final String sql = PCommon.ConcaT("INSERT INTO bibleRef (bbName, bNumber, bName, bsName) VALUES (",
+                            PCommon.AQ(r.bbName), ",",
+                            r.bNumber, ",",
+                            PCommon.AQ(r.bName), ",",
+                            PCommon.AQ(r.bsName), ")");
 
                     _db.execSQL(sql);
                 }
