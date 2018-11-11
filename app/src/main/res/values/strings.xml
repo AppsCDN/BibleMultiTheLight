@@ -1538,6 +1538,8 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="leftHandle" translatable="false">&lt;</string>
     <string name="rightHandle" translatable="false">&gt;</string>
     <string name="mnuUiLayoutDefault" translatable="false">C</string>
+    <string name="tv1" translatable="false">1</string>
+    <string name="tv2" translatable="false">2</string>
 
     <!-- emoji
     <string name="favSymbolDefault">\u271e</string>
