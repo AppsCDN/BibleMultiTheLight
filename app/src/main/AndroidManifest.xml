@@ -87,6 +87,7 @@
                 <data android:mimeType="xext/xlain"/>
             </intent-filter>
         </activity>
+        <!--
         <receiver
             android:name=".BibleWidgetProvider"
             android:exported="false">
@@ -105,5 +106,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/bible_widget_info"/>
         </receiver>
+        -->
     </application>
 </manifest>

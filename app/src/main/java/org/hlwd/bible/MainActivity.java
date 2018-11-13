@@ -455,16 +455,7 @@ public class MainActivity extends AppCompatActivity
                     menu.findItem(R.id.mnu_group_settings).setEnabled(false);
 
                     final String contentMsg = GetInstallStatusMsg();
-                    final String btnMsg = getString(R.string.btnRefresh);
-                    final Snackbar snackbar = Snackbar
-                            .make(llMain, contentMsg, Snackbar.LENGTH_LONG)
-                            .setAction(btnMsg, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view)
-                                {
-                                    invalidateOptionsMenu();
-                                }
-                            });
+                    final Snackbar snackbar = Snackbar.make(llMain, contentMsg, Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
