@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -1246,6 +1247,7 @@ final class PCommon implements IProject
                 tvMsg.setTextSize(fontSize);
                 tvMsg.setFocusable(true);
                 tvMsg.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+                tvMsg.setTextColor(Color.GRAY);    //Let this, was an issue on many Android versions
                 llMsg.addView(tvMsg);
             }
 
