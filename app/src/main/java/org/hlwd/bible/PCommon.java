@@ -495,8 +495,6 @@ final class PCommon implements IProject
     static void LogR(final Context context, final Exception ex)
     {
         LogR(context, R.string.logErr, StackTraceToString(ex.getStackTrace()));
-
-        //LogR(context, ex, "");
     }
 
     /*
