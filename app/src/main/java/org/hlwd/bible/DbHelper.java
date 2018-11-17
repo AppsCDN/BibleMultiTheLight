@@ -401,7 +401,11 @@ class DbHelper extends SQLiteOpenHelper
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, 0);
 
                 if (PCommon._isDebugVersion) PrintGlobalSettings();
-                PCommon.ShowToast(_context, R.string.installFinish, Toast.LENGTH_LONG);
+
+                if (oldVersion >= 24)
+                {
+                    PCommon.ShowToast(_context, R.string.installFinish, Toast.LENGTH_LONG);
+                }
 
                 _db.setVersion(_version);
                 //=== END FOR LAST VERSION
