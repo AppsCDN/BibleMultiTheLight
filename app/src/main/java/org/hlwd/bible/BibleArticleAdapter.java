@@ -17,8 +17,10 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 {
     private final ArrayList<SectionBO> _lstSection = new ArrayList<>();
     private SCommon _s = null;
+    @SuppressWarnings("UnusedAssignment")
     private String bbName = null;
     private final boolean isUiTelevision = true;
+    @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private int id = -1;
     private int blockId = -1;
@@ -234,9 +236,9 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         {
             super(view);
 
-            tv_before = (TextView)view.findViewById(R.id.tv_before);
-            tv_text = (TextView)view.findViewById(R.id.tv_text);
-            tv_after = (TextView)view.findViewById(R.id.tv_after);
+            tv_before = view.findViewById(R.id.tv_before);
+            tv_text = view.findViewById(R.id.tv_text);
+            tv_after = view.findViewById(R.id.tv_after);
 
             final Typeface typeface = PCommon.GetTypeface(view.getContext());
             if (typeface != null)
@@ -254,9 +256,9 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             //noinspection ConstantConditions
             if (isUiTelevision)
             {
-                tv_before0 = (TextView)view.findViewById(R.id.tv_before0);
-                tv_text_space_before = (TextView)view.findViewById(R.id.tv_text_space_before);
-                tv_text0 = (TextView)view.findViewById(R.id.tv_text0);
+                tv_before0 = view.findViewById(R.id.tv_before0);
+                tv_text_space_before = view.findViewById(R.id.tv_text_space_before);
+                tv_text0 = view.findViewById(R.id.tv_text0);
 
                 tv_before0.setTypeface(typeface);
                 tv_text_space_before.setTypeface(typeface);
@@ -350,9 +352,9 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                             PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, bibleId);
                             PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
                         }
-                        catch (Exception ignored)
+                        catch (Exception ex)
                         {
-                            if (PCommon._isDebugVersion) PCommon.LogR(_context, ignored);
+                            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
                         }
 
                         return false;
@@ -412,7 +414,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public int getItemCount()
     {
-        return _lstSection == null ? 0 : _lstSection.size();
+        return _lstSection.size();
     }
 
     @Override

@@ -94,9 +94,9 @@ public class SearchFragment extends Fragment
             v = inflater.inflate(R.layout.fragment_search, container, false);
             setHasOptionsMenu(true);
 
-            tvBookTitle = (Button) v.findViewById(R.id.tvBookTitle);
-            btnBack = (TextView) v.findViewById(R.id.btnBack);
-            btnForward = (TextView) v.findViewById(R.id.btnForward);
+            tvBookTitle = v.findViewById(R.id.tvBookTitle);
+            btnBack = v.findViewById(R.id.btnBack);
+            btnForward = v.findViewById(R.id.btnForward);
             btnBack.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -991,7 +991,7 @@ public class SearchFragment extends Fragment
                     }
                 });
 
-                final AutoCompleteTextView searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(R.id.search_src_text);
+                final AutoCompleteTextView searchViewAutoComplete = searchView.findViewById(R.id.search_src_text);
                 searchViewAutoComplete.setThreshold(1);
             }
             else
@@ -1111,7 +1111,7 @@ public class SearchFragment extends Fragment
 
     private void SetLayoutManager()
     {
-        recyclerView = (RecyclerView) v.findViewById(R.id.card_recycler_view);
+        recyclerView = v.findViewById(R.id.card_recycler_view);
 
         final RecyclerView.LayoutManager layoutManager;
         if (trad == null)
@@ -1249,13 +1249,13 @@ public class SearchFragment extends Fragment
             final int newPlanDayNumber = planDayNumber + planDayMove;
             if (newPlanDayNumber > pd.dayCount)
             {
-                final Button btnForward = (Button) v.findViewById(R.id.btnForward);
+                final Button btnForward = v.findViewById(R.id.btnForward);
                 btnForward.setEnabled(false);
                 return;
             }
             if (newPlanDayNumber < 1)
             {
-                final Button btnBack = (Button) v.findViewById(R.id.btnBack);
+                final Button btnBack = v.findViewById(R.id.btnBack);
                 btnBack.setEnabled(false);
                 return;
             }
@@ -1504,21 +1504,21 @@ public class SearchFragment extends Fragment
             }
             final InnerClass innerClass = new InnerClass();
 
-            final Button btn0 = (Button) view.findViewById(R.id.btnFavOrder0);
+            final Button btn0 = view.findViewById(R.id.btnFavOrder0);
             btn0.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
                     innerClass.OnDismiss(view);
                 }
             });
-            final Button btn1 = (Button) view.findViewById(R.id.btnFavOrder1);
+            final Button btn1 = view.findViewById(R.id.btnFavOrder1);
             btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
                     innerClass.OnDismiss(view);
                 }
             });
-            final Button btn2 = (Button) view.findViewById(R.id.btnFavOrder2);
+            final Button btn2 = view.findViewById(R.id.btnFavOrder2);
             btn2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
@@ -1632,7 +1632,9 @@ public class SearchFragment extends Fragment
                 if ((words[0].matches(patternDigit) && words[1].matches(patternDigit) && words[2].matches(patternDigit) && words[3].matches(patternDigit)))
                 {
                     isBook = true;
+                    //noinspection ConstantConditions
                     isChapter = false;
+                    //noinspection ConstantConditions
                     isVerse = false;
 
                     if (bNumber <= 0) bNumber = Integer.parseInt(words[0]);     //TODO ?  one param less
@@ -1677,11 +1679,14 @@ public class SearchFragment extends Fragment
                         (bNumber > 0 && words[1].matches(patternDigit)))
                 {
                     isBook = true;
+                    //noinspection ConstantConditions
                     isChapter = false;
+                    //noinspection ConstantConditions
                     isVerse = false;
 
                     if (bNumber <= 0) bNumber = Integer.parseInt(words[0]);
                     cNumber = Integer.parseInt(words[1]);
+                    //noinspection ConstantConditions
                     vNumber = 0;
 
                     //noinspection ConstantConditions,ConstantConditions,ConstantConditions
@@ -1713,10 +1718,12 @@ public class SearchFragment extends Fragment
                 {
                     isBook = true;
                     isChapter = true;
+                    //noinspection ConstantConditions
                     isVerse = false;
 
                     if (bNumber <= 0) bNumber = Integer.parseInt(words[ 0 ]);
                     cNumber = Integer.parseInt(words[ 1 ]);
+                    //noinspection ConstantConditions
                     vNumber = 0;
 
                     //noinspection ConstantConditions,ConstantConditions,ConstantConditions
@@ -1734,11 +1741,15 @@ public class SearchFragment extends Fragment
                         (bNumber > 0 ))
                 {
                     isBook = true;
+                    //noinspection ConstantConditions
                     isChapter = false;
+                    //noinspection ConstantConditions
                     isVerse = false;
 
                     if (bNumber <= 0) bNumber = Integer.parseInt(words[0]);
+                    //noinspection ConstantConditions
                     cNumber = 0;
+                    //noinspection ConstantConditions
                     vNumber = 0;
 
                     //noinspection ConstantConditions,ConstantConditions,ConstantConditions
@@ -1770,10 +1781,12 @@ public class SearchFragment extends Fragment
                 {
                     isBook = true;
                     isChapter = true;
+                    //noinspection ConstantConditions
                     isVerse = false;
 
                     if (bNumber <= 0) bNumber = Integer.parseInt(words[0]);
                     cNumber = 1;
+                    //noinspection ConstantConditions
                     vNumber = 0;
 
                     //noinspection ConstantConditions,ConstantConditions,ConstantConditions
@@ -1788,11 +1801,15 @@ public class SearchFragment extends Fragment
             if (searchFullQuery.length() >= searchFullQueryLimit)
             {
                 isBook = true;
+                //noinspection ConstantConditions
                 isChapter = false;
+                //noinspection ConstantConditions
                 isVerse = false;
 
                 bNumber = 0;
+                //noinspection ConstantConditions
                 cNumber = 0;
+                //noinspection ConstantConditions
                 vNumber = 0;
 
                 //noinspection ConstantConditions,ConstantConditions,ConstantConditions

@@ -63,7 +63,7 @@ public class BibleWidgetProvider extends AppWidgetProvider
                 if (words.length < 5) return;
 
                 int i = 0;
-                final StringBuilder sbText = new StringBuilder("");
+                final StringBuilder sbText = new StringBuilder();
                 for (String word : words)
                 {
                     if (i >= 3)

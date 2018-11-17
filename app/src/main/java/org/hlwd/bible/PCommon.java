@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -350,7 +351,7 @@ final class PCommon implements IProject
 
         //Returns lang stack
         final int size = trad.length();
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         String bb;
         for (int i = 0; i < size; i++)
         {
@@ -494,8 +495,6 @@ final class PCommon implements IProject
     static void LogR(final Context context, final Exception ex)
     {
         LogR(context, R.string.logErr, StackTraceToString(ex.getStackTrace()));
-
-        //LogR(context, ex, "");
     }
 
     /*
@@ -957,7 +956,7 @@ final class PCommon implements IProject
             final String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME, "");
             final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
-            final Button btnLanguageEN = (Button) view.findViewById(R.id.btnLanguageEN);
+            final Button btnLanguageEN = view.findViewById(R.id.btnLanguageEN);
             if (installStatus < 1) btnLanguageEN.setVisibility(View.INVISIBLE);
             if (bbName.compareToIgnoreCase("k") == 0) btnLanguageEN.setTextColor(colorAccent);
             btnLanguageEN.setOnClickListener(new View.OnClickListener() {
@@ -967,7 +966,7 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
-            final Button btnLanguageES = (Button) view.findViewById(R.id.btnLanguageES);
+            final Button btnLanguageES = view.findViewById(R.id.btnLanguageES);
             if (installStatus < 2) btnLanguageES.setVisibility(View.INVISIBLE);
             if (bbName.compareToIgnoreCase("v") == 0) btnLanguageES.setTextColor(colorAccent);
             btnLanguageES.setOnClickListener(new View.OnClickListener() {
@@ -977,7 +976,7 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
-            final Button btnLanguageFR = (Button) view.findViewById(R.id.btnLanguageFR);
+            final Button btnLanguageFR = view.findViewById(R.id.btnLanguageFR);
             if (installStatus < 3) btnLanguageFR.setVisibility(View.INVISIBLE);
             if (bbName.compareToIgnoreCase("l") == 0) btnLanguageFR.setTextColor(colorAccent);
             btnLanguageFR.setOnClickListener(new View.OnClickListener() {
@@ -987,7 +986,7 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
-            final Button btnLanguageIT = (Button) view.findViewById(R.id.btnLanguageIT);
+            final Button btnLanguageIT = view.findViewById(R.id.btnLanguageIT);
             if (installStatus < 4) btnLanguageIT.setVisibility(View.INVISIBLE);
             if (bbName.compareToIgnoreCase("d") == 0) btnLanguageIT.setTextColor(colorAccent);
             btnLanguageIT.setOnClickListener(new View.OnClickListener() {
@@ -997,7 +996,7 @@ final class PCommon implements IProject
                     builder.dismiss();
                 }
             });
-            final Button btnLanguagePT = (Button) view.findViewById(R.id.btnLanguagePT);
+            final Button btnLanguagePT = view.findViewById(R.id.btnLanguagePT);
             if (installStatus < 5) btnLanguagePT.setVisibility(View.INVISIBLE);
             if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
             btnLanguagePT.setOnClickListener(new View.OnClickListener() {
@@ -1044,8 +1043,8 @@ final class PCommon implements IProject
             final String bbName = PCommon.GetPrefBibleName(context);
             final int installStatus = (forceShowAllButtons) ? 5 : Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.INSTALL_STATUS, "1"));
 
-            final TextView tvTrad = (TextView) view.findViewById(R.id.tvTrad);
-            final ToggleButton btnLanguageEN = (ToggleButton) view.findViewById(R.id.btnLanguageEN);
+            final TextView tvTrad = view.findViewById(R.id.tvTrad);
+            final ToggleButton btnLanguageEN = view.findViewById(R.id.btnLanguageEN);
             if (installStatus < 1) btnLanguageEN.setEnabled(false);
             if (bbName.compareToIgnoreCase("k") == 0) btnLanguageEN.setTextColor(colorAccent);
             btnLanguageEN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1056,7 +1055,7 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
-            final ToggleButton btnLanguageES = (ToggleButton) view.findViewById(R.id.btnLanguageES);
+            final ToggleButton btnLanguageES = view.findViewById(R.id.btnLanguageES);
             if (installStatus < 2) btnLanguageES.setEnabled(false);
             if (bbName.compareToIgnoreCase("v") == 0) btnLanguageES.setTextColor(colorAccent);
             btnLanguageES.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1067,7 +1066,7 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
-            final ToggleButton btnLanguageFR = (ToggleButton) view.findViewById(R.id.btnLanguageFR);
+            final ToggleButton btnLanguageFR = view.findViewById(R.id.btnLanguageFR);
             if (installStatus < 3) btnLanguageFR.setEnabled(false);
             if (bbName.compareToIgnoreCase("l") == 0) btnLanguageFR.setTextColor(colorAccent);
             btnLanguageFR.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1078,7 +1077,7 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
-            final ToggleButton btnLanguageIT = (ToggleButton) view.findViewById(R.id.btnLanguageIT);
+            final ToggleButton btnLanguageIT = view.findViewById(R.id.btnLanguageIT);
             if (installStatus < 4) btnLanguageIT.setEnabled(false);
             if (bbName.compareToIgnoreCase("d") == 0) btnLanguageIT.setTextColor(colorAccent);
             btnLanguageIT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1089,7 +1088,7 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
-            final ToggleButton btnLanguagePT = (ToggleButton) view.findViewById(R.id.btnLanguagePT);
+            final ToggleButton btnLanguagePT = view.findViewById(R.id.btnLanguagePT);
             if (installStatus < 5) btnLanguagePT.setEnabled(false);
             if (bbName.compareToIgnoreCase("a") == 0) btnLanguagePT.setTextColor(colorAccent);
             btnLanguagePT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1100,7 +1099,7 @@ final class PCommon implements IProject
                     tvTrad.setText(languageStack);
                 }
             });
-            final Button btnLanguageClear = (Button) view.findViewById(R.id.btnLanguageClear);
+            final Button btnLanguageClear = view.findViewById(R.id.btnLanguageClear);
             if (installStatus <= 0) btnLanguageClear.setEnabled(false);
             btnLanguageClear.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1118,7 +1117,7 @@ final class PCommon implements IProject
                     PCommon.SavePref(context, APP_PREF_KEY.BIBLE_NAME_DIALOG, "");
                 }
             });
-            final Button btnLanguageContinue = (Button) view.findViewById(R.id.btnSearchContinue);
+            final Button btnLanguageContinue = view.findViewById(R.id.btnSearchContinue);
             if (installStatus <= 0) btnLanguageContinue.setEnabled(false);
             btnLanguageContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1165,7 +1164,7 @@ final class PCommon implements IProject
             final Typeface typeface = PCommon.GetTypeface(context);
             final int fontSize = PCommon.GetFontSize(context);
 
-            final TextView tvFieldTitle = (TextView) view.findViewById(R.id.tvTitle);
+            final TextView tvFieldTitle = view.findViewById(R.id.tvTitle);
             tvFieldTitle.setText(fieldTitleId);
 
             builder.setCancelable(isCancelable);
@@ -1180,7 +1179,7 @@ final class PCommon implements IProject
             builder.setTitle(title);
             builder.setView(view);
 
-            final LinearLayout llItem = (LinearLayout) view.findViewById(R.id.llItem);
+            final LinearLayout llItem = view.findViewById(R.id.llItem);
             llItem.setTag(0);
             final int itemMin = shouldAddAllitem ? 0 : 1;
             for (int i = itemMin; i <= itemMax; i++)
@@ -1231,7 +1230,7 @@ final class PCommon implements IProject
 
             final LayoutInflater inflater = activity.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
-            final LinearLayout llMsg = (LinearLayout) view.findViewById(R.id.llMsg);
+            final LinearLayout llMsg = view.findViewById(R.id.llMsg);
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
             builder.setTitle(titleId);
@@ -1246,10 +1245,11 @@ final class PCommon implements IProject
                 tvMsg.setTextSize(fontSize);
                 tvMsg.setFocusable(true);
                 tvMsg.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+                tvMsg.setTextColor(Color.GRAY);    //Let this, was an issue on many Android versions
                 llMsg.addView(tvMsg);
             }
 
-            final Button btnClose = (Button) view.findViewById(R.id.btnClose);
+            final Button btnClose = view.findViewById(R.id.btnClose);
             btnClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -1412,18 +1412,16 @@ final class PCommon implements IProject
 
             final PackageManager pm = context.getPackageManager();
 
+            //TODO: FUTURE => CHECK TO REMOVE (DEPRECATED)
             try
             {
-                if (Build.VERSION.SDK_INT >= 16)
+                final boolean hasFeatureTelevision = pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
+                System.out.println( PCommon.ConcaT(logHeader, "hasFeatureTelevision=", hasFeatureTelevision ));
+                if (hasFeatureTelevision)
                 {
-                    final boolean hasFeatureTelevision = pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
-                    System.out.println( PCommon.ConcaT(logHeader, "hasFeatureTelevision=", hasFeatureTelevision ));
-                    if (hasFeatureTelevision)
-                    {
-                        isUiTelevision = true;
-                        PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "T");
-                        return true;
-                    }
+                    isUiTelevision = true;
+                    PCommon.SavePref(context, APP_PREF_KEY.UI_LAYOUT, "T");
+                    return true;
                 }
             }
             catch (Exception ex)

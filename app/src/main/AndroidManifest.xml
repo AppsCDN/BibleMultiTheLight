@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.hlwd.bible"
     android:installLocation="internalOnly"
-    android:versionCode="20181110"
-    android:versionName="3.5">
+    android:versionCode="20181118"
+    android:versionName="3.6">
 
     <!--<uses-sdk tools:overrideLibrary="android.support.v17.leanback"/>-->
 
@@ -87,6 +87,7 @@
                 <data android:mimeType="xext/xlain"/>
             </intent-filter>
         </activity>
+        <!--
         <receiver
             android:name=".BibleWidgetProvider"
             android:exported="false">
@@ -105,5 +106,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/bible_widget_info"/>
         </receiver>
+        -->
     </application>
 </manifest>

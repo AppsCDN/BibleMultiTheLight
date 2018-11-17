@@ -1,3 +1,8 @@
+### 3.6 (2018-11-18)
+
+• Support for Android 8.0 (Oreo)
+• Widget needs adaptation as Google Policies force all Android developers to target Android 8.0. I disabled the widget for the moment, need to learn. The widget should not block the release.
+
 ### 3.5 (2018-11-10)
 
 • Portuguese version
