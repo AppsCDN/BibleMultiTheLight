@@ -532,7 +532,7 @@ class Dal
     String GetVerseText(final String tbbName, final int bNumber, final int cNumber, final int vNumber)
     {
         ArrayList<VerseBO> lstVerse = null;
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
 
         try
         {
@@ -645,7 +645,7 @@ class Dal
     String GetChapterText(final String tbbName, final int bNumber, final int cNumber)
     {
         ArrayList<VerseBO> lstVerse = null;
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
 
         try
         {
@@ -1671,7 +1671,7 @@ class Dal
     {
         Cursor c = null;
         String text = "";
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
 
         try
         {
@@ -2179,7 +2179,7 @@ class Dal
         final int size = str.length();
         if (size <= 1) return PCommon.ConcaT("('", str, "')");
 
-        final StringBuilder sb = new StringBuilder("");
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size; i++)
         {
             if (sb.length() > 0) sb.append(",");

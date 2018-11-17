@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.6,    DbVersion: 25 (10)2018-11-18
 // PROD: Bible 3.5,    DbVersion: 24 (10)2018-11-10
 // PROD: Bible 3.4,    DbVersion: 23 (9) 2018-10-14
 // PROD: Bible 3.3,    DbVersion: 22 (8) 2018-06-10
@@ -54,9 +55,10 @@ class DbHelper extends SQLiteOpenHelper
 {
     //<editor-fold defaultstate="collapsed" desc="-- Variables --">
 
+    @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 24;
+    private static final int _version = 25;
 
     //</editor-fold>
 
@@ -166,6 +168,7 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE TABLE bibleNote (bNumber INTEGER NOT NULL, cNumber INTEGER NOT NULL, vNumber INTEGER NOT NULL, changeDt TEXT NOT NULL, mark INTEGER CHECK(mark >= 1 AND mark <= 2), note TEXT NOT NULL, PRIMARY KEY (bNumber, cNumber, vNumber))";
                 _db.execSQL(sql);
 
+                //noinspection SyntaxError
                 sql = "CREATE TABLE cacheTab (tabId INTEGER NOT NULL, tabType TEXT CHECK(tabType='S' OR tabType='F' or tabType='A' or tabType='P'), tabTitle TEXT NOT NULL, fullQuery TEXT NOT NULL, scrollPosY INTEGER NOT NULL, bbName TEXT NOT NULL, isBook INTEGER NOT NULL, isChapter INTEGER NOT NULL, isVerse INTEGER NOT NULL, bNumber INTEGER NOT NULL, cNumber INTEGER NOT NULL, vNumber INTEGER NOT NULL, trad TEXT NULL, PRIMARY KEY (tabId))";
                 _db.execSQL(sql);
 
@@ -268,6 +271,7 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "ALTER TABLE cacheTab RENAME TO temp_cacheTab";
                 _db.execSQL(sql);
 
+                //noinspection SyntaxError
                 sql = "CREATE TABLE cacheTab (tabId INTEGER NOT NULL, tabType TEXT CHECK(tabType='S' OR tabType='F' or tabType='A'), tabTitle TEXT NOT NULL, fullQuery TEXT NOT NULL, scrollPosY INTEGER NOT NULL, bbName TEXT NOT NULL, isBook INTEGER NOT NULL, isChapter INTEGER NOT NULL, isVerse INTEGER NOT NULL, bNumber INTEGER NOT NULL, cNumber INTEGER NOT NULL, vNumber INTEGER NOT NULL, trad TEXT NULL, PRIMARY KEY (tabId))";
                 _db.execSQL(sql);
 
@@ -324,6 +328,7 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "ALTER TABLE cacheTab RENAME TO temp_cacheTab";
                 _db.execSQL(sql);
 
+                //noinspection SyntaxError
                 sql = "CREATE TABLE cacheTab (tabId INTEGER NOT NULL, tabType TEXT CHECK(tabType='S' OR tabType='F' or tabType='A' or tabType='P'), tabTitle TEXT NOT NULL, fullQuery TEXT NOT NULL, scrollPosY INTEGER NOT NULL, bbName TEXT NOT NULL, isBook INTEGER NOT NULL, isChapter INTEGER NOT NULL, isVerse INTEGER NOT NULL, bNumber INTEGER NOT NULL, cNumber INTEGER NOT NULL, vNumber INTEGER NOT NULL, trad TEXT NULL, PRIMARY KEY (tabId))";
                 _db.execSQL(sql);
 

@@ -54,6 +54,7 @@
         android:singleLine="false"
         android:selectAllOnFocus="false"
         android:imeOptions="flagNoExtractUi|flagNoFullscreen"
+        android:hint="@string/mnuShare"
     />
 
     <RelativeLayout

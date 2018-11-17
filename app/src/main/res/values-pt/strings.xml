@@ -2,7 +2,7 @@
     <string name="aboutContactMe">Se você tiver problemas ou sugestões, entre em contato comigo.</string>
     <string name="close">Perto</string>
     <string name="btnClose">Perto</string>
-    <string name="btnRefresh">REFRESCAR</string>
+    <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESCAR</string>
     <string name="btnSelect">Selecionar</string>
     <string name="btnTrim">Reduzir</string>
     <string name="favOrderTitle">Ordenar por?</string>
@@ -367,9 +367,11 @@ Se você tiver algum problema ou sugestão, entre em contato comigo (menu A prop
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
-<H>3.5</H>
+<H>3.5 & 3.6</H>
 • Versão portuguesa<br>
 • Bíblia portuguesa: Almeida Corrigida Fiel<br>
+• Suporte para Android 8.0 (Oreo)<br>
+• O widget deve ser adaptado porque as regras do Google exigem que todos os desenvolvedores do Android segmentem o Android 8.0. Eu desativei o widget por enquanto, preciso aprender. O widget não deve bloquear a publicação.<br>
 <br>
 ]]></string>
     <string name="ART1">Mandamentos</string>

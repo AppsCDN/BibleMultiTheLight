@@ -25,24 +25,20 @@
 
     <TextView
         android:id="@+id/tvFavOrder"
-        android:layout_width="63dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
         android:focusable="false"
         android:text="@string/tvFavOrder"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/btnOrder0"
-        app:layout_constraintStart_toStartOf="@+id/etSearchText"
-        app:layout_constraintTop_toTopOf="@+id/btnOrder0"/>
+        app:layout_constraintBottom_toTopOf="@+id/btnOrder0"
+        app:layout_constraintEnd_toEndOf="@+id/btnOrder0"
+        app:layout_constraintStart_toStartOf="@+id/btnOrder0"/>
 
 
     <ToggleButton
         android:id="@+id/btnOrder0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:focusable="true"
         android:nextFocusDown="@id/etSearchText"
         android:nextFocusLeft="@+id/btnOrder0"
@@ -54,7 +50,8 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/btnOrder1"
         app:layout_constraintEnd_toStartOf="@+id/btnOrder1"
-        app:layout_constraintStart_toEndOf="@+id/tvFavOrder"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/etSearchText"
         app:layout_constraintTop_toTopOf="@+id/btnOrder1"
         app:layout_constraintVertical_bias="1.0"/>
 
@@ -62,9 +59,8 @@
         android:id="@+id/btnOrder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:focusable="true"
         android:nextFocusDown="@id/etSearchText"
@@ -87,7 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:focusable="true"
         android:nextFocusDown="@id/etSearchText"
         android:nextFocusLeft="@+id/btnOrder1"
@@ -98,7 +93,7 @@
         android:textOn="@string/favOrder2Short"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/btnOrder1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etSearchText"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnOrder1"
         app:layout_constraintTop_toTopOf="@+id/btnOrder1"
@@ -122,6 +117,7 @@
         android:nextFocusUp="@id/npSearchLanguage"
         android:selectAllOnFocus="false"
         android:singleLine="false"
+        android:hint="@string/searchFavHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/npSearchLanguage"

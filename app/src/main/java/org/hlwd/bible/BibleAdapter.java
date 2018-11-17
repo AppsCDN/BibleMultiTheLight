@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
 {
+    @SuppressWarnings("UnusedAssignment")
     ArrayList<VerseBO> lstVerse = null;
     private String markFav;
     private String markReading;
@@ -120,9 +121,9 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
         {
             super(view);
 
-            tv_ref = (TextView)view.findViewById(R.id.tv_ref);
-            tv_text = (TextView)view.findViewById(R.id.tv_text);
-            tv_mark = (TextView)view.findViewById(R.id.tv_mark);
+            tv_ref = view.findViewById(R.id.tv_ref);
+            tv_text = view.findViewById(R.id.tv_text);
+            tv_mark = view.findViewById(R.id.tv_mark);
 
             final Typeface typeface = PCommon.GetTypeface(view.getContext());
             if (typeface != null)

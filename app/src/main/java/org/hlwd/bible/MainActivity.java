@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             slideViewTabHandle = (isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
 
             if (!isUiTelevision) {
-                final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                final Toolbar toolbar = findViewById(R.id.toolbar);
                 if (toolbar != null) { setSupportActionBar(toolbar); }
             }
             else
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity
                 });
             }
 
-            tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+            tabLayout = findViewById(R.id.tabLayout);
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
             {
@@ -653,6 +653,7 @@ public class MainActivity extends AppCompatActivity
             CacheTabBO cacheTabFav = _s.GetCacheTabFav();
             if (cacheTabFav == null)
             {
+                //noinspection ConstantConditions
                 isFavShow = false;
 
                 cacheTabFav = new CacheTabBO();
@@ -1332,13 +1333,13 @@ public class MainActivity extends AppCompatActivity
 
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
-            final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
+            final TextView tvPlanTitle = view.findViewById(R.id.tvPlanTitle);
             //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
             if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
             tvPlanTitle.setTextSize(fontSize);
 
-            final Button btnDelete = (Button) view.findViewById(R.id.btnDelete);
+            final Button btnDelete = view.findViewById(R.id.btnDelete);
             btnDelete.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -1501,9 +1502,9 @@ public class MainActivity extends AppCompatActivity
             final String strPlanDesc = PCommon.ConcaT(getResources().getString(R.string.planBookCount), ": ", bCount, "\n",
                     getResources().getString(R.string.planChapterCount), ": ", cCount, "\n",
                     getResources().getString(R.string.planVerseCount), ": ", vCount, "\n");
-            final TextView tvPlanDesc = (TextView) view.findViewById(R.id.tvPlanDesc);
+            final TextView tvPlanDesc = view.findViewById(R.id.tvPlanDesc);
             tvPlanDesc.setText(strPlanDesc);
-            final Button btnGotoPlans = (Button) view.findViewById(R.id.btnGotoPlans);
+            final Button btnGotoPlans = view.findViewById(R.id.btnGotoPlans);
             btnGotoPlans.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -1521,8 +1522,8 @@ public class MainActivity extends AppCompatActivity
                 final View glPlanCalMeasures = view.findViewById(R.id.glPlanCalMeasures);
                 glPlanCalMeasures.setVisibility(View.VISIBLE);
 
-                final NumberPicker npVerseCount = (NumberPicker) view.findViewById(R.id.npVerseCount);
-                final NumberPicker npDayCount = (NumberPicker) view.findViewById(R.id.npDayCount);
+                final NumberPicker npVerseCount = view.findViewById(R.id.npVerseCount);
+                final NumberPicker npDayCount = view.findViewById(R.id.npDayCount);
                 npVerseCount.setMinValue(7);
                 npVerseCount.setMaxValue( pd.vCount < maxVerses ? pd.vCount : maxVerses );
                 npVerseCount.setValue(defaultVdayCount);
@@ -1548,7 +1549,7 @@ public class MainActivity extends AppCompatActivity
 
                 final Calendar nowCal = Calendar.getInstance();
                 pd.startDt = DateFormat.format(dtFormat, nowCal).toString();
-                final Button btnPlanSetStartDt = (Button) view.findViewById(R.id.btnPlanSetStartDt);
+                final Button btnPlanSetStartDt = view.findViewById(R.id.btnPlanSetStartDt);
                 btnPlanSetStartDt.setText(pd.startDt);
                 btnPlanSetStartDt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1571,7 +1572,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                final Button btnPlanCreate = (Button) view.findViewById(R.id.btnPlanCreate);
+                final Button btnPlanCreate = view.findViewById(R.id.btnPlanCreate);
                 btnPlanCreate.setVisibility(View.VISIBLE);
                 btnPlanCreate.setOnClickListener(new View.OnClickListener()
                 {
@@ -1626,7 +1627,7 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                final Button btnDelete = (Button) view.findViewById(R.id.btnDelete);
+                final Button btnDelete = view.findViewById(R.id.btnDelete);
                 btnDelete.setVisibility(View.VISIBLE);
                 btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1634,7 +1635,7 @@ public class MainActivity extends AppCompatActivity
                         ShowPlansMenu(builder, planId);
                     }
                 });
-                final Button btnBack = (Button) view.findViewById(R.id.btnBack);
+                final Button btnBack = view.findViewById(R.id.btnBack);
                 btnBack.setVisibility(View.VISIBLE);
                 btnBack.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1644,7 +1645,7 @@ public class MainActivity extends AppCompatActivity
                         ShowPlan(planId, fpageNumber - 1);
                     }
                 });
-                final Button btnForward = (Button) view.findViewById(R.id.btnForward);
+                final Button btnForward = view.findViewById(R.id.btnForward);
                 btnForward.setVisibility(View.VISIBLE);
                 btnForward.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1657,7 +1658,7 @@ public class MainActivity extends AppCompatActivity
                 if (fpageNumber == 0) btnBack.setEnabled(false);
                 if (fpageNumber == pageCount - 1) btnForward.setEnabled(false);
 
-                final GridLayout glCal = (GridLayout) view.findViewById(R.id.glCal);
+                final GridLayout glCal = view.findViewById(R.id.glCal);
                 glCal.setVisibility(View.VISIBLE);
 
                 final ArrayList<PlanCalBO> lstCal = _s.GetPlanCal(bbname, pd.planId, fpageNumber);
@@ -1799,13 +1800,13 @@ public class MainActivity extends AppCompatActivity
 
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
-            final TextView tvPlanTitle = (TextView) view.findViewById(R.id.tvPlanTitle);
+            final TextView tvPlanTitle = view.findViewById(R.id.tvPlanTitle);
             //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
             if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
             tvPlanTitle.setTextSize(fontSize);
 
-            final Button btnOpen = (Button) view.findViewById(R.id.btnOpen);
+            final Button btnOpen = view.findViewById(R.id.btnOpen);
             btnOpen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -1843,7 +1844,7 @@ public class MainActivity extends AppCompatActivity
                     });
                 }
             });
-            final Button btnMarkAllAboveAsRead = (Button) view.findViewById(R.id.btnMarkAllAboveAsRead);
+            final Button btnMarkAllAboveAsRead = view.findViewById(R.id.btnMarkAllAboveAsRead);
             btnMarkAllAboveAsRead.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -1859,7 +1860,7 @@ public class MainActivity extends AppCompatActivity
                     });
                 }
             });
-            final Button btnUnmarkAllAboveAsRead = (Button) view.findViewById(R.id.btnUnmarkAllAboveAsRead);
+            final Button btnUnmarkAllAboveAsRead = view.findViewById(R.id.btnUnmarkAllAboveAsRead);
             btnUnmarkAllAboveAsRead.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -2546,14 +2547,14 @@ slideViewMenu.startAnimation(animate);
             final AlertDialog builderText = new AlertDialog.Builder(context).create();
             final LayoutInflater inflater = getLayoutInflater();
             final View vw = inflater.inflate(R.layout.fragment_search_tv, (ViewGroup) findViewById(R.id.clSearch));
-            final EditText etSearchText = (EditText) vw.findViewById(R.id.etSearchText);
+            final EditText etSearchText = vw.findViewById(R.id.etSearchText);
             final String searchTextHint = PCommon.ConcaT("<i>", getString(isSearchBible ? R.string.searchBibleHint : R.string.searchFavHint, "</i>"));
             etSearchText.setHint(Html.fromHtml(searchTextHint));
-            final NumberPicker npSearchLanguage = (NumberPicker) vw.findViewById(R.id.npSearchLanguage);
+            final NumberPicker npSearchLanguage = vw.findViewById(R.id.npSearchLanguage);
             final View vwFavOrder = vw.findViewById(R.id.tvFavOrder);
-            final ToggleButton btnOrder0 = (ToggleButton) vw.findViewById(R.id.btnOrder0);
-            final ToggleButton btnOrder1 = (ToggleButton) vw.findViewById(R.id.btnOrder1);
-            final ToggleButton btnOrder2 = (ToggleButton) vw.findViewById(R.id.btnOrder2);
+            final ToggleButton btnOrder0 = vw.findViewById(R.id.btnOrder0);
+            final ToggleButton btnOrder1 = vw.findViewById(R.id.btnOrder1);
+            final ToggleButton btnOrder2 = vw.findViewById(R.id.btnOrder2);
 
             if (!isSearchBible)
             {
@@ -2605,14 +2606,14 @@ slideViewMenu.startAnimation(animate);
             npSearchLanguage.setDisplayedValues(npLanguageValues);
             npSearchLanguage.setMinValue(1);
             npSearchLanguage.setMaxValue(5);
-            npSearchLanguage.setValue(bbname.equalsIgnoreCase("k") ? 1 : bbname.equalsIgnoreCase("v") ? 2 : bbname.equalsIgnoreCase("l") ? 3 : 4);
+            npSearchLanguage.setValue(bbname.equalsIgnoreCase("k") ? 1 : bbname.equalsIgnoreCase("v") ? 2 : bbname.equalsIgnoreCase("l") ? 3 : bbname.equalsIgnoreCase("d") ? 4 : 5);
             npSearchLanguage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     etSearchText.requestFocus();
                 }
             });
-            final Button btnSearchContinue = (Button) vw.findViewById(R.id.btnSearchContinue);
+            final Button btnSearchContinue = vw.findViewById(R.id.btnSearchContinue);
             btnSearchContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -2624,7 +2625,7 @@ slideViewMenu.startAnimation(animate);
                     builderText.dismiss();
                 }
             });
-            final Button btnSearchClear = (Button) vw.findViewById(R.id.btnSearchClear);
+            final Button btnSearchClear = vw.findViewById(R.id.btnSearchClear);
             btnSearchClear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -2643,7 +2644,7 @@ slideViewMenu.startAnimation(animate);
                 {
                     try
                     {
-                        final String bbname = (npSearchLanguage.getValue() == 1) ? "k" : (npSearchLanguage.getValue() == 2) ? "v" : (npSearchLanguage.getValue() == 3) ? "l" : "d";
+                        final String bbname = (npSearchLanguage.getValue() == 1) ? "k" : (npSearchLanguage.getValue() == 2) ? "v" : (npSearchLanguage.getValue() == 3) ? "l" :  (npSearchLanguage.getValue() == 4) ? "d" : "a";
                         PCommon.SavePref(etSearchText.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbname);
                         SearchTvBook(context, etSearchText.getText().toString(), isSearchBible);
                     }

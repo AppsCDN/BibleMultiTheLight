@@ -2,7 +2,7 @@
     <string name="aboutContactMe">If you have any issues or suggestions, please contact me.</string>
     <string name="close">Close</string>
     <string name="btnClose">Close</string>
-    <string name="btnRefresh">REFRESH</string>
+    <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESH</string>
     <string name="btnSelect">Select</string>
     <string name="btnTrim">Trim</string>
     <string name="favOrderTitle">Order by?</string>
@@ -707,13 +707,15 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
-<H>3.5</H>
+<H>3.5 & 3.6</H>
 • Portuguese version<br>
 • Portuguese Bible: Almeida Corrigida Fiel<br>
+• Support for Android 8.0 (Oreo)<br>
+• Widget needs adaptation as Google Policies force all Android developers to target Android 8.0. I disabled the widget for the moment, need to learn. The widget should not block the release.<br>
 <br>
 <H>3.4</H>
-• 13 articles<br>
-• 7 Youtubers<br>
+• +13 articles<br>
+• +7 Youtubers<br>
 <br>
 <H>3.3</H>
 • Fix: menu<br>
@@ -1538,8 +1540,8 @@ Read this parable and learn the relationship between forgiveness and judgment.<b
     <string name="leftHandle" translatable="false">&lt;</string>
     <string name="rightHandle" translatable="false">&gt;</string>
     <string name="mnuUiLayoutDefault" translatable="false">C</string>
-    <string name="tv1" translatable="false">1</string>
-    <string name="tv2" translatable="false">2</string>
+    <string name="tv1" translatable="false" tools:keep="@string/tv1">1</string>
+    <string name="tv2" translatable="false" tools:keep="@string/tv2">2</string>
 
     <!-- emoji
     <string name="favSymbolDefault">\u271e</string>

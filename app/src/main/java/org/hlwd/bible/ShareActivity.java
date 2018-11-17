@@ -57,12 +57,12 @@ public class ShareActivity extends AppCompatActivity
                 {
                     final String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
                     setContentView(R.layout.activity_share);
-                    final EditText etSharedText = (EditText) findViewById(R.id.etSharedText);
+                    final EditText etSharedText = findViewById(R.id.etSharedText);
                     etSharedText.setText(sharedText);
 
                     final String bbName = PCommon.GetPrefBibleName(getApplicationContext());
                     final String bbNameLanguage = (bbName.compareToIgnoreCase("k") == 0) ? "EN" : (bbName.compareToIgnoreCase("d") == 0) ? "IT" : (bbName.compareToIgnoreCase("v") == 0) ? "ES" : (bbName.compareToIgnoreCase("l") == 0) ? "FR" : "EN";
-                    final Button btnLanguage = (Button) findViewById(R.id.btnLanguageEN);
+                    final Button btnLanguage = findViewById(R.id.btnLanguageEN);
                     btnLanguage.setText(bbNameLanguage);
                     btnLanguage.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -71,7 +71,7 @@ public class ShareActivity extends AppCompatActivity
                             btnLanguage.setText(bbNameLanguage);
                         }
                     });
-                    final Button btnSelect = (Button) findViewById(R.id.btnSelect);
+                    final Button btnSelect = findViewById(R.id.btnSelect);
                     btnSelect.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -81,14 +81,14 @@ public class ShareActivity extends AppCompatActivity
                             etSharedText.setText(etSharedText.getText().toString().substring(selStart, selEnd));
                         }
                     });
-                    final Button btnTrim = (Button) findViewById(R.id.btnTrim);
+                    final Button btnTrim = findViewById(R.id.btnTrim);
                     btnTrim.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             etSharedText.setText(etSharedText.getText().toString().trim());
                         }
                     });
-                    final Button btnClose = (Button) findViewById(R.id.btnClose);
+                    final Button btnClose = findViewById(R.id.btnClose);
                     btnClose.setOnClickListener(new View.OnClickListener()
                     {
                         @Override
@@ -97,7 +97,7 @@ public class ShareActivity extends AppCompatActivity
                             finish();
                         }
                     });
-                    final Button btnSearch = (Button) findViewById(R.id.btnSearch);
+                    final Button btnSearch = findViewById(R.id.btnSearch);
                     btnSearch.setOnClickListener(new View.OnClickListener()
                     {
                         @Override

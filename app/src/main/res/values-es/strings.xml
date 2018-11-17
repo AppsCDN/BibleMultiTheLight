@@ -2,7 +2,7 @@
     <string name="aboutContactMe">Si usted tiene problemas o sugerencias, por favor se pone en contacto yo.</string>
     <string name="close">Cerrar</string>
     <string name="btnClose">Cerrar</string>
-    <string name="btnRefresh">REFRESCAR</string>
+    <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESCAR</string>
     <string name="btnSelect">Seleccionar</string>
     <string name="btnTrim">Reducir</string>
     <string name="favOrderTitle">Ordinar por?</string>
@@ -697,13 +697,15 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
-<H>3.5</H>
+<H>3.5 & 3.6</H>
 • Versión portuguesa<br>
 • Biblia portuguesa: Almeida Corrigida Fiel<br>
+• Soporte para Android 8.0 (Oreo)<br>
+• El widget debe adaptarse porque las reglas de Google requieren que todos los desarrolladores de Android se dirijan a Android 8.0. He deshabilitado el widget por ahora, necesito aprender. El widget no debe bloquear la publicación.<br>
 <br>
 <H>3.4</H>
-• 13 artículos<br>
-• 7 Youtubers<br>
+• +13 artículos<br>
+• +7 Youtubers<br>
 <br>
 <H>3.3</H>
 • Fix: menú<br>
