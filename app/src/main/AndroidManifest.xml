@@ -35,6 +35,8 @@
         android:supportsRtl="false"
         android:banner="@drawable/thelightbanner"
         android:theme="@style/AppTheme"
+        android:resizeableActivity="true"
+        android:supportsPictureInPicture="false"
         tools:ignore="GoogleAppIndexingWarning" tools:targetApi="lollipop">
         <!--<meta-data android:name="android.max_aspect" android:value="4.3"/>-->
 
