@@ -383,7 +383,9 @@ public class MainActivity extends AppCompatActivity
         {
             if (PCommon._isDebugVersion) System.out.println("Main: onPostResume");
 
+            /* This code has been removed since version 3.7
             PCommon.SetSound(getApplicationContext(), true);
+            */
 
             final String BIBLE_NAME = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "");
             if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0 && BIBLE_NAME.compareToIgnoreCase("a") != 0 )
@@ -563,7 +565,9 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 
+        /* This code has been removed since version 3.7
         PCommon.SetSound(getApplicationContext(), false);
+        */
     }
 
     @Override
