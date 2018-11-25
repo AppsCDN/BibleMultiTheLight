@@ -19,7 +19,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -718,12 +717,16 @@ final class PCommon implements IProject
             _s = null;
         }
 
+
+        /* This code has been removed since version 3.7
         //noinspection EmptyCatchBlock
         try
         {
             PCommon.SetSound(context, false);
         }
         catch (Exception ex) { }
+        */
+
 
         //noinspection EmptyCatchBlock
         try
@@ -1481,11 +1484,11 @@ final class PCommon implements IProject
     }
 
     /***
+     * Rem: This code has been removed since version 3.7
      * Enable/disable sound
      * @param context
      * @param isSoundOff
-     */
-    @SuppressWarnings("JavaDoc")
+     * @SuppressWarnings("JavaDoc")
     static void SetSound(final Context context, final boolean isSoundOff)
     {
         try
@@ -1499,6 +1502,7 @@ final class PCommon implements IProject
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
     }
+    */
 
     /***
      * Set text appareance

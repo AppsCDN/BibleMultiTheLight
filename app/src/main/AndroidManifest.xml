@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.hlwd.bible"
     android:installLocation="internalOnly"
-    android:versionCode="20181118"
-    android:versionName="3.6">
+    android:versionCode="20181125"
+    android:versionName="3.7">
 
     <!--<uses-sdk tools:overrideLibrary="android.support.v17.leanback"/>-->
 
@@ -38,6 +38,7 @@
         android:resizeableActivity="true"
         android:supportsPictureInPicture="false"
         tools:ignore="GoogleAppIndexingWarning" tools:targetApi="lollipop">
+        <!--android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"-->
         <!--<meta-data android:name="android.max_aspect" android:value="4.3"/>-->
 
         <activity
