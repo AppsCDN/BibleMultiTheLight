@@ -975,7 +975,7 @@ public class MainActivity extends AppCompatActivity
 
             for (final String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
             {
-                if (nr == 2 || nr == 9 )
+                if (nr == 2 || nr == 10)
                 {
                     TextView tvSep = new TextView(this);
                     tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);

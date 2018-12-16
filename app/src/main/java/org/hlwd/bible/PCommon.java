@@ -1483,7 +1483,7 @@ final class PCommon implements IProject
         return (isUiTelevision) ? tvLayoutId : classicLayoutId;
     }
 
-    /***
+    /*
      * Rem: This code has been removed since version 3.7
      * Enable/disable sound
      * @param context
