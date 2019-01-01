@@ -1346,6 +1346,25 @@ So the pastor didn\'t check the translation and I informed him.
 <R>54 2 9 15</R>
 <R>66 2 20 20</R>
 ]]></string>
+    <string name="ART67" tools:ignore="UnusedResources">Meats sacrificed to idols</string>
+    <string name="ART67_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
+<HA/>
+<R>46 8 1 8</R>
+]]></string>
+    <string name="ART68" tools:ignore="UnusedResources">Stumbling block</string>
+    <string name="ART68_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
+<HA/>
+<HS>Of God</HS>
+<R>23 8 13 15</R>
+<R>24 6 19 21</R>
+<R>66 2 14 16</R>
+<HS>Of men</R>
+<R>46 8 9 13</R>
+<R>45 14 10 13</R>
+<R>45 14 21 22</R>
+<R>60 2 7 8</R>
+]]></string>
+
 
 
     <!-- ======================================================================================= -->
@@ -1366,6 +1385,8 @@ So the pastor didn\'t check the translation and I informed him.
 	    <item>ART35</item>
         <item>ART26</item>
 
+        <item>ART68</item>
+        <item>ART67</item>
         <item>ART65</item>
         <item>ART64</item>
         <item>ART63</item>
