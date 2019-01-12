@@ -1367,14 +1367,14 @@ So the pastor didn\'t check the translation and I informed him.
     <string name="ART69" tools:ignore="UnusedResources">Sabbat</string>
     <string name="ART69_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
-Sabbat is saturday and not sunday.<br>
+Sabbat is saturday and not sunday.<br><br>
 <HS>Commandment</HS>
 <R>5 5 12 15</R>
 <HS>References</HS>
 <R>2 31 14 16</R>
 <R>2 35 2 3</R>
 <R>3 19 3 3</R>
-<R>3 23 3 3/R>
+<R>3 23 3 3</R>
 <R>23 56 1 2</R>
 <R>24 17 22 22</R>
 <R>26 20 12 13</R>
@@ -1411,7 +1411,6 @@ Sabbat is saturday and not sunday.<br>
     <string name="ART72" tools:ignore="UnusedResources">Will of my father</string>
     <string name="ART72_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
-<R></R>
 <R>23 55 6 11</R>
 <R>40 6 10 10</R>
 <R>40 7 21 21</R>
@@ -1424,10 +1423,51 @@ Sabbat is saturday and not sunday.<br>
     <string name="ART73" tools:ignore="UnusedResources">Be patient toward all men</string>
     <string name="ART73_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
-This verse is very important:<br>
+This verse is very important:<br><br>
 <R>52 5 14 14</R>
 ]]></string>
-
+    <string name="ART74" tools:ignore="UnusedResources">The great separation</string>
+    <string name="ART74_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
+<HA/>
+<br>
+Video:&nbsp;<a href="https://www.youtube.com/watch?v=zHg0iic8bu8">Prophecy Update Videos</a><br><br>
+<HS>Separation of Adam and Eve from Eden</HS>
+<R>1 3 24 24</R>
+<HS>Separation of Cain from his family and God</HS>
+<R>1 4 16 16</R>
+<R>23 59 1 2</R>
+<R>1 6 5 8</R>
+<HS>Separation of Abraham from his home and family</HS>
+<R>1 12 1 4</R>
+<HS>Separation Of Moses from Egypt</HS>
+<R>2 2 15 15</R>
+<HS>Separation of Israel from Egypt</HS>
+<R>2 12 31 32</R>
+<R>2 33 14 17</R>
+<HS>Separation of the Levites from the people</HS>
+<R>2 32 25 26</R>
+<HS>Separation of the Jewish believers from traditional judaism</HS>
+<R>48 2 11 21</R>
+<HS>Separation of the Gentile believers from the pagan world</HS>
+<R>44 15 22 29</R>
+<R>44 17 24 31</R>
+<HS>Walls of separation between the Jews and Gentiles were broken</HS>
+<R>49 2 14 14</R>
+<R>48 3 26 29</R>
+<HS>Great separation of the church from the world</HS>
+<R>46 15 51 53</R>
+<R>52 4 13 17</R>
+<HS>Separation at hand</HS>
+<R>45 12 1 2</R>
+<R>45 13 11 13</R>
+<R>45 8 22 25</R>
+<HS>Are you ready for the great separation?</HS>
+<br><br>
+You should know if you are ready!<br>
+Do you have oil in your lamp?<br>
+Therefore you will be encouraged.
+<R>52 5 19 19</R>
+]]></string>
     
 
     <!-- ======================================================================================= -->
@@ -1448,6 +1488,7 @@ This verse is very important:<br>
 	    <item>ART35</item>
         <item>ART26</item>
 
+        <item>ART74</item>
         <item>ART73</item>
         <item>ART72</item>
         <item>ART71</item>
