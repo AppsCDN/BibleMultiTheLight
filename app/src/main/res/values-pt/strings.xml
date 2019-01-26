@@ -876,16 +876,16 @@ Mais celui ci est correct:
 Donc le pasteur n\'a pas vérifié la traduction et je l\'ai informé.
 ]]></string>
     <string name="ART65" tools:ignore="UnusedResources">10 versos (3)</string>
-    <string name="ART66" tools:ignore="UnusedResources">Les femmes ne peuvent enseigner</string>
-    <string name="ART67" tools:ignore="UnusedResources">Viandes sacrifiées aux idoles</string>
+    <string name="ART66" tools:ignore="UnusedResources">As mulheres não podem ensinar</string>
+    <string name="ART67" tools:ignore="UnusedResources">Carnes sacrificaram aos ídolos</string>
     <string name="ART68" tools:ignore="UnusedResources">Tropeçar</string>
     <string name="ART68_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
-<HS>De Dieu</HS>
+<HS>De Deus</HS>
 <R>23 8 13 15</R>
 <R>24 6 19 21</R>
 <R>66 2 14 16</R>
-<HS>Des hommes</R>
+<HS>Dos homens</R>
 <R>46 8 9 13</R>
 <R>45 14 10 13</R>
 <R>45 14 21 22</R>
@@ -894,10 +894,10 @@ Donc le pasteur n\'a pas vérifié la traduction et je l\'ai informé.
     <string name="ART69" tools:ignore="UnusedResources">Sabbath</string>
     <string name="ART69_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
-Le jour du Sabbat est le samedi et non le dimanche.<br><br>
-<HS>Commandement</HS>
+O dia do Sabbath é o sábado e não o domingo.<br><br>
+<HS>Mandamento</HS>
 <R>5 5 12 15</R>
-<HS>Références</HS>
+<HS>Referências</HS>
 <R>2 31 14 16</R>
 <R>2 35 2 3</R>
 <R>3 19 3 3</R>
@@ -922,16 +922,16 @@ Le jour du Sabbat est le samedi et non le dimanche.<br><br>
 <R>58 4 9 11</R>
 &#8230;<br>
 ]]></string>
-    <string name="ART70" tools:ignore="UnusedResources">Viandes impures</string>
+    <string name="ART70" tools:ignore="UnusedResources">Carnes impuras</string>
     <string name="ART71" tools:ignore="UnusedResources">Meu filho és tu, hoje te gerei</string>
-    <string name="ART72" tools:ignore="UnusedResources">Volonté de mon père</string>
-    <string name="ART73" tools:ignore="UnusedResources">Soyez patient envers tous</string>
+    <string name="ART72" tools:ignore="UnusedResources">Vontade de meu Pai</string>
+    <string name="ART73" tools:ignore="UnusedResources">Sejais pacientes para com todos</string>
     <string name="ART73_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 Ce verset est très important:<br><br>
 <R>52 5 14 14</R>
 ]]></string>
-    <string name="ART74" tools:ignore="UnusedResources">La grande séparation</string>
+    <string name="ART74" tools:ignore="UnusedResources">A grande separação</string>
     <string name="ART74_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 <br>
@@ -973,7 +973,7 @@ Avez-vous de l\'huile dans votre lampe?<br>
 Par conséquent, vous serez encouragés.
 <R>52 5 19 19</R>
 ]]></string>
-    <string name="ART75" tools:ignore="UnusedResources">Quelques fausses doctrines et tromperies</string>
+    <string name="ART75" tools:ignore="UnusedResources">Algumas falsas doutrinas e decepções</string>
     <string name="ART75_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 Vidéo:&nbsp;<a href="https://www.youtube.com/watch?v=0g1q8-kxA1Q&t=1s">One Reality</a><br><br>
@@ -1014,7 +1014,7 @@ Vidéo:&nbsp;<a href="https://www.youtube.com/watch?v=0g1q8-kxA1Q&t=1s">One Real
     <string name="ART76_CONTENT" tools:ignore="MissingTranslation,UnusedResources"><![CDATA[
 <HA/>
 Lisez cette parabole et apprenez comment Dieu, notre Père aimant, attend que nous nous répentions et que nous allions vers lui.<br><br>
-<HS>Parabole</HS>
+<HS>Parábola</HS>
 <R>42 15 11 32</R>
 ]]></string>
 </resources>
