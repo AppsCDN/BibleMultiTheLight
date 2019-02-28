@@ -56,4 +56,8 @@
                 android:title="@string/mnuNoteRemove" />
         </menu>
     </item>
+    <item
+        android:id="@+id/mnu_edit"
+        android:title="@string/mnuEmpty">
+    </item>
 </menu>

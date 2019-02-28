@@ -1352,6 +1352,17 @@ final class PCommon implements IProject
     }
 
     /***
+     * Get edit status
+     * @param context
+     * @return
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetEditStatus(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_STATUS, "0"));
+    }
+
+    /***
      * Is UI Television?
      * @param context
      * @return true/false

@@ -581,12 +581,20 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_share_verse).setVisible(false);
 
             menu.findItem(R.id.mnu_fav).setVisible(false);
+
+            menu.findItem(R.id.mnu_edit).setVisible(false);
         }
         else if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
         {
             menu.findItem(R.id.mnu_open_result).setVisible(false);
             menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
             menu.findItem(R.id.mnu_share_result).setVisible(false);
+        }
+
+        if (fragmentType != FRAGMENT_TYPE.ARTICLE_TYPE)
+        {
+            final int edit_status = PCommon.GetEditStatus(v.getContext());
+            menu.findItem(R.id.mnu_edit).setTitle(edit_status == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
         }
     }
 
@@ -883,6 +891,15 @@ public class SearchFragment extends Fragment
                     _s.DeleteNote(verse.bNumber, verse.cNumber, verse.vNumber);
 
                     UpdateViewMark(position, 0);
+
+                    return true;
+                }
+                case R.id.mnu_edit:
+                {
+                    final int edit_status = PCommon.GetEditStatus(getContext());
+                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, edit_status == 0 ? 1 : 0);
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_FROM, "");
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_TO, "");
 
                     return true;
                 }

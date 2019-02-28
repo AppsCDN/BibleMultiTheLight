@@ -52,6 +52,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopyChapterToClipboard">Chapter</string>
     <string name="mnuCopyResultToClipboard">All</string>
     <string name="mnuCopyVerseToClipboard">Verse</string>
+    <string name="mnuEditOn">Start editing</string>
+    <string name="mnuEditOff">Stop editing</string>
     <string name="mnuMarkAllAboveAsRead">Mark all above as read</string>
     <string name="mnuUnmarkAllAboveAsRead">Mark all above as not read</string>
     <string name="mnuSearchBibleName">-</string>

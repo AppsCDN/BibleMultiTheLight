@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 4.0,    DbVersion: 29 (11)2019-03-10
 // PROD: Bible 3.9,    DbVersion: 28 (10)2019-01-27
 // PROD: Bible 3.8,    DbVersion: 27 (10)2018-12-16
 // PROD: Bible 3.7,    DbVersion: 26 (10)2018-11-25
@@ -61,7 +62,7 @@ class DbHelper extends SQLiteOpenHelper
     @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 28;
+    private static final int _version = 29;
 
     //</editor-fold>
 
@@ -392,6 +393,12 @@ class DbHelper extends SQLiteOpenHelper
                 //--- New setting
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
             }
+            if (oldVersion < 29)   //1..28 => 29
+            {
+                PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_FROM, "");
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_TO, "");
+            }
             //Last
             if (oldVersion < 24)   //1..23 ==> 24.  This check should be the last before the version
             {
@@ -446,6 +453,9 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LOG_STATUS, "");
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.ART_FROM, "");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.ART_TO, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "k");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1");
@@ -475,6 +485,9 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("INSTALL_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.INSTALL_STATUS)));
             System.out.println(PCommon.ConcaT("UPDATE_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UPDATE_STATUS)));
             System.out.println(PCommon.ConcaT("LOG_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LOG_STATUS)));
+            System.out.println(PCommon.ConcaT("EDIT_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_STATUS)));
+            System.out.println(PCommon.ConcaT("ART_FROM:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.ART_FROM)));
+            System.out.println(PCommon.ConcaT("ART_TO:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.ART_TO)));
             System.out.println(PCommon.ConcaT("BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME)));
             System.out.println(PCommon.ConcaT("BIBLE_NAME_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG)));
             System.out.println(PCommon.ConcaT("TRAD_BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME)));

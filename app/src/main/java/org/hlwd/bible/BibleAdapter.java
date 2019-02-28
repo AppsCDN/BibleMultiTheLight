@@ -217,6 +217,30 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
                 return false;
             }
         });
+        viewHolder.tv_text.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                final int edit_status = PCommon.GetEditStatus(view.getContext());
+                if (edit_status == 0) return;
+
+                final TextView tvText = (TextView) view;
+                if (tvText == null) return;
+
+                final int bibleId = tvText.getId();
+                final int position = Integer.parseInt( tvText.getTag().toString() );
+                PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, bibleId);
+                PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
+
+                final VerseBO verse = _s.GetVerse(bibleId);
+                if (verse == null) return;
+
+                System.out.println(verse.bNumber + " " + verse.cNumber + " " + verse.vNumber);
+
+                return;
+            }
+        });
     }
 
     @Override
