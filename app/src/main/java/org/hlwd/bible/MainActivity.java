@@ -455,6 +455,7 @@ public class MainActivity extends AppCompatActivity
                     menu.findItem(R.id.mnu_articles).setEnabled(false);
                     menu.findItem(R.id.mnu_plans).setEnabled(false);
                     menu.findItem(R.id.mnu_group_settings).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit).setEnabled(false);
 
                     final String contentMsg = GetInstallStatusMsg();
                     final Snackbar snackbar = Snackbar.make(llMain, contentMsg, Snackbar.LENGTH_LONG);
@@ -2498,6 +2499,7 @@ public class MainActivity extends AppCompatActivity
     private void Slide(final boolean showMnu)
     {
         if (slideViewMenu == null) return;
+
         if (showMnu)
         {
             final int installStatus = PCommon.GetInstallStatus(getApplicationContext());

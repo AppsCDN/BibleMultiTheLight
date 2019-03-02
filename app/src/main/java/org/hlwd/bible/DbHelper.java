@@ -215,8 +215,11 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE INDEX planCal0_ndx on planCal (planId, dayNumber)";
                 _db.execSQL(sql);
 
-//sql = "CREATE TABLE planHistory (startDt TEXT NOT NULL, endDt TEXT NOT NULL, desc TEXT NOT NULL)";
-//_db.execSQL(sql);
+                sql = "CREATE TABLE artDesc (artId INTEGER NOT NULL, artUpdatedDt TEXT NOT NULL, artTitle TEXT NOT NULL, artSrc TEXT NOT NULL, PRIMARY KEY (artTitle))";
+                _db.execSQL(sql);
+
+                sql = "CREATE UNIQUE INDEX artDesc0_ndx on artDesc (artId)";
+                _db.execSQL(sql);
 
                 FillDbWithAll();
 
@@ -398,7 +401,16 @@ class DbHelper extends SQLiteOpenHelper
                 PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_FROM, "");
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_TO, "");
+
+                sql = "CREATE TABLE artDesc (artId INTEGER NOT NULL, artUpdatedDt TEXT NOT NULL, artTitle TEXT NOT NULL, artSrc TEXT NOT NULL, PRIMARY KEY (artTitle))";
+                _db.execSQL(sql);
+
+                sql = "CREATE UNIQUE INDEX artDesc0_ndx on artDesc (artId)";
+                _db.execSQL(sql);
             }
+
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //Last
             if (oldVersion < 24)   //1..23 ==> 24.  This check should be the last before the version
             {
