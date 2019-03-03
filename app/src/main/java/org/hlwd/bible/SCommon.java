@@ -528,6 +528,27 @@ class SCommon
     }
 
     /***
+     * Get list of my articles Id
+     * @return list of articles Id
+     */
+    @SuppressWarnings("JavaDoc")
+    String[] GetListMyArticlesId()
+    {
+        return _dal.GetListMyArticlesId();
+    }
+
+    /***
+     * Get my article name
+     * @param artId
+     * @return article name
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleName(final int artId)
+    {
+        return _dal.GetMyArticleName(artId);
+    }
+
+    /***
      * Search bible (cache)
      * @param searchId
      * @return list of verses

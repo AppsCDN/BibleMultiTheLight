@@ -1117,6 +1117,101 @@ class Dal
     }
 
     /***
+     * Get list of my articles Id
+     * @return list of articles Id
+     */
+    @SuppressWarnings("JavaDoc")
+    String[] GetListMyArticlesId()
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        ArrayList<String> arr = new ArrayList<>();
+
+        try
+        {
+            ArtDescBO r;
+
+            sql = PCommon.ConcaT("SELECT artId from artDesc ORDER BY artUpdatedDt DESC");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            while (!c.isAfterLast())
+            {
+                r = new ArtDescBO();
+                r.artId = c.getInt(0);
+
+                arr.add(String.valueOf(r.artId));
+
+                c.moveToNext();
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        final String[] lst = arr.toArray(new String[0]);
+        return lst;
+    }
+
+    /***
+     * Get my article name
+     * @param artId
+     * @return article name
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleName(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        String artDesc = "";
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT artTitle from artDesc WHERE artId=", artId);
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast())
+            {
+                artDesc = c.getString(0);
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return artDesc;
+    }
+
+    /***
      * Get list of books by name
      * @param bbName
      * @return list all books

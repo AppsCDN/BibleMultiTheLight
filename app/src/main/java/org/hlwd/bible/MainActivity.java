@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticles();
+                        ShowArticles(false);
                     }
                 });
                 final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
@@ -529,7 +529,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_articles:
 
-                    ShowArticles();
+                    ShowArticles(true);
                     return true;
 
                 case R.id.mnu_group_settings:
@@ -953,7 +953,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void ShowArticles()
+    private void ShowArticles(final boolean isMyArticles)
     {
         try
         {
@@ -974,29 +974,40 @@ public class MainActivity extends AppCompatActivity
             TextView tvArt;
             String text;
 
-            for (final String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
+            final String[] arrArt = (isMyArticles) ? _s.GetListMyArticlesId() : this.getResources().getStringArray(R.array.ART_ARRAY);
+            for (final String artRef : arrArt)
             {
-                if (nr == 2 || nr == 10)
+                if (!isMyArticles)
                 {
-                    TextView tvSep = new TextView(this);
-                    tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                    tvSep.setText(R.string.mnuEmpty);
-                    llArt.addView(tvSep);
+                    if (nr == 2 || nr == 10)
+                    {
+                        TextView tvSep = new TextView(this);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
 
-                    final View vwSep = new View(this);
-                    vwSep.setPadding(20, 0, 20, 0);
-                    vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
-                    vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
-                    llArt.addView(vwSep);
+                        final View vwSep = new View(this);
+                        vwSep.setPadding(20, 0, 20, 0);
+                        vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
+                        vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
+                        llArt.addView(vwSep);
 
-                    tvSep = new TextView(this);
-                    tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                    tvSep.setText(R.string.mnuEmpty);
-                    llArt.addView(tvSep);
+                        tvSep = new TextView(this);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
+                    }
                 }
 
-                resId = PCommon.GetResId(this, artRef);
-                text = PCommon.ConcaT(getString(R.string.bulletDefault), " ", getString(resId));
+                if (!isMyArticles)
+                {
+                    resId = PCommon.GetResId(this, artRef);
+                    text = PCommon.ConcaT(getString(R.string.bulletDefault), " ", getString(resId));
+                }
+                else
+                {
+                    text = _s.GetMyArticleName(Integer.parseInt(artRef));
+                }
 
                 tvArt = new TextView(this);
                 tvArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
