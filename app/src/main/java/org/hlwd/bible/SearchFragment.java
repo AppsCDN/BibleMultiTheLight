@@ -468,10 +468,23 @@ public class SearchFragment extends Fragment
         try
         {
             //Set objects
-            final int artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
-            final String artTitle = getString(PCommon.GetResId(_context, t.fullQuery));
+            if (t == null) return "";
+
+            final int artId;
+            final String artTitle;
+            if (t.fullQuery.startsWith("ART"))
+            {
+                artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
+                artTitle = getString(PCommon.GetResId(_context, t.fullQuery));
+                artHtml = getString(artId);
+            }
+            else
+            {
+                artId = Integer.parseInt(t.fullQuery);
+                artTitle = _s.GetMyArticleName(artId);
+                artHtml = _s.GetMyArticleSource(artId);
+            }
             final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
-            artHtml = getString(artId);
 
             int i = -1;
             int pos;

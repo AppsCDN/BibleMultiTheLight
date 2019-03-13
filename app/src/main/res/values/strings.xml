@@ -1625,6 +1625,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="languagePtShort" translatable="false">PT</string>
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
+    <string name="tabMyArtPrefix" translatable="false">MYART</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>

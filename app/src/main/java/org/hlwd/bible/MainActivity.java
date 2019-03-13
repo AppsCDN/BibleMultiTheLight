@@ -953,7 +953,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void ShowArticles(final boolean isMyArticles)
+    private void ShowArticles(final boolean isMyArticleType)
     {
         try
         {
@@ -974,10 +974,10 @@ public class MainActivity extends AppCompatActivity
             TextView tvArt;
             String text;
 
-            final String[] arrArt = (isMyArticles) ? _s.GetListMyArticlesId() : this.getResources().getStringArray(R.array.ART_ARRAY);
+            final String[] arrArt = (isMyArticleType) ? _s.GetListMyArticlesId() : this.getResources().getStringArray(R.array.ART_ARRAY);
             for (final String artRef : arrArt)
             {
-                if (!isMyArticles)
+                if (!isMyArticleType)
                 {
                     if (nr == 2 || nr == 10)
                     {
@@ -997,16 +997,14 @@ public class MainActivity extends AppCompatActivity
                         tvSep.setText(R.string.mnuEmpty);
                         llArt.addView(tvSep);
                     }
-                }
 
-                if (!isMyArticles)
-                {
                     resId = PCommon.GetResId(this, artRef);
                     text = PCommon.ConcaT(getString(R.string.bulletDefault), " ", getString(resId));
                 }
                 else
                 {
-                    text = _s.GetMyArticleName(Integer.parseInt(artRef));
+                    resId = Integer.parseInt(artRef);
+                    text = PCommon.ConcaT(getString(R.string.bulletDefault), " ", _s.GetMyArticleName(resId));
                 }
 
                 tvArt = new TextView(this);
@@ -1080,8 +1078,10 @@ public class MainActivity extends AppCompatActivity
 
                 return;
             }
+            final boolean isMyArticleType = artName.startsWith("ART");
+            final String artNameUpdate = isMyArticleType ? PCommon.ConcaT(getString(R.string.tabMyArtPrefix), artName) : artName;
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            Tab.AddTab(getApplicationContext(), "A", bbName, artName);
+            Tab.AddTab(getApplicationContext(), "A", bbName, artNameUpdate);
         }
         catch (Exception ex)
         {
@@ -2253,9 +2253,20 @@ public class MainActivity extends AppCompatActivity
                 final CacheTabBO t;
                 if (cacheTabType.equalsIgnoreCase("A"))
                 {
-                    final int resId = PCommon.GetResId(context, fullQuery);
-                    final String resString = context.getString(resId);
+                    final String resString;
                     final int tabNameSize = Integer.parseInt(context.getString(R.string.tabSizeName));
+
+                    if (fullQuery.startsWith("ART"))
+                    {
+                        final int resId = PCommon.GetResId(context, fullQuery);
+                        resString = context.getString(resId);
+                    }
+                    else
+                    {
+                        final String myArtPrefix = context.getString(R.string.tabMyArtPrefix);
+                        resString = PCommon.ConcaT(myArtPrefix, fullQuery);
+                    }
+
                     tabTitle = (resString.length() <= tabNameSize) ? resString : fullQuery;
                     t = new CacheTabBO(tabNumber, cacheTabType, tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
                     _s.SaveCacheTab(t);

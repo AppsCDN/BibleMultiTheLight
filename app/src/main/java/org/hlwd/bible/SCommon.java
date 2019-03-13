@@ -549,6 +549,17 @@ class SCommon
     }
 
     /***
+     * Get my article source
+     * @param artId
+     * @return article source
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleSource(final int artId)
+    {
+        return _dal.GetMyArticleSource(artId);
+    }
+
+    /***
      * Search bible (cache)
      * @param searchId
      * @return list of verses

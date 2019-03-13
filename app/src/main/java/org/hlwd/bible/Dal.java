@@ -1212,6 +1212,50 @@ class Dal
     }
 
     /***
+     * Get my article source
+     * @param artId
+     * @return article source
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleSource(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        String artSrc = "";
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT artSrc from artDesc WHERE artId=", artId);
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast())
+            {
+                artSrc = c.getString(0);
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return artSrc;
+    }
+
+    /***
      * Get list of books by name
      * @param bbName
      * @return list all books
