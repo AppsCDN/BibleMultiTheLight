@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/mnu_open"
         android:title="@string/mnuOpen">
         <menu>
             <item
@@ -14,6 +15,7 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_copy"
         android:title="@string/mnuCopy">
         <menu>
             <item
@@ -28,6 +30,7 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_share"
         android:title="@string/mnuShare">
         <menu>
             <item

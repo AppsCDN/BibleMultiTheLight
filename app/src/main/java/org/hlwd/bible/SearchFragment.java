@@ -583,6 +583,12 @@ public class SearchFragment extends Fragment
         final MenuInflater menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.context_menu_search, menu);
 
+        final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
+        final boolean bible_cmd_visibility = (bibleId > -1);
+        menu.findItem(R.id.mnu_open).setVisible(bible_cmd_visibility);
+        menu.findItem(R.id.mnu_copy).setVisible(bible_cmd_visibility);
+        menu.findItem(R.id.mnu_share).setVisible(bible_cmd_visibility);
+
         if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
         {
             menu.findItem(R.id.mnu_open_result).setVisible(false);
@@ -619,7 +625,46 @@ public class SearchFragment extends Fragment
             final int itemId = item.getItemId();
             final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
             final int position = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, "0"));
-            final VerseBO verse = _s.GetVerse(bibleId);
+            final VerseBO verse = (bibleId > -1) ? _s.GetVerse(bibleId) : null;
+
+            switch (itemId)
+            {
+                case R.id.mnu_edit:
+                {
+                    final int edit_status = PCommon.GetEditStatus(getContext());
+                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, edit_status == 0 ? 1 : 0);
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_FROM, "");
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_TO, "");
+
+                    return true;
+                }
+                case R.id.mnu_edit_move_up:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_move_down:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_add_text:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_add_title:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_remove_confirm:
+                {
+                    //TODO FAB
+                    return true;
+                }
+            }
+
             if (verse == null) return false;
             final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber);
 
@@ -908,43 +953,6 @@ public class SearchFragment extends Fragment
 
                     UpdateViewMark(position, 0);
 
-                    return true;
-                }
-
-            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-                case R.id.mnu_edit:
-                {
-                    final int edit_status = PCommon.GetEditStatus(getContext());
-                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, edit_status == 0 ? 1 : 0);
-                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_FROM, "");
-                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_TO, "");
-
-                    return true;
-                }
-                case R.id.mnu_edit_move_up:
-                {
-                    //TODO FAB
-                    return true;
-                }
-                case R.id.mnu_edit_move_down:
-                {
-                    //TODO FAB
-                    return true;
-                }
-                case R.id.mnu_edit_add_text:
-                {
-                    //TODO FAB
-                    return true;
-                }
-                case R.id.mnu_edit_add_title:
-                {
-                    //TODO FAB
-                    return true;
-                }
-                case R.id.mnu_edit_remove_confirm:
-                {
-                    //TODO FAB
                     return true;
                 }
             }

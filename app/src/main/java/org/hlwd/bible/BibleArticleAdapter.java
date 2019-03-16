@@ -310,6 +310,19 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                        }
                    });
                 }
+                else
+                {
+                    vwh_tv_before.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view)
+                        {
+                            PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, -1);
+                            PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
+
+                            return false;
+                        }
+                    });
+                }
             }
 
             if (section.content != null)
@@ -389,6 +402,19 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                             @Override
                             public void onClick(View v) {
                                 PCommon.OpenUrl(v.getContext(), vwh_tv_after.getUrls()[0].getURL());
+                            }
+                        });
+                    }
+                    else
+                    {
+                        vwh_tv_after.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view)
+                            {
+                                PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.BIBLE_ID, -1);
+                                PCommon.SavePrefInt(view.getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, position);
+
+                                return false;
                             }
                         });
                     }
