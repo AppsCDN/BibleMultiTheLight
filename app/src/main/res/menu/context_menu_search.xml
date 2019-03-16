@@ -60,4 +60,37 @@
         android:id="@+id/mnu_edit"
         android:title="@string/mnuEmpty">
     </item>
+    <item
+        android:id="@+id/mnu_edit_move"
+        android:title="@string/mnuEditMove">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_move_up"
+                android:title="@string/mnuEditMoveUp" />
+            <item
+                android:id="@+id/mnu_edit_move_down"
+                android:title="@string/mnuEditMoveDown" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit_add"
+        android:title="@string/mnuEditAdd">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_add_text"
+                android:title="@string/mnuEditAddText" />
+            <item
+                android:id="@+id/mnu_edit_add_title"
+                android:title="@string/mnuEditAddTitle" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit_remove"
+        android:title="@string/mnuEditRemove">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_remove_confirm"
+                android:title="@string/mnuEditRemoveConfirm" />
+        </menu>
+    </item>
 </menu>

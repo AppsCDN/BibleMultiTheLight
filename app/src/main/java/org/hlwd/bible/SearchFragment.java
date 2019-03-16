@@ -583,6 +583,20 @@ public class SearchFragment extends Fragment
         final MenuInflater menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.context_menu_search, menu);
 
+        if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
+        {
+            menu.findItem(R.id.mnu_open_result).setVisible(false);
+            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
+            menu.findItem(R.id.mnu_share_result).setVisible(false);
+        }
+
+        final int edit_status = PCommon.GetEditStatus(v.getContext());
+        menu.findItem(R.id.mnu_edit).setTitle(edit_status == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
+        final boolean edit_cmd_visibility = (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && edit_status == 1);
+        menu.findItem(R.id.mnu_edit_move).setVisible(edit_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_add).setVisible(edit_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_remove).setVisible(edit_cmd_visibility);
+
         if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
         {
             menu.findItem(R.id.mnu_open_result).setVisible(false);
@@ -594,20 +608,6 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_share_verse).setVisible(false);
 
             menu.findItem(R.id.mnu_fav).setVisible(false);
-
-            menu.findItem(R.id.mnu_edit).setVisible(false);
-        }
-        else if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
-        {
-            menu.findItem(R.id.mnu_open_result).setVisible(false);
-            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
-            menu.findItem(R.id.mnu_share_result).setVisible(false);
-        }
-
-        if (fragmentType != FRAGMENT_TYPE.ARTICLE_TYPE)
-        {
-            final int edit_status = PCommon.GetEditStatus(v.getContext());
-            menu.findItem(R.id.mnu_edit).setTitle(edit_status == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
         }
     }
 
@@ -877,6 +877,9 @@ public class SearchFragment extends Fragment
 
                     return true;
                 }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
                 case R.id.mnu_add_note:
                 {
                     //TODO: mark is hardcoded! final int markType = 1;
@@ -907,6 +910,9 @@ public class SearchFragment extends Fragment
 
                     return true;
                 }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
                 case R.id.mnu_edit:
                 {
                     final int edit_status = PCommon.GetEditStatus(getContext());
@@ -914,6 +920,31 @@ public class SearchFragment extends Fragment
                     PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_FROM, "");
                     PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_TO, "");
 
+                    return true;
+                }
+                case R.id.mnu_edit_move_up:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_move_down:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_add_text:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_add_title:
+                {
+                    //TODO FAB
+                    return true;
+                }
+                case R.id.mnu_edit_remove_confirm:
+                {
+                    //TODO FAB
                     return true;
                 }
             }
