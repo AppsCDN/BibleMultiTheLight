@@ -369,8 +369,8 @@ public class SearchFragment extends Fragment
                 CreateRecyclerView();
 
                 //Show article
-                final String artHtml = GetArticle(t);
-                recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artHtml);
+                final ArtOriginalContentBO artOriginalContent = GetArticle(t);
+                recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artOriginalContent);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
@@ -444,7 +444,8 @@ public class SearchFragment extends Fragment
             }
 
             final String content = getString(R.string.tabEmpty);
-            recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, content);
+            final ArtOriginalContentBO artOriginalContent = new ArtOriginalContentBO("", content);
+            recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artOriginalContent);
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.scrollToPosition(0);
@@ -457,125 +458,6 @@ public class SearchFragment extends Fragment
         }
 
         return false;
-    }
-
-    /***
-     * Get article
-     * @param t     CacheTabBO
-     */
-    @SuppressWarnings("JavaDoc")
-    private String GetArticle(final CacheTabBO t)
-    {
-        String artHtml = "";
-
-        try
-        {
-            //Set objects
-            if (t == null) return "";
-
-            final int artId;
-            final String artTitle;
-            if (t.fullQuery.startsWith("ART"))
-            {
-                artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
-                artTitle = getString(PCommon.GetResId(_context, t.fullQuery));
-                artHtml = getString(artId);
-            }
-            else
-            {
-                artId = Integer.parseInt(t.fullQuery);
-                artTitle = _s.GetMyArticleName(artId);
-                artHtml = _s.GetMyArticleSource(artId);  //TODO FAB NOW => SRC IS HERE but not as ARR
-            }
-            final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
-
-            int i = -1;
-            int pos;
-
-            //Parse <R></R>
-            String[] arrRef = artHtml.split("<R>");
-            if (arrRef.length > 0)
-            {
-                String strVerses;
-                for (String strRef : arrRef)
-                {
-                    i++;
-
-                    if (strRef != null)
-                    {
-                        pos = strRef.indexOf("</R>");
-                        if (pos >= 0)
-                        {
-                            pos = pos + 4;
-                            strRef = strRef.substring(0, pos);
-                            strRef = PCommon.ConcaT("<R>", strRef);
-                            arrRef[ i ] = strRef;
-                            String[] ref = strRef.replaceFirst("<R>", "").replaceFirst("</R>", "").split("\\s");
-                            if (ref.length == 4) {
-                                strVerses = _s.GetVersesHtml(bbName, Integer.parseInt(ref[0]), Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]));
-                            }
-                            else
-                            {   //5
-                                strVerses = _s.GetVersesHtml(ref[0], Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]),  Integer.parseInt(ref[4]));
-                            }
-                            //noinspection UnusedAssignment
-                            ref = null;
-                            artHtml = artHtml.replaceFirst(strRef, strVerses);
-                        }
-                    }
-                }
-                //noinspection UnusedAssignment
-                strVerses = null;
-            }
-
-            //Parse <HB></HB>
-            i = -1;
-            //noinspection UnusedAssignment
-            arrRef = null;
-            arrRef = artHtml.split("<HB>");
-            if (arrRef.length > 0)
-            {
-                for (String strRef : arrRef)
-                {
-                    i++;
-
-                    if (strRef != null)
-                    {
-                        pos = strRef.indexOf("</HB>");
-                        if (pos >= 0)
-                        {
-                            pos = pos + 5;
-                            strRef = strRef.substring(0, pos);
-                            strRef = PCommon.ConcaT("<HB>", strRef);
-                            arrRef[ i ] = strRef;
-                            String[] ref = strRef.replaceFirst("<HB>", "").replaceFirst("</HB>", "").split("\\s");
-                            artHtml = artHtml.replaceFirst(strRef,
-                                    PCommon.ConcaT("<HS>", _s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</HS>"));
-                            //noinspection UnusedAssignment
-                            ref = null;
-                        }
-                    }
-                }
-            }
-            //noinspection UnusedAssignment
-            arrRef = null;
-
-            //Parse <T></T>,  <H></H>,  <HA/>
-            artHtml = artHtml
-                    .replaceFirst("<HA/>", ha)
-                    .replaceAll("<HS>", "<br><span><u>")
-                    .replaceAll("</HS>", "</u></span>")
-                    .replaceAll("<H>", "<h1><u>")
-                    .replaceAll("</H>", "</u></h1>");
-            //End Parse
-            //TODO FAB: see spannableString(builder) for titles without too much space after.
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-
-        return artHtml;
     }
 
     @Override
@@ -1202,16 +1084,56 @@ public class SearchFragment extends Fragment
         registerForContextMenu(recyclerView);
     }
 
-    private Cursor GetCursor(CharSequence query)
+    /***
+     * Get article
+     * @param t     CacheTabBO
+     */
+    @SuppressWarnings("JavaDoc")
+    private ArtOriginalContentBO GetArticle(final CacheTabBO t)
     {
-        MatrixCursor cursor = null;
+        if (t == null) return null;
+
+        ArtOriginalContentBO artOriginalContent = null;
 
         try
         {
-            if (query == null) return null;
+            final int artId;
+            final String artTitle;
+            final String artHtml;
 
+            if (t.fullQuery.startsWith("ART"))
+            {
+                artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
+                artTitle = _context.getString(PCommon.GetResId(_context, t.fullQuery));
+                artHtml = _context.getString(artId);
+            }
+            else
+            {
+                artId = Integer.parseInt(t.fullQuery);
+                artTitle = _s.GetMyArticleName(artId);
+                artHtml = _s.GetMyArticleSource(artId);
+            }
+            final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
+
+            artOriginalContent = new ArtOriginalContentBO(ha, artHtml);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return artOriginalContent;
+    }
+
+    private Cursor GetCursor(final CharSequence query)
+    {
+        if (query == null) return null;
+
+        final MatrixCursor cursor = new MatrixCursor(new String[]{"_id", "text"});
+
+        try
+        {
             final ArrayList<BibleRefBO> lstRef = _s.GetListBookByName(bbName, query.toString());
-            cursor = new MatrixCursor(new String[]{"_id", "text"});
 
             if (lstRef.size() > 0)
             {

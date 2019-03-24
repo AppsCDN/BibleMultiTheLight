@@ -26,7 +26,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     private int blockId = -1;
     private enum BLOCK_TYPE { BEFORE, CONTENT }
 
-    BibleArticleAdapter(final Context context, final String tbbName, final String content)
+    BibleArticleAdapter(final Context context, final String tbbName, final ArtOriginalContentBO artOriginalContent)
     {
         _context = context;
 
@@ -35,7 +35,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         bbName = tbbName.substring(0, 1);
         //was: isUiTelevision = PCommon.IsUiTelevision(context);
 
-        BuildListSectionForTv(content);
+        BuildListSectionForTv(artOriginalContent);
 
         /*was :
         if (isUiTelevision)
@@ -118,13 +118,119 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     }
     */
 
-    private void BuildListSectionForTv(final String content)
+    /***
+     * Get article
+     * @param artOriginalContent    Original content
+     */
+    @SuppressWarnings("JavaDoc")
+    private String GetArticle(final ArtOriginalContentBO artOriginalContent)
     {
+        if (artOriginalContent == null) return "";
+
+        String artHtml = artOriginalContent.originalContent;
+
+        try
+        {
+            final String ha = artOriginalContent.title;
+
+            int i = -1;
+            int pos;
+
+            //Parse <R></R>
+            String[] arrRef = artHtml.split("<R>");
+            if (arrRef.length > 0)
+            {
+                String strVerses;
+                for (String strRef : arrRef)
+                {
+                    i++;
+
+                    if (strRef != null)
+                    {
+                        pos = strRef.indexOf("</R>");
+                        if (pos >= 0)
+                        {
+                            pos = pos + 4;
+                            strRef = strRef.substring(0, pos);
+                            strRef = PCommon.ConcaT("<R>", strRef);
+                            arrRef[ i ] = strRef;
+                            String[] ref = strRef.replaceFirst("<R>", "").replaceFirst("</R>", "").split("\\s");
+                            if (ref.length == 4) {
+                                strVerses = _s.GetVersesHtml(bbName, Integer.parseInt(ref[0]), Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]));
+                            }
+                            else
+                            {   //5
+                                strVerses = _s.GetVersesHtml(ref[0], Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]),  Integer.parseInt(ref[4]));
+                            }
+                            //noinspection UnusedAssignment
+                            ref = null;
+                            artHtml = artHtml.replaceFirst(strRef, strVerses);
+                        }
+                    }
+                }
+                //noinspection UnusedAssignment
+                strVerses = null;
+            }
+
+            //Parse <HB></HB>
+            i = -1;
+            //noinspection UnusedAssignment
+            arrRef = null;
+            arrRef = artHtml.split("<HB>");
+            if (arrRef.length > 0)
+            {
+                for (String strRef : arrRef)
+                {
+                    i++;
+
+                    if (strRef != null)
+                    {
+                        pos = strRef.indexOf("</HB>");
+                        if (pos >= 0)
+                        {
+                            pos = pos + 5;
+                            strRef = strRef.substring(0, pos);
+                            strRef = PCommon.ConcaT("<HB>", strRef);
+                            arrRef[ i ] = strRef;
+                            String[] ref = strRef.replaceFirst("<HB>", "").replaceFirst("</HB>", "").split("\\s");
+                            artHtml = artHtml.replaceFirst(strRef,
+                                    PCommon.ConcaT("<HS>", _s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</HS>"));
+                            //noinspection UnusedAssignment
+                            ref = null;
+                        }
+                    }
+                }
+            }
+            //noinspection UnusedAssignment
+            arrRef = null;
+
+            //Parse <T></T>,  <H></H>,  <HA/>
+            artHtml = artHtml
+                    .replaceFirst("<HA/>", ha)
+                    .replaceAll("<HS>", "<br><span><u>")
+                    .replaceAll("</HS>", "</u></span>")
+                    .replaceAll("<H>", "<h1><u>")
+                    .replaceAll("</H>", "</u></h1>");
+            //End Parse
+            //TODO FAB: see spannableString(builder) for titles without too much space after.
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return artHtml;
+    }
+
+    private void BuildListSectionForTv(final ArtOriginalContentBO artOriginalContent)
+    {
+        final String finalContent = GetArticle(artOriginalContent);
+
         final String mainDelimiterStart = "<blockquote>";
         final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
         final int mainDelimiterEndSize = mainDelimiterEnd.length();
 
-        String[] arrBQ = content.split(mainDelimiterStart);
+        String[] arrBQ = finalContent.split(mainDelimiterStart);
         if (arrBQ.length > 0)
         {
             int pos;
