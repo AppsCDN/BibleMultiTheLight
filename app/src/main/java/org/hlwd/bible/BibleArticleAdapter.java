@@ -223,6 +223,11 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
         arrStr = null;
     }
 
+    //ArrayList<SectionBO> GetListContent()
+    //{
+    //    return this._lstSection;
+    //}
+
     class ViewHolder extends RecyclerView.ViewHolder
     {
         private final TextView tv_before;

@@ -1429,7 +1429,7 @@ final class PCommon implements IProject
 
             final PackageManager pm = context.getPackageManager();
 
-            //TODO: FUTURE => CHECK TO REMOVE (DEPRECATED)
+            //TODO FAB: FUTURE => CHECK TO REMOVE (DEPRECATED)
             try
             {
                 final boolean hasFeatureTelevision = pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);

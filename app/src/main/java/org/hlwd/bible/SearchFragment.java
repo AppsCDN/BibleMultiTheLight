@@ -375,6 +375,9 @@ public class SearchFragment extends Fragment
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
 
+                //TODO FAB NOW: get real list of source => several records merged with rowid as link between SOURCE and SECTIONS (list of verses)
+                //final ArrayList<SectionBO> artContent = ((BibleArticleAdapter) recyclerViewAdapter).GetListContent();
+
                 return;
             }
 
@@ -482,7 +485,7 @@ public class SearchFragment extends Fragment
             {
                 artId = Integer.parseInt(t.fullQuery);
                 artTitle = _s.GetMyArticleName(artId);
-                artHtml = _s.GetMyArticleSource(artId);
+                artHtml = _s.GetMyArticleSource(artId);  //TODO FAB NOW => SRC IS HERE but not as ARR
             }
             final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
 
@@ -640,27 +643,27 @@ public class SearchFragment extends Fragment
                 }
                 case R.id.mnu_edit_move_up:
                 {
-                    //TODO FAB
+                    //TODO FAB NOW
                     return true;
                 }
                 case R.id.mnu_edit_move_down:
                 {
-                    //TODO FAB
+                    //TODO FAB NOW
                     return true;
                 }
                 case R.id.mnu_edit_add_text:
                 {
-                    //TODO FAB
+                    //TODO FAB NOW
                     return true;
                 }
                 case R.id.mnu_edit_add_title:
                 {
-                    //TODO FAB
+                    //TODO FAB NOW
                     return true;
                 }
                 case R.id.mnu_edit_remove_confirm:
                 {
-                    //TODO FAB
+                    //TODO FAB NOW
                     return true;
                 }
             }

@@ -2708,7 +2708,7 @@ slideViewMenu.startAnimation(animate);
             searchText != null ? PCommon.ConcaT(" ", searchText) : "");
     MainActivity.Tab.AddTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 1);
 
-    //TODO NEXT: redo MainActivity.ShowHideFavClick() in Tab
+    //TODO FAB: redo MainActivity.ShowHideFavClick() in Tab
     //Set fullQuery in db, save Order in PREF and switch to tab. Here under is a test, please remove the code when done.
     final int tabCount = MainActivity.Tab.GetTabCount();
     @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;
