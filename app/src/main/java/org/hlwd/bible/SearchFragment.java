@@ -47,6 +47,7 @@ public class SearchFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     private static RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
+    private ArrayList<ShortSectionBO> lstArtShortSection;
 
     private boolean isBook = false,  isChapter = false,  isVerse = false;
     private int     bNumber = 0,     cNumber = 0,        vNumber = 0,       scrollPosY = 0;
@@ -376,7 +377,13 @@ public class SearchFragment extends Fragment
                 recyclerView.scrollToPosition(scrollPosY);
 
                 //TODO FAB NOW: get real list of source => several records merged with rowid as link between SOURCE and SECTIONS (list of verses)
-                //final ArrayList<SectionBO> artContent = ((BibleArticleAdapter) recyclerViewAdapter).GetListContent();
+                lstArtShortSection = ((BibleArticleAdapter) recyclerViewAdapter).GetShortSections();
+                String artContentGenerated = "";
+                for(ShortSectionBO shortSection : lstArtShortSection)
+                {
+                    artContentGenerated = PCommon.ConcaT(artContentGenerated, shortSection.content);
+                }
+                System.out.println(PCommon.ConcaT("artContentGenerated: ", artContentGenerated));
 
                 return;
             }

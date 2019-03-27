@@ -15,8 +15,9 @@ import java.util.ArrayList;
 
 class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewHolder>
 {
-    private final ArrayList<SectionBO> _lstSection = new ArrayList<>();
     private SCommon _s = null;
+    private final ArrayList<SectionBO> lstSection = new ArrayList<>();
+    private final ArrayList<ShortSectionBO> lstShortSection = new ArrayList<>();
     @SuppressWarnings("UnusedAssignment")
     private String bbName = null;
     private final boolean isUiTelevision = true;
@@ -109,7 +110,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     section.after = null;
                 }
 
-                this._lstSection.add(section);
+                this.lstSection.add(section);
             }
         }
 
@@ -283,6 +284,74 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             }
         }
 
+        int from_id;
+        int bId;
+        String contentBefore;
+        String content;
+        String contentAfter;
+        String refStart;
+        int refCount;
+        int sectionIndex = 0;
+        int sectionLastIndex = (lstSection.size() - 1) < 0 ? 0 : lstSection.size() - 1;
+        SectionBO section;
+
+        //TODO NEXT: save var if ended by <R>
+        while (sectionIndex <= sectionLastIndex)
+        {
+            section = lstSection.get(sectionIndex);
+
+            from_id = section.id;
+            bId = section.blockId;
+
+            //before
+            contentBefore = "";
+            if (section.before != null)
+            {
+                contentBefore = PCommon.ConcaT(section.before, "<br>");
+            }
+
+            //after
+            contentAfter = "";
+            if (section.after != null)
+            {
+                contentAfter = PCommon.ConcaT(section.after, "<br>");
+            }
+
+            //content
+            refCount = 0;
+            refStart = "";
+            while (section.blockRef != null && section.blockId == bId)
+            {
+                //it's REF
+                if (section.blockSubId == 0)
+                {
+                    //it's start ref
+                    refStart = section.blockRef;
+                    refCount = 1;                       //TODO BUG: wrong count
+                }
+                else
+                {
+                    //count ref
+                    refCount++;
+                }
+
+                if ((sectionIndex + refCount) > sectionLastIndex) break;
+
+                //test next section
+                section = lstSection.get(sectionIndex + refCount);
+            }
+            content = (refStart.equalsIgnoreCase("")) ? "" : PCommon.ConcaT("<R>", refStart, " ", refCount, "</R>");
+
+            //final
+            content = PCommon.ConcaT(contentBefore, content, contentAfter);
+            lstShortSection.add(new ShortSectionBO(bId, content, from_id));
+
+            //skip sections
+            sectionIndex += (refCount > 1) ? refCount - 1 : 1;
+        }
+
+        //TODO NEXT: susbtitutions with HA... add try catch
+
         //noinspection UnusedAssignment
         arrBQ = null;
     }
@@ -322,17 +391,19 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 section.after = null;
             }
 
-            this._lstSection.add(section);
+            this.lstSection.add(section);
         }
 
         //noinspection UnusedAssignment
         arrStr = null;
     }
 
-    //ArrayList<SectionBO> GetListContent()
-    //{
-    //    return this._lstSection;
-    //}
+    ArrayList<ShortSectionBO> GetShortSections()
+    {
+
+
+        return this.lstShortSection;
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -402,7 +473,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     {
         try
         {
-            final SectionBO section = _lstSection.get(position);
+            final SectionBO section = lstSection.get(position);
             if (section.before != null)
             {
                 @SuppressWarnings("ConstantConditions") final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
@@ -551,7 +622,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public int getItemCount()
     {
-        return _lstSection.size();
+        return lstSection.size();
     }
 
     @Override
