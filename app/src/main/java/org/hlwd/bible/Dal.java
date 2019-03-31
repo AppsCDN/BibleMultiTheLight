@@ -1256,6 +1256,33 @@ class Dal
     }
 
     /***
+     * Update my article source
+     * @param artId
+     * @param source
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleSource(final int artId, final String source)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            final String finalSource = PCommon.AQ(PCommon.RQ(source));
+            sql = PCommon.ConcaT("UPDATE artDesc SET artSrc=", finalSource, " WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
      * Get list of books by name
      * @param bbName
      * @return list all books

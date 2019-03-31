@@ -17,7 +17,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 {
     private SCommon _s = null;
     private final ArrayList<SectionBO> lstSection = new ArrayList<>();
-    private final ArrayList<ShortSectionBO> lstShortSection = new ArrayList<>();
+    private ArrayList<ShortSectionBO> lstShortSection = new ArrayList<>();
     @SuppressWarnings("UnusedAssignment")
     private String bbName = null;
     private final boolean isUiTelevision = true;
@@ -29,25 +29,32 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 
     BibleArticleAdapter(final Context context, final String tbbName, final ArtOriginalContentBO artOriginalContent)
     {
-        _context = context;
-
-        CheckLocalInstance(context);
-
-        bbName = tbbName.substring(0, 1);
-        //was: isUiTelevision = PCommon.IsUiTelevision(context);
-
-        BuildListSectionForTv(artOriginalContent);
-
-        /*was :
-        if (isUiTelevision)
+        try
         {
-            BuildListSectionForTv(content);
+            _context = context;
+
+            CheckLocalInstance(context);
+
+            bbName = tbbName.substring(0, 1);
+            //was: isUiTelevision = PCommon.IsUiTelevision(context);
+
+            BuildListSectionForTv(artOriginalContent);
+
+            /*was :
+            if (isUiTelevision)
+            {
+                BuildListSectionForTv(content);
+            }
+            else
+            {
+                BuildListSectionForOther(content);
+            }
+            */
         }
-        else
+        catch(Exception ex)
         {
-            BuildListSectionForOther(content);
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
-        */
     }
 
     /*
@@ -225,183 +232,229 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 
     private void BuildListSectionForTv(final ArtOriginalContentBO artOriginalContent)
     {
-        final String finalContent = GetArticle(artOriginalContent);
-
-        final String mainDelimiterStart = "<blockquote>";
-        final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
-        final int mainDelimiterEndSize = mainDelimiterEnd.length();
-
-        String[] arrBQ = finalContent.split(mainDelimiterStart);
-        if (arrBQ.length > 0)
+        try
         {
-            int pos;
-            String astrBQ;
+            final String finalContent = GetArticle(artOriginalContent);
 
-            for (String strBQ : arrBQ)
+            final String mainDelimiterStart = "<blockquote>";
+            final String mainDelimiterEnd = mainDelimiterStart.replaceFirst("<", "</");
+            final int mainDelimiterEndSize = mainDelimiterEnd.length();
+
+            String[] arrBQ = finalContent.split(mainDelimiterStart);
+            if (arrBQ.length > 0)
             {
-                if (strBQ == null)
-                {
-                    continue;
-                }
+                int pos;
+                String astrBQ;
 
-                strBQ = strBQ.trim();
-                if (strBQ.equalsIgnoreCase("<br>") || strBQ.equalsIgnoreCase("<br><br>"))
+                for (String strBQ : arrBQ)
                 {
-                    continue;
-                }
-
-                pos = strBQ.indexOf(mainDelimiterEnd);
-                if (pos >= 0)
-                {
-                    pos += mainDelimiterEndSize;
-
-                    if (strBQ.length() - 1 > pos)
+                    if (strBQ == null)
                     {
-                        astrBQ = strBQ.substring(pos);
-                        if (astrBQ.equalsIgnoreCase("<br>") || astrBQ.equalsIgnoreCase("<br><br>"))
+                        continue;
+                    }
+
+                    strBQ = strBQ.trim();
+                    if (strBQ.equalsIgnoreCase("<br>") || strBQ.equalsIgnoreCase("<br><br>"))
+                    {
+                        continue;
+                    }
+
+                    pos = strBQ.indexOf(mainDelimiterEnd);
+                    if (pos >= 0)
+                    {
+                        pos += mainDelimiterEndSize;
+
+                        if (strBQ.length() - 1 > pos)
+                        {
+                            astrBQ = strBQ.substring(pos);
+                            if (astrBQ.equalsIgnoreCase("<br>") || astrBQ.equalsIgnoreCase("<br><br>"))
+                            {
+                                astrBQ = null;
+                            }
+                        }
+                        else
                         {
                             astrBQ = null;
                         }
+                        strBQ = strBQ.substring(0, pos - mainDelimiterEndSize);
+
+                        //Content = strBQ
+                        SplitStringForTv(strBQ, BLOCK_TYPE.CONTENT);
+
+                        //After = astrBQ
+                        if (astrBQ == null) continue;
+                        SplitStringForTv(astrBQ, BLOCK_TYPE.BEFORE);
                     }
                     else
                     {
-                        astrBQ = null;
+                        //Before = strBQ
+                        SplitStringForTv(strBQ, BLOCK_TYPE.BEFORE);
                     }
-                    strBQ = strBQ.substring(0, pos - mainDelimiterEndSize);
-
-                    //Content = strBQ
-                    SplitStringForTv(strBQ, BLOCK_TYPE.CONTENT);
-
-                    //After = astrBQ
-                    if (astrBQ == null) continue;
-                    SplitStringForTv(astrBQ, BLOCK_TYPE.BEFORE);
-                }
-                else
-                {
-                    //Before = strBQ
-                    SplitStringForTv(strBQ, BLOCK_TYPE.BEFORE);
                 }
             }
+
+            //let's prepare the generated code
+            int from_id;
+            int bId;
+            String contentBefore;
+            String content;
+            String contentAfter;
+            String refStart;
+            int refCount;
+            int sectionIndex = 0;
+            int sectionLastIndex = (lstSection.size() - 1) < 0 ? 0 : lstSection.size() - 1;
+            SectionBO section;
+
+            //TODO NEXT: save var if ended by <R>
+            while (sectionIndex <= sectionLastIndex)
+            {
+                section = lstSection.get(sectionIndex);
+
+                from_id = section.id;
+                bId = section.blockId;
+
+                //before
+                contentBefore = "";
+                if (section.before != null)
+                {
+                    contentBefore = PCommon.ConcaT(section.before, "<br>");
+                }
+
+                //after
+                contentAfter = "";
+                if (section.after != null)
+                {
+                    contentAfter = PCommon.ConcaT(section.after, "<br>");
+                }
+
+                //content
+                refCount = 0;
+                refStart = "";
+                while (section.blockRef != null && section.blockId == bId)
+                {
+                    //it's REF
+                    if (section.blockSubId == 0)
+                    {
+                        //it's start ref
+                        final String[] words = section.blockRef.split("\\s");
+                        refStart = PCommon.ConcaT(_s.GetBookNumberByName(bbName, words[ 0 ]), " ", words[ 1 ], " ", words[ 2 ]);
+                        refCount = 1;   //TODO NEXT BUG: wrong count
+                    }
+                    else
+                    {
+                        //count ref
+                        refCount++;
+                    }
+
+                    if ((sectionIndex + refCount) > sectionLastIndex) break;
+
+                    //test next section
+                    section = lstSection.get(sectionIndex + refCount);
+                }
+                content = refStart.equalsIgnoreCase("") ? "" : PCommon.ConcaT("<R>", refStart, " ", refCount, "</R>");
+
+                //final
+                content = PCommon.ConcaT(contentBefore, content, contentAfter);
+                if (!content.equalsIgnoreCase(""))
+                {
+                    lstShortSection.add(new ShortSectionBO(bId, content, from_id));
+                }
+
+                //skip sections
+                sectionIndex += (refCount > 1) ? refCount - 1 : 1;
+            }
+
+            //concatenate same blocks
+            final int lastBlockId = lstSection.get(sectionLastIndex).blockId;
+            final ArrayList<ShortSectionBO> lstShortSectionSimplified = new ArrayList<>();
+            String sumContent;
+            int sumFrom_id;
+            for (int blockId = 0; blockId <= lastBlockId; blockId++)
+            {
+                sumContent = "";
+                sumFrom_id = -1;
+                for (ShortSectionBO shortSection : lstShortSection)
+                {
+                    if (shortSection.blockId == blockId)
+                    {
+                        content = shortSection.content;
+                        if (content != null)
+                        {
+                            sumContent = PCommon.ConcaT(sumContent, content);
+                        }
+
+                        if (sumFrom_id == -1)
+                        {
+                            sumFrom_id = shortSection.from_id;
+                        }
+                    }
+                }
+                lstShortSectionSimplified.add(new ShortSectionBO(blockId, sumContent, sumFrom_id));
+            }
+            lstShortSection = lstShortSectionSimplified;
+
+            //TODO NEXT substitutions
+
+            //noinspection UnusedAssignment
+            arrBQ = null;
         }
-
-        int from_id;
-        int bId;
-        String contentBefore;
-        String content;
-        String contentAfter;
-        String refStart;
-        int refCount;
-        int sectionIndex = 0;
-        int sectionLastIndex = (lstSection.size() - 1) < 0 ? 0 : lstSection.size() - 1;
-        SectionBO section;
-
-        //TODO NEXT: save var if ended by <R>
-        while (sectionIndex <= sectionLastIndex)
+        catch(Exception ex)
         {
-            section = lstSection.get(sectionIndex);
-
-            from_id = section.id;
-            bId = section.blockId;
-
-            //before
-            contentBefore = "";
-            if (section.before != null)
-            {
-                contentBefore = PCommon.ConcaT(section.before, "<br>");
-            }
-
-            //after
-            contentAfter = "";
-            if (section.after != null)
-            {
-                contentAfter = PCommon.ConcaT(section.after, "<br>");
-            }
-
-            //content
-            refCount = 0;
-            refStart = "";
-            while (section.blockRef != null && section.blockId == bId)
-            {
-                //it's REF
-                if (section.blockSubId == 0)
-                {
-                    //it's start ref
-                    refStart = section.blockRef;
-                    refCount = 1;                       //TODO BUG: wrong count
-                }
-                else
-                {
-                    //count ref
-                    refCount++;
-                }
-
-                if ((sectionIndex + refCount) > sectionLastIndex) break;
-
-                //test next section
-                section = lstSection.get(sectionIndex + refCount);
-            }
-            content = (refStart.equalsIgnoreCase("")) ? "" : PCommon.ConcaT("<R>", refStart, " ", refCount, "</R>");
-
-            //final
-            content = PCommon.ConcaT(contentBefore, content, contentAfter);
-            lstShortSection.add(new ShortSectionBO(bId, content, from_id));
-
-            //skip sections
-            sectionIndex += (refCount > 1) ? refCount - 1 : 1;
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
-
-        //TODO NEXT: susbtitutions with HA... add try catch
-
-        //noinspection UnusedAssignment
-        arrBQ = null;
     }
 
     private void SplitStringForTv(final String strToSplit, final BLOCK_TYPE blockType)
     {
-        final String sentenceDelimiter = "<br> |<br>|(?<=\\. )";
-        SectionBO section;
-        int blockSubId = -1;
-        final String blockRef = (blockType == BLOCK_TYPE.CONTENT) ? strToSplit.substring(0, strToSplit.indexOf(":")).replace(".", " ").replace("<b>", "") : null;
-
-        blockId++;
-        String[] arrStr = strToSplit.split(sentenceDelimiter);
-        for (String str : arrStr)
+        try
         {
-            if (str == null)
+            final String sentenceDelimiter = "<br> |<br>|(?<=\\. )";
+            SectionBO section;
+            int blockSubId = -1;
+            final String blockRef = (blockType == BLOCK_TYPE.CONTENT) ? strToSplit.substring(0, strToSplit.indexOf(":")).replace(".", " ").replace("<b>", "") : null;
+
+            blockId++;
+            String[] arrStr = strToSplit.split(sentenceDelimiter);
+            for (String str : arrStr)
             {
-                continue;
+                if (str == null)
+                {
+                    continue;
+                }
+
+                section = new SectionBO();
+                section.id = ++id;
+                section.blockId = blockId;
+                section.blockSubId = ++blockSubId;
+                section.blockRef = blockRef;
+
+                if (blockType == BLOCK_TYPE.BEFORE)
+                {
+                    section.before = str;
+                    section.content = null;
+                    section.after = null;
+                }
+                else
+                {
+                    section.before = null;
+                    section.content = str;
+                    section.after = null;
+                }
+
+                this.lstSection.add(section);
             }
 
-            section = new SectionBO();
-            section.id = ++id;
-            section.blockId = blockId;
-            section.blockSubId = ++blockSubId;
-            section.blockRef = blockRef;
-
-            if (blockType == BLOCK_TYPE.BEFORE)
-            {
-                section.before = str;
-                section.content = null;
-                section.after = null;
-            }
-            else
-            {
-                section.before = null;
-                section.content = str;
-                section.after = null;
-            }
-
-            this.lstSection.add(section);
+            //noinspection UnusedAssignment
+            arrStr = null;
         }
-
-        //noinspection UnusedAssignment
-        arrStr = null;
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
     }
 
-    ArrayList<ShortSectionBO> GetShortSections()
+    ArrayList<ShortSectionBO> GetArticleShortSections()
     {
-
-
         return this.lstShortSection;
     }
 

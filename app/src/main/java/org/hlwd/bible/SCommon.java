@@ -560,6 +560,24 @@ class SCommon
     }
 
     /***
+     * Update my article source
+     * @param artId
+     * @param source
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleSource(final int artId, final String source)
+    {
+        try
+        {
+            _dal.UpdateMyArticleSource(artId, source);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
      * Search bible (cache)
      * @param searchId
      * @return list of verses

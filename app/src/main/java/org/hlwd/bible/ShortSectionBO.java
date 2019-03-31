@@ -14,6 +14,3 @@ class ShortSectionBO
         this.content = content;
     }
 }
-
-//TODO NEXT: swap blockId lors d'un déplacement
-//TODO NEXT: remove item lors d'une suppression

@@ -268,7 +268,7 @@ public class SearchFragment extends Fragment
                     scrollPosY = t.scrollPosY;
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
                 CreateRecyclerView();
 
@@ -335,7 +335,7 @@ public class SearchFragment extends Fragment
                     }
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
 
                 SearchBible(true);
@@ -365,7 +365,7 @@ public class SearchFragment extends Fragment
                     scrollPosY = t.scrollPosY;
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
                 CreateRecyclerView();
 
@@ -376,14 +376,7 @@ public class SearchFragment extends Fragment
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
 
-                //TODO FAB NOW: get real list of source => several records merged with rowid as link between SOURCE and SECTIONS (list of verses)
-                lstArtShortSection = ((BibleArticleAdapter) recyclerViewAdapter).GetShortSections();
-                String artContentGenerated = "";
-                for(ShortSectionBO shortSection : lstArtShortSection)
-                {
-                    artContentGenerated = PCommon.ConcaT(artContentGenerated, shortSection.content);
-                }
-                System.out.println(PCommon.ConcaT("artContentGenerated: ", artContentGenerated));
+                lstArtShortSection = ((BibleArticleAdapter) recyclerViewAdapter).GetArticleShortSections();
 
                 return;
             }
@@ -391,7 +384,7 @@ public class SearchFragment extends Fragment
             //Search type
             searchFullQueryLimit = 3;
 
-            // Get tab info
+            //Get tab info
             final CacheTabBO t = _s.GetCurrentCacheTab();
             if (t == null)
             {
@@ -412,7 +405,7 @@ public class SearchFragment extends Fragment
             vNumber = t.vNumber;
             trad = t.trad;
 
-            // Set objects
+            //Set objects
             SetTabTitle(tabTitle);
 
             if (isBook && isChapter)
@@ -532,12 +525,27 @@ public class SearchFragment extends Fragment
                 }
                 case R.id.mnu_edit_move_up:
                 {
-                    //TODO FAB NOW
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    final String source = MoveArticleShortSection(position, -1);
+                    if (source != null)
+                    {
+                        //TODO NEXT: refresh fragment
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
                     return true;
                 }
                 case R.id.mnu_edit_move_down:
                 {
-                    //TODO FAB NOW
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    final String source = MoveArticleShortSection(position, +1);
+                    if (source != null)
+                    {
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
                     return true;
                 }
                 case R.id.mnu_edit_add_text:
@@ -1830,4 +1838,95 @@ public class SearchFragment extends Fragment
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
     }
+
+    private String GetArticleGeneratedSource()
+    {
+        String source = "";
+
+        try
+        {
+            for(ShortSectionBO shortSection : lstArtShortSection)
+            {
+                if (shortSection != null)
+                {
+                    source = PCommon.ConcaT(source, shortSection.content);
+                }
+            }
+            System.out.println(PCommon.ConcaT("artGeneratedSource: ", source));
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
+        }
+
+        return source;
+    }
+
+    private ShortSectionBO FindArticleShortSectionByPositionId(final int id)
+    {
+        ShortSectionBO shortSection = null;
+
+        try
+        {
+            if (lstArtShortSection == null || lstArtShortSection.size() == 0) return null;
+
+            final int lastElement = lstArtShortSection.size() - 1;
+            for (int i = lastElement; i >= 0; i--)
+            {
+                shortSection = lstArtShortSection.get(i);
+
+                if (id >= shortSection.from_id)
+                {
+                    break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
+        }
+
+        return shortSection;
+    }
+
+    /***
+     * Move section of article
+     * @param fromPositionId    Position in article
+     * @param toMoveStep        Step of move
+     * @return code or null if not applicable
+     */
+    private String MoveArticleShortSection(final int fromPositionId, final int toMoveStep)
+    {
+        if (toMoveStep == 0) return null;
+
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
+
+        final int toShortPositionId = fromShortPositionId + toMoveStep;
+        if (toShortPositionId < 0) return null;
+        final String wasToShortSectionContent = lstArtShortSection.get(toShortPositionId).content;
+
+        lstArtShortSection.get(toShortPositionId).content = fromShortSection.content;
+        lstArtShortSection.get(fromShortPositionId).content = wasToShortSectionContent;
+
+        return this.GetArticleGeneratedSource();
+    }
+
+    /*
+    private String DeleteArticleShortSection(final int shortSectionId)
+    {
+
+    }
+
+    private String AddArticleShortSection(final int atShortSectionId)
+    {
+
+    }
+
+    private String UpdateArticleShortSection(final int shortSectionId)
+    {
+
+    }
+    */
 }
