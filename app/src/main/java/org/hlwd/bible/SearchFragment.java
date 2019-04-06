@@ -529,7 +529,6 @@ public class SearchFragment extends Fragment
                     final String source = MoveArticleShortSection(position, -1);
                     if (source != null)
                     {
-                        //TODO NEXT: refresh fragment
                         _s.UpdateMyArticleSource(artId, source);
                         onResume();
                     }
@@ -560,7 +559,14 @@ public class SearchFragment extends Fragment
                 }
                 case R.id.mnu_edit_remove_confirm:
                 {
-                    //TODO FAB NOW
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    final String source = DeleteArticleShortSection(position);
+                    if (source != null)
+                    {
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
                     return true;
                 }
             }
@@ -1115,21 +1121,21 @@ public class SearchFragment extends Fragment
             final int artId;
             final String artTitle;
             final String artHtml;
+            final String ha;
 
             if (t.fullQuery.startsWith("ART"))
             {
                 artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
-                artTitle = _context.getString(PCommon.GetResId(_context, t.fullQuery));
                 artHtml = _context.getString(artId);
+                artTitle = _context.getString(PCommon.GetResId(_context, t.fullQuery));
+                ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
             }
             else
             {
                 artId = Integer.parseInt(t.fullQuery);
-                artTitle = _s.GetMyArticleName(artId);
                 artHtml = _s.GetMyArticleSource(artId);
+                ha = null;
             }
-            final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
-
             artOriginalContent = new ArtOriginalContentBO(ha, artHtml);
         }
         catch(Exception ex)
@@ -1913,12 +1919,23 @@ public class SearchFragment extends Fragment
         return this.GetArticleGeneratedSource();
     }
 
-    /*
-    private String DeleteArticleShortSection(final int shortSectionId)
+    /***
+     * Delete section of article
+     * @param fromPositionId    Position in article
+     * @return code or null of not applicable
+     */
+    private String DeleteArticleShortSection(final int fromPositionId)
     {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
 
+        lstArtShortSection.remove(fromShortPositionId);
+
+        return this.GetArticleGeneratedSource();
     }
 
+    /*
     private String AddArticleShortSection(final int atShortSectionId)
     {
 

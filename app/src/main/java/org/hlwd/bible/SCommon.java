@@ -560,6 +560,21 @@ class SCommon
     }
 
     /***
+     * Get my article substitution
+     * @param source    Source without substitution (except <R></R>)
+     * @return  String with edit tags
+     */
+    @SuppressWarnings("JavaDoc")
+    private String GetMyArticleSourceSubstition(final String source)
+    {
+        return source
+                .replaceAll("</u></h1>", "</H>")
+                .replaceAll("<h1><u>", "<H>")
+                .replaceAll("</u></span>", "</HS>")
+                .replaceAll("<br><span><u>", "<HS>");
+    }
+
+    /***
      * Update my article source
      * @param artId
      * @param source
@@ -569,7 +584,8 @@ class SCommon
     {
         try
         {
-            _dal.UpdateMyArticleSource(artId, source);
+            final String substSource = GetMyArticleSourceSubstition(source);
+            _dal.UpdateMyArticleSource(artId, substSource);
         }
         catch(Exception ex)
         {

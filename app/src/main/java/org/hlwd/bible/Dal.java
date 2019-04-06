@@ -1257,18 +1257,19 @@ class Dal
 
     /***
      * Update my article source
-     * @param artId
-     * @param source
+     * @param artId         Article Id
+     * @param substSource   Source substitued
      */
     @SuppressWarnings("JavaDoc")
-    void UpdateMyArticleSource(final int artId, final String source)
+    void UpdateMyArticleSource(final int artId, final String substSource)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
 
         try
         {
-            final String finalSource = PCommon.AQ(PCommon.RQ(source));
-            sql = PCommon.ConcaT("UPDATE artDesc SET artSrc=", finalSource, " WHERE artId=", artId);
+            final String quotedSource = PCommon.AQ(PCommon.RQ(substSource));
+
+            sql = PCommon.ConcaT("UPDATE artDesc SET artSrc=", quotedSource, " WHERE artId=", artId);
             _db.execSQL(sql);
         }
         catch(Exception ex)

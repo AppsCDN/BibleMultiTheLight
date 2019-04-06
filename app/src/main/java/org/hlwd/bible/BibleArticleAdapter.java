@@ -213,12 +213,16 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             arrRef = null;
 
             //Parse <T></T>,  <H></H>,  <HA/>
+            if (ha != null)
+            {
+                artHtml = artHtml.replaceFirst("<HA/>", ha);
+            }
+
             artHtml = artHtml
-                    .replaceFirst("<HA/>", ha)
-                    .replaceAll("<HS>", "<br><span><u>")
-                    .replaceAll("</HS>", "</u></span>")
-                    .replaceAll("<H>", "<h1><u>")
-                    .replaceAll("</H>", "</u></h1>");
+                .replaceAll("<HS>", "<br><span><u>")
+                .replaceAll("</HS>", "</u></span>")
+                .replaceAll("<H>", "<h1><u>")
+                .replaceAll("</H>", "</u></h1>");
             //End Parse
             //TODO FAB: see spannableString(builder) for titles without too much space after.
         }
@@ -317,14 +321,14 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 contentBefore = "";
                 if (section.before != null)
                 {
-                    contentBefore = PCommon.ConcaT(section.before, "<br>");
+                    contentBefore = section.before.endsWith("<br>") ? section.before : PCommon.ConcaT(section.before, "<br>");
                 }
 
                 //after
                 contentAfter = "";
                 if (section.after != null)
                 {
-                    contentAfter = PCommon.ConcaT(section.after, "<br>");
+                    contentAfter = section.after.endsWith("<br>") ? section.after : PCommon.ConcaT(section.after, "<br>");
                 }
 
                 //content
@@ -373,7 +377,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             {
                 sumContent = "";
                 sumFrom_id = -1;
-                for (ShortSectionBO shortSection : lstShortSection)
+                for (final ShortSectionBO shortSection : lstShortSection)
                 {
                     if (shortSection.blockId == blockId)
                     {
@@ -392,8 +396,6 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 lstShortSectionSimplified.add(new ShortSectionBO(blockId, sumContent, sumFrom_id));
             }
             lstShortSection = lstShortSectionSimplified;
-
-            //TODO NEXT substitutions
 
             //noinspection UnusedAssignment
             arrBQ = null;
