@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     private View slideViewTabHandle;
     private boolean isUiTelevision = false;
     private static boolean isPlanSelectAlreadyWarned = false;
+    private static boolean isShowMyArt = false;
     private SCommon _s = null;
 
     @Override
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticles(false);
+                        ShowArticles();
                     }
                 });
                 final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
@@ -532,7 +533,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_articles:
 
-                    ShowArticles(true);
+                    ShowArticles();
                     return true;
 
                 case R.id.mnu_group_settings:
@@ -956,10 +957,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void ShowArticles()
+    {
+        ShowArticles(isShowMyArt);
+    }
+
     private void ShowArticles(final boolean isMyArticleType)
     {
         try
         {
+            isShowMyArt = isMyArticleType;
+
             final AlertDialog builder = new AlertDialog.Builder(this).create();                     //R.style.DialogStyleKaki
             final ScrollView sv = new ScrollView(this);
             sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
@@ -972,15 +980,39 @@ public class MainActivity extends AppCompatActivity
             final Typeface typeface = PCommon.GetTypeface(this);
             final int fontSize = PCommon.GetFontSize(this);
 
+            final Button btnSwitchArt = new Button(this);
+            btnSwitchArt.setLayoutParams(PCommon._layoutParamsWrap);
+            btnSwitchArt.setText(isShowMyArt ? R.string.switchToArt : R.string.switchToMyArt);
+            btnSwitchArt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View vw)
+                {
+                    isShowMyArt = !isShowMyArt;
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            ShowArticles();
+                        }
+                    }, 500);
+                }
+            });
+            btnSwitchArt.setFocusable(true);
+            btnSwitchArt.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
+            llArt.addView(btnSwitchArt);
+
             int resId;
             int nr = 0;
             TextView tvArt;
             String text;
 
-            final String[] arrArt = (isMyArticleType) ? _s.GetListMyArticlesId() : this.getResources().getStringArray(R.array.ART_ARRAY);
+            final String[] arrArt = (isShowMyArt) ? _s.GetListMyArticlesId() : this.getResources().getStringArray(R.array.ART_ARRAY);
             for (final String artRef : arrArt)
             {
-                if (!isMyArticleType)
+                if (!isShowMyArt)
                 {
                     if (nr == 2 || nr == 10)
                     {
@@ -1081,10 +1113,8 @@ public class MainActivity extends AppCompatActivity
 
                 return;
             }
-            final boolean isMyArticleType = artName.startsWith("ART");
-            final String artNameUpdate = isMyArticleType ? PCommon.ConcaT(getString(R.string.tabMyArtPrefix), artName) : artName;
             final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            Tab.AddTab(getApplicationContext(), "A", bbName, artNameUpdate);
+            Tab.AddTab(getApplicationContext(), "A", bbName, artName);
         }
         catch (Exception ex)
         {

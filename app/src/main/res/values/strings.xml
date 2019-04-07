@@ -111,6 +111,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="planCalTitleVerseCount">Verses\nby day:</string>
     <string name="planChapterCount">Chapters</string>
     <string name="planVerseCount">Verses</string>
+    <string name="switchToArt">Articles</string>
+    <string name="switchToMyArt">MyArticles</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
