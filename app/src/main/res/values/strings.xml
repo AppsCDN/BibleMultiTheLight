@@ -54,12 +54,15 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopyVerseToClipboard">Verse</string>
     <string name="mnuEditOn">Start editing</string>
     <string name="mnuEditOff">Stop editing</string>
+    <string name="mnuEditSelectFrom">Select From</string>
+    <string name="mnuEditSelectTo">Select To</string>
     <string name="mnuEditMove">Move</string>
     <string name="mnuEditMoveUp">Up</string>
     <string name="mnuEditMoveDown">Down</string>
     <string name="mnuEditAdd">Add</string>
     <string name="mnuEditAddText">Text</string>
     <string name="mnuEditAddTitle">Title</string>
+    <string name="mnuEditUpdate">Update</string>
     <string name="mnuEditRemove">Remove</string>
     <string name="mnuEditRemoveConfirm">Confirm</string>
     <string name="mnuMarkAllAboveAsRead">Mark all above as read</string>

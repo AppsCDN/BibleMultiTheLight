@@ -2,11 +2,13 @@
 package org.hlwd.bible;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.TextView;
 
@@ -481,12 +484,20 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_share_result).setVisible(false);
         }
 
-        final int edit_status = PCommon.GetEditStatus(v.getContext());
-        menu.findItem(R.id.mnu_edit).setTitle(edit_status == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
-        final boolean edit_cmd_visibility = (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && edit_status == 1);
-        menu.findItem(R.id.mnu_edit_move).setVisible(edit_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_add).setVisible(edit_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_remove).setVisible(edit_cmd_visibility);
+        final int editStatus = PCommon.GetEditStatus(v.getContext());
+        final int editArtId = PCommon.GetEditArticleId(v.getContext());
+        final int tabArtId = fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && editStatus == 1 && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
+                ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
+                : -1;
+        menu.findItem(R.id.mnu_edit).setTitle(editStatus == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
+        final boolean edit_art_cmd_visibility = editArtId == tabArtId;
+        final boolean edit_search_cmd_visibility = fragmentType == FRAGMENT_TYPE.SEARCH_TYPE && editStatus == 1;
+        menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_move).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_add).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_update).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_remove).setVisible(edit_art_cmd_visibility);
 
         if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
         {
@@ -514,12 +525,66 @@ public class SearchFragment extends Fragment
 
             switch (itemId)
             {
+                case R.id.mnu_edit_select_from:
+                {
+                    if (verse == null) return true;
+                    final String selectFrom = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, selectFrom);
+
+                    return true;
+                }
+                case R.id.mnu_edit_select_to:
+                {
+                    if (verse == null) return true;
+
+                    final String selectFrom = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                    if (selectFrom.isEmpty())
+                    {
+                        //TODO NEXT: show dialog/toast => empty
+                        return true;
+                    }
+                    final String selectTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
+
+                    //TODO NEXT: add ref block in article
+                    final String arrFrom[] = selectFrom.split("\\s");
+                    final String arrTo[] = selectTo.split("\\s");
+
+                    if (arrFrom.length != 3 || arrTo.length != 3)
+                    {
+                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        return true;
+                    }
+                    if (arrFrom[0].compareTo(arrTo[0]) != 0 || arrFrom[1].compareTo(arrTo[1]) != 0)
+                    {
+                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        return true;
+                    }
+                    if (Integer.parseInt(arrFrom[2]) > Integer.parseInt(arrTo[2]))
+                    {
+                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        return true;
+                    }
+
+                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    if (artId < 0) return false;
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+
+                    final String ref = PCommon.ConcaT("<R>", arrFrom[0], " ", arrFrom[1], " ", arrFrom[2], " ", arrTo[2],"</R>");
+                    final String source = _s.GetMyArticleSource(artId);
+                    final String finalSource = PCommon.ConcaT(source, ref);
+                    _s.UpdateMyArticleSource(artId, finalSource);
+                    onResume();
+
+                    return true;
+                }
                 case R.id.mnu_edit:
                 {
                     final int edit_status = PCommon.GetEditStatus(getContext());
                     PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, edit_status == 0 ? 1 : 0);
-                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_FROM, "");
-                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.ART_TO, "");
+                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, edit_status == 0 ? 2 : 0); //myart2 hardcoded
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+
+                    //TODO NEXT: select myart dialog for EDIT_ART_ID if edit. Review EDIT_ART_ID just above.
 
                     return true;
                 }
@@ -549,12 +614,24 @@ public class SearchFragment extends Fragment
                 }
                 case R.id.mnu_edit_add_text:
                 {
-                    //TODO FAB NOW
+                    //TODO NEXT: title and hint
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    EditDialog(false, getActivity(), R.string.languageInstalling, "", position, artId);
+
                     return true;
                 }
                 case R.id.mnu_edit_add_title:
                 {
                     //TODO FAB NOW
+                    return true;
+                }
+                case R.id.mnu_edit_update:
+                {
+                    //TODO NEXT
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
+                    EditDialog(true, getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
+
                     return true;
                 }
                 case R.id.mnu_edit_remove_confirm:
@@ -1935,15 +2012,106 @@ public class SearchFragment extends Fragment
         return this.GetArticleGeneratedSource();
     }
 
-    /*
-    private String AddArticleShortSection(final int atShortSectionId)
+    /***
+     * Add section to article
+     * @param fromPositionId    Position in article
+     * @param content           Content
+     * @return code or null of not applicable
+     */
+    private String AddArticleShortSection(final int fromPositionId, final String content)
     {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
 
+        final ShortSectionBO newShortSection = new ShortSectionBO(fromShortPositionId, content, fromPositionId);
+        lstArtShortSection.add(fromShortPositionId, newShortSection);
+
+        return this.GetArticleGeneratedSource();
     }
 
-    private String UpdateArticleShortSection(final int shortSectionId)
+    /***
+     * Update section of article
+     * @param fromPositionId    Position in article
+     * @param content           Content
+     * @return code or null of not applicable
+     */
+    private String UpdateArticleShortSection(final int fromPositionId, final String content)
     {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
 
+        lstArtShortSection.get(fromShortPositionId).content = content;
+
+        return this.GetArticleGeneratedSource();
     }
-    */
+
+    /***
+     * Show simple edit dialog
+     * @param isUpdate  True for Update, False for Add
+     * @param activity
+     * @param titleId
+     * @param editText
+     * @param artId
+     * @param position
+     */
+    @SuppressWarnings("JavaDoc")
+    private void EditDialog(final boolean isUpdate, final Activity activity, final int titleId, final String editText, final int position, final int artId)
+    {
+        try
+        {
+            final LayoutInflater inflater = activity.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_edit_dialog, (ViewGroup) activity.findViewById(R.id.svEdition));
+            final TextView tvTitle = view.findViewById(R.id.tvTitle);
+            final EditText etEdition = view.findViewById(R.id.etEdition);
+            final AlertDialog builder = new AlertDialog.Builder(activity).create();
+            builder.setCancelable(true);
+            builder.setTitle(titleId);
+            builder.setView(view);
+
+            tvTitle.setText(titleId);
+            etEdition.setText(editText);
+
+            final Button btnClear = view.findViewById(R.id.btnEditionClear);
+            btnClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etEdition.setText("");
+                }
+            });
+            final Button btnContinue = view.findViewById(R.id.btnEditionContinue);
+            btnContinue.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(final View view)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String text = etEdition.getText().toString().replaceAll("\n", "<br>");
+                            PCommon.SavePref(view.getContext(), IProject.APP_PREF_KEY.EDIT_DIALOG, text);
+                            builder.dismiss();
+
+                            final String source = isUpdate ? UpdateArticleShortSection(position, text) : AddArticleShortSection(position, text);
+                            if (source != null)
+                            {
+                                _s.UpdateMyArticleSource(artId, source);
+                                onResume();
+                            }
+                        }
+                    }, 500);
+                }
+            });
+
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
+        }
+    }
 }

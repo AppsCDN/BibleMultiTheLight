@@ -13,9 +13,11 @@ public interface IProject
 
         EDIT_STATUS,
 
-        ART_FROM,
+        EDIT_DIALOG,
 
-        ART_TO,
+        EDIT_ART_ID,
+
+        EDIT_SELECTION,
 
         BIBLE_NAME,
 

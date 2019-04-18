@@ -1235,7 +1235,7 @@ final class PCommon implements IProject
             final int fontSize = PCommon.GetFontSize(context);
 
             final LayoutInflater inflater = activity.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
+            final View view = inflater.inflate(R.layout.fragment_show_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
             final LinearLayout llMsg = view.findViewById(R.id.llMsg);
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
@@ -1363,6 +1363,17 @@ final class PCommon implements IProject
     static int GetEditStatus(final Context context)
     {
         return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_STATUS, "0"));
+    }
+
+    /***
+     * Get edit article id
+     * @param context
+     * @return
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetEditArticleId(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "0"));
     }
 
     /***

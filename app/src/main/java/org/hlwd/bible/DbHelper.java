@@ -398,9 +398,10 @@ class DbHelper extends SQLiteOpenHelper
             }
             if (oldVersion < 29)   //1..28 => 29
             {
-                PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
-                PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_FROM, "");
-                PCommon.SavePref(_context, IProject.APP_PREF_KEY.ART_TO, "");
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.EDIT_DIALOG, "");
+                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.EDIT_STATUS, 0);
+                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.EDIT_ART_ID, 0);
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.EDIT_SELECTION, "");
 
                 sql = "CREATE TABLE artDesc (artId INTEGER NOT NULL, artUpdatedDt TEXT NOT NULL, artTitle TEXT NOT NULL, artSrc TEXT NOT NULL, PRIMARY KEY (artTitle))";
                 _db.execSQL(sql);
@@ -408,7 +409,6 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE UNIQUE INDEX artDesc0_ndx on artDesc (artId)";
                 _db.execSQL(sql);
             }
-
 
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //Last
@@ -465,9 +465,10 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.INSTALL_STATUS, 1);                   //Will be updated
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LOG_STATUS, "");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.EDIT_DIALOG, "");
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.ART_FROM, "");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.ART_TO, "");
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_ART_ID, 0);
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.EDIT_SELECTION, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "k");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "1");
@@ -497,9 +498,10 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("INSTALL_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.INSTALL_STATUS)));
             System.out.println(PCommon.ConcaT("UPDATE_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UPDATE_STATUS)));
             System.out.println(PCommon.ConcaT("LOG_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LOG_STATUS)));
+            System.out.println(PCommon.ConcaT("EDIT_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_DIALOG)));
             System.out.println(PCommon.ConcaT("EDIT_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_STATUS)));
-            System.out.println(PCommon.ConcaT("ART_FROM:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.ART_FROM)));
-            System.out.println(PCommon.ConcaT("ART_TO:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.ART_TO)));
+            System.out.println(PCommon.ConcaT("EDIT_ART_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_ART_ID)));
+            System.out.println(PCommon.ConcaT("EDIT_SELECTION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_SELECTION)));
             System.out.println(PCommon.ConcaT("BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME)));
             System.out.println(PCommon.ConcaT("BIBLE_NAME_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG)));
             System.out.println(PCommon.ConcaT("TRAD_BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME)));

@@ -457,8 +457,11 @@ public class MainActivity extends AppCompatActivity
                     menu.findItem(R.id.mnu_plans).setEnabled(false);
                     menu.findItem(R.id.mnu_group_settings).setEnabled(false);
                     menu.findItem(R.id.mnu_edit).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_select_from).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_select_to).setEnabled(false);
                     menu.findItem(R.id.mnu_edit_move).setEnabled(false);
                     menu.findItem(R.id.mnu_edit_add).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_update).setEnabled(false);
                     menu.findItem(R.id.mnu_edit_remove).setEnabled(false);
 
                     final String contentMsg = GetInstallStatusMsg();

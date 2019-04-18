@@ -217,6 +217,8 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
                 return false;
             }
         });
+
+/*TODO TODEL
         viewHolder.tv_text.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -241,6 +243,7 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
                 return;
             }
         });
+*/
     }
 
     @Override

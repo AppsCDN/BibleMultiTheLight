@@ -64,6 +64,14 @@
         android:title="@string/mnuEmpty">
     </item>
     <item
+        android:id="@+id/mnu_edit_select_from"
+        android:title="@string/mnuEditSelectFrom">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_select_to"
+        android:title="@string/mnuEditSelectTo">
+    </item>
+    <item
         android:id="@+id/mnu_edit_move"
         android:title="@string/mnuEditMove">
         <menu>
@@ -86,6 +94,10 @@
                 android:id="@+id/mnu_edit_add_title"
                 android:title="@string/mnuEditAddTitle" />
         </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit_update"
+        android:title="@string/mnuEditUpdate">
     </item>
     <item
         android:id="@+id/mnu_edit_remove"
