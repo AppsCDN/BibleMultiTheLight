@@ -489,7 +489,13 @@ public class SearchFragment extends Fragment
         final int tabArtId = fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && editStatus == 1 && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
                 ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
                 : -1;
-        menu.findItem(R.id.mnu_edit).setTitle(editStatus == 0 ? R.string.mnuEditOn : R.string.mnuEditOff);
+        final String title = editStatus == 0 ? getString(R.string.mnuEditOn) :
+                    PCommon.ConcaT(getString(R.string.mnuEditOff),
+                    " VERY LONG TEXT FOR TEXT CONDENSED (",
+                    getString(R.string.tabMyArtPrefix),
+                    editArtId,
+                    ")");
+        menu.findItem(R.id.mnu_edit).setTitle(title).setTitleCondensed(title);
         final boolean edit_art_cmd_visibility = editArtId == tabArtId;
         final boolean edit_search_cmd_visibility = fragmentType == FRAGMENT_TYPE.SEARCH_TYPE && editStatus == 1;
         menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
@@ -580,11 +586,16 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit:
                 {
                     final int edit_status = PCommon.GetEditStatus(getContext());
-                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, edit_status == 0 ? 1 : 0);
-                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, edit_status == 0 ? 2 : 0); //myart2 hardcoded
-                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
-
-                    //TODO NEXT: select myart dialog for EDIT_ART_ID if edit. Review EDIT_ART_ID just above.
+                    if (edit_status == 1)
+                    {
+                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 0);
+                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID,0);
+                        PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                    }
+                    else
+                    {
+                        PCommon.ShowArticles(getContext(), true, true);
+                    }
 
                     return true;
                 }

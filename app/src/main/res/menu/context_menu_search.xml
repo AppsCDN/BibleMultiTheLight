@@ -61,7 +61,8 @@
     </item>
     <item
         android:id="@+id/mnu_edit"
-        android:title="@string/mnuEmpty">
+        android:title="@string/mnuEmpty"
+        android:titleCondensed="@string/mnuEmpty">
     </item>
     <item
         android:id="@+id/mnu_edit_select_from"

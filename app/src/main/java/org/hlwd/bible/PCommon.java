@@ -21,7 +21,9 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -33,6 +35,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -56,7 +59,7 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    final static boolean _isDebugVersion = false;
+    final static boolean _isDebugVersion = true;
 
     final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -64,6 +67,8 @@ final class PCommon implements IProject
 
     @SuppressLint("StaticFieldLeak")
     private static SCommon _s = null;
+
+    private static boolean isShowMyArt = false;
 
     //</editor-fold>
 
@@ -1212,6 +1217,225 @@ final class PCommon implements IProject
 
                 llItem.addView(tvItem);
             }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Show articles
+     * @param context   Context
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticles(final Context context)
+    {
+        ShowArticles(context, isShowMyArt, false);
+    }
+
+    /***
+     * Show articles
+     * @param context   Context
+     * @param isMyArticleType   Is MyArt type?
+     * @param isForSelection    Is for selection? (False=to open it)
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticles(final Context context, final boolean isMyArticleType, final boolean isForSelection)
+    {
+        try
+        {
+            CheckLocalInstance(context);
+
+            isShowMyArt = isMyArticleType;
+
+            final AlertDialog builder = new AlertDialog.Builder(context).create();                     //R.style.DialogStyleKaki
+            final ScrollView sv = new ScrollView(context);
+            sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+
+            final LinearLayout llArt = new LinearLayout(context);
+            llArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            llArt.setOrientation(LinearLayout.VERTICAL);
+            llArt.setPadding(0, 15, 0, 15);
+
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+
+            final Button btnSwitchArt = new Button(context);
+            btnSwitchArt.setLayoutParams(PCommon._layoutParamsWrap);
+            btnSwitchArt.setText(isShowMyArt ? R.string.switchToArt : R.string.switchToMyArt);
+            btnSwitchArt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(final View vw)
+                {
+                    isShowMyArt = !isShowMyArt;
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            ShowArticles(vw.getContext());
+                        }
+                    }, 500);
+                }
+            });
+            btnSwitchArt.setFocusable(true);
+            btnSwitchArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            llArt.addView(btnSwitchArt);
+
+            final Button btnCreateArt = new Button(context);
+            btnCreateArt.setLayoutParams(PCommon._layoutParamsWrap);
+            btnCreateArt.setVisibility(isShowMyArt ? View.VISIBLE : View.GONE);
+            btnCreateArt.setText(R.string.btnArtCreate);
+            btnCreateArt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(final View vw)
+                {
+                    //TODO NEXT CREATE ART
+                    CheckLocalInstance(vw.getContext());
+                    final ArtDescBO ad = new ArtDescBO();
+                    ad.artId = _s.GetNewMyArticleId();
+                    ad.artUpdatedDt = PCommon.NowYYYYMMDD();
+                    ad.artTitle = PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), ad.artId, "NEW");
+                    ad.artSrc = "";
+                    _s.AddMyArticle(ad);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            ShowArticles(vw.getContext());
+                        }
+                    }, 500);
+                }
+            });
+            btnCreateArt.setFocusable(true);
+            btnCreateArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            llArt.addView(btnCreateArt);
+
+            int resId;
+            int nr = 0;
+            TextView tvArt;
+            String text;
+
+            final String[] arrArt = (isShowMyArt) ? _s.GetListMyArticlesId() : context.getResources().getStringArray(R.array.ART_ARRAY);
+            for (final String artRef : arrArt)
+            {
+                if (!isShowMyArt)
+                {
+                    if (nr == 2 || nr == 10)
+                    {
+                        TextView tvSep = new TextView(context);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
+
+                        final View vwSep = new View(context);
+                        vwSep.setPadding(20, 0, 20, 0);
+                        vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
+                        vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
+                        llArt.addView(vwSep);
+
+                        tvSep = new TextView(context);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
+                    }
+
+                    resId = PCommon.GetResId(context, artRef);
+                    text = PCommon.ConcaT(context.getString(R.string.bulletDefault), " ", context.getString(resId));
+                }
+                else
+                {
+                    resId = Integer.parseInt(artRef);
+                    text = PCommon.ConcaT(context.getString(R.string.bulletDefault), " ", _s.GetMyArticleName(resId));
+                }
+
+                tvArt = new TextView(context);
+                tvArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvArt.setPadding(10, 15, 10, 15);
+                tvArt.setText( text );
+                tvArt.setTag( artRef );
+                tvArt.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(final View vw)
+                    {
+                        try
+                        {
+                            final String fullQuery = (String) vw.getTag();
+                            if (PCommon._isDebugVersion) System.out.println(fullQuery);
+                            if (isForSelection)
+                            {
+                                final int artId = Integer.parseInt(fullQuery.replace(vw.getContext().getString(R.string.tabMyArtPrefix), ""));
+                                //TODO NEXT: if artId <= 0 ?
+                                PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 1);
+                                PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, artId);
+                                PCommon.SavePref(vw.getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                            }
+                            else
+                            {
+                                ShowArticle(context, fullQuery);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (PCommon._isDebugVersion) PCommon.LogR(vw.getContext(), ex);
+                        }
+                        finally
+                        {
+                            builder.dismiss();
+                        }
+                    }
+                });
+                tvArt.setFocusable(true);
+                tvArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+
+                //Font
+                if (typeface != null) { tvArt.setTypeface(typeface); }
+                tvArt.setTextSize(fontSize);
+
+                llArt.addView(tvArt);
+                nr++;
+            }
+            sv.addView(llArt);
+
+            builder.setTitle(R.string.mnuArticles);
+            builder.setCancelable(true);
+            builder.setView(sv);
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Show article
+     * @param context   Context
+     * @param artName   Article name
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticle(final Context context, final String artName)
+    {
+        try
+        {
+            CheckLocalInstance(context);
+
+            final int artNameTabId = _s.GetArticleTabId(artName);
+            if (artNameTabId >= 0)
+            {
+                MainActivity.Tab.SelectTabByArtName(artName);
+
+                return;
+            }
+            final String bbName = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
+            MainActivity.Tab.AddTab(context, "A", bbName, artName);
         }
         catch (Exception ex)
         {

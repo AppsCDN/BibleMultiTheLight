@@ -12,7 +12,6 @@ import android.content.pm.PackageInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity
     private View slideViewTabHandle;
     private boolean isUiTelevision = false;
     private static boolean isPlanSelectAlreadyWarned = false;
-    private static boolean isShowMyArt = false;
     private SCommon _s = null;
 
     @Override
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticles();
+                        PCommon.ShowArticles(v.getContext());
                     }
                 });
                 final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticle("ART_APP_HELP");
+                        PCommon.ShowArticle(v.getContext(),"ART_APP_HELP");
                     }
                 });
                 final View mnuTvPlans = findViewById(R.id.mnuTvPlans);
@@ -364,7 +362,7 @@ public class MainActivity extends AppCompatActivity
                     if (UPDATE_STATUS != 1)
                     {
                         PCommon.SavePrefInt(getApplicationContext(), IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
-                        ShowArticle("ART_APP_LOG");
+                        PCommon.ShowArticle(getApplicationContext(),"ART_APP_LOG");
                     }
                 }
             });
@@ -408,14 +406,14 @@ public class MainActivity extends AppCompatActivity
                         {
                             @Override
                             public void run() {
-                                ShowArticle("ART_APP_LOG");
+                                PCommon.ShowArticle(getApplicationContext(), "ART_APP_LOG");
                             }
                         }, 500);
                         handler.postDelayed(new Runnable()
                         {
                             @Override
                             public void run() {
-                                ShowArticle("ART_APP_HELP");
+                                PCommon.ShowArticle(getApplicationContext(),"ART_APP_HELP");
                             }
                         }, 1000);
 
@@ -536,7 +534,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_articles:
 
-                    ShowArticles();
+                    PCommon.ShowArticles(this);
                     return true;
 
                 case R.id.mnu_group_settings:
@@ -547,7 +545,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_help:
 
-                    ShowArticle("ART_APP_HELP");
+                    PCommon.ShowArticle(this,"ART_APP_HELP");
                     return true;
 
                 case R.id.mnu_about:
@@ -960,6 +958,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+/* TODO: TODEL
     private void ShowArticles()
     {
         ShowArticles(isShowMyArt);
@@ -1006,6 +1005,37 @@ public class MainActivity extends AppCompatActivity
             btnSwitchArt.setFocusable(true);
             btnSwitchArt.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
             llArt.addView(btnSwitchArt);
+
+            final Button btnCreateArt = new Button(this);
+            btnCreateArt.setLayoutParams(PCommon._layoutParamsWrap);
+            btnCreateArt.setVisibility(isShowMyArt ? View.VISIBLE : View.GONE);
+            btnCreateArt.setText(R.string.btnArtCreate);
+            btnCreateArt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View vw)
+                {
+                    //TODO NEXT CREATE ART
+                    final ArtDescBO ad = new ArtDescBO();
+                    ad.artId = _s.GetNewMyArticleId();
+                    ad.artUpdatedDt = PCommon.NowYYYYMMDD();
+                    ad.artTitle = PCommon.ConcaT(getString(R.string.tabMyArtPrefix), ad.artId, "NEW");
+                    ad.artSrc = "";
+                    _s.AddMyArticle(ad);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            ShowArticles();
+                        }
+                    }, 500);
+                }
+            });
+            btnCreateArt.setFocusable(true);
+            btnCreateArt.setBackground(PCommon.GetDrawable(this, R.drawable.focus_button));
+            llArt.addView(btnCreateArt);
 
             int resId;
             int nr = 0;
@@ -1124,6 +1154,7 @@ public class MainActivity extends AppCompatActivity
             if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
         }
     }
+*/
 
     private TextView CreateTvTitle(final int titleId, final int fontSize)
     {
@@ -2197,6 +2228,27 @@ public class MainActivity extends AppCompatActivity
                 return -1;
 
             return tabSelected;
+        }
+
+        static void SelectTabByArtName(final String artName)
+        {
+            final int artNameTabId = _s.GetArticleTabId(artName);
+            if (artNameTabId >= 0)
+            {
+                tabLayout.post(new Runnable()
+                {
+                    @Override
+                    public void run() {
+                        //noinspection EmptyCatchBlock
+                        try
+                        {
+                            //noinspection ConstantConditions
+                            tabLayout.getTabAt(artNameTabId).select();
+                        }
+                        catch(Exception ex) { }
+                    }
+                });
+            }
         }
 
         static int GetTabCount()

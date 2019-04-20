@@ -1256,6 +1256,47 @@ class Dal
     }
 
     /***
+     * Get new MyArticle Id
+     * @return bibleId
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetNewMyArticleId()
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        int max = 0;
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT MAX(id) from artDesc");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast()) {
+                max = c.getInt(0);
+            }
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null) {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return max + 1;
+    }
+
+    /***
      * Update my article source
      * @param artId         Article Id
      * @param substSource   Source substitued
@@ -1270,6 +1311,62 @@ class Dal
             final String quotedSource = PCommon.AQ(PCommon.RQ(substSource));
 
             sql = PCommon.ConcaT("UPDATE artDesc SET artSrc=", quotedSource, " WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
+     * Add my article
+     * @param ad    Article description
+     */
+    @SuppressWarnings("JavaDoc")
+    void AddMyArticle(final ArtDescBO ad)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("INSERT INTO artDesc (artId, artUpdatedDt, artTitle, artSrc) VALUES (",
+                ad.artId, ",",
+                PCommon.AQ(ad.artUpdatedDt), ",",
+                PCommon.AQ(PCommon.RQ(ad.artTitle)), ",",
+                PCommon.AQ(PCommon.RQ(ad.artSrc)),
+                ")");
+
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
+     * Delete my article
+     * @param artId         Article Id
+     */
+    @SuppressWarnings("JavaDoc")
+    void DeleteMyArticle(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("DELETE FROM artDesc WHERE artId=", artId);
             _db.execSQL(sql);
         }
         catch(Exception ex)

@@ -575,6 +575,15 @@ class SCommon
     }
 
     /***
+     * Get new MyArticle Id
+     * @return
+     */
+    int GetNewMyArticleId()
+    {
+        return _dal.GetNewMyArticleId();
+    }
+
+    /***
      * Update my article source
      * @param artId
      * @param source
@@ -586,6 +595,40 @@ class SCommon
         {
             final String substSource = GetMyArticleSourceSubstition(source);
             _dal.UpdateMyArticleSource(artId, substSource);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Add my article
+     * @param ad    Article description
+     */
+    @SuppressWarnings("JavaDoc")
+    void AddMyArticle(final ArtDescBO ad)
+    {
+        try
+        {
+            _dal.AddMyArticle(ad);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Delete my article
+     * @param artId     Article Id
+     */
+    @SuppressWarnings("JavaDoc")
+    void DeleteMyArticle(final int artId)
+    {
+        try
+        {
+            _dal.DeleteMyArticle(artId);
         }
         catch(Exception ex)
         {
