@@ -57,6 +57,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
     <string name="mnuEditSelectTo">&#8230; Select To</string>
+    <string name="mnuEditSelectFromTo">&#8230; Select From To</string>
     <string name="mnuEditMove">&#8230; Move</string>
     <string name="mnuEditMoveUp">Up</string>
     <string name="mnuEditMoveDown">Down</string>

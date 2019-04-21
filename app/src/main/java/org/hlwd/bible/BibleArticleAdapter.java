@@ -305,6 +305,8 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             String contentAfter;
             String refStart;
             int refCount;
+            int refVerseCount;
+            int refFrom;
             int sectionIndex = 0;
             int sectionLastIndex = (lstSection.size() - 1) < 0 ? 0 : lstSection.size() - 1;
             SectionBO section;
@@ -333,7 +335,9 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
 
                 //content
                 refCount = 0;
+                refVerseCount = 0;
                 refStart = "";
+                refFrom = 1;
                 while (section.blockRef != null && section.blockId == bId)
                 {
                     //it's REF
@@ -341,13 +345,18 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     {
                         //it's start ref
                         final String[] words = section.blockRef.split("\\s");
+                        refFrom = Integer.parseInt(words[ 2 ]);
                         refStart = PCommon.ConcaT(_s.GetBookNumberByName(bbName, words[ 0 ]), " ", words[ 1 ], " ", words[ 2 ]);
-                        refCount = 1;   //TODO NEXT BUG: wrong count
+                        refCount = 1;
+                        refVerseCount = 1;
                     }
                     else
                     {
-                        //count ref
+                        //count sections
                         refCount++;
+
+                        //count verses
+                        if (section.content.startsWith("<b>")) refVerseCount++;
                     }
 
                     if ((sectionIndex + refCount) > sectionLastIndex) break;
@@ -355,7 +364,8 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                     //test next section
                     section = lstSection.get(sectionIndex + refCount);
                 }
-                content = refStart.equalsIgnoreCase("") ? "" : PCommon.ConcaT("<R>", refStart, " ", refCount, "</R>");
+                final int refTo = refFrom - 1 + refVerseCount;
+                content = refStart.equalsIgnoreCase("") ? "" : PCommon.ConcaT("<R>", refStart, " ", refTo, "</R>");
 
                 //final
                 content = PCommon.ConcaT(contentBefore, content, contentAfter);

@@ -396,6 +396,7 @@ class Dal
         try
         {
             VerseBO verse;
+            final int vNumberToFix = vNumberTo < vNumberFrom ? vNumberFrom : vNumberTo;
 
             sql = PCommon.ConcaT("SELECT b.id, b.vNumber, b.vText, r.bName, r.bsName, n.mark, b.bbName, ", this.CaseBible("b.bbName", tbbName),
                     " FROM bible b",
@@ -405,7 +406,7 @@ class Dal
                     " AND b.bNumber=", bNumber,
                     " AND b.cNumber=", cNumber,
                     " AND b.vNumber >= ", vNumberFrom,
-                    " AND b.vNumber <= ", vNumberTo,
+                    " AND b.vNumber <= ", vNumberToFix,
                     " ORDER BY b.vNumber ASC, bbNameOrder ASC");
 
             c = _db.rawQuery(sql, null);

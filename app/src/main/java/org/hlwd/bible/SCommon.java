@@ -298,8 +298,12 @@ class SCommon
                 sbVerses.append(PCommon.ConcaT("<b>", v.bName, " ", v.cNumber, ".", v.vNumber, ": </b><br>", v.vText, "<br><br>"));
             }
 
-            final int start = sbVerses.length() - 8;
-            sbVerses.delete(start, sbVerses.length());
+            if (lstVerse.size() > 0)
+            {
+                final int start = sbVerses.length() - 8;
+                sbVerses.delete(start, sbVerses.length());
+            }
+
             sbVerses.append("</blockquote>");
         }
         catch(Exception ex)

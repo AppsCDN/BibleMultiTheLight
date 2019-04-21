@@ -73,6 +73,10 @@
         android:title="@string/mnuEditSelectTo">
     </item>
     <item
+        android:id="@+id/mnu_edit_select_from_to"
+        android:title="@string/mnuEditSelectFromTo">
+    </item>
+    <item
         android:id="@+id/mnu_edit_move"
         android:title="@string/mnuEditMove">
         <menu>

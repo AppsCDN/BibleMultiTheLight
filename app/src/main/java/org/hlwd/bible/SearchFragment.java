@@ -491,15 +491,17 @@ public class SearchFragment extends Fragment
                 : -1;
         final String title = editStatus == 0 ? getString(R.string.mnuEditOn) :
                     PCommon.ConcaT(getString(R.string.mnuEditOff),
-                    " VERY LONG TEXT FOR TEXT CONDENSED (",
+                    " (",
                     getString(R.string.tabMyArtPrefix),
                     editArtId,
                     ")");
-        menu.findItem(R.id.mnu_edit).setTitle(title).setTitleCondensed(title);
+        menu.findItem(R.id.mnu_edit).setTitle(title);
         final boolean edit_art_cmd_visibility = editArtId == tabArtId;
         final boolean edit_search_cmd_visibility = fragmentType == FRAGMENT_TYPE.SEARCH_TYPE && editStatus == 1;
+        final boolean edit_fav_cmd_visibility = fragmentType == FRAGMENT_TYPE.FAV_TYPE && editStatus == 1;
         menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
         menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_select_from_to).setVisible(edit_search_cmd_visibility || edit_fav_cmd_visibility);
         menu.findItem(R.id.mnu_edit_move).setVisible(edit_art_cmd_visibility);
         menu.findItem(R.id.mnu_edit_add).setVisible(edit_art_cmd_visibility);
         menu.findItem(R.id.mnu_edit_update).setVisible(edit_art_cmd_visibility);
@@ -534,6 +536,10 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit_select_from:
                 {
                     if (verse == null) return true;
+
+                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    if (artId < 0) return false;
+
                     final String selectFrom = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
                     PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, selectFrom);
 
@@ -542,6 +548,9 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit_select_to:
                 {
                     if (verse == null) return true;
+
+                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    if (artId < 0) return false;
 
                     final String selectFrom = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
                     if (selectFrom.isEmpty())
@@ -571,11 +580,28 @@ public class SearchFragment extends Fragment
                         return true;
                     }
 
-                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
-                    if (artId < 0) return false;
                     PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
 
                     final String ref = PCommon.ConcaT("<R>", arrFrom[0], " ", arrFrom[1], " ", arrFrom[2], " ", arrTo[2],"</R>");
+                    final String source = _s.GetMyArticleSource(artId);
+                    final String finalSource = PCommon.ConcaT(source, ref);
+                    _s.UpdateMyArticleSource(artId, finalSource);
+                    onResume();
+
+                    return true;
+                }
+                case R.id.mnu_edit_select_from_to:
+                {
+                    if (verse == null) return true;
+
+                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    if (artId < 0) return false;
+
+                    final String selectFromTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber, " ", verse.vNumber);
+
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+
+                    final String ref = PCommon.ConcaT("<R>", selectFromTo, "</R>");
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
                     _s.UpdateMyArticleSource(artId, finalSource);
@@ -602,6 +628,8 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit_move_up:
                 {
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
                     final String source = MoveArticleShortSection(position, -1);
                     if (source != null)
                     {
@@ -614,6 +642,8 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit_move_down:
                 {
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
                     final String source = MoveArticleShortSection(position, +1);
                     if (source != null)
                     {
@@ -627,7 +657,9 @@ public class SearchFragment extends Fragment
                 {
                     //TODO NEXT: title and hint
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
-                    EditDialog(false, getActivity(), R.string.languageInstalling, "", position, artId);
+                    if (artId < 0) return false;
+
+                    EditArticleDialog(false, getActivity(), R.string.languageInstalling, "", position, artId);
 
                     return true;
                 }
@@ -638,16 +670,19 @@ public class SearchFragment extends Fragment
                 }
                 case R.id.mnu_edit_update:
                 {
-                    //TODO NEXT
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
                     final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
-                    EditDialog(true, getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
+                    EditArticleDialog(true, getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
 
                     return true;
                 }
                 case R.id.mnu_edit_remove_confirm:
                 {
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
                     final String source = DeleteArticleShortSection(position);
                     if (source != null)
                     {
@@ -2059,7 +2094,7 @@ public class SearchFragment extends Fragment
     }
 
     /***
-     * Show simple edit dialog
+     * Show simple edit article dialog
      * @param isUpdate  True for Update, False for Add
      * @param activity
      * @param titleId
@@ -2068,7 +2103,7 @@ public class SearchFragment extends Fragment
      * @param position
      */
     @SuppressWarnings("JavaDoc")
-    private void EditDialog(final boolean isUpdate, final Activity activity, final int titleId, final String editText, final int position, final int artId)
+    private void EditArticleDialog(final boolean isUpdate, final Activity activity, final int titleId, final String editText, final int position, final int artId)
     {
         try
         {
