@@ -620,6 +620,7 @@ public class SearchFragment extends Fragment
                     }
                     else
                     {
+                        //Selection
                         PCommon.ShowArticles(getContext(), true, true);
                     }
 
@@ -654,18 +655,15 @@ public class SearchFragment extends Fragment
                     return true;
                 }
                 case R.id.mnu_edit_add_text:
+                case R.id.mnu_edit_add_title:
                 {
                     //TODO NEXT: title and hint
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
                     if (artId < 0) return false;
 
-                    EditArticleDialog(false, getActivity(), R.string.languageInstalling, "", position, artId);
+                    final String editType = itemId == R.id.mnu_edit_add_text ? "T" : "H";
+                    EditArticleDialog(false, editType, getActivity(), R.string.languageInstalling, "", position, artId);
 
-                    return true;
-                }
-                case R.id.mnu_edit_add_title:
-                {
-                    //TODO FAB NOW
                     return true;
                 }
                 case R.id.mnu_edit_update:
@@ -674,7 +672,7 @@ public class SearchFragment extends Fragment
                     if (artId < 0) return false;
 
                     final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
-                    EditArticleDialog(true, getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
+                    EditArticleDialog(true,"T", getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
 
                     return true;
                 }
@@ -2096,6 +2094,7 @@ public class SearchFragment extends Fragment
     /***
      * Show simple edit article dialog
      * @param isUpdate  True for Update, False for Add
+     * @param editType  Type: H=Title header, T=Text
      * @param activity
      * @param titleId
      * @param editText
@@ -2103,7 +2102,7 @@ public class SearchFragment extends Fragment
      * @param position
      */
     @SuppressWarnings("JavaDoc")
-    private void EditArticleDialog(final boolean isUpdate, final Activity activity, final int titleId, final String editText, final int position, final int artId)
+    private void EditArticleDialog(final boolean isUpdate, final String editType, final Activity activity, final int titleId, final String editText, final int position, final int artId)
     {
         try
         {
@@ -2142,7 +2141,20 @@ public class SearchFragment extends Fragment
                             PCommon.SavePref(view.getContext(), IProject.APP_PREF_KEY.EDIT_DIALOG, text);
                             builder.dismiss();
 
-                            final String source = isUpdate ? UpdateArticleShortSection(position, text) : AddArticleShortSection(position, text);
+                            String source;
+                            if (isUpdate)
+                            {
+                                source = UpdateArticleShortSection(position, text);
+                            }
+                            else
+                            {
+                                source = editType.equalsIgnoreCase("H")
+                                        ? PCommon.ConcaT("<br><u>", text.trim(), "</u><br>")
+                                        : text;
+
+                                source = AddArticleShortSection(position, source);
+                            }
+
                             if (source != null)
                             {
                                 _s.UpdateMyArticleSource(artId, source);

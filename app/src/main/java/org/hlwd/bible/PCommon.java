@@ -1288,7 +1288,7 @@ final class PCommon implements IProject
             final Button btnCreateArt = new Button(context);
             btnCreateArt.setLayoutParams(PCommon._layoutParamsWrap);
             btnCreateArt.setVisibility(isShowMyArt ? View.VISIBLE : View.GONE);
-            btnCreateArt.setText(R.string.btnArtCreate);
+            btnCreateArt.setText(R.string.btnCreate);
             btnCreateArt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(final View vw)
                 {
@@ -1379,7 +1379,14 @@ final class PCommon implements IProject
                             }
                             else
                             {
-                                ShowArticle(context, fullQuery);
+                                if (isMyArticleType)
+                                {
+                                    PCommon.ShowMyArtMenu(builder, fullQuery);
+                                }
+                                else
+                                {
+                                    ShowArticle(context, fullQuery);
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -1436,6 +1443,82 @@ final class PCommon implements IProject
             }
             final String bbName = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             MainActivity.Tab.AddTab(context, "A", bbName, artName);
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Show myart menu
+     * @param dlgMyArticles  Dialog
+     * @param artName     Article Name
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowMyArtMenu(final AlertDialog dlgMyArticles, final String artName)     //final boolean isMyArticleType, final boolean isForSelection
+    {
+        final Context context = dlgMyArticles.getContext();
+
+        try
+        {
+            final int artId = Integer.parseInt(artName.replace(context.getString(R.string.tabMyArtPrefix),""));
+            if (artId < 0) return;
+
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+
+            final LayoutInflater inflater = dlgMyArticles.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_myart_menu, (ViewGroup) dlgMyArticles.findViewById(R.id.svMyArtMenu));
+
+            final String myartTitle = PCommon.ConcaT("<b>", artName, " :</b>");
+
+            final AlertDialog builder = new AlertDialog.Builder(context).create();
+            builder.setCancelable(true);
+            builder.setTitle(myartTitle);
+            builder.setView(view);
+
+            final Button btnOpen = view.findViewById(R.id.btnOpen);
+            btnOpen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                            ShowArticle(context, artName);
+                        }
+                    }, 500);
+                }
+            });
+
+            final Button btnDelete = view.findViewById(R.id.btnDelete);
+            btnDelete.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            //TODO NEXT Delete
+                            // _s.DeletePlan(planId);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                            ShowArticles(context);
+                        }
+                    }, 500);
+                }
+            });
+            builder.show();
         }
         catch (Exception ex)
         {

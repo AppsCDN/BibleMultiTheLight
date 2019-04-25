@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="aboutContactMe">If you have any issues or suggestions, please contact me.</string>
-    <string name="btnArtCreate">Create</string>
     <string name="close">Close</string>
     <string name="btnClose">Close</string>
+    <string name="btnCreate">Create</string>
     <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESH</string>
     <string name="btnSelect">Select</string>
     <string name="btnTrim">Trim</string>
@@ -53,6 +53,9 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopyChapterToClipboard">Chapter</string>
     <string name="mnuCopyResultToClipboard">All</string>
     <string name="mnuCopyVerseToClipboard">Verse</string>
+    <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
+    <string name="mnuEmailSourceToDeveloper">Email source To Developer</string>
+    <string name="mnuRename">Rename</string>
     <string name="mnuEditOn">Start editing</string>
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
