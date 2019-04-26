@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -69,6 +70,13 @@ final class PCommon implements IProject
     private static SCommon _s = null;
 
     private static boolean isShowMyArt = false;
+
+    enum ARTICLE_ACTION
+    {
+        CREATE_ARTICLE,
+        RENAME_ARTICLE,
+        DELETE_ARTICLE
+    }
 
     //</editor-fold>
 
@@ -1261,29 +1269,32 @@ final class PCommon implements IProject
             final Typeface typeface = PCommon.GetTypeface(context);
             final int fontSize = PCommon.GetFontSize(context);
 
-            final Button btnSwitchArt = new Button(context);
-            btnSwitchArt.setLayoutParams(PCommon._layoutParamsWrap);
-            btnSwitchArt.setText(isShowMyArt ? R.string.switchToArt : R.string.switchToMyArt);
-            btnSwitchArt.setOnClickListener(new View.OnClickListener() {
-                public void onClick(final View vw)
-                {
-                    isShowMyArt = !isShowMyArt;
-
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable()
+            if (!isForSelection)
+            {
+                final Button btnSwitchArt = new Button(context);
+                btnSwitchArt.setLayoutParams(PCommon._layoutParamsWrap);
+                btnSwitchArt.setText(isShowMyArt ? R.string.switchToArt : R.string.switchToMyArt);
+                btnSwitchArt.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(final View vw)
                     {
-                        @Override
-                        public void run()
+                        isShowMyArt = !isShowMyArt;
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable()
                         {
-                            builder.dismiss();
-                            ShowArticles(vw.getContext());
-                        }
-                    }, 500);
-                }
-            });
-            btnSwitchArt.setFocusable(true);
-            btnSwitchArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
-            llArt.addView(btnSwitchArt);
+                            @Override
+                            public void run()
+                            {
+                                builder.dismiss();
+                                ShowArticles(vw.getContext());
+                            }
+                        }, 500);
+                    }
+                });
+                btnSwitchArt.setFocusable(true);
+                btnSwitchArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+                llArt.addView(btnSwitchArt);
+            }
 
             final Button btnCreateArt = new Button(context);
             btnCreateArt.setLayoutParams(PCommon._layoutParamsWrap);
@@ -1293,24 +1304,7 @@ final class PCommon implements IProject
                 public void onClick(final View vw)
                 {
                     //TODO NEXT CREATE ART
-                    CheckLocalInstance(vw.getContext());
-                    final ArtDescBO ad = new ArtDescBO();
-                    ad.artId = _s.GetNewMyArticleId();
-                    ad.artUpdatedDt = PCommon.NowYYYYMMDD();
-                    ad.artTitle = PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), ad.artId, "NEW");
-                    ad.artSrc = "";
-                    _s.AddMyArticle(ad);
-
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            builder.dismiss();
-                            ShowArticles(vw.getContext());
-                        }
-                    }, 500);
+                    EditArticleDialog(builder, R.string.btnCreate, -1, ARTICLE_ACTION.CREATE_ARTICLE);
                 }
             });
             btnCreateArt.setFocusable(true);
@@ -1471,7 +1465,7 @@ final class PCommon implements IProject
             final LayoutInflater inflater = dlgMyArticles.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_myart_menu, (ViewGroup) dlgMyArticles.findViewById(R.id.svMyArtMenu));
 
-            final String myartTitle = PCommon.ConcaT("<b>", artName, " :</b>");
+            final String myartTitle = PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), artId);
 
             final AlertDialog builder = new AlertDialog.Builder(context).create();
             builder.setCancelable(true);
@@ -1496,7 +1490,24 @@ final class PCommon implements IProject
                     }, 500);
                 }
             });
-
+            final Button btnRename = view.findViewById(R.id.btnRename);
+            btnRename.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            EditArticleDialog(builder, R.string.mnuRename, artId, ARTICLE_ACTION.RENAME_ARTICLE);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 500);
+                }
+            });
             final Button btnDelete = view.findViewById(R.id.btnDelete);
             btnDelete.setOnClickListener(new View.OnClickListener()
             {
@@ -1509,15 +1520,109 @@ final class PCommon implements IProject
                         @Override
                         public void run()
                         {
-                            //TODO NEXT Delete
-                            // _s.DeletePlan(planId);
+                            EditArticleDialog(builder, R.string.mnuDelete, artId, ARTICLE_ACTION.DELETE_ARTICLE);
                             builder.dismiss();
                             dlgMyArticles.dismiss();
-                            ShowArticles(context);
                         }
                     }, 500);
                 }
             });
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Edit article dialog (globally)
+     * @param dlg       Dialog of myarticles
+     * @param titleId   Main title
+     * @param artId     Article Id (-1 if not used)
+     * @param action    Action
+     */
+    @SuppressWarnings("JavaDoc")
+    static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action)
+    {
+        final Context context = dlg.getContext();
+
+        try
+        {
+            final LayoutInflater inflater = dlg.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_edit_dialog, (ViewGroup) dlg.findViewById(R.id.svEdition));
+            final TextView tvTitle = view.findViewById(R.id.tvTitle);
+            final EditText etEdition = view.findViewById(R.id.etEdition);
+            final AlertDialog builder = new AlertDialog.Builder(context).create();      //if BUGS => was activity instead of context
+            builder.setCancelable(true);
+            builder.setTitle(titleId);
+            builder.setView(view);
+
+            tvTitle.setText(titleId);
+
+            //EditText
+            final String artName = artId > 0 ? _s.GetMyArticleName(artId) : "";
+            etEdition.setText(artName);
+            if (action == ARTICLE_ACTION.DELETE_ARTICLE) etEdition.setEnabled(false);
+
+            //BtnClear
+            final Button btnClear = view.findViewById(R.id.btnEditionClear);
+            btnClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etEdition.setText("");
+                }
+            });
+            if (action == ARTICLE_ACTION.DELETE_ARTICLE) btnClear.setVisibility(View.GONE);
+
+            //BtnContinue
+            final Button btnContinue = view.findViewById(R.id.btnEditionContinue);
+            btnContinue.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(final View view)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            CheckLocalInstance(context);
+
+                            final String title = etEdition.getText().toString().replaceAll("\n", "");
+                            switch (action)
+                            {
+                                case RENAME_ARTICLE:
+                                {
+                                    _s.UpdateMyArticleTitle(artId, title);
+                                    break;
+                                }
+                                case DELETE_ARTICLE:
+                                {
+                                    _s.DeleteMyArticle(artId);
+                                    break;
+                                }
+                                case CREATE_ARTICLE:
+                                {
+                                    final ArtDescBO ad = new ArtDescBO();
+                                    ad.artId = _s.GetNewMyArticleId();
+                                    ad.artUpdatedDt = PCommon.NowYYYYMMDD();
+                                    ad.artTitle = title;     //PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), ad.artId, "NEW");
+                                    ad.artSrc = "";
+                                    _s.AddMyArticle(ad);
+                                    break;
+                                }
+                            }
+
+                            builder.dismiss();
+                            dlg.dismiss();
+                            ShowArticles(context, true, false); //isForSelection?? when creating in select!
+                        }
+                    }, 500);
+                }
+            });
+
             builder.show();
         }
         catch (Exception ex)

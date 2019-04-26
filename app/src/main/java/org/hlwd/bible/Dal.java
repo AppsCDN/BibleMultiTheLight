@@ -1326,6 +1326,34 @@ class Dal
     }
 
     /***
+     * Update my article title
+     * @param artId     Article Id
+     * @param title     Title
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleTitle(final int artId, final String title)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("UPDATE artDesc",
+                    " SET artTitle=", PCommon.AQ(PCommon.RQ(title)),
+                    " WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
      * Add my article
      * @param ad    Article description
      */

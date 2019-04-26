@@ -607,6 +607,24 @@ class SCommon
     }
 
     /***
+     * Update my article title
+     * @param artId     Article Id
+     * @param title     Title
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleTitle(final int artId, final String title)
+    {
+        try
+        {
+            _dal.UpdateMyArticleTitle(artId, title);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
      * Add my article
      * @param ad    Article description
      */

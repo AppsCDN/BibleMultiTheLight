@@ -614,13 +614,14 @@ public class SearchFragment extends Fragment
                     final int edit_status = PCommon.GetEditStatus(getContext());
                     if (edit_status == 1)
                     {
+                        //Stop
                         PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 0);
                         PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID,0);
                         PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
                     }
                     else
                     {
-                        //Selection
+                        //Selection Start
                         PCommon.ShowArticles(getContext(), true, true);
                     }
 
