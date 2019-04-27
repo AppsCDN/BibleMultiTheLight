@@ -311,7 +311,6 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             int sectionLastIndex = (lstSection.size() - 1) < 0 ? 0 : lstSection.size() - 1;
             SectionBO section;
 
-            //TODO NEXT: save var if ended by <R>
             while (sectionIndex <= sectionLastIndex)
             {
                 section = lstSection.get(sectionIndex);

@@ -1132,7 +1132,7 @@ class Dal
         {
             ArtDescBO r;
 
-            sql = PCommon.ConcaT("SELECT artId from artDesc ORDER BY artUpdatedDt DESC");
+            sql = PCommon.ConcaT("SELECT artId from artDesc ORDER BY artUpdatedDt DESC, artId desc;");
 
             c = _db.rawQuery(sql, null);
             c.moveToFirst();
@@ -1269,7 +1269,7 @@ class Dal
 
         try
         {
-            sql = PCommon.ConcaT("SELECT MAX(id) from artDesc");
+            sql = PCommon.ConcaT("SELECT MAX(artId) from artDesc");
 
             c = _db.rawQuery(sql, null);
             c.moveToFirst();

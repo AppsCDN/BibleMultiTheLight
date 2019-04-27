@@ -585,7 +585,6 @@ final class PCommon implements IProject
 
         try
         {
-            //TODO: what to do if not found?
             if (resName == null || resName.length() == 0)
             {
                 return id;
@@ -613,7 +612,6 @@ final class PCommon implements IProject
 
         try
         {
-            //TODO: what to do if not found?
             if (resName == null || resName.length() == 0)
             {
                 return id;
@@ -1288,7 +1286,7 @@ final class PCommon implements IProject
                                 builder.dismiss();
                                 ShowArticles(vw.getContext());
                             }
-                        }, 500);
+                        }, 0);
                     }
                 });
                 btnSwitchArt.setFocusable(true);
@@ -1303,7 +1301,6 @@ final class PCommon implements IProject
             btnCreateArt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(final View vw)
                 {
-                    //TODO NEXT CREATE ART
                     EditArticleDialog(builder, R.string.btnCreate, -1, ARTICLE_ACTION.CREATE_ARTICLE);
                 }
             });
@@ -1366,7 +1363,7 @@ final class PCommon implements IProject
                             if (isForSelection)
                             {
                                 final int artId = Integer.parseInt(fullQuery.replace(vw.getContext().getString(R.string.tabMyArtPrefix), ""));
-                                //TODO NEXT: if artId <= 0 ?
+                                if (artId < 0) return;
                                 PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 1);
                                 PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, artId);
                                 PCommon.SavePref(vw.getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
@@ -1487,7 +1484,7 @@ final class PCommon implements IProject
                             dlgMyArticles.dismiss();
                             ShowArticle(context, artName);
                         }
-                    }, 500);
+                    }, 0);
                 }
             });
             final Button btnRename = view.findViewById(R.id.btnRename);
@@ -1505,7 +1502,7 @@ final class PCommon implements IProject
                             builder.dismiss();
                             dlgMyArticles.dismiss();
                         }
-                    }, 500);
+                    }, 0);
                 }
             });
             final Button btnDelete = view.findViewById(R.id.btnDelete);
@@ -1524,7 +1521,7 @@ final class PCommon implements IProject
                             builder.dismiss();
                             dlgMyArticles.dismiss();
                         }
-                    }, 500);
+                    }, 0);
                 }
             });
             builder.show();
@@ -1619,7 +1616,7 @@ final class PCommon implements IProject
                             dlg.dismiss();
                             ShowArticles(context, true, false); //isForSelection?? when creating in select!
                         }
-                    }, 500);
+                    }, 0);
                 }
             });
 

@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -555,28 +556,26 @@ public class SearchFragment extends Fragment
                     final String selectFrom = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
                     if (selectFrom.isEmpty())
                     {
-                        //TODO NEXT: show dialog/toast => empty
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
                         return true;
                     }
                     final String selectTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
-
-                    //TODO NEXT: add ref block in article
                     final String arrFrom[] = selectFrom.split("\\s");
                     final String arrTo[] = selectTo.split("\\s");
 
                     if (arrFrom.length != 3 || arrTo.length != 3)
                     {
-                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
                         return true;
                     }
                     if (arrFrom[0].compareTo(arrTo[0]) != 0 || arrFrom[1].compareTo(arrTo[1]) != 0)
                     {
-                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
                         return true;
                     }
                     if (Integer.parseInt(arrFrom[2]) > Integer.parseInt(arrTo[2]))
                     {
-                        //TODO NEXT: show dialog/toast => incorrect, should have from and to
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
                         return true;
                     }
 
@@ -585,6 +584,7 @@ public class SearchFragment extends Fragment
                     final String ref = PCommon.ConcaT("<R>", arrFrom[0], " ", arrFrom[1], " ", arrFrom[2], " ", arrTo[2],"</R>");
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
+                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     _s.UpdateMyArticleSource(artId, finalSource);
                     onResume();
 
@@ -604,6 +604,7 @@ public class SearchFragment extends Fragment
                     final String ref = PCommon.ConcaT("<R>", selectFromTo, "</R>");
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
+                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     _s.UpdateMyArticleSource(artId, finalSource);
                     onResume();
 
@@ -658,12 +659,11 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_edit_add_text:
                 case R.id.mnu_edit_add_title:
                 {
-                    //TODO NEXT: title and hint
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
                     if (artId < 0) return false;
 
                     final String editType = itemId == R.id.mnu_edit_add_text ? "T" : "H";
-                    EditArticleDialog(false, editType, getActivity(), R.string.languageInstalling, "", position, artId);
+                    EditArticleDialog(false, editType, getActivity(), R.string.mnuEditAdd, "", position, artId);
 
                     return true;
                 }
@@ -673,7 +673,7 @@ public class SearchFragment extends Fragment
                     if (artId < 0) return false;
 
                     final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
-                    EditArticleDialog(true,"T", getActivity(), R.string.languageInstalling, updateSection.content, position, artId);
+                    EditArticleDialog(true,"T", getActivity(), R.string.mnuEditUpdate, updateSection.content, position, artId);
 
                     return true;
                 }
@@ -2149,8 +2149,12 @@ public class SearchFragment extends Fragment
                             }
                             else
                             {
+                                //source = editType.equalsIgnoreCase("H")
+                                //        ? PCommon.ConcaT("<br><u>", text.trim(), "</u><br>")
+                                //        : text;
+
                                 source = editType.equalsIgnoreCase("H")
-                                        ? PCommon.ConcaT("<br><u>", text.trim(), "</u><br>")
+                                        ? PCommon.ConcaT("<br><br><H>", text.trim(), "</H>")
                                         : text;
 
                                 source = AddArticleShortSection(position, source);
@@ -2162,7 +2166,7 @@ public class SearchFragment extends Fragment
                                 onResume();
                             }
                         }
-                    }, 500);
+                    }, 0);
                 }
             });
 

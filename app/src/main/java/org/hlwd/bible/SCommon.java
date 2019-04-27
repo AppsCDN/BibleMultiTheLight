@@ -580,7 +580,7 @@ class SCommon
 
     /***
      * Get new MyArticle Id
-     * @return
+     * @return new article Id
      */
     int GetNewMyArticleId()
     {

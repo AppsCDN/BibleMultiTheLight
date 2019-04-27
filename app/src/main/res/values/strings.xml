@@ -132,6 +132,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
+    <string name="toastRefAdded">Reference added</string>
+    <string name="toastRefIncorrect">Reference incorrect!</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>

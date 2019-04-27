@@ -37,7 +37,6 @@
             android:layout_marginTop="8dp"
             android:focusable="true"
             android:gravity="top|center_vertical"
-            android:hint="@string/searchFavHint"
             android:imeOptions="flagNoExtractUi|flagNoFullscreen|actionDone"
             android:inputType="text|textMultiLine"
             android:nextFocusDown="@id/btnSearchContinue"
