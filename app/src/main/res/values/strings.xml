@@ -56,7 +56,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
     <string name="mnuEmailSourceToDeveloper">Email source To Developer</string>
     <string name="mnuRename">Rename</string>
-    <string name="mnuEditOn">Start editing</string>
+    <string name="mnuEditOn">Start editing Article</string>
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
     <string name="mnuEditSelectTo">&#8230; Select To</string>
@@ -66,7 +66,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuEditMoveDown">Down</string>
     <string name="mnuEditAdd">&#8230; Add</string>
     <string name="mnuEditAddText">Text</string>
-    <string name="mnuEditAddTitle">Title</string>
+    <string name="mnuEditAddTitleLarge">Large title</string>
+    <string name="mnuEditAddTitleSmall">Small title</string>
     <string name="mnuEditUpdate">&#8230; Update</string>
     <string name="mnuEditRemove">&#8230; Remove</string>
     <string name="mnuEditRemoveConfirm">Confirm</string>
@@ -1633,6 +1634,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="btnBack" translatable="false"> \u25c1</string>
     <string name="btnForward" translatable="false">\u25b7 </string>
     <string name="btnGitlab" translatable="false">Gitlab</string>
+    <string name="devEmail" translatable="false">hortrlirttlerwhriterdorg@grmrailr.crom</string>
     <string name="languageFr" translatable="false">Français</string>
     <string name="languageEn" translatable="false">English</string>
     <string name="languageIt" translatable="false">Italiano</string>

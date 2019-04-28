@@ -96,8 +96,11 @@
                 android:id="@+id/mnu_edit_add_text"
                 android:title="@string/mnuEditAddText" />
             <item
-                android:id="@+id/mnu_edit_add_title"
-                android:title="@string/mnuEditAddTitle" />
+                android:id="@+id/mnu_edit_add_title_small"
+                android:title="@string/mnuEditAddTitleSmall" />
+            <item
+                android:id="@+id/mnu_edit_add_title_large"
+                android:title="@string/mnuEditAddTitleLarge" />
         </menu>
     </item>
     <item

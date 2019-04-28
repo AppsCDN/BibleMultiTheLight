@@ -538,7 +538,7 @@ public class SearchFragment extends Fragment
                 {
                     if (verse == null) return true;
 
-                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    final int artId =  PCommon.GetEditArticleId(getContext());
                     if (artId < 0) return false;
 
                     final String selectFrom = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
@@ -550,7 +550,7 @@ public class SearchFragment extends Fragment
                 {
                     if (verse == null) return true;
 
-                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    final int artId =  PCommon.GetEditArticleId(getContext());
                     if (artId < 0) return false;
 
                     final String selectFrom = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
@@ -584,8 +584,8 @@ public class SearchFragment extends Fragment
                     final String ref = PCommon.ConcaT("<R>", arrFrom[0], " ", arrFrom[1], " ", arrFrom[2], " ", arrTo[2],"</R>");
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
-                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     _s.UpdateMyArticleSource(artId, finalSource);
+                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     onResume();
 
                     return true;
@@ -594,7 +594,7 @@ public class SearchFragment extends Fragment
                 {
                     if (verse == null) return true;
 
-                    final int artId =  Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, "-1"));
+                    final int artId = PCommon.GetEditArticleId(getContext());
                     if (artId < 0) return false;
 
                     final String selectFromTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber, " ", verse.vNumber);
@@ -604,8 +604,8 @@ public class SearchFragment extends Fragment
                     final String ref = PCommon.ConcaT("<R>", selectFromTo, "</R>");
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
-                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     _s.UpdateMyArticleSource(artId, finalSource);
+                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
                     onResume();
 
                     return true;
@@ -617,7 +617,7 @@ public class SearchFragment extends Fragment
                     {
                         //Stop
                         PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 0);
-                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID,0);
+                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID,-1);
                         PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
                     }
                     else
@@ -657,12 +657,13 @@ public class SearchFragment extends Fragment
                     return true;
                 }
                 case R.id.mnu_edit_add_text:
-                case R.id.mnu_edit_add_title:
+                case R.id.mnu_edit_add_title_small:
+                case R.id.mnu_edit_add_title_large:
                 {
                     final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
                     if (artId < 0) return false;
 
-                    final String editType = itemId == R.id.mnu_edit_add_text ? "T" : "H";
+                    final String editType = itemId == R.id.mnu_edit_add_text ? "T" : itemId == R.id.mnu_edit_add_title_large ? "L" : "S";
                     EditArticleDialog(false, editType, getActivity(), R.string.mnuEditAdd, "", position, artId);
 
                     return true;
@@ -2095,7 +2096,7 @@ public class SearchFragment extends Fragment
     /***
      * Show simple edit article dialog
      * @param isUpdate  True for Update, False for Add
-     * @param editType  Type: H=Title header, T=Text
+     * @param editType  Type: L=Large title, S=Small title, T=Text
      * @param activity
      * @param titleId
      * @param editText
@@ -2138,7 +2139,7 @@ public class SearchFragment extends Fragment
                         @Override
                         public void run()
                         {
-                            final String text = etEdition.getText().toString().replaceAll("\n", "<br>");
+                            final String text = etEdition.getText().toString().replaceAll("\n", "<br>").trim();
                             PCommon.SavePref(view.getContext(), IProject.APP_PREF_KEY.EDIT_DIALOG, text);
                             builder.dismiss();
 
@@ -2149,13 +2150,11 @@ public class SearchFragment extends Fragment
                             }
                             else
                             {
-                                //source = editType.equalsIgnoreCase("H")
-                                //        ? PCommon.ConcaT("<br><u>", text.trim(), "</u><br>")
-                                //        : text;
-
-                                source = editType.equalsIgnoreCase("H")
-                                        ? PCommon.ConcaT("<br><br><H>", text.trim(), "</H>")
-                                        : text;
+                                source = editType.equalsIgnoreCase("T")
+                                        ? text
+                                        : editType.equalsIgnoreCase("L")
+                                            ? PCommon.ConcaT("<br><br><H>", text, "</H>")
+                                            : PCommon.ConcaT("<br><u>", text, "</u><br>");
 
                                 source = AddArticleShortSection(position, source);
                             }

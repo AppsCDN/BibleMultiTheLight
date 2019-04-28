@@ -1907,8 +1907,7 @@ public class MainActivity extends AppCompatActivity
             final PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             final int dbVersion = _s.GetDbVersion();
             final String app = PCommon.ConcaT("Bible Multi\n", getString(R.string.appName));
-            final String devName = PCommon.ConcaT("hot", "little", "white", "dog");
-            final String devEmail = PCommon.ConcaT(devName, "@", "gm", "ail", ".", "co", "m");
+            final String devEmail = context.getString(R.string.devEmail).replaceAll("r", "");
             final String aboutDev = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n");
             final String aboutContent =  PCommon.ConcaT(context.getString(R.string.aboutContactMe));
 

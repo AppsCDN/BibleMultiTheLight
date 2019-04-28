@@ -400,7 +400,7 @@ class DbHelper extends SQLiteOpenHelper
             {
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.EDIT_DIALOG, "");
                 PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.EDIT_STATUS, 0);
-                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.EDIT_ART_ID, 0);
+                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.EDIT_ART_ID, -1);
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.EDIT_SELECTION, "");
 
                 sql = "CREATE TABLE artDesc (artId INTEGER NOT NULL, artUpdatedDt TEXT NOT NULL, artTitle TEXT NOT NULL, artSrc TEXT NOT NULL, PRIMARY KEY (artTitle))";
@@ -467,7 +467,7 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LOG_STATUS, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.EDIT_DIALOG, "");
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_STATUS, 0);
-        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_ART_ID, 0);
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.EDIT_ART_ID, -1);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.EDIT_SELECTION, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME, "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "k");

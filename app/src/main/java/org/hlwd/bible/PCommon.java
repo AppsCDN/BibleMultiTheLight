@@ -1301,7 +1301,7 @@ final class PCommon implements IProject
             btnCreateArt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(final View vw)
                 {
-                    EditArticleDialog(builder, R.string.btnCreate, -1, ARTICLE_ACTION.CREATE_ARTICLE);
+                    EditArticleDialog(builder, R.string.btnCreate, -1, ARTICLE_ACTION.CREATE_ARTICLE, isForSelection);
                 }
             });
             btnCreateArt.setFocusable(true);
@@ -1372,7 +1372,7 @@ final class PCommon implements IProject
                             {
                                 if (isMyArticleType)
                                 {
-                                    PCommon.ShowMyArtMenu(builder, fullQuery);
+                                    PCommon.ShowMyArticleMenu(builder, fullQuery);
                                 }
                                 else
                                 {
@@ -1442,12 +1442,12 @@ final class PCommon implements IProject
     }
 
     /***
-     * Show myart menu
+     * Show MYART menu
      * @param dlgMyArticles  Dialog
      * @param artName     Article Name
      */
     @SuppressWarnings("JavaDoc")
-    static void ShowMyArtMenu(final AlertDialog dlgMyArticles, final String artName)     //final boolean isMyArticleType, final boolean isForSelection
+    static void ShowMyArticleMenu(final AlertDialog dlgMyArticles, final String artName)
     {
         final Context context = dlgMyArticles.getContext();
 
@@ -1456,8 +1456,10 @@ final class PCommon implements IProject
             final int artId = Integer.parseInt(artName.replace(context.getString(R.string.tabMyArtPrefix),""));
             if (artId < 0) return;
 
-            final Typeface typeface = PCommon.GetTypeface(context);
-            final int fontSize = PCommon.GetFontSize(context);
+            CheckLocalInstance(context);
+
+            //final Typeface typeface = PCommon.GetTypeface(context);
+            //final int fontSize = PCommon.GetFontSize(context);
 
             final LayoutInflater inflater = dlgMyArticles.getLayoutInflater();
             final View view = inflater.inflate(R.layout.fragment_myart_menu, (ViewGroup) dlgMyArticles.findViewById(R.id.svMyArtMenu));
@@ -1470,7 +1472,8 @@ final class PCommon implements IProject
             builder.setView(view);
 
             final Button btnOpen = view.findViewById(R.id.btnOpen);
-            btnOpen.setOnClickListener(new View.OnClickListener() {
+            btnOpen.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v)
                 {
@@ -1488,7 +1491,8 @@ final class PCommon implements IProject
                 }
             });
             final Button btnRename = view.findViewById(R.id.btnRename);
-            btnRename.setOnClickListener(new View.OnClickListener() {
+            btnRename.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v)
                 {
@@ -1498,7 +1502,7 @@ final class PCommon implements IProject
                         @Override
                         public void run()
                         {
-                            EditArticleDialog(builder, R.string.mnuRename, artId, ARTICLE_ACTION.RENAME_ARTICLE);
+                            EditArticleDialog(builder, R.string.mnuRename, artId, ARTICLE_ACTION.RENAME_ARTICLE, false);
                             builder.dismiss();
                             dlgMyArticles.dismiss();
                         }
@@ -1517,7 +1521,52 @@ final class PCommon implements IProject
                         @Override
                         public void run()
                         {
-                            EditArticleDialog(builder, R.string.mnuDelete, artId, ARTICLE_ACTION.DELETE_ARTICLE);
+                            EditArticleDialog(builder, R.string.mnuDelete, artId, ARTICLE_ACTION.DELETE_ARTICLE, false);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnCopySourceToClipboard = view.findViewById(R.id.btnCopySourceToClipboard);
+            btnCopySourceToClipboard.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String text = _s.GetMyArticleSource(artId);
+                            PCommon.CopyTextToClipboard(context, "", text);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnEmailSourceToDeveloper = view.findViewById(R.id.btnEmailSourceToDeveloper);
+            btnEmailSourceToDeveloper.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String app =  PCommon.ConcaT("Bible Multi ", context.getString(R.string.appName));
+                            final String devEmail = context.getString(R.string.devEmail).replaceAll("r", "");
+                            final String text = _s.GetMyArticleSource(artId);
+                            PCommon.SendEmail(context,
+                                    new String[]{ devEmail },
+                                    app,
+                                    text);
                             builder.dismiss();
                             dlgMyArticles.dismiss();
                         }
@@ -1533,14 +1582,15 @@ final class PCommon implements IProject
     }
 
     /***
-     * Edit article dialog (globally)
+     * Edit article dialog (globally for action)
      * @param dlg       Dialog of myarticles
      * @param titleId   Main title
      * @param artId     Article Id (-1 if not used)
      * @param action    Action
+     * @param isForSelection    CREATE_ARTICLE can be called in 2 ways: during the selection of an article or to open an article
      */
     @SuppressWarnings("JavaDoc")
-    static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action)
+    static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action, final boolean isForSelection)
     {
         final Context context = dlg.getContext();
 
@@ -1550,7 +1600,7 @@ final class PCommon implements IProject
             final View view = inflater.inflate(R.layout.fragment_edit_dialog, (ViewGroup) dlg.findViewById(R.id.svEdition));
             final TextView tvTitle = view.findViewById(R.id.tvTitle);
             final EditText etEdition = view.findViewById(R.id.etEdition);
-            final AlertDialog builder = new AlertDialog.Builder(context).create();      //if BUGS => was activity instead of context
+            final AlertDialog builder = new AlertDialog.Builder(context).create();
             builder.setCancelable(true);
             builder.setTitle(titleId);
             builder.setView(view);
@@ -1587,26 +1637,41 @@ final class PCommon implements IProject
                         {
                             CheckLocalInstance(context);
 
-                            final String title = etEdition.getText().toString().replaceAll("\n", "");
+                            final String title = etEdition.getText().toString().replaceAll("\n", "").trim();
                             switch (action)
                             {
                                 case RENAME_ARTICLE:
                                 {
+                                    if (title.length() == 0) return;
+
                                     _s.UpdateMyArticleTitle(artId, title);
                                     break;
                                 }
                                 case DELETE_ARTICLE:
                                 {
                                     _s.DeleteMyArticle(artId);
+
+                                    final int currentEditStatus = PCommon.GetEditStatus(context);
+                                    if (currentEditStatus == 0) break;
+                                    final int currentEditArtId = PCommon.GetEditArticleId(context);
+                                    if (currentEditArtId == artId)
+                                    {
+                                        //Stop editing
+                                        PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_STATUS, 0);
+                                        PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_ART_ID, -1);
+                                    }
                                     break;
                                 }
                                 case CREATE_ARTICLE:
                                 {
+                                    if (title.length() == 0) return;
+
                                     final ArtDescBO ad = new ArtDescBO();
                                     ad.artId = _s.GetNewMyArticleId();
                                     ad.artUpdatedDt = PCommon.NowYYYYMMDD();
-                                    ad.artTitle = title;     //PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), ad.artId, "NEW");
+                                    ad.artTitle = title;
                                     ad.artSrc = "";
+
                                     _s.AddMyArticle(ad);
                                     break;
                                 }
@@ -1614,7 +1679,7 @@ final class PCommon implements IProject
 
                             builder.dismiss();
                             dlg.dismiss();
-                            ShowArticles(context, true, false); //isForSelection?? when creating in select!
+                            ShowArticles(context, true, isForSelection);
                         }
                     }, 0);
                 }
@@ -1777,12 +1842,12 @@ final class PCommon implements IProject
     /***
      * Get edit article id
      * @param context
-     * @return
+     * @return < 0 if not used
      */
     @SuppressWarnings("JavaDoc")
     static int GetEditArticleId(final Context context)
     {
-        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "0"));
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "-1"));
     }
 
     /***
