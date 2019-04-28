@@ -60,7 +60,7 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    final static boolean _isDebugVersion = true;
+    final static boolean _isDebugVersion = false;
 
     final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -1447,7 +1447,7 @@ final class PCommon implements IProject
      * @param artName     Article Name
      */
     @SuppressWarnings("JavaDoc")
-    static void ShowMyArticleMenu(final AlertDialog dlgMyArticles, final String artName)
+    private static void ShowMyArticleMenu(final AlertDialog dlgMyArticles, final String artName)
     {
         final Context context = dlgMyArticles.getContext();
 
@@ -1590,7 +1590,7 @@ final class PCommon implements IProject
      * @param isForSelection    CREATE_ARTICLE can be called in 2 ways: during the selection of an article or to open an article
      */
     @SuppressWarnings("JavaDoc")
-    static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action, final boolean isForSelection)
+    private static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action, final boolean isForSelection)
     {
         final Context context = dlg.getContext();
 

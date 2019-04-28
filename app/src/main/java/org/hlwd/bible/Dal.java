@@ -1164,8 +1164,7 @@ class Dal
             }
         }
 
-        final String[] lst = arr.toArray(new String[0]);
-        return lst;
+        return arr.toArray(new String[0]);
     }
 
     /***

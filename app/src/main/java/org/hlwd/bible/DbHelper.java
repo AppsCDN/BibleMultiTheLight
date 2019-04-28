@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
-// PROD: Bible 4.0,    DbVersion: 29 (11)2019-03-10
+// PROD: Bible 3.10,   DbVersion: 29 (11)2019-04-28
 // PROD: Bible 3.9,    DbVersion: 28 (10)2019-01-27
 // PROD: Bible 3.8,    DbVersion: 27 (10)2018-12-16
 // PROD: Bible 3.7,    DbVersion: 26 (10)2018-11-25
