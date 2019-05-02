@@ -27,6 +27,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -1311,6 +1312,7 @@ final class PCommon implements IProject
             int resId;
             int nr = 0;
             TextView tvArt;
+            TextView tvArtStatus;
             String text;
 
             final String[] arrArt = (isShowMyArt) ? _s.GetListMyArticlesId() : context.getResources().getStringArray(R.array.ART_ARRAY);
@@ -1348,8 +1350,8 @@ final class PCommon implements IProject
 
                 tvArt = new TextView(context);
                 tvArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                tvArt.setPadding(10, 15, 10, 15);
-                tvArt.setText( text );
+                tvArt.setPadding(10, nr == 0 ? 30 : 15, 10, isShowMyArt ? 0 : 15);
+                tvArt.setText(text);
                 tvArt.setTag( artRef );
                 tvArt.setOnClickListener(new View.OnClickListener()
                 {
@@ -1396,8 +1398,18 @@ final class PCommon implements IProject
                 //Font
                 if (typeface != null) { tvArt.setTypeface(typeface); }
                 tvArt.setTextSize(fontSize);
-
                 llArt.addView(tvArt);
+
+                if (isShowMyArt)
+                {
+                    text = PCommon.ConcaT("<blockquote>&nbsp;<small>(", context.getString(R.string.tabMyArtPrefix), artRef,")</small></blockquote>");
+                    tvArtStatus = new TextView(context);
+                    tvArtStatus.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                    tvArtStatus.setPadding(50, 0, 10, 0);
+                    tvArtStatus.setText(Html.fromHtml(text));
+                    llArt.addView(tvArtStatus);
+                }
+
                 nr++;
             }
             sv.addView(llArt);
@@ -1670,7 +1682,7 @@ final class PCommon implements IProject
                                     ad.artId = _s.GetNewMyArticleId();
                                     ad.artUpdatedDt = PCommon.NowYYYYMMDD();
                                     ad.artTitle = title;
-                                    ad.artSrc = "";
+                                    ad.artSrc = "...";
 
                                     _s.AddMyArticle(ad);
                                     break;

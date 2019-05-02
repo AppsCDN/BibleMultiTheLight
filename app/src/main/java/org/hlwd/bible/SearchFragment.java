@@ -497,7 +497,7 @@ public class SearchFragment extends Fragment
                     editArtId,
                     ")");
         menu.findItem(R.id.mnu_edit).setTitle(title);
-        final boolean edit_art_cmd_visibility = editArtId == tabArtId;
+        final boolean edit_art_cmd_visibility = (editArtId == tabArtId) && editStatus == 1;
         final boolean edit_search_cmd_visibility = fragmentType == FRAGMENT_TYPE.SEARCH_TYPE && editStatus == 1;
         final boolean edit_fav_cmd_visibility = fragmentType == FRAGMENT_TYPE.FAV_TYPE && editStatus == 1;
         menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
@@ -585,7 +585,8 @@ public class SearchFragment extends Fragment
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
                     _s.UpdateMyArticleSource(artId, finalSource);
-                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
+                    final String toast = PCommon.ConcaT(arrFrom[1], ".", arrFrom[2], "-", arrTo[2], " ", getString(R.string.toastRefAdded));
+                    PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
                     onResume();
 
                     return true;
@@ -605,7 +606,8 @@ public class SearchFragment extends Fragment
                     final String source = _s.GetMyArticleSource(artId);
                     final String finalSource = PCommon.ConcaT(source, ref);
                     _s.UpdateMyArticleSource(artId, finalSource);
-                    PCommon.ShowToast(getContext(), R.string.toastRefAdded, Toast.LENGTH_SHORT);
+                    final String toast = PCommon.ConcaT(verse.cNumber, ".", verse.vNumber, " ", getString(R.string.toastRefAdded));
+                    PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
                     onResume();
 
                     return true;
