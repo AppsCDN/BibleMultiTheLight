@@ -45,7 +45,8 @@
             android:nextFocusLeft="@id/etEdition"
             android:selectAllOnFocus="false"
             android:minLines="5"
-            android:singleLine="false"/>
+            android:singleLine="false"
+            android:hint="@string/mnuEmpty"/>
 
         <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

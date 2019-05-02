@@ -54,13 +54,13 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopyResultToClipboard">All</string>
     <string name="mnuCopyVerseToClipboard">Verse</string>
     <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
-    <string name="mnuEmailSourceToDeveloper">Email source To Developer</string>
+    <string name="mnuEmailSourceToDeveloper">Email source to developer</string>
     <string name="mnuRename">Rename</string>
-    <string name="mnuEditOn">Start editing Article</string>
+    <string name="mnuEditOn">Start editing article</string>
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
     <string name="mnuEditSelectTo">&#8230; Select To</string>
-    <string name="mnuEditSelectFromTo">&#8230; Select From To</string>
+    <string name="mnuEditSelectFromTo">&#8230; Select From = To</string>
     <string name="mnuEditMove">&#8230; Move</string>
     <string name="mnuEditMoveUp">Up</string>
     <string name="mnuEditMoveDown">Down</string>
@@ -121,7 +121,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="planChapterCount">Chapters</string>
     <string name="planVerseCount">Verses</string>
     <string name="switchToArt">Articles</string>
-    <string name="switchToMyArt">MyArticles</string>
+    <string name="switchToMyArt">My articles</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
@@ -731,6 +731,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.10</H>
+• Creation of articles<br>
+<br>
 <H>3.9</H>
 • +20 articles<br>
 <br>

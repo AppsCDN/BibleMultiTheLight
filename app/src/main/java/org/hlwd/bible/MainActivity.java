@@ -107,18 +107,22 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Slide( false );
-                    }
-                });
-                slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Slide( true );
-                    }
-                });
+                if (slideViewMenuHandle != null) {
+                    slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Slide( false );
+                        }
+                    });
+                }
+                if (slideViewTabHandle != null) {
+                    slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Slide( true );
+                        }
+                    });
+                }
                 final View slideViewTabSearch = findViewById(R.id.slideViewTabSearch);
                 slideViewTabSearch.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -567,14 +571,15 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+/* NOT USED
     @Override
     protected void onPause() {
         super.onPause();
 
-        /* This code has been removed since version 3.7
+        //This code has been removed since version 3.7
         PCommon.SetSound(getApplicationContext(), false);
-        */
     }
+*/
 
     @Override
     protected void onDestroy() {

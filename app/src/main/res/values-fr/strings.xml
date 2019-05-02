@@ -2,6 +2,7 @@
     <string name="aboutContactMe">Si vous avez des problèmes ou des suggestions, s\'il vous plaît contactez moi.</string>
     <string name="close">Fermer</string>
     <string name="btnClose">Fermer</string>
+    <string name="btnCreate">Créer</string>
     <string name="btnRefresh" tools:keep="@string/btnRefresh">RAFRAICHIR</string>
     <string name="btnSelect">Sélectionner</string>
     <string name="btnTrim">Réduire</string>
@@ -52,6 +53,24 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuCopyChapterToClipboard">Chapitre</string>
     <string name="mnuCopyResultToClipboard">Tout</string>
     <string name="mnuCopyVerseToClipboard">Verset</string>
+    <string name="mnuCopySourceToClipboard">Copier source dans presse-papier</string>
+    <string name="mnuEmailSourceToDeveloper">Email source au développeur</string>
+    <string name="mnuRename">Renommer</string>
+    <string name="mnuEditOn">Commencer édition d\'article</string>
+    <string name="mnuEditOff">Stopper édition</string>
+    <string name="mnuEditSelectFrom">&#8230; Sélectionner le début</string>
+    <string name="mnuEditSelectTo">&#8230; Sélectionner la fin</string>
+    <string name="mnuEditSelectFromTo">&#8230; Sélectionner début = fin</string>
+    <string name="mnuEditMove">&#8230; Déplacer</string>
+    <string name="mnuEditMoveUp">Vers le haut</string>
+    <string name="mnuEditMoveDown">Vers le bas</string>
+    <string name="mnuEditAdd">&#8230; Ajouter</string>
+    <string name="mnuEditAddText">Texte</string>
+    <string name="mnuEditAddTitleLarge">Grand titre</string>
+    <string name="mnuEditAddTitleSmall">Petit titre</string>
+    <string name="mnuEditUpdate">&#8230; Modifier</string>
+    <string name="mnuEditRemove">&#8230; Supprimer</string>
+    <string name="mnuEditRemoveConfirm">Confirmer</string>
     <string name="mnuMarkAllAboveAsRead">Marquer tous ceux au-dessus comme lu</string>
     <string name="mnuUnmarkAllAboveAsRead">Marquer tous ceux au-dessus comme non lu</string>
     <string name="mnuSearchBibleName">-</string>
@@ -101,6 +120,8 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="planCalTitleVerseCount">Versets\npar jour:</string>
     <string name="planChapterCount">Chapitres</string>
     <string name="planVerseCount">Versets</string>
+    <string name="switchToArt">Articles</string>
+    <string name="switchToMyArt">Mes articles</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genèse 2.2</string>
     <string name="seeMat24_32">Matthieu 24.32</string>
@@ -111,6 +132,8 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="toastBookNotInstalled">Livre non installé!</string>
     <string name="toastNoAppsToShare">Aucune applications pour partager!</string>
     <string name="toastNoBrowser">Installez un browser.</string>
+    <string name="toastRefAdded">ajouté</string>
+    <string name="toastRefIncorrect">Référence incorrecte!</string>
     <string name="tvBookInstall">(installation&#8230;)</string>
     <string name="tvBookTitle">Livre</string>
     <string name="tvBookOT">- Ancien Testament -</string>
@@ -706,6 +729,9 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.10</H>
+• Création d\'articles<br>
+<br>
 <H>3.9</H>
 • +20 articles<br>
 <br>

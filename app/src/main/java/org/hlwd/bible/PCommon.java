@@ -3,8 +3,6 @@ package org.hlwd.bible;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -24,7 +22,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
@@ -663,8 +660,8 @@ final class PCommon implements IProject
             final String threadName = context.getString(R.string.threadNfoPrefix);
 
             Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-            final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
-
+            //was final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
+            final Thread[] threadArr = threadSet.toArray(new Thread[0]);
             for (Thread thread : threadArr)
             {
                 //TODO: ThreadGroup! => list group to find it?
@@ -752,13 +749,13 @@ final class PCommon implements IProject
         catch (Exception ex) { }
     }
 
-    /**
+/* NOT USED
      * Show notification
      * @param context       Context
      * @param title         Usually: appName
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
-     */
+     **
     private static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
     {
         @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
@@ -800,6 +797,7 @@ final class PCommon implements IProject
             nm = null;
         }
     }
+*/
 
     /***
      * Show Toast
@@ -837,7 +835,9 @@ final class PCommon implements IProject
         {
             final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText(label, text);
-            clipboard.setPrimaryClip(clip);
+            if (clipboard != null) {
+                clipboard.setPrimaryClip(clip);
+            }
         }
         catch (Exception ex)
         {
@@ -1622,6 +1622,7 @@ final class PCommon implements IProject
             //EditText
             final String artName = artId > 0 ? _s.GetMyArticleName(artId) : "";
             etEdition.setText(artName);
+            if (action == ARTICLE_ACTION.CREATE_ARTICLE || action == ARTICLE_ACTION.RENAME_ARTICLE) etEdition.setSingleLine(true);
             if (action == ARTICLE_ACTION.DELETE_ARTICLE) etEdition.setEnabled(false);
 
             //BtnClear

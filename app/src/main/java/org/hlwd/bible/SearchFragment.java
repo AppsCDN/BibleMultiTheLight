@@ -676,7 +676,8 @@ public class SearchFragment extends Fragment
                     if (artId < 0) return false;
 
                     final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
-                    EditArticleDialog(true,"T", getActivity(), R.string.mnuEditUpdate, updateSection.content, position, artId);
+                    final String updateSectionContent = (updateSection == null) ? "" : updateSection.content;
+                    EditArticleDialog(true,"T", getActivity(), R.string.mnuEditUpdate, updateSectionContent, position, artId);
 
                     return true;
                 }
@@ -1747,7 +1748,7 @@ public class SearchFragment extends Fragment
 
             class InnerClass
             {
-                public final String MergeWords(final int fromWordPos, final String[] words)
+                private String MergeWords(final int fromWordPos, final String[] words)
                 {
                     final int toWordPos = words.length - 1;
 
@@ -2031,6 +2032,7 @@ public class SearchFragment extends Fragment
         if (toMoveStep == 0) return null;
 
         final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
         final int fromShortPositionId = fromShortSection.blockId;
         if (fromShortPositionId < 0) return null;
 
@@ -2052,6 +2054,7 @@ public class SearchFragment extends Fragment
     private String DeleteArticleShortSection(final int fromPositionId)
     {
         final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
         final int fromShortPositionId = fromShortSection.blockId;
         if (fromShortPositionId < 0) return null;
 
@@ -2069,6 +2072,7 @@ public class SearchFragment extends Fragment
     private String AddArticleShortSection(final int fromPositionId, final String content)
     {
         final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
         final int fromShortPositionId = fromShortSection.blockId;
         if (fromShortPositionId < 0) return null;
 
@@ -2087,6 +2091,7 @@ public class SearchFragment extends Fragment
     private String UpdateArticleShortSection(final int fromPositionId, final String content)
     {
         final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
         final int fromShortPositionId = fromShortSection.blockId;
         if (fromShortPositionId < 0) return null;
 
