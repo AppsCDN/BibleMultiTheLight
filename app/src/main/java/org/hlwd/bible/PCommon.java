@@ -711,15 +711,13 @@ final class PCommon implements IProject
         //noinspection EmptyCatchBlock
         try
         {
+/*
             PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_STATUS, 0);
             Thread.sleep(300);
 
-/*
-            if (_s == null) CheckLocalInstance(context);
-
-            _s.ShrinkDb(context);
-
-            if (PCommon._isDebugVersion) System.out.print("Shrunk");
+            //if (_s == null) CheckLocalInstance(context);
+            //_s.ShrinkDb(context);
+            //if (PCommon._isDebugVersion) System.out.print("Shrunk");
 */
             _s.CloseDb();
         }

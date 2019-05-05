@@ -485,9 +485,12 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_share_result).setVisible(false);
         }
 
+        final int installStatus = PCommon.GetInstallStatus(v.getContext());
         final int editStatus = PCommon.GetEditStatus(v.getContext());
         final int editArtId = PCommon.GetEditArticleId(v.getContext());
-        final int tabArtId = fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && editStatus == 1 && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
+        //TODO NEXT: Create customized view
+        //final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
+        final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
                 ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
                 : -1;
         final String title = editStatus == 0 ? getString(R.string.mnuEditOn) :
@@ -496,10 +499,24 @@ public class SearchFragment extends Fragment
                     getString(R.string.tabMyArtPrefix),
                     editArtId,
                     ")");
-        menu.findItem(R.id.mnu_edit).setTitle(title);
-        final boolean edit_art_cmd_visibility = (editArtId == tabArtId) && editStatus == 1;
-        final boolean edit_search_cmd_visibility = fragmentType == FRAGMENT_TYPE.SEARCH_TYPE && editStatus == 1;
-        final boolean edit_fav_cmd_visibility = fragmentType == FRAGMENT_TYPE.FAV_TYPE && editStatus == 1;
+
+/*
+        final TextView textView = new TextView(v.getContext());
+        textView.setText(Html.fromHtml(title));
+        textView.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+        textView.setPadding(10, 20, 10, 20);
+*/
+
+        if (installStatus != 5) {
+            menu.findItem(R.id.mnu_edit).setVisible(false);
+        }
+        else {
+            menu.findItem(R.id.mnu_edit).setTitle(title).setVisible(true);                          //.setActionView(textView);
+        }
+
+        final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
+        final boolean edit_search_cmd_visibility = editStatus == 1 && (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE || fragmentType == FRAGMENT_TYPE.PLAN_TYPE);
+        final boolean edit_fav_cmd_visibility = editStatus == 1 && fragmentType == FRAGMENT_TYPE.FAV_TYPE;
         menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
         menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
         menu.findItem(R.id.mnu_edit_select_from_to).setVisible(edit_search_cmd_visibility || edit_fav_cmd_visibility);
@@ -587,7 +604,6 @@ public class SearchFragment extends Fragment
                     _s.UpdateMyArticleSource(artId, finalSource);
                     final String toast = PCommon.ConcaT(arrFrom[1], ".", arrFrom[2], "-", arrTo[2], " ", getString(R.string.toastRefAdded));
                     PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
-                    onResume();
 
                     return true;
                 }
@@ -608,7 +624,6 @@ public class SearchFragment extends Fragment
                     _s.UpdateMyArticleSource(artId, finalSource);
                     final String toast = PCommon.ConcaT(verse.cNumber, ".", verse.vNumber, " ", getString(R.string.toastRefAdded));
                     PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
-                    onResume();
 
                     return true;
                 }
@@ -2157,10 +2172,11 @@ public class SearchFragment extends Fragment
                             }
                             else
                             {
+                                //was: "<br><br><H>"
                                 source = editType.equalsIgnoreCase("T")
                                         ? text
                                         : editType.equalsIgnoreCase("L")
-                                            ? PCommon.ConcaT("<br><br><H>", text, "</H>")
+                                            ? PCommon.ConcaT("<H>", text, "</H>")
                                             : PCommon.ConcaT("<br><u>", text, "</u><br>");
 
                                 source = AddArticleShortSection(position, source);

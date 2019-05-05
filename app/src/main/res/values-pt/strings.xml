@@ -302,7 +302,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount,Typos"><![CDATA[
 <HA/>
 <i>Oi,</i> eu sou um programador cristão e eu criei este aplicativo com meu coração para servir ao Senhor. O fim dos tempos está próximo das tribulações, do anticristo, de Jesus e do julgamento final.<br>
-<i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, espalhe a luz, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
+<i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, compartilhe a palavra de Deus, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
 <br>
 <blockquote>
 <b>João 14.6:</b> Disse-lhe Jesus: Eu sou o caminho, e a verdade e a vida; ninguém vem ao Pai, senão por mim.
@@ -373,6 +373,18 @@ Exemplo: <u>E</u>lie (Francês), Elijah (Inglês), Elia (Italiano), El<u>í</u>a
 <H>Traduzir</H>
 Para obter a tradução de um verso, capítulo, resultado (resultado da pesquisa) em um idioma: fazer uma longa imprensa sobre um verso. Uma caixa de diálogo aparecerá e será possível abrir/copiar/ação.
 Você verá que as traduções estão muito próximas.<br>
+
+<br><br>
+<H>Comment créer un article?</H>
+- <u>Menu contextuel</u>: Commencer édition d\'article<br>
+- Créez un article<br>
+- Sélectionnez le<br>
+- Sélectionnez des versets (Début/Fin) d\'un même chapitre<br>
+- <u>Menu</u>: Articles/Mes articles<br>
+- Ouvrez votre article<br>
+- Gérez les sections<br>
+- Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
+
 <br><br>
 <H>Dicas</H>
 - Deixe o aplicativo residente, a memória é bem gerenciada<br>

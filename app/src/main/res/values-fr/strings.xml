@@ -60,7 +60,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuEditOff">Stopper édition</string>
     <string name="mnuEditSelectFrom">&#8230; Sélectionner le début</string>
     <string name="mnuEditSelectTo">&#8230; Sélectionner la fin</string>
-    <string name="mnuEditSelectFromTo">&#8230; Sélectionner début = fin</string>
+    <string name="mnuEditSelectFromTo">&#8230; Sélectionner Début = Fin</string>
     <string name="mnuEditMove">&#8230; Déplacer</string>
     <string name="mnuEditMoveUp">Vers le haut</string>
     <string name="mnuEditMoveDown">Vers le bas</string>
@@ -629,7 +629,7 @@ De Daniel 5.25 (hébreu): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <i>Salut,</i> je suis un programmeur chrétien et j\'ai fait cette application avec mon coeur pour servir le Seigneur. La fin des temps est proche avec les tribulations, l\'antéchrist, Jésus et le jugement final.
 <i>Whattt! Are you serious?</i> Oui, je suis sérieux, les signes sont partout. Cette application donnant la vraie parole de Dieu peut vous aider à être fort durant cette période quand le diable essayera de vous tromper plus que jamais et d\'être prêt quand le Christ reviendra.
 Rappelez-vous que le diable connaît les Écritures. Je n\'ai ajouté que de bonnes bibles originales (pas de re-édition quand c\'est possible) en plusieurs langues, que je peux comprendre, pour vous aider à trouver Jésus parce qu\'il est le seul chemin vers
-notre Père. Ne restez pas dans les ténèbres petits enfants de Dieu. Soyez bon avec vos frères et soeurs, répandez la lumière, l\'amour, priez, repentez-vous, ayez la foi, la joie,
+notre Père. Ne restez pas dans les ténèbres petits enfants de Dieu. Soyez bon avec vos frères et soeurs, partagez la parole de Dieu, l\'amour, priez, repentez-vous, ayez la foi, la joie,
 suivez les commandements, arrêtez vos péchés et semez abondamment. Suivons Jésus, le bon Berger, notre unique sauveur&#8230; Que Dieu vous bénisse. Amen.<br>
 <blockquote>
 <b>Jean 14.6:</b> Jésus lui dit: Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi.
@@ -712,6 +712,16 @@ Il y a deux types de favoris:<br>
 <br>
 Vous pouvez changer le symbole du favori normal dans Paramètres.<br>
 Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
+<br><br>
+<H>Comment créer un article?</H>
+- <u>Menu contextuel</u>: Commencer édition d\'article<br>
+- Créez un article<br>
+- Sélectionnez le<br>
+- Sélectionnez des versets (Début/Fin) d\'un même chapitre<br>
+- <u>Menu</u>: Articles/Mes articles<br>
+- Ouvrez votre article<br>
+- Gérez les sections<br>
+- Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
 <br><br>
 <H>Astuces</H>
 - Laissez l\'application résidente, la mémoire est bien gérée<br>
