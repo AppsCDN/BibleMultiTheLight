@@ -373,18 +373,16 @@ Exemplo: <u>E</u>lie (Francês), Elijah (Inglês), Elia (Italiano), El<u>í</u>a
 <H>Traduzir</H>
 Para obter a tradução de um verso, capítulo, resultado (resultado da pesquisa) em um idioma: fazer uma longa imprensa sobre um verso. Uma caixa de diálogo aparecerá e será possível abrir/copiar/ação.
 Você verá que as traduções estão muito próximas.<br>
-
 <br><br>
-<H>Comment créer un article?</H>
-- <u>Menu contextuel</u>: Commencer édition d\'article<br>
-- Créez un article<br>
-- Sélectionnez le<br>
-- Sélectionnez des versets (Début/Fin) d\'un même chapitre<br>
-- <u>Menu</u>: Articles/Mes articles<br>
-- Ouvrez votre article<br>
-- Gérez les sections<br>
-- Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
-
+<H>Como criar um artigo?</H>
+- <u>Menu contextual</u>: Começar edição de artigo<br>
+- Criar um artigo<br>
+- Selecionar o artigo<br>
+- Selecionar os versículos (Começo/Fim) de um mesmo capítulo<br>
+- <u>Menu</u>: Artigos/Meus artigos<br>
+- Abrir seu artigo<br>
+- Gerir as seções<br>
+- Para compartilhar seus artigos com os usuários: me envie a fonte. Por favor, não some muito texto, só alguns títulos, permita os versos para falar.<br>
 <br><br>
 <H>Dicas</H>
 - Deixe o aplicativo residente, a memória é bem gerenciada<br>
@@ -403,7 +401,7 @@ Se você tiver algum problema ou sugestão, entre em contato comigo (menu A prop
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>3.10</H>
-• Criação de artigos<br>
+• Criação de artigos (consultar a secção na ajuda)<br>
 <br>
 <H>3.9</H>
 • +20 artigos<br>

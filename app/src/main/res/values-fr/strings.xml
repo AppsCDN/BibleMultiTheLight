@@ -715,12 +715,12 @@ Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
 <br><br>
 <H>Comment créer un article?</H>
 - <u>Menu contextuel</u>: Commencer édition d\'article<br>
-- Créez un article<br>
-- Sélectionnez le<br>
-- Sélectionnez des versets (Début/Fin) d\'un même chapitre<br>
+- Créer un article<br>
+- Sélectionner l\'article<br>
+- Sélectionner des versets (Début/Fin) d\'un même chapitre<br>
 - <u>Menu</u>: Articles/Mes articles<br>
-- Ouvrez votre article<br>
-- Gérez les sections<br>
+- Ouvrir votre article<br>
+- Gérer les sections<br>
 - Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
 <br><br>
 <H>Astuces</H>
@@ -740,7 +740,7 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
 <H>3.10</H>
-• Création d\'articles<br>
+• Création d\'articles (consulter la section dans l\'aide)<br>
 <br>
 <H>3.9</H>
 • +20 articles<br>

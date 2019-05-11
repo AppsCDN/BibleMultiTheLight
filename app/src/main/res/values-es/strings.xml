@@ -705,18 +705,16 @@ Buscar en los favoritos no buscará en la Biblia. Esto únicamente filtrará a l
 Hay dos tipos de favoritos:<br>
 - Favorito normal: utilice cuando le gusta un versículo, con el fin de releerle<br>
 - Favorito de lectura (pasaje)<br>
-
 <br><br>
-<H>Comment créer un article?</H>
-- <u>Menu contextuel</u>: Commencer édition d\'article<br>
-- Créez un article<br>
-- Sélectionnez le<br>
-- Sélectionnez des versets (Début/Fin) d\'un même chapitre<br>
-- <u>Menu</u>: Articles/Mes articles<br>
-- Ouvrez votre article<br>
-- Gérez les sections<br>
-- Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
-
+<H>¿Cómo crear un artículo?</H>
+- <u>Menú contextual</u>: Empezar edición de artículo<br>
+- Crear un artículo<br>
+- Seleccionar el articulo<br>
+- Seleccionar los versículos (Principio/Fin) de un mismo capítulo<br>
+- <u>Menú</u>: Articulos/Mis articulos<br>
+- Abrir su artículo<br>
+- Gestionar las secciones<br>
+- Para compartir tus artículos con los usuarios: envíeme el fuente. Por favor, no agregues demasiado texto, solamente algunos títulos, dejad los versículos hablar.<br>
 <br><br>
 <H>Trucos</H>
 - Deje la aplicación residente, la memoria es bien administrada<br>
@@ -735,7 +733,7 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
 <H>3.10</H>
-• Creación de artículos<br>
+• Creación de artículos (consultar la sección en la ayuda)<br>
 <br>
 <H>3.9</H>
 • +20 artículos<br>
