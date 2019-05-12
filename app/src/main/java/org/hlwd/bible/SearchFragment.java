@@ -2,11 +2,13 @@
 package org.hlwd.bible;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AlertDialog;
@@ -23,8 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -47,6 +51,7 @@ public class SearchFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     private static RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
+    private ArrayList<ShortSectionBO> lstArtShortSection;
 
     private boolean isBook = false,  isChapter = false,  isVerse = false;
     private int     bNumber = 0,     cNumber = 0,        vNumber = 0,       scrollPosY = 0;
@@ -267,7 +272,7 @@ public class SearchFragment extends Fragment
                     scrollPosY = t.scrollPosY;
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
                 CreateRecyclerView();
 
@@ -334,7 +339,7 @@ public class SearchFragment extends Fragment
                     }
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
 
                 SearchBible(true);
@@ -364,16 +369,18 @@ public class SearchFragment extends Fragment
                     scrollPosY = t.scrollPosY;
                 }
 
-                // Set objects
+                //Set objects
                 SetTabTitle(tabTitle);
                 CreateRecyclerView();
 
                 //Show article
-                final String artHtml = GetArticle(t);
-                recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artHtml);
+                final ArtOriginalContentBO artOriginalContent = GetArticle(t);
+                recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artOriginalContent);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.scrollToPosition(scrollPosY);
+
+                lstArtShortSection = ((BibleArticleAdapter) recyclerViewAdapter).GetArticleShortSections();
 
                 return;
             }
@@ -381,7 +388,7 @@ public class SearchFragment extends Fragment
             //Search type
             searchFullQueryLimit = 3;
 
-            // Get tab info
+            //Get tab info
             final CacheTabBO t = _s.GetCurrentCacheTab();
             if (t == null)
             {
@@ -402,7 +409,7 @@ public class SearchFragment extends Fragment
             vNumber = t.vNumber;
             trad = t.trad;
 
-            // Set objects
+            //Set objects
             SetTabTitle(tabTitle);
 
             if (isBook && isChapter)
@@ -441,7 +448,8 @@ public class SearchFragment extends Fragment
             }
 
             final String content = getString(R.string.tabEmpty);
-            recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, content);
+            final ArtOriginalContentBO artOriginalContent = new ArtOriginalContentBO("", content);
+            recyclerViewAdapter = new BibleArticleAdapter(getContext(), bbName, artOriginalContent);
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.scrollToPosition(0);
@@ -456,112 +464,6 @@ public class SearchFragment extends Fragment
         return false;
     }
 
-    /***
-     * Get article
-     * @param t     CacheTabBO
-     */
-    @SuppressWarnings("JavaDoc")
-    private String GetArticle(final CacheTabBO t)
-    {
-        String artHtml = "";
-
-        try
-        {
-            //Set objects
-            final int artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
-            final String artTitle = getString(PCommon.GetResId(_context, t.fullQuery));
-            final String ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
-            artHtml = getString(artId);
-
-            int i = -1;
-            int pos;
-
-            //Parse <R></R>
-            String[] arrRef = artHtml.split("<R>");
-            if (arrRef.length > 0)
-            {
-                String strVerses;
-                for (String strRef : arrRef)
-                {
-                    i++;
-
-                    if (strRef != null)
-                    {
-                        pos = strRef.indexOf("</R>");
-                        if (pos >= 0)
-                        {
-                            pos = pos + 4;
-                            strRef = strRef.substring(0, pos);
-                            strRef = PCommon.ConcaT("<R>", strRef);
-                            arrRef[ i ] = strRef;
-                            String[] ref = strRef.replaceFirst("<R>", "").replaceFirst("</R>", "").split("\\s");
-                            if (ref.length == 4) {
-                                strVerses = _s.GetVersesHtml(bbName, Integer.parseInt(ref[0]), Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]));
-                            }
-                            else
-                            {   //5
-                                strVerses = _s.GetVersesHtml(ref[0], Integer.parseInt(ref[1]), Integer.parseInt(ref[2]), Integer.parseInt(ref[3]),  Integer.parseInt(ref[4]));
-                            }
-                            //noinspection UnusedAssignment
-                            ref = null;
-                            artHtml = artHtml.replaceFirst(strRef, strVerses);
-                        }
-                    }
-                }
-                //noinspection UnusedAssignment
-                strVerses = null;
-            }
-
-            //Parse <HB></HB>
-            i = -1;
-            //noinspection UnusedAssignment
-            arrRef = null;
-            arrRef = artHtml.split("<HB>");
-            if (arrRef.length > 0)
-            {
-                for (String strRef : arrRef)
-                {
-                    i++;
-
-                    if (strRef != null)
-                    {
-                        pos = strRef.indexOf("</HB>");
-                        if (pos >= 0)
-                        {
-                            pos = pos + 5;
-                            strRef = strRef.substring(0, pos);
-                            strRef = PCommon.ConcaT("<HB>", strRef);
-                            arrRef[ i ] = strRef;
-                            String[] ref = strRef.replaceFirst("<HB>", "").replaceFirst("</HB>", "").split("\\s");
-                            artHtml = artHtml.replaceFirst(strRef,
-                                    PCommon.ConcaT("<HS>", _s.GetBookRef( bbName, Integer.parseInt(ref[0]) ).bName, "</HS>"));
-                            //noinspection UnusedAssignment
-                            ref = null;
-                        }
-                    }
-                }
-            }
-            //noinspection UnusedAssignment
-            arrRef = null;
-
-            //Parse <T></T>,  <H></H>,  <HA/>
-            artHtml = artHtml
-                    .replaceFirst("<HA/>", ha)
-                    .replaceAll("<HS>", "<br><span><u>")
-                    .replaceAll("</HS>", "</u></span>")
-                    .replaceAll("<H>", "<h1><u>")
-                    .replaceAll("</H>", "</u></h1>");
-            //End Parse
-            //TODO FAB: see spannableString(builder) for titles without too much space after.
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-
-        return artHtml;
-    }
-
     @Override
     public void onCreateContextMenu(final ContextMenu menu, final View v, final ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -569,6 +471,59 @@ public class SearchFragment extends Fragment
 
         final MenuInflater menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.context_menu_search, menu);
+
+        final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
+        final boolean bible_cmd_visibility = (bibleId > -1);
+        menu.findItem(R.id.mnu_open).setVisible(bible_cmd_visibility);
+        menu.findItem(R.id.mnu_copy).setVisible(bible_cmd_visibility);
+        menu.findItem(R.id.mnu_share).setVisible(bible_cmd_visibility);
+
+        if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
+        {
+            menu.findItem(R.id.mnu_open_result).setVisible(false);
+            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
+            menu.findItem(R.id.mnu_share_result).setVisible(false);
+        }
+
+        final int installStatus = PCommon.GetInstallStatus(v.getContext());
+        final int editStatus = PCommon.GetEditStatus(v.getContext());
+        final int editArtId = PCommon.GetEditArticleId(v.getContext());
+        //TODO NEXT: Create customized view
+        //final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
+        final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
+                ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
+                : -1;
+        final String title = editStatus == 0 ? getString(R.string.mnuEditOn) :
+                    PCommon.ConcaT(getString(R.string.mnuEditOff),
+                    " (",
+                    getString(R.string.tabMyArtPrefix),
+                    editArtId,
+                    ")");
+
+/*
+        final TextView textView = new TextView(v.getContext());
+        textView.setText(Html.fromHtml(title));
+        textView.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+        textView.setPadding(10, 20, 10, 20);
+*/
+
+        if (installStatus != 5) {
+            menu.findItem(R.id.mnu_edit).setVisible(false);
+        }
+        else {
+            menu.findItem(R.id.mnu_edit).setTitle(title).setVisible(true);                          //.setActionView(textView);
+        }
+
+        final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
+        final boolean edit_search_cmd_visibility = editStatus == 1 && (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE || fragmentType == FRAGMENT_TYPE.PLAN_TYPE);
+        final boolean edit_fav_cmd_visibility = editStatus == 1 && fragmentType == FRAGMENT_TYPE.FAV_TYPE;
+        menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_select_from_to).setVisible(edit_search_cmd_visibility || edit_fav_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_move).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_add).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_update).setVisible(edit_art_cmd_visibility);
+        menu.findItem(R.id.mnu_edit_remove).setVisible(edit_art_cmd_visibility);
 
         if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
         {
@@ -582,12 +537,6 @@ public class SearchFragment extends Fragment
 
             menu.findItem(R.id.mnu_fav).setVisible(false);
         }
-        else if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
-        {
-            menu.findItem(R.id.mnu_open_result).setVisible(false);
-            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
-            menu.findItem(R.id.mnu_share_result).setVisible(false);
-        }
     }
 
     @Override
@@ -598,7 +547,171 @@ public class SearchFragment extends Fragment
             final int itemId = item.getItemId();
             final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
             final int position = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.VIEW_POSITION, "0"));
-            final VerseBO verse = _s.GetVerse(bibleId);
+            final VerseBO verse = (bibleId > -1) ? _s.GetVerse(bibleId) : null;
+
+            switch (itemId)
+            {
+                case R.id.mnu_edit_select_from:
+                {
+                    if (verse == null) return true;
+
+                    final int artId =  PCommon.GetEditArticleId(getContext());
+                    if (artId < 0) return false;
+
+                    final String selectFrom = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, selectFrom);
+
+                    return true;
+                }
+                case R.id.mnu_edit_select_to:
+                {
+                    if (verse == null) return true;
+
+                    final int artId =  PCommon.GetEditArticleId(getContext());
+                    if (artId < 0) return false;
+
+                    final String selectFrom = PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                    if (selectFrom.isEmpty())
+                    {
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
+                        return true;
+                    }
+                    final String selectTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
+                    final String arrFrom[] = selectFrom.split("\\s");
+                    final String arrTo[] = selectTo.split("\\s");
+
+                    if (arrFrom.length != 3 || arrTo.length != 3)
+                    {
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
+                        return true;
+                    }
+                    if (arrFrom[0].compareTo(arrTo[0]) != 0 || arrFrom[1].compareTo(arrTo[1]) != 0)
+                    {
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
+                        return true;
+                    }
+                    if (Integer.parseInt(arrFrom[2]) > Integer.parseInt(arrTo[2]))
+                    {
+                        PCommon.ShowToast(getContext(), R.string.toastRefIncorrect, Toast.LENGTH_SHORT);
+                        return true;
+                    }
+
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+
+                    final String ref = PCommon.ConcaT("<R>", arrFrom[0], " ", arrFrom[1], " ", arrFrom[2], " ", arrTo[2],"</R>");
+                    final String source = _s.GetMyArticleSource(artId);
+                    final String finalSource = PCommon.ConcaT(source, ref);
+                    _s.UpdateMyArticleSource(artId, finalSource);
+                    final String toast = PCommon.ConcaT(arrFrom[1], ".", arrFrom[2], "-", arrTo[2], " ", getString(R.string.toastRefAdded));
+                    PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
+
+                    return true;
+                }
+                case R.id.mnu_edit_select_from_to:
+                {
+                    if (verse == null) return true;
+
+                    final int artId = PCommon.GetEditArticleId(getContext());
+                    if (artId < 0) return false;
+
+                    final String selectFromTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber, " ", verse.vNumber);
+
+                    PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+
+                    final String ref = PCommon.ConcaT("<R>", selectFromTo, "</R>");
+                    final String source = _s.GetMyArticleSource(artId);
+                    final String finalSource = PCommon.ConcaT(source, ref);
+                    _s.UpdateMyArticleSource(artId, finalSource);
+                    final String toast = PCommon.ConcaT(verse.cNumber, ".", verse.vNumber, " ", getString(R.string.toastRefAdded));
+                    PCommon.ShowToast(getContext(), toast, Toast.LENGTH_SHORT);
+
+                    return true;
+                }
+                case R.id.mnu_edit:
+                {
+                    final int edit_status = PCommon.GetEditStatus(getContext());
+                    if (edit_status == 1)
+                    {
+                        //Stop
+                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 0);
+                        PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID,-1);
+                        PCommon.SavePref(getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                    }
+                    else
+                    {
+                        //Selection Start
+                        PCommon.ShowArticles(getContext(), true, true);
+                    }
+
+                    return true;
+                }
+                case R.id.mnu_edit_move_up:
+                {
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
+                    final String source = MoveArticleShortSection(position, -1);
+                    if (source != null)
+                    {
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
+                    return true;
+                }
+                case R.id.mnu_edit_move_down:
+                {
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
+                    final String source = MoveArticleShortSection(position, +1);
+                    if (source != null)
+                    {
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
+                    return true;
+                }
+                case R.id.mnu_edit_add_text:
+                case R.id.mnu_edit_add_title_small:
+                case R.id.mnu_edit_add_title_large:
+                {
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
+                    final String editType = itemId == R.id.mnu_edit_add_text ? "T" : itemId == R.id.mnu_edit_add_title_large ? "L" : "S";
+                    EditArticleDialog(false, editType, getActivity(), R.string.mnuEditAdd, "", position, artId);
+
+                    return true;
+                }
+                case R.id.mnu_edit_update:
+                {
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
+                    final ShortSectionBO updateSection = FindArticleShortSectionByPositionId(position);
+                    final String updateSectionContent = (updateSection == null) ? "" : updateSection.content;
+                    EditArticleDialog(true,"T", getActivity(), R.string.mnuEditUpdate, updateSectionContent, position, artId);
+
+                    return true;
+                }
+                case R.id.mnu_edit_remove_confirm:
+                {
+                    final int artId =  Integer.parseInt(this.tabTitle.replace(getString(R.string.tabMyArtPrefix), ""));
+                    if (artId < 0) return false;
+
+                    final String source = DeleteArticleShortSection(position);
+                    if (source != null)
+                    {
+                        _s.UpdateMyArticleSource(artId, source);
+                        onResume();
+                    }
+
+                    return true;
+                }
+            }
+
             if (verse == null) return false;
             final String fullquery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber);
 
@@ -856,6 +969,9 @@ public class SearchFragment extends Fragment
 
                     return true;
                 }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
                 case R.id.mnu_add_note:
                 {
                     //TODO: mark is hardcoded! final int markType = 1;
@@ -1130,16 +1246,56 @@ public class SearchFragment extends Fragment
         registerForContextMenu(recyclerView);
     }
 
-    private Cursor GetCursor(CharSequence query)
+    /***
+     * Get article
+     * @param t     CacheTabBO
+     */
+    @SuppressWarnings("JavaDoc")
+    private ArtOriginalContentBO GetArticle(final CacheTabBO t)
     {
-        MatrixCursor cursor = null;
+        if (t == null) return null;
+
+        ArtOriginalContentBO artOriginalContent = null;
 
         try
         {
-            if (query == null) return null;
+            final int artId;
+            final String artTitle;
+            final String artHtml;
+            final String ha;
 
+            if (t.fullQuery.startsWith("ART"))
+            {
+                artId = PCommon.GetResId(_context, PCommon.ConcaT(t.fullQuery, "_CONTENT"));
+                artHtml = _context.getString(artId);
+                artTitle = _context.getString(PCommon.GetResId(_context, t.fullQuery));
+                ha = PCommon.ConcaT("<br><H>", artTitle, "</H>");
+            }
+            else
+            {
+                artId = Integer.parseInt(t.fullQuery);
+                artHtml = _s.GetMyArticleSource(artId);
+                ha = null;
+            }
+            artOriginalContent = new ArtOriginalContentBO(ha, artHtml);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+
+        return artOriginalContent;
+    }
+
+    private Cursor GetCursor(final CharSequence query)
+    {
+        if (query == null) return null;
+
+        final MatrixCursor cursor = new MatrixCursor(new String[]{"_id", "text"});
+
+        try
+        {
             final ArrayList<BibleRefBO> lstRef = _s.GetListBookByName(bbName, query.toString());
-            cursor = new MatrixCursor(new String[]{"_id", "text"});
 
             if (lstRef.size() > 0)
             {
@@ -1607,7 +1763,7 @@ public class SearchFragment extends Fragment
 
             class InnerClass
             {
-                public final String MergeWords(final int fromWordPos, final String[] words)
+                private String MergeWords(final int fromWordPos, final String[] words)
                 {
                     final int toWordPos = words.length - 1;
 
@@ -1827,6 +1983,220 @@ public class SearchFragment extends Fragment
         catch(Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    private String GetArticleGeneratedSource()
+    {
+        String source = "";
+
+        try
+        {
+            for(ShortSectionBO shortSection : lstArtShortSection)
+            {
+                if (shortSection != null)
+                {
+                    source = PCommon.ConcaT(source, shortSection.content);
+                }
+            }
+            System.out.println(PCommon.ConcaT("artGeneratedSource: ", source));
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
+        }
+
+        return source;
+    }
+
+    private ShortSectionBO FindArticleShortSectionByPositionId(final int id)
+    {
+        ShortSectionBO shortSection = null;
+
+        try
+        {
+            if (lstArtShortSection == null || lstArtShortSection.size() == 0) return null;
+
+            final int lastElement = lstArtShortSection.size() - 1;
+            for (int i = lastElement; i >= 0; i--)
+            {
+                shortSection = lstArtShortSection.get(i);
+
+                if (id >= shortSection.from_id)
+                {
+                    break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
+        }
+
+        return shortSection;
+    }
+
+    /***
+     * Move section of article
+     * @param fromPositionId    Position in article
+     * @param toMoveStep        Step of move
+     * @return code or null if not applicable
+     */
+    private String MoveArticleShortSection(final int fromPositionId, final int toMoveStep)
+    {
+        if (toMoveStep == 0) return null;
+
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
+
+        final int toShortPositionId = fromShortPositionId + toMoveStep;
+        if (toShortPositionId < 0) return null;
+        final String wasToShortSectionContent = lstArtShortSection.get(toShortPositionId).content;
+
+        lstArtShortSection.get(toShortPositionId).content = fromShortSection.content;
+        lstArtShortSection.get(fromShortPositionId).content = wasToShortSectionContent;
+
+        return this.GetArticleGeneratedSource();
+    }
+
+    /***
+     * Delete section of article
+     * @param fromPositionId    Position in article
+     * @return code or null of not applicable
+     */
+    private String DeleteArticleShortSection(final int fromPositionId)
+    {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
+
+        lstArtShortSection.remove(fromShortPositionId);
+
+        return this.GetArticleGeneratedSource();
+    }
+
+    /***
+     * Add section to article
+     * @param fromPositionId    Position in article
+     * @param content           Content
+     * @return code or null of not applicable
+     */
+    private String AddArticleShortSection(final int fromPositionId, final String content)
+    {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
+
+        final ShortSectionBO newShortSection = new ShortSectionBO(fromShortPositionId, content, fromPositionId);
+        lstArtShortSection.add(fromShortPositionId, newShortSection);
+
+        return this.GetArticleGeneratedSource();
+    }
+
+    /***
+     * Update section of article
+     * @param fromPositionId    Position in article
+     * @param content           Content
+     * @return code or null of not applicable
+     */
+    private String UpdateArticleShortSection(final int fromPositionId, final String content)
+    {
+        final ShortSectionBO fromShortSection = FindArticleShortSectionByPositionId(fromPositionId);
+        if (fromShortSection == null) return null;
+        final int fromShortPositionId = fromShortSection.blockId;
+        if (fromShortPositionId < 0) return null;
+
+        lstArtShortSection.get(fromShortPositionId).content = content;
+
+        return this.GetArticleGeneratedSource();
+    }
+
+    /***
+     * Show simple edit article dialog
+     * @param isUpdate  True for Update, False for Add
+     * @param editType  Type: L=Large title, S=Small title, T=Text
+     * @param activity
+     * @param titleId
+     * @param editText
+     * @param artId
+     * @param position
+     */
+    @SuppressWarnings("JavaDoc")
+    private void EditArticleDialog(final boolean isUpdate, final String editType, final Activity activity, final int titleId, final String editText, final int position, final int artId)
+    {
+        try
+        {
+            final LayoutInflater inflater = activity.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_edit_dialog, (ViewGroup) activity.findViewById(R.id.svEdition));
+            final TextView tvTitle = view.findViewById(R.id.tvTitle);
+            final EditText etEdition = view.findViewById(R.id.etEdition);
+            final AlertDialog builder = new AlertDialog.Builder(activity).create();
+            builder.setCancelable(true);
+            builder.setTitle(titleId);
+            builder.setView(view);
+
+            tvTitle.setText(titleId);
+            etEdition.setText(editText);
+
+            final Button btnClear = view.findViewById(R.id.btnEditionClear);
+            btnClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etEdition.setText("");
+                }
+            });
+            final Button btnContinue = view.findViewById(R.id.btnEditionContinue);
+            btnContinue.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(final View view)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String text = etEdition.getText().toString().replaceAll("\n", "<br>").trim();
+                            PCommon.SavePref(view.getContext(), IProject.APP_PREF_KEY.EDIT_DIALOG, text);
+                            builder.dismiss();
+
+                            String source;
+                            if (isUpdate)
+                            {
+                                source = UpdateArticleShortSection(position, text);
+                            }
+                            else
+                            {
+                                //was: "<br><br><H>"
+                                source = editType.equalsIgnoreCase("T")
+                                        ? text
+                                        : editType.equalsIgnoreCase("L")
+                                            ? PCommon.ConcaT("<H>", text, "</H>")
+                                            : PCommon.ConcaT("<br><u>", text, "</u><br>");
+
+                                source = AddArticleShortSection(position, source);
+                            }
+
+                            if (source != null)
+                            {
+                                _s.UpdateMyArticleSource(artId, source);
+                                onResume();
+                            }
+                        }
+                    }, 0);
+                }
+            });
+
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
         }
     }
 }

@@ -1,5 +1,7 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/mnu_open"
         android:title="@string/mnuOpen">
         <menu>
             <item
@@ -14,6 +16,7 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_copy"
         android:title="@string/mnuCopy">
         <menu>
             <item
@@ -28,6 +31,7 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_share"
         android:title="@string/mnuShare">
         <menu>
             <item
@@ -54,6 +58,63 @@
             <item
                 android:id="@+id/mnu_remove_note"
                 android:title="@string/mnuNoteRemove" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit"
+        android:title="@string/mnuEmpty"
+        android:titleCondensed="@string/mnuEmpty">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_select_from"
+        android:title="@string/mnuEditSelectFrom">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_select_to"
+        android:title="@string/mnuEditSelectTo">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_select_from_to"
+        android:title="@string/mnuEditSelectFromTo">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_move"
+        android:title="@string/mnuEditMove">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_move_up"
+                android:title="@string/mnuEditMoveUp" />
+            <item
+                android:id="@+id/mnu_edit_move_down"
+                android:title="@string/mnuEditMoveDown" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit_add"
+        android:title="@string/mnuEditAdd">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_add_text"
+                android:title="@string/mnuEditAddText" />
+            <item
+                android:id="@+id/mnu_edit_add_title_small"
+                android:title="@string/mnuEditAddTitleSmall" />
+            <item
+                android:id="@+id/mnu_edit_add_title_large"
+                android:title="@string/mnuEditAddTitleLarge" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_edit_update"
+        android:title="@string/mnuEditUpdate">
+    </item>
+    <item
+        android:id="@+id/mnu_edit_remove"
+        android:title="@string/mnuEditRemove">
+        <menu>
+            <item
+                android:id="@+id/mnu_edit_remove_confirm"
+                android:title="@string/mnuEditRemoveConfirm" />
         </menu>
     </item>
 </menu>

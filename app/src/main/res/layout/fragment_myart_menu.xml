@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svMyArtMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="0dp"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center_horizontal"
+          android:orientation="vertical"
+          android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mnuOpen"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"/>
+
+        <Button
+            android:id="@+id/btnRename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mnuRename"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"/>
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mnuDelete"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"/>
+
+        <Button
+            android:id="@+id/btnCopySourceToClipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mnuCopySourceToClipboard"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"/>
+
+        <Button
+            android:id="@+id/btnEmailSourceToDeveloper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mnuEmailSourceToDeveloper"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:background="@drawable/focus_button"/>
+
+    </LinearLayout>
+</ScrollView>

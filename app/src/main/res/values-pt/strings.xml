@@ -2,6 +2,7 @@
     <string name="aboutContactMe">Se você tiver problemas ou sugestões, entre em contato comigo.</string>
     <string name="close">Perto</string>
     <string name="btnClose">Perto</string>
+    <string name="btnCreate">Criar</string>
     <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESCAR</string>
     <string name="btnSelect">Selecionar</string>
     <string name="btnTrim">Reduzir</string>
@@ -52,6 +53,24 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuCopyChapterToClipboard">Capítulo</string>
     <string name="mnuCopyResultToClipboard">Tudo</string>
     <string name="mnuCopyVerseToClipboard">Verso</string>
+    <string name="mnuCopySourceToClipboard">Copiar fonte o clipboard</string>
+    <string name="mnuEmailSourceToDeveloper">Email fonte o clipboard</string>
+    <string name="mnuRename">Renomear</string>
+    <string name="mnuEditOn">Começar edição de artigo</string>
+    <string name="mnuEditOff">Parar edição</string>
+    <string name="mnuEditSelectFrom">&#8230; Seleccionar o começo</string>
+    <string name="mnuEditSelectTo">&#8230; Seleccionar o fim</string>
+    <string name="mnuEditSelectFromTo">&#8230; Seleccionar Começo = Fim</string>
+    <string name="mnuEditMove">&#8230; Mover</string>
+    <string name="mnuEditMoveUp">Topo</string>
+    <string name="mnuEditMoveDown">Baixo</string>
+    <string name="mnuEditAdd">&#8230; Añadir</string>
+    <string name="mnuEditAddText">Texto</string>
+    <string name="mnuEditAddTitleLarge">Grande título</string>
+    <string name="mnuEditAddTitleSmall">Pequeno título</string>
+    <string name="mnuEditUpdate">&#8230; Modificar</string>
+    <string name="mnuEditRemove">&#8230; Remover</string>
+    <string name="mnuEditRemoveConfirm">Confirmar</string>
     <string name="mnuMarkAllAboveAsRead">Marcar todos aqueles acima como lidos</string>
     <string name="mnuUnmarkAllAboveAsRead">Marcar todos aqueles acima como não lidos</string>
     <string name="mnuSearchBibleName">-</string>
@@ -101,6 +120,8 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="planCalTitleVerseCount">Versos\npor dia:</string>
     <string name="planChapterCount">Capítulos</string>
     <string name="planVerseCount">Versos</string>
+    <string name="switchToArt">Artigos</string>
+    <string name="switchToMyArt">Meus artigos</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Gênesis 2.2</string>
     <string name="seeMat24_32">Mateus 24.32</string>
@@ -111,6 +132,8 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="toastBookNotInstalled">Papel não está instalado!</string>
     <string name="toastNoAppsToShare">Nenhum aplicativo para compartilhar!</string>
     <string name="toastNoBrowser">Instalar um browser.</string>
+    <string name="toastRefAdded">adicionado</string>
+    <string name="toastRefIncorrect">Referência incorrecta!</string>
     <string name="tvBookInstall">(Instalação&#8230;)</string>
     <string name="tvBookTitle">Livro</string>
     <string name="tvBookOT">- Antigo Testamento -</string>
@@ -279,7 +302,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="ART_APP_HELP_CONTENT" tools:ignore="StringFormatCount,Typos"><![CDATA[
 <HA/>
 <i>Oi,</i> eu sou um programador cristão e eu criei este aplicativo com meu coração para servir ao Senhor. O fim dos tempos está próximo das tribulações, do anticristo, de Jesus e do julgamento final.<br>
-<i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, espalhe a luz, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
+<i>Whattt! Are you serious?</i> Sim, sou sério, os sinais estão em toda parte. Esta aplicação que dá a verdadeira palavra de Deus pode ajudá-lo a ser forte durante este tempo quando o diabo tentará enganá-lo mais do que nunca e estará pronto quando Cristo retornar. Lembre-se de que o diabo conhece as escrituras. Eu disse que bons Bíblias originais (sem re-edição quando possivel) em várias línguas, eu posso entender, para ajudar a encontrar Jesus porque ele é o único caminho de nosso Pai. Filhinhos de Deus, não fiquem na escuridão. Seja bom com seus irmãos e irmãs, compartilhe a palavra de Deus, ame, ore, arrependa-se, tenha fé, alegria, siga os mandamentos, pare seus pecados e semeie abundantemente. Vamos seguir Jesus, o bom pastor, nosso único salvador&#8230; Deus te abençoe. Amém.<br>
 <br>
 <blockquote>
 <b>João 14.6:</b> Disse-lhe Jesus: Eu sou o caminho, e a verdade e a vida; ninguém vem ao Pai, senão por mim.
@@ -351,6 +374,16 @@ Exemplo: <u>E</u>lie (Francês), Elijah (Inglês), Elia (Italiano), El<u>í</u>a
 Para obter a tradução de um verso, capítulo, resultado (resultado da pesquisa) em um idioma: fazer uma longa imprensa sobre um verso. Uma caixa de diálogo aparecerá e será possível abrir/copiar/ação.
 Você verá que as traduções estão muito próximas.<br>
 <br><br>
+<H>Como criar um artigo?</H>
+- <u>Menu contextual</u>: Começar edição de artigo<br>
+- Criar um artigo<br>
+- Selecionar o artigo<br>
+- Selecionar os versículos (Começo/Fim) de um mesmo capítulo<br>
+- <u>Menu</u>: Artigos/Meus artigos<br>
+- Abrir seu artigo<br>
+- Gerir as seções<br>
+- Para compartilhar seus artigos com os usuários: me envie a fonte. Por favor, não some muito texto, só alguns títulos, permita os versos para falar.<br>
+<br><br>
 <H>Dicas</H>
 - Deixe o aplicativo residente, a memória é bem gerenciada<br>
 - Os resultados da pesquisa são úteis para procurar versículos em um idioma e obter os mesmos versículos em outro idioma para aprender, estudar, comparar textos, checar palavras&#8230;<br>
@@ -367,6 +400,9 @@ Se você tiver algum problema ou sugestão, entre em contato comigo (menu A prop
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.10</H>
+• Criação de artigos (consultar a secção na ajuda)<br>
+<br>
 <H>3.9</H>
 • +20 artigos<br>
 <br>

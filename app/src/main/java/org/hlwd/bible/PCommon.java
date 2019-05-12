@@ -3,8 +3,6 @@ package org.hlwd.bible;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -21,10 +19,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +32,9 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -64,6 +66,15 @@ final class PCommon implements IProject
 
     @SuppressLint("StaticFieldLeak")
     private static SCommon _s = null;
+
+    private static boolean isShowMyArt = false;
+
+    enum ARTICLE_ACTION
+    {
+        CREATE_ARTICLE,
+        RENAME_ARTICLE,
+        DELETE_ARTICLE
+    }
 
     //</editor-fold>
 
@@ -572,7 +583,6 @@ final class PCommon implements IProject
 
         try
         {
-            //TODO: what to do if not found?
             if (resName == null || resName.length() == 0)
             {
                 return id;
@@ -600,7 +610,6 @@ final class PCommon implements IProject
 
         try
         {
-            //TODO: what to do if not found?
             if (resName == null || resName.length() == 0)
             {
                 return id;
@@ -651,8 +660,8 @@ final class PCommon implements IProject
             final String threadName = context.getString(R.string.threadNfoPrefix);
 
             Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-            final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
-
+            //was final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
+            final Thread[] threadArr = threadSet.toArray(new Thread[0]);
             for (Thread thread : threadArr)
             {
                 //TODO: ThreadGroup! => list group to find it?
@@ -703,11 +712,12 @@ final class PCommon implements IProject
         try
         {
 /*
-            if (_s == null) CheckLocalInstance(context);
+            PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_STATUS, 0);
+            Thread.sleep(300);
 
-            _s.ShrinkDb(context);
-
-            if (PCommon._isDebugVersion) System.out.print("Shrunk");
+            //if (_s == null) CheckLocalInstance(context);
+            //_s.ShrinkDb(context);
+            //if (PCommon._isDebugVersion) System.out.print("Shrunk");
 */
             _s.CloseDb();
         }
@@ -737,13 +747,13 @@ final class PCommon implements IProject
         catch (Exception ex) { }
     }
 
-    /**
+/* NOT USED
      * Show notification
      * @param context       Context
      * @param title         Usually: appName
      * @param message       Message. Should be a (custom) message from resource file
      * @param drawable      Drawable Id
-     */
+     **
     private static void ShowNotification(final Context context, final String title, final String message, @SuppressWarnings("SameParameterValue") final int drawable)
     {
         @SuppressWarnings("UnusedAssignment") NotificationManager nm = null;
@@ -785,6 +795,7 @@ final class PCommon implements IProject
             nm = null;
         }
     }
+*/
 
     /***
      * Show Toast
@@ -822,7 +833,9 @@ final class PCommon implements IProject
         {
             final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText(label, text);
-            clipboard.setPrimaryClip(clip);
+            if (clipboard != null) {
+                clipboard.setPrimaryClip(clip);
+            }
         }
         catch (Exception ex)
         {
@@ -1217,6 +1230,481 @@ final class PCommon implements IProject
     }
 
     /***
+     * Show articles
+     * @param context   Context
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticles(final Context context)
+    {
+        ShowArticles(context, isShowMyArt, false);
+    }
+
+    /***
+     * Show articles
+     * @param context   Context
+     * @param isMyArticleType   Is MyArt type?
+     * @param isForSelection    Is for selection? (False=to open it)
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticles(final Context context, final boolean isMyArticleType, final boolean isForSelection)
+    {
+        try
+        {
+            CheckLocalInstance(context);
+
+            isShowMyArt = isMyArticleType;
+
+            final AlertDialog builder = new AlertDialog.Builder(context).create();                     //R.style.DialogStyleKaki
+            final ScrollView sv = new ScrollView(context);
+            sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+
+            final LinearLayout llArt = new LinearLayout(context);
+            llArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            llArt.setOrientation(LinearLayout.VERTICAL);
+            llArt.setPadding(0, 15, 0, 15);
+
+            final Typeface typeface = PCommon.GetTypeface(context);
+            final int fontSize = PCommon.GetFontSize(context);
+
+            if (!isForSelection)
+            {
+                final Button btnSwitchArt = new Button(context);
+                btnSwitchArt.setLayoutParams(PCommon._layoutParamsWrap);
+                btnSwitchArt.setText(isShowMyArt ? R.string.switchToArt : R.string.switchToMyArt);
+                btnSwitchArt.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(final View vw)
+                    {
+                        isShowMyArt = !isShowMyArt;
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                builder.dismiss();
+                                ShowArticles(vw.getContext());
+                            }
+                        }, 0);
+                    }
+                });
+                btnSwitchArt.setFocusable(true);
+                btnSwitchArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+                llArt.addView(btnSwitchArt);
+            }
+
+            final Button btnCreateArt = new Button(context);
+            btnCreateArt.setLayoutParams(PCommon._layoutParamsWrap);
+            btnCreateArt.setVisibility(isShowMyArt ? View.VISIBLE : View.GONE);
+            btnCreateArt.setText(R.string.btnCreate);
+            btnCreateArt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(final View vw)
+                {
+                    EditArticleDialog(builder, R.string.btnCreate, -1, ARTICLE_ACTION.CREATE_ARTICLE, isForSelection);
+                }
+            });
+            btnCreateArt.setFocusable(true);
+            btnCreateArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_button));
+            llArt.addView(btnCreateArt);
+
+            int resId;
+            int nr = 0;
+            TextView tvArt;
+            TextView tvArtStatus;
+            String text;
+
+            final String[] arrArt = (isShowMyArt) ? _s.GetListMyArticlesId() : context.getResources().getStringArray(R.array.ART_ARRAY);
+            for (final String artRef : arrArt)
+            {
+                if (!isShowMyArt)
+                {
+                    if (nr == 2 || nr == 10)
+                    {
+                        TextView tvSep = new TextView(context);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
+
+                        final View vwSep = new View(context);
+                        vwSep.setPadding(20, 0, 20, 0);
+                        vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
+                        vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
+                        llArt.addView(vwSep);
+
+                        tvSep = new TextView(context);
+                        tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                        tvSep.setText(R.string.mnuEmpty);
+                        llArt.addView(tvSep);
+                    }
+
+                    resId = PCommon.GetResId(context, artRef);
+                    text = PCommon.ConcaT(context.getString(R.string.bulletDefault), " ", context.getString(resId));
+                }
+                else
+                {
+                    resId = Integer.parseInt(artRef);
+                    text = PCommon.ConcaT(context.getString(R.string.bulletDefault), " ", _s.GetMyArticleName(resId));
+                }
+
+                tvArt = new TextView(context);
+                tvArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                tvArt.setPadding(10, nr == 0 ? 30 : 15, 10, isShowMyArt ? 0 : 15);
+                tvArt.setText(text);
+                tvArt.setTag( artRef );
+                tvArt.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(final View vw)
+                    {
+                        try
+                        {
+                            final String fullQuery = (String) vw.getTag();
+                            if (PCommon._isDebugVersion) System.out.println(fullQuery);
+                            if (isForSelection)
+                            {
+                                final int artId = Integer.parseInt(fullQuery.replace(vw.getContext().getString(R.string.tabMyArtPrefix), ""));
+                                if (artId < 0) return;
+                                PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_STATUS, 1);
+                                PCommon.SavePrefInt(vw.getContext(), IProject.APP_PREF_KEY.EDIT_ART_ID, artId);
+                                PCommon.SavePref(vw.getContext(), IProject.APP_PREF_KEY.EDIT_SELECTION, "");
+                            }
+                            else
+                            {
+                                if (isMyArticleType)
+                                {
+                                    PCommon.ShowMyArticleMenu(builder, fullQuery);
+                                }
+                                else
+                                {
+                                    ShowArticle(context, fullQuery);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (PCommon._isDebugVersion) PCommon.LogR(vw.getContext(), ex);
+                        }
+                        finally
+                        {
+                            builder.dismiss();
+                        }
+                    }
+                });
+                tvArt.setFocusable(true);
+                tvArt.setBackground(PCommon.GetDrawable(context, R.drawable.focus_text));
+
+                //Font
+                if (typeface != null) { tvArt.setTypeface(typeface); }
+                tvArt.setTextSize(fontSize);
+                llArt.addView(tvArt);
+
+                if (isShowMyArt)
+                {
+                    text = PCommon.ConcaT("<blockquote>&nbsp;<small>(", context.getString(R.string.tabMyArtPrefix), artRef,")</small></blockquote>");
+                    tvArtStatus = new TextView(context);
+                    tvArtStatus.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+                    tvArtStatus.setPadding(50, 0, 10, 0);
+                    tvArtStatus.setText(Html.fromHtml(text));
+                    llArt.addView(tvArtStatus);
+                }
+
+                nr++;
+            }
+            sv.addView(llArt);
+
+            builder.setTitle(R.string.mnuArticles);
+            builder.setCancelable(true);
+            builder.setView(sv);
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Show article
+     * @param context   Context
+     * @param artName   Article name
+     */
+    @SuppressWarnings("JavaDoc")
+    static void ShowArticle(final Context context, final String artName)
+    {
+        try
+        {
+            CheckLocalInstance(context);
+
+            final int artNameTabId = _s.GetArticleTabId(artName);
+            if (artNameTabId >= 0)
+            {
+                MainActivity.Tab.SelectTabByArtName(artName);
+
+                return;
+            }
+            final String bbName = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
+            MainActivity.Tab.AddTab(context, "A", bbName, artName);
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Show MYART menu
+     * @param dlgMyArticles  Dialog
+     * @param artName     Article Name
+     */
+    @SuppressWarnings("JavaDoc")
+    private static void ShowMyArticleMenu(final AlertDialog dlgMyArticles, final String artName)
+    {
+        final Context context = dlgMyArticles.getContext();
+
+        try
+        {
+            final int artId = Integer.parseInt(artName.replace(context.getString(R.string.tabMyArtPrefix),""));
+            if (artId < 0) return;
+
+            CheckLocalInstance(context);
+
+            //final Typeface typeface = PCommon.GetTypeface(context);
+            //final int fontSize = PCommon.GetFontSize(context);
+
+            final LayoutInflater inflater = dlgMyArticles.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_myart_menu, (ViewGroup) dlgMyArticles.findViewById(R.id.svMyArtMenu));
+
+            final String myartTitle = PCommon.ConcaT(context.getString(R.string.tabMyArtPrefix), artId);
+
+            final AlertDialog builder = new AlertDialog.Builder(context).create();
+            builder.setCancelable(true);
+            builder.setTitle(myartTitle);
+            builder.setView(view);
+
+            final Button btnOpen = view.findViewById(R.id.btnOpen);
+            btnOpen.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                            ShowArticle(context, artName);
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnRename = view.findViewById(R.id.btnRename);
+            btnRename.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            EditArticleDialog(builder, R.string.mnuRename, artId, ARTICLE_ACTION.RENAME_ARTICLE, false);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnDelete = view.findViewById(R.id.btnDelete);
+            btnDelete.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            EditArticleDialog(builder, R.string.mnuDelete, artId, ARTICLE_ACTION.DELETE_ARTICLE, false);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnCopySourceToClipboard = view.findViewById(R.id.btnCopySourceToClipboard);
+            btnCopySourceToClipboard.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String text = _s.GetMyArticleSource(artId);
+                            PCommon.CopyTextToClipboard(context, "", text);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            final Button btnEmailSourceToDeveloper = view.findViewById(R.id.btnEmailSourceToDeveloper);
+            btnEmailSourceToDeveloper.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            final String app =  PCommon.ConcaT("Bible Multi ", context.getString(R.string.appName));
+                            final String devEmail = context.getString(R.string.devEmail).replaceAll("r", "");
+                            final String text = _s.GetMyArticleSource(artId);
+                            PCommon.SendEmail(context,
+                                    new String[]{ devEmail },
+                                    app,
+                                    text);
+                            builder.dismiss();
+                            dlgMyArticles.dismiss();
+                        }
+                    }, 0);
+                }
+            });
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
+     * Edit article dialog (globally for action)
+     * @param dlg       Dialog of myarticles
+     * @param titleId   Main title
+     * @param artId     Article Id (-1 if not used)
+     * @param action    Action
+     * @param isForSelection    CREATE_ARTICLE can be called in 2 ways: during the selection of an article or to open an article
+     */
+    @SuppressWarnings("JavaDoc")
+    private static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action, final boolean isForSelection)
+    {
+        final Context context = dlg.getContext();
+
+        try
+        {
+            final LayoutInflater inflater = dlg.getLayoutInflater();
+            final View view = inflater.inflate(R.layout.fragment_edit_dialog, (ViewGroup) dlg.findViewById(R.id.svEdition));
+            final TextView tvTitle = view.findViewById(R.id.tvTitle);
+            final EditText etEdition = view.findViewById(R.id.etEdition);
+            final AlertDialog builder = new AlertDialog.Builder(context).create();
+            builder.setCancelable(true);
+            builder.setTitle(titleId);
+            builder.setView(view);
+
+            tvTitle.setText(titleId);
+
+            //EditText
+            final String artName = artId > 0 ? _s.GetMyArticleName(artId) : "";
+            etEdition.setText(artName);
+            if (action == ARTICLE_ACTION.CREATE_ARTICLE || action == ARTICLE_ACTION.RENAME_ARTICLE) etEdition.setSingleLine(true);
+            if (action == ARTICLE_ACTION.DELETE_ARTICLE) etEdition.setEnabled(false);
+
+            //BtnClear
+            final Button btnClear = view.findViewById(R.id.btnEditionClear);
+            btnClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    etEdition.setText("");
+                }
+            });
+            if (action == ARTICLE_ACTION.DELETE_ARTICLE) btnClear.setVisibility(View.GONE);
+
+            //BtnContinue
+            final Button btnContinue = view.findViewById(R.id.btnEditionContinue);
+            btnContinue.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(final View view)
+                {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            CheckLocalInstance(context);
+
+                            final String title = etEdition.getText().toString().replaceAll("\n", "").trim();
+                            switch (action)
+                            {
+                                case RENAME_ARTICLE:
+                                {
+                                    if (title.length() == 0) return;
+
+                                    _s.UpdateMyArticleTitle(artId, title);
+                                    break;
+                                }
+                                case DELETE_ARTICLE:
+                                {
+                                    _s.DeleteMyArticle(artId);
+
+                                    final int currentEditStatus = PCommon.GetEditStatus(context);
+                                    if (currentEditStatus == 0) break;
+                                    final int currentEditArtId = PCommon.GetEditArticleId(context);
+                                    if (currentEditArtId == artId)
+                                    {
+                                        //Stop editing
+                                        PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_STATUS, 0);
+                                        PCommon.SavePrefInt(context, APP_PREF_KEY.EDIT_ART_ID, -1);
+                                    }
+                                    break;
+                                }
+                                case CREATE_ARTICLE:
+                                {
+                                    if (title.length() == 0) return;
+
+                                    final ArtDescBO ad = new ArtDescBO();
+                                    ad.artId = _s.GetNewMyArticleId();
+                                    ad.artUpdatedDt = PCommon.NowYYYYMMDD();
+                                    ad.artTitle = title;
+                                    ad.artSrc = "...";
+
+                                    _s.AddMyArticle(ad);
+                                    break;
+                                }
+                            }
+
+                            builder.dismiss();
+                            dlg.dismiss();
+                            ShowArticles(context, true, isForSelection);
+                        }
+                    }, 0);
+                }
+            });
+
+            builder.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+    }
+
+    /***
      * Show simple dialog
      * @param activity
      * @param titleId
@@ -1232,7 +1720,7 @@ final class PCommon implements IProject
             final int fontSize = PCommon.GetFontSize(context);
 
             final LayoutInflater inflater = activity.getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
+            final View view = inflater.inflate(R.layout.fragment_show_dialog, (ViewGroup) activity.findViewById(R.id.llDialog));
             final LinearLayout llMsg = view.findViewById(R.id.llMsg);
             final AlertDialog builder = new AlertDialog.Builder(activity).create();
             builder.setCancelable(false);
@@ -1352,6 +1840,28 @@ final class PCommon implements IProject
     }
 
     /***
+     * Get edit status
+     * @param context
+     * @return
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetEditStatus(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_STATUS, "0"));
+    }
+
+    /***
+     * Get edit article id
+     * @param context
+     * @return < 0 if not used
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetEditArticleId(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "-1"));
+    }
+
+    /***
      * Is UI Television?
      * @param context
      * @return true/false
@@ -1415,7 +1925,7 @@ final class PCommon implements IProject
 
             final PackageManager pm = context.getPackageManager();
 
-            //TODO: FUTURE => CHECK TO REMOVE (DEPRECATED)
+            //TODO FAB: FUTURE => CHECK TO REMOVE (DEPRECATED)
             try
             {
                 final boolean hasFeatureTelevision = pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);

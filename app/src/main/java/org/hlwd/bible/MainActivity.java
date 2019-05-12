@@ -12,7 +12,6 @@ import android.content.pm.PackageInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -108,18 +107,22 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Slide( false );
-                    }
-                });
-                slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Slide( true );
-                    }
-                });
+                if (slideViewMenuHandle != null) {
+                    slideViewMenuHandle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Slide( false );
+                        }
+                    });
+                }
+                if (slideViewTabHandle != null) {
+                    slideViewTabHandle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Slide( true );
+                        }
+                    });
+                }
                 final View slideViewTabSearch = findViewById(R.id.slideViewTabSearch);
                 slideViewTabSearch.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticles();
+                        PCommon.ShowArticles(v.getContext());
                     }
                 });
                 final View mnuTvBooks = findViewById(R.id.mnuTvBooks);
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Slide(false);
-                        ShowArticle("ART_APP_HELP");
+                        PCommon.ShowArticle(v.getContext(),"ART_APP_HELP");
                     }
                 });
                 final View mnuTvPlans = findViewById(R.id.mnuTvPlans);
@@ -363,7 +366,7 @@ public class MainActivity extends AppCompatActivity
                     if (UPDATE_STATUS != 1)
                     {
                         PCommon.SavePrefInt(getApplicationContext(), IProject.APP_PREF_KEY.UPDATE_STATUS, 1);
-                        ShowArticle("ART_APP_LOG");
+                        PCommon.ShowArticle(getApplicationContext(),"ART_APP_LOG");
                     }
                 }
             });
@@ -407,14 +410,14 @@ public class MainActivity extends AppCompatActivity
                         {
                             @Override
                             public void run() {
-                                ShowArticle("ART_APP_LOG");
+                                PCommon.ShowArticle(getApplicationContext(), "ART_APP_LOG");
                             }
                         }, 500);
                         handler.postDelayed(new Runnable()
                         {
                             @Override
                             public void run() {
-                                ShowArticle("ART_APP_HELP");
+                                PCommon.ShowArticle(getApplicationContext(),"ART_APP_HELP");
                             }
                         }, 1000);
 
@@ -455,6 +458,13 @@ public class MainActivity extends AppCompatActivity
                     menu.findItem(R.id.mnu_articles).setEnabled(false);
                     menu.findItem(R.id.mnu_plans).setEnabled(false);
                     menu.findItem(R.id.mnu_group_settings).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_select_from).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_select_to).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_move).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_add).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_update).setEnabled(false);
+                    menu.findItem(R.id.mnu_edit_remove).setEnabled(false);
 
                     final String contentMsg = GetInstallStatusMsg();
                     final Snackbar snackbar = Snackbar.make(llMain, contentMsg, Snackbar.LENGTH_LONG);
@@ -528,7 +538,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_articles:
 
-                    ShowArticles();
+                    PCommon.ShowArticles(this);
                     return true;
 
                 case R.id.mnu_group_settings:
@@ -539,7 +549,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.mnu_help:
 
-                    ShowArticle("ART_APP_HELP");
+                    PCommon.ShowArticle(this,"ART_APP_HELP");
                     return true;
 
                 case R.id.mnu_about:
@@ -561,14 +571,15 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+/* NOT USED
     @Override
     protected void onPause() {
         super.onPause();
 
-        /* This code has been removed since version 3.7
+        //This code has been removed since version 3.7
         PCommon.SetSound(getApplicationContext(), false);
-        */
     }
+*/
 
     @Override
     protected void onDestroy() {
@@ -945,131 +956,6 @@ public class MainActivity extends AppCompatActivity
             builder.setCancelable(true);
             builder.setView(sv);
             builder.show();
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
-        }
-    }
-
-    private void ShowArticles()
-    {
-        try
-        {
-            final AlertDialog builder = new AlertDialog.Builder(this).create();                     //R.style.DialogStyleKaki
-            final ScrollView sv = new ScrollView(this);
-            sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-
-            final LinearLayout llArt = new LinearLayout(this);
-            llArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-            llArt.setOrientation(LinearLayout.VERTICAL);
-            llArt.setPadding(0, 15, 0, 15);
-
-            final Typeface typeface = PCommon.GetTypeface(this);
-            final int fontSize = PCommon.GetFontSize(this);
-
-            int resId;
-            int nr = 0;
-            TextView tvArt;
-            String text;
-
-            for (final String artRef : this.getResources().getStringArray(R.array.ART_ARRAY))
-            {
-                if (nr == 2 || nr == 10)
-                {
-                    TextView tvSep = new TextView(this);
-                    tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                    tvSep.setText(R.string.mnuEmpty);
-                    llArt.addView(tvSep);
-
-                    final View vwSep = new View(this);
-                    vwSep.setPadding(20, 0, 20, 0);
-                    vwSep.setLayoutParams(new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
-                    vwSep.setBackgroundColor(tvSep.getCurrentTextColor());
-                    llArt.addView(vwSep);
-
-                    tvSep = new TextView(this);
-                    tvSep.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                    tvSep.setText(R.string.mnuEmpty);
-                    llArt.addView(tvSep);
-                }
-
-                resId = PCommon.GetResId(this, artRef);
-                text = PCommon.ConcaT(getString(R.string.bulletDefault), " ", getString(resId));
-
-                tvArt = new TextView(this);
-                tvArt.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                tvArt.setPadding(10, 15, 10, 15);
-                tvArt.setText( text );
-                tvArt.setTag( artRef );
-                tvArt.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(final View view)
-                    {
-                        try
-                        {
-                            final String fullQuery = (String) view.getTag();
-                            if (PCommon._isDebugVersion) System.out.println(fullQuery);
-                            ShowArticle(fullQuery);
-                        }
-                        catch (Exception ex)
-                        {
-                            if (PCommon._isDebugVersion) PCommon.LogR(view.getContext(), ex);
-                        }
-                        finally
-                        {
-                            builder.dismiss();
-                        }
-                    }
-                });
-                tvArt.setFocusable(true);
-                tvArt.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
-
-                //Font
-                if (typeface != null) { tvArt.setTypeface(typeface); }
-                tvArt.setTextSize(fontSize);
-
-                llArt.addView(tvArt);
-                nr++;
-            }
-            sv.addView(llArt);
-
-            builder.setTitle(R.string.mnuArticles);
-            builder.setCancelable(true);
-            builder.setView(sv);
-            builder.show();
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
-        }
-    }
-
-    private void ShowArticle(final String artName)
-    {
-        try
-        {
-            final int artNameTabId = _s.GetArticleTabId(artName);
-            if (artNameTabId >= 0)
-            {
-                tabLayout.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //noinspection EmptyCatchBlock
-                        try
-                        {
-                            //noinspection ConstantConditions
-                            tabLayout.getTabAt(artNameTabId).select();
-                        }
-                        catch(Exception ex) { }
-                    }
-                });
-
-                return;
-            }
-            final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            Tab.AddTab(getApplicationContext(), "A", bbName, artName);
         }
         catch (Exception ex)
         {
@@ -2026,8 +1912,7 @@ public class MainActivity extends AppCompatActivity
             final PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             final int dbVersion = _s.GetDbVersion();
             final String app = PCommon.ConcaT("Bible Multi\n", getString(R.string.appName));
-            final String devName = PCommon.ConcaT("hot", "little", "white", "dog");
-            final String devEmail = PCommon.ConcaT(devName, "@", "gm", "ail", ".", "co", "m");
+            final String devEmail = context.getString(R.string.devEmail).replaceAll("r", "");
             final String aboutDev = PCommon.ConcaT(app, "\n", pi.versionName, " (", dbVersion, ") - ", pi.versionCode, "\n");
             final String aboutContent =  PCommon.ConcaT(context.getString(R.string.aboutContactMe));
 
@@ -2151,6 +2036,27 @@ public class MainActivity extends AppCompatActivity
             return tabSelected;
         }
 
+        static void SelectTabByArtName(final String artName)
+        {
+            final int artNameTabId = _s.GetArticleTabId(artName);
+            if (artNameTabId >= 0)
+            {
+                tabLayout.post(new Runnable()
+                {
+                    @Override
+                    public void run() {
+                        //noinspection EmptyCatchBlock
+                        try
+                        {
+                            //noinspection ConstantConditions
+                            tabLayout.getTabAt(artNameTabId).select();
+                        }
+                        catch(Exception ex) { }
+                    }
+                });
+            }
+        }
+
         static int GetTabCount()
         {
             if (tabLayout == null)
@@ -2241,9 +2147,20 @@ public class MainActivity extends AppCompatActivity
                 final CacheTabBO t;
                 if (cacheTabType.equalsIgnoreCase("A"))
                 {
-                    final int resId = PCommon.GetResId(context, fullQuery);
-                    final String resString = context.getString(resId);
+                    final String resString;
                     final int tabNameSize = Integer.parseInt(context.getString(R.string.tabSizeName));
+
+                    if (fullQuery.startsWith("ART"))
+                    {
+                        final int resId = PCommon.GetResId(context, fullQuery);
+                        resString = context.getString(resId);
+                    }
+                    else
+                    {
+                        final String myArtPrefix = context.getString(R.string.tabMyArtPrefix);
+                        resString = PCommon.ConcaT(myArtPrefix, fullQuery);
+                    }
+
                     tabTitle = (resString.length() <= tabNameSize) ? resString : fullQuery;
                     t = new CacheTabBO(tabNumber, cacheTabType, tabTitle, fullQuery, 0, bbname, true, false, false, 0, 0, 0, tbbName);
                     _s.SaveCacheTab(t);
@@ -2498,6 +2415,7 @@ public class MainActivity extends AppCompatActivity
     private void Slide(final boolean showMnu)
     {
         if (slideViewMenu == null) return;
+
         if (showMnu)
         {
             final int installStatus = PCommon.GetInstallStatus(getApplicationContext());
@@ -2681,7 +2599,7 @@ slideViewMenu.startAnimation(animate);
             searchText != null ? PCommon.ConcaT(" ", searchText) : "");
     MainActivity.Tab.AddTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 1);
 
-    //TODO NEXT: redo MainActivity.ShowHideFavClick() in Tab
+    //redo MainActivity.ShowHideFavClick() in Tab
     //Set fullQuery in db, save Order in PREF and switch to tab. Here under is a test, please remove the code when done.
     final int tabCount = MainActivity.Tab.GetTabCount();
     @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;

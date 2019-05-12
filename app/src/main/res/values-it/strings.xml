@@ -2,6 +2,7 @@
     <string name="aboutContactMe">Se avete problemi o suggerimenti, si prega di contattare me.</string>
     <string name="close">Chiudere</string>
     <string name="btnClose">Chiudere</string>
+    <string name="btnCreate">Creare</string>
     <string name="btnRefresh" tools:keep="@string/btnRefresh">RINFRESCARE</string>
     <string name="btnSelect">Selezionare</string>
     <string name="btnTrim">Ridurre</string>
@@ -52,6 +53,24 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuCopyChapterToClipboard">Capitolo</string>
     <string name="mnuCopyResultToClipboard">Tutto</string>
     <string name="mnuCopyVerseToClipboard">Versetto</string>
+    <string name="mnuCopySourceToClipboard">Copiare sorgente negli appunti</string>
+    <string name="mnuEmailSourceToDeveloper">Email sorgente allo sviluppatore</string>
+    <string name="mnuRename">Rinominare</string>
+    <string name="mnuEditOn">Cominciare edizione di articolo</string>
+    <string name="mnuEditOff">Fermare edizione</string>
+    <string name="mnuEditSelectFrom">&#8230; Selezionare l\'inizio</string>
+    <string name="mnuEditSelectTo">&#8230; Selezionare la fine</string>
+    <string name="mnuEditSelectFromTo">&#8230; Selezionare Inizio = Fine</string>
+    <string name="mnuEditMove">&#8230; Spostare</string>
+    <string name="mnuEditMoveUp">Verso l\'alto</string>
+    <string name="mnuEditMoveDown">Verso il basso</string>
+    <string name="mnuEditAdd">&#8230; Aggiungere</string>
+    <string name="mnuEditAddText">Testo</string>
+    <string name="mnuEditAddTitleLarge">Titolo importante</string>
+    <string name="mnuEditAddTitleSmall">Titolo piccolo</string>
+    <string name="mnuEditUpdate">&#8230; Modificare</string>
+    <string name="mnuEditRemove">&#8230; Rimuovere</string>
+    <string name="mnuEditRemoveConfirm">Confermare</string>
     <string name="mnuMarkAllAboveAsRead">Segnare come letto (di sopra)</string>
     <string name="mnuUnmarkAllAboveAsRead">Segnare come non letto (di sopra)</string>
     <string name="mnuSearchBibleName">-</string>
@@ -101,6 +120,8 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="planCalTitleVerseCount">Versetti\nper giorno:</string>
     <string name="planChapterCount">Capitoli</string>
     <string name="planVerseCount">Versetti</string>
+    <string name="switchToArt">Articoli</string>
+    <string name="switchToMyArt">Miei articoli</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genesi 2.2</string>
     <string name="seeMat24_32">Matteo 24.32</string>
@@ -111,6 +132,8 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="toastBookNotInstalled">Libro non installato!</string>
     <string name="toastNoAppsToShare">Nessune applicazioni per dividere!</string>
     <string name="toastNoBrowser">Installate un browser.</string>
+    <string name="toastRefAdded">aggiunto</string>
+    <string name="toastRefIncorrect">Riferimento scorretto!</string>
     <string name="tvBookInstall">(installazione&#8230;)</string>
     <string name="tvBookTitle">Libro</string>
     <string name="tvBookOT">- Vecchio Testamento -</string>
@@ -606,7 +629,7 @@ Di Daniele 5.25 (ebraico): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <i>Ciao,</i> sono un programmatore cristiano e ho fatto questa applicazione col il mio cuore per servire il Signore. La fine dei tempi è vicini con le tribolazioni, l\'anticristo, Gesù ed il giudizio finale.
 <i>Whattt! Are you serious?</i> Sì, sono serio, i segni sono dovunque. Questa applicazione che dà la vera parola di Dio può aiutarvi ad essere forti durante questo periodo quando il diavolo provera di ingannarvi più che mai e di essere pronto quando il Cristo ritornerà.
 Ricordatevi che il diavolo conosce le Scritture. Ho aggiunto che le buone Bibbie originali (non re-edizione quando è possibile) in diverse lingue, che posso capire, per aiutarvi a trovare Gesù, perché è la sola strada verso nostro Padre.
-Non restate nelle tenebre piccoli bambini di Dio. Siate buono coi vostri fratelli e sorelle, spargete la luce, l\'amore, pregate, pentitesivi, abbiate la fede, la gioia, segua i comandi,
+Non restate nelle tenebre piccoli bambini di Dio. Siate buono coi vostri fratelli e sorelle, condividete la parola di Dio, l\'amore, pregate, pentitesivi, abbiate la fede, la gioia, segua i comandi,
 fermate i vostri peccati e seminate abbondantemente. Seguiamo Gesù, il buono Pastore, il nostro unico salvatore&#8230; Che Dio vi benedicesse. Amen.<br>
 <blockquote>
 <b>Giovanni 14.6:</b> Gesù gli disse: Io son la via, la verità, e la vita; niuno viene al Padre se non per me.
@@ -685,6 +708,16 @@ Ci sono due tipi di favoriti:<br>
 - favorito normale: utilizzate il quando amate un versetto, per rileggerlo<br>
 - favorito di lettura (passaggio)<br>
 <br><br>
+<H>Come creare un articolo?</H>
+- <u>Menu contestuale</u>: Cominciare edizione di articolo<br>
+- Creare un articolo<br>
+- Selezionare l\'articolo<br>
+- Selezionare i versetti (Inizio/Fine) dello stesso capitolo<br>
+- <u>Menu</u>: Articoli/Miei articoli<br>
+- Aprire vostro articolo<br>
+- Gestire le sezioni<br>
+- Per condividere i tuoi articoli con gli utilizzatori: mandatemi la sorgente. Per favore, non aggiungere troppo testo, solo qualche riga, lasciate i versetti parlare.<br>
+<br><br>
 <H>Suggerimenti</H>
 - Lasciate l\'applicazione résidente, la memoria è gestita molto<br>
 - I risultati di ricerca sono utili per ricercare dei versetti in una lingua ed ottenere gli stessi versetti in un\'altra lingua, per apprendere, studiare, paragonare i testi, verificare le parole&#8230;<br>
@@ -701,6 +734,9 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.10</H>
+• Creazione di articoli (consultare la sezione nell\’aiuto)<br>
+<br>
 <H>3.9</H>
 • +20 articoli<br>
 <br>

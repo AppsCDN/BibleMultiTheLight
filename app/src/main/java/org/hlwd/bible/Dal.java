@@ -396,6 +396,7 @@ class Dal
         try
         {
             VerseBO verse;
+            final int vNumberToFix = vNumberTo < vNumberFrom ? vNumberFrom : vNumberTo;
 
             sql = PCommon.ConcaT("SELECT b.id, b.vNumber, b.vText, r.bName, r.bsName, n.mark, b.bbName, ", this.CaseBible("b.bbName", tbbName),
                     " FROM bible b",
@@ -405,7 +406,7 @@ class Dal
                     " AND b.bNumber=", bNumber,
                     " AND b.cNumber=", cNumber,
                     " AND b.vNumber >= ", vNumberFrom,
-                    " AND b.vNumber <= ", vNumberTo,
+                    " AND b.vNumber <= ", vNumberToFix,
                     " ORDER BY b.vNumber ASC, bbNameOrder ASC");
 
             c = _db.rawQuery(sql, null);
@@ -1114,6 +1115,297 @@ class Dal
         }
 
         return lst;
+    }
+
+    /***
+     * Get list of my articles Id
+     * @return list of articles Id
+     */
+    @SuppressWarnings("JavaDoc")
+    String[] GetListMyArticlesId()
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        ArrayList<String> arr = new ArrayList<>();
+
+        try
+        {
+            ArtDescBO r;
+
+            sql = PCommon.ConcaT("SELECT artId from artDesc ORDER BY artUpdatedDt DESC, artId desc;");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            while (!c.isAfterLast())
+            {
+                r = new ArtDescBO();
+                r.artId = c.getInt(0);
+
+                arr.add(String.valueOf(r.artId));
+
+                c.moveToNext();
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return arr.toArray(new String[0]);
+    }
+
+    /***
+     * Get my article name
+     * @param artId
+     * @return article name
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleName(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        String artDesc = "";
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT artTitle from artDesc WHERE artId=", artId);
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast())
+            {
+                artDesc = c.getString(0);
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return artDesc;
+    }
+
+    /***
+     * Get my article source
+     * @param artId
+     * @return article source
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleSource(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        String artSrc = "";
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT artSrc from artDesc WHERE artId=", artId);
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast())
+            {
+                artSrc = c.getString(0);
+            }
+        }
+        catch (SQLException ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null)
+            {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return artSrc;
+    }
+
+    /***
+     * Get new MyArticle Id
+     * @return bibleId
+     */
+    @SuppressWarnings("JavaDoc")
+    int GetNewMyArticleId()
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+        Cursor c = null;
+        int max = 0;
+
+        try
+        {
+            sql = PCommon.ConcaT("SELECT MAX(artId) from artDesc");
+
+            c = _db.rawQuery(sql, null);
+            c.moveToFirst();
+
+            if (!c.isAfterLast()) {
+                max = c.getInt(0);
+            }
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+
+            if (c != null) {
+                c.close();
+                //noinspection UnusedAssignment
+                c = null;
+            }
+        }
+
+        return max + 1;
+    }
+
+    /***
+     * Update my article source
+     * @param artId         Article Id
+     * @param substSource   Source substitued
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleSource(final int artId, final String substSource)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            final String quotedSource = PCommon.AQ(PCommon.RQ(substSource));
+
+            sql = PCommon.ConcaT("UPDATE artDesc SET artSrc=", quotedSource, " WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
+     * Update my article title
+     * @param artId     Article Id
+     * @param title     Title
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleTitle(final int artId, final String title)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("UPDATE artDesc",
+                    " SET artTitle=", PCommon.AQ(PCommon.RQ(title)),
+                    " WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
+     * Add my article
+     * @param ad    Article description
+     */
+    @SuppressWarnings("JavaDoc")
+    void AddMyArticle(final ArtDescBO ad)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("INSERT INTO artDesc (artId, artUpdatedDt, artTitle, artSrc) VALUES (",
+                ad.artId, ",",
+                PCommon.AQ(ad.artUpdatedDt), ",",
+                PCommon.AQ(PCommon.RQ(ad.artTitle)), ",",
+                PCommon.AQ(PCommon.RQ(ad.artSrc)),
+                ")");
+
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
+    }
+
+    /***
+     * Delete my article
+     * @param artId         Article Id
+     */
+    @SuppressWarnings("JavaDoc")
+    void DeleteMyArticle(final int artId)
+    {
+        @SuppressWarnings("UnusedAssignment") String sql = null;
+
+        try
+        {
+            sql = PCommon.ConcaT("DELETE FROM artDesc WHERE artId=", artId);
+            _db.execSQL(sql);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            //noinspection UnusedAssignment
+            sql = null;
+        }
     }
 
     /***

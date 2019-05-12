@@ -298,8 +298,12 @@ class SCommon
                 sbVerses.append(PCommon.ConcaT("<b>", v.bName, " ", v.cNumber, ".", v.vNumber, ": </b><br>", v.vText, "<br><br>"));
             }
 
-            final int start = sbVerses.length() - 8;
-            sbVerses.delete(start, sbVerses.length());
+            if (lstVerse.size() > 0)
+            {
+                final int start = sbVerses.length() - 8;
+                sbVerses.delete(start, sbVerses.length());
+            }
+
             sbVerses.append("</blockquote>");
         }
         catch(Exception ex)
@@ -525,6 +529,133 @@ class SCommon
     ArrayList<BibleRefBO> GetListAllBookByName(final String bbName)
     {
         return _dal.GetListAllBookByName(bbName);
+    }
+
+    /***
+     * Get list of my articles Id
+     * @return list of articles Id
+     */
+    @SuppressWarnings("JavaDoc")
+    String[] GetListMyArticlesId()
+    {
+        return _dal.GetListMyArticlesId();
+    }
+
+    /***
+     * Get my article name
+     * @param artId
+     * @return article name
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleName(final int artId)
+    {
+        return _dal.GetMyArticleName(artId);
+    }
+
+    /***
+     * Get my article source
+     * @param artId
+     * @return article source
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetMyArticleSource(final int artId)
+    {
+        return _dal.GetMyArticleSource(artId);
+    }
+
+    /***
+     * Get my article substitution
+     * @param source    Source without substitution (except <R></R>)
+     * @return  String with edit tags
+     */
+    @SuppressWarnings("JavaDoc")
+    private String GetMyArticleSourceSubstition(final String source)
+    {
+        return source
+                .replaceAll("</u></h1>", "</H>")
+                .replaceAll("<h1><u>", "<H>")
+                .replaceAll("</u></span>", "</HS>")
+                .replaceAll("<br><span><u>", "<HS>");
+    }
+
+    /***
+     * Get new MyArticle Id
+     * @return new article Id
+     */
+    int GetNewMyArticleId()
+    {
+        return _dal.GetNewMyArticleId();
+    }
+
+    /***
+     * Update my article source
+     * @param artId
+     * @param source
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleSource(final int artId, final String source)
+    {
+        try
+        {
+            final String substSource = GetMyArticleSourceSubstition(source);
+            _dal.UpdateMyArticleSource(artId, substSource);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Update my article title
+     * @param artId     Article Id
+     * @param title     Title
+     */
+    @SuppressWarnings("JavaDoc")
+    void UpdateMyArticleTitle(final int artId, final String title)
+    {
+        try
+        {
+            _dal.UpdateMyArticleTitle(artId, title);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Add my article
+     * @param ad    Article description
+     */
+    @SuppressWarnings("JavaDoc")
+    void AddMyArticle(final ArtDescBO ad)
+    {
+        try
+        {
+            _dal.AddMyArticle(ad);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Delete my article
+     * @param artId     Article Id
+     */
+    @SuppressWarnings("JavaDoc")
+    void DeleteMyArticle(final int artId)
+    {
+        try
+        {
+            _dal.DeleteMyArticle(artId);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
     }
 
     /***

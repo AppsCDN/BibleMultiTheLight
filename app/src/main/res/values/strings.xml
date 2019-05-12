@@ -2,6 +2,7 @@
     <string name="aboutContactMe">If you have any issues or suggestions, please contact me.</string>
     <string name="close">Close</string>
     <string name="btnClose">Close</string>
+    <string name="btnCreate">Create</string>
     <string name="btnRefresh" tools:keep="@string/btnRefresh">REFRESH</string>
     <string name="btnSelect">Select</string>
     <string name="btnTrim">Trim</string>
@@ -52,6 +53,24 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopyChapterToClipboard">Chapter</string>
     <string name="mnuCopyResultToClipboard">All</string>
     <string name="mnuCopyVerseToClipboard">Verse</string>
+    <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
+    <string name="mnuEmailSourceToDeveloper">Email source to developer</string>
+    <string name="mnuRename">Rename</string>
+    <string name="mnuEditOn">Start editing article</string>
+    <string name="mnuEditOff">Stop editing</string>
+    <string name="mnuEditSelectFrom">&#8230; Select From</string>
+    <string name="mnuEditSelectTo">&#8230; Select To</string>
+    <string name="mnuEditSelectFromTo">&#8230; Select From = To</string>
+    <string name="mnuEditMove">&#8230; Move</string>
+    <string name="mnuEditMoveUp">Up</string>
+    <string name="mnuEditMoveDown">Down</string>
+    <string name="mnuEditAdd">&#8230; Add</string>
+    <string name="mnuEditAddText">Text</string>
+    <string name="mnuEditAddTitleLarge">Large title</string>
+    <string name="mnuEditAddTitleSmall">Small title</string>
+    <string name="mnuEditUpdate">&#8230; Update</string>
+    <string name="mnuEditRemove">&#8230; Remove</string>
+    <string name="mnuEditRemoveConfirm">Confirm</string>
     <string name="mnuMarkAllAboveAsRead">Mark all above as read</string>
     <string name="mnuUnmarkAllAboveAsRead">Mark all above as not read</string>
     <string name="mnuSearchBibleName">-</string>
@@ -101,6 +120,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="planCalTitleVerseCount">Verses\nby day:</string>
     <string name="planChapterCount">Chapters</string>
     <string name="planVerseCount">Verses</string>
+    <string name="switchToArt">Articles</string>
+    <string name="switchToMyArt">My articles</string>
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
@@ -112,6 +133,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
+    <string name="toastRefAdded">added</string>
+    <string name="toastRefIncorrect">Reference incorrect!</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>
@@ -608,7 +631,7 @@ Of Daniel 5.25 (Hebrew): \'Mene, Mene, Tekel, Upharsin\'.<br>
 <i>Hi,</i> I\'m a Christian programmer and made this application with my heart to serve the Lord. The end of time is close with tribulations, antichrist, Jesus and the final judgment.
 <i>Whattt! Are you serious?</i> Yes, I\'m serious, signs are everywhere. This application, giving the real Word of God, can help you be strong during this period when the devil will try to deceive you more than never and to be ready
 when Christ will come back. Remember yourselves that the devil knows the Scriptures. I added only good original Bibles (no re-edition where possible) in several languages, I can understand, to help you find Jesus because he\'s the only way towards our Father.
-Don\'t remain in the darkness little children of God. Be good to your brothers and sisters, spread the light, love, pray, repent, have faith, joy,
+Don\'t remain in the darkness little children of God. Be good to your brothers and sisters, share the word of God, love, pray, repent, have faith, joy,
 follow the commandments, stop your sins and sow abundantly. Let\'s follow Jesus, the good Shepherd, our only saviour&#8230; God bless you. Amen.<br>
 <blockquote>
 <b>John 14.6:</b> Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.
@@ -692,6 +715,16 @@ There are two types of favorites:<br>
 You can change the normal favorite symbol in Settings menu.<br>
 In a next version, you will be able to change the Reading symbol.<br>
 <br><br>
+<H>How to create an article?</H>
+- <u>Context menu</u>: Start editing article<br>
+- Create an article<br>
+- Select it<br>
+- Select verses (From/To) of same chapter<br>
+- <u>Menu</u>: Articles/My articles<br>
+- Open your article<br>
+- Manage sections<br>
+- To share your articles with the users: send me the source. Please don\'t add too much text, just some titles, let the verses speak.<br>
+<br><br>
 <H>Tips</H>
 - Let the application resident, the memory is well managed<br>
 - Search result is useful to search verses in a language and get the exact same verses in another language, to learn, compare texts, check words&#8230;<br>
@@ -708,6 +741,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.10</H>
+• Creation of articles (see the section in the help)<br>
+<br>
 <H>3.9</H>
 • +20 articles<br>
 <br>
@@ -1611,6 +1647,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="btnBack" translatable="false"> \u25c1</string>
     <string name="btnForward" translatable="false">\u25b7 </string>
     <string name="btnGitlab" translatable="false">Gitlab</string>
+    <string name="devEmail" translatable="false">hortrlirttlerwhriterdorg@grmrailr.crom</string>
     <string name="languageFr" translatable="false">Français</string>
     <string name="languageEn" translatable="false">English</string>
     <string name="languageIt" translatable="false">Italiano</string>
@@ -1623,6 +1660,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="languagePtShort" translatable="false">PT</string>
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
+    <string name="tabMyArtPrefix" translatable="false">MYART</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>
