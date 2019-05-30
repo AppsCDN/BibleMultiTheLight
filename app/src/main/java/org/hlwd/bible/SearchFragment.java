@@ -725,6 +725,25 @@ public class SearchFragment extends Fragment
 
             switch (itemId)
             {
+                case R.id.mnu_say_stop:
+                {
+                    _s.SayStop();
+
+                    return true;
+                }
+                case R.id.mnu_say_verse:
+                {
+                    //TODO TTS: implement it
+                    //_s.SayVerse(verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber);
+
+                    return true;
+                }
+                case R.id.mnu_say_chapter:
+                {
+                    _s.Say(verse.bbName, verse.bNumber, verse.cNumber);
+
+                    return true;
+                }
                 case R.id.mnu_open_verse:
                 {
                     final String msg = PCommon.ConcaT(getString(R.string.mnuOpenVerse), "");

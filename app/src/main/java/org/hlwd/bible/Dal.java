@@ -569,6 +569,53 @@ class Dal
     }
 
     /***
+     * Get verse text only
+     * @param bbName
+     * @param bNumber
+     * @param cNumber
+     * @param vNumber
+     * @return Text with verse
+     */
+    @SuppressWarnings("JavaDoc")
+    String GetVerseTextOnly(final String bbName, final int bNumber, final int cNumber, final int vNumber)
+    {
+        ArrayList<VerseBO> lstVerse = null;
+        StringBuilder sb = new StringBuilder("");
+
+        try
+        {
+            String verseText;
+
+            lstVerse = GetVerse(bbName, bNumber, cNumber, vNumber);
+
+            if (lstVerse != null)
+            {
+                for (VerseBO v : lstVerse)
+                {
+                    verseText =  PCommon.ConcaT(v.vText, "\n\n");
+
+                    sb.append(verseText);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            if (lstVerse != null)
+            {
+                lstVerse.clear();
+                //noinspection UnusedAssignment
+                lstVerse = null;
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /***
      * Get a chapter
      * @param tbbName
      * @param bNumber

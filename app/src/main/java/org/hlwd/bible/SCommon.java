@@ -4,9 +4,11 @@ package org.hlwd.bible;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /***
  * Singleton
@@ -21,6 +23,7 @@ class SCommon
     private static Dal _dal = null;
     @SuppressLint("StaticFieldLeak")
     private static Context _context = null;
+    private static TtsManager ttsManager = null;
 
     //</editor-fold>
 
@@ -1429,6 +1432,117 @@ class SCommon
         }
 
         return pgrStatus;
+    }
+
+/*
+    void SayVerse(final String bbName, final int bNumber, final int cNumber, final int vNumber)
+    {
+        try
+        {
+            final String msg = _dal.GetVerseTextOnly(bbName, bNumber, cNumber, vNumber);
+            final Locale locale = GetLocale(bbName);
+            if (locale == null)
+            {
+                //TODO NEXT: not supported locale
+                PCommon.ShowToast(_context, "Language unavailable!", Toast.LENGTH_SHORT);
+                return;
+            }
+
+            Say(locale, msg);
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+*/
+
+
+    /**
+     * Say TTS
+     * @param bbName    Bible name
+     * @param bNumber   Book number
+     * @param cNumber   Chapter number
+     */
+    void Say(final String bbName, final int bNumber, final int cNumber)
+    {
+        try
+        {
+            final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            final Thread thread = new Thread(threadGroup, threadName)
+            {
+                @Override
+                public void run()
+                {
+                    SayMain();
+                }
+
+                private void SayMain()
+                {
+                    try
+                    {
+                        final ArrayList<VerseBO> lstVerse = _dal.GetChapter(bbName, bNumber, cNumber);
+                        final Locale locale = PCommon.GetLocale(_context, bbName);
+                        if (locale == null)
+                        {
+                            //TODO NEXT: not supported language (DEBUG too)
+                            PCommon.ShowToast(_context, "Language unavailable!", Toast.LENGTH_SHORT);
+                        }
+                        else
+                        {
+                            if (lstVerse != null)
+                            {
+                                if (lstVerse.size() > 0)
+                                {
+                                    //TODO: PROBLEM because there are several TTS.
+                                    //Background process ?!
+                                    //WARNING: can Start/Stop at any time
+                                    if (ttsManager == null)
+                                    {
+                                        ttsManager = new TtsManager(_context, locale);
+                                        ttsManager.WaitForReady();
+                                    }
+                                    ttsManager.SayClear("");
+
+                                    for(final VerseBO verse : lstVerse)
+                                    {
+                                        ttsManager.SayAdd(verse.vText);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+                    }
+                }
+            };
+            thread.setPriority(Thread.MIN_PRIORITY);
+            thread.start();
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Shutdown TTS
+     */
+    void SayStop()
+    {
+        try
+        {
+            ttsManager.ShutDown();
+
+            ttsManager = null;
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
     }
 
     //</editor-fold>

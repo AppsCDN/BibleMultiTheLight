@@ -1,6 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:title="@string/mnuSay">
+        <menu>
+            <item
+                android:id="@+id/mnu_say_verse"
+                android:title="@string/mnuSayVerse" />
+            <item
+                android:id="@+id/mnu_say_chapter"
+                android:title="@string/mnuSayChapter" />
+            <item
+                android:id="@+id/mnu_say_stop"
+                android:title="@string/mnuSayStop" />
+        </menu>
+    </item>
+    <item
         android:id="@+id/mnu_open"
         android:title="@string/mnuOpen">
         <menu>
