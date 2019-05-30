@@ -13,7 +13,7 @@ public class TtsManager
     private Locale locale = null;
     private boolean isLoaded = false;
     private TextToSpeech tts = null;
-    private final long SLEEP_WHEN_SPEAKING_MILLICS = 100;
+    private final long SLEEP_WHEN_SPEAKING_MILLICS = 1000;
     private final long SLEEP_WHEN_NOT_READY_MILLICS = 300;
 
     TtsManager(final Context ctx, final Locale local)
@@ -55,7 +55,11 @@ public class TtsManager
         }
     }
 
-    public void WaitForReady()
+    /***
+     * Wait several seconds for TTS to be ready
+     * @return True if was loaded the limit time
+     */
+    public boolean WaitForReady()
     {
         try
         {
@@ -68,11 +72,15 @@ public class TtsManager
 
                 loopCount++;
             }
+
+            return (IsLoaded() && loopCount < loopLimit);
         }
         catch (Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
+
+        return false;
     }
 
     //TODO TTS (called by UI)
@@ -82,8 +90,19 @@ public class TtsManager
         {
             if (IsLoaded())
             {
-                tts.stop();
-                tts.shutdown();
+                try
+                {
+                    tts.stop();
+                }
+                catch (Exception ex)
+                { }
+
+                try
+                {
+                    tts.shutdown();
+                }
+                catch (Exception ex)
+                { }
 
                 tts = null;
                 isLoaded = false;
