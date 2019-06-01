@@ -90,10 +90,11 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupFontSize">Font size</string>
     <string name="mnuGroupFavSymbol">Favorite symbol</string>
     <string name="mnuPrbl">Parables</string>
-    <string name="mnuSay">Say</string>
-    <string name="mnuSayStop">Stop</string>
-    <string name="mnuSayChapter">Chapter</string>
-    <string name="mnuSayVerse">Verse</string>
+    <string name="mnuListen">Listen</string>
+    <string name="mnuListenStop">Stop</string>
+    <string name="mnuListenChapter">Listen to chapter</string>
+    <string name="mnuListenChapterFrom1">From beginning</string>
+    <string name="mnuListenChapterFromPos">From here</string>
     <string name="mnuShare">Share</string>
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>

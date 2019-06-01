@@ -725,22 +725,16 @@ public class SearchFragment extends Fragment
 
             switch (itemId)
             {
-                case R.id.mnu_say_stop:
+                case R.id.mnu_listen_stop:
                 {
                     _s.SayStop();
 
                     return true;
                 }
-                case R.id.mnu_say_verse:
+                case R.id.mnu_listen_chapter_from_1:
+                case R.id.mnu_listen_chapter_from_pos:
                 {
-                    //TODO TTS: implement it
-                    //_s.SayVerse(verse.bbName, verse.bNumber, verse.cNumber, verse.vNumber);
-
-                    return true;
-                }
-                case R.id.mnu_say_chapter:
-                {
-                    _s.Say(verse.bbName, verse.bNumber, verse.cNumber);
+                    _s.Say(verse.bbName, verse.bNumber, verse.cNumber, itemId == R.id.mnu_listen_chapter_from_1 ? 1 : verse.vNumber);
 
                     return true;
                 }

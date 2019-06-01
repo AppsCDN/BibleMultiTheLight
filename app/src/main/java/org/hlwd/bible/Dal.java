@@ -616,14 +616,15 @@ class Dal
     }
 
     /***
-     * Get a chapter
+     * Get a chapter from vNumber
      * @param tbbName
      * @param bNumber
      * @param cNumber
+     * @param vNumberFrom From vNumber
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    ArrayList<VerseBO> GetChapter(final String tbbName, final int bNumber, final int cNumber)
+    ArrayList<VerseBO> GetChapterFromPos(final String tbbName, final int bNumber, final int cNumber, final int vNumberFrom)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
         Cursor c = null;
@@ -640,6 +641,7 @@ class Dal
                     " WHERE b.bbName IN ", this.InBible(tbbName),
                     " AND b.bNumber=", bNumber,
                     " AND b.cNumber=", cNumber,
+                    " AND b.vNumber >= ", vNumberFrom,
                     " ORDER BY b.vNumber ASC, bbNameOrder ASC");
 
             c = _db.rawQuery(sql, null);
@@ -699,7 +701,7 @@ class Dal
         {
             String verseText;
 
-            lstVerse = GetChapter(tbbName, bNumber, cNumber);
+            lstVerse = GetChapterFromPos(tbbName, bNumber, cNumber, 1);
 
             if (lstVerse != null)
             {

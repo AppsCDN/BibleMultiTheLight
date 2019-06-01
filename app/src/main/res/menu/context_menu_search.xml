@@ -1,20 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="@string/mnuSay">
-        <menu>
-            <item
-                android:id="@+id/mnu_say_verse"
-                android:title="@string/mnuSayVerse" />
-            <item
-                android:id="@+id/mnu_say_chapter"
-                android:title="@string/mnuSayChapter" />
-            <item
-                android:id="@+id/mnu_say_stop"
-                android:title="@string/mnuSayStop" />
-        </menu>
-    </item>
-    <item
         android:id="@+id/mnu_open"
         android:title="@string/mnuOpen">
         <menu>
@@ -72,6 +58,26 @@
             <item
                 android:id="@+id/mnu_remove_note"
                 android:title="@string/mnuNoteRemove" />
+        </menu>
+    </item>
+    <item
+        android:title="@string/mnuListen">
+        <menu>
+            <item
+                android:id="@+id/mnu_listen_chapter"
+                android:title="@string/mnuListenChapter">
+                <menu>
+                    <item
+                        android:id="@+id/mnu_listen_chapter_from_1"
+                        android:title="@string/mnuListenChapterFrom1" />
+                    <item
+                        android:id="@+id/mnu_listen_chapter_from_pos"
+                        android:title="@string/mnuListenChapterFromPos" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/mnu_listen_stop"
+                android:title="@string/mnuListenStop" />
         </menu>
     </item>
     <item

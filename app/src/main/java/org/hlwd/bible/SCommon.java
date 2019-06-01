@@ -357,7 +357,7 @@ class SCommon
 
         try
         {
-            lstVerse = _dal.GetChapter(tbbName, bNumber, cNumber);
+            lstVerse = _dal.GetChapterFromPos(tbbName, bNumber, cNumber, 1);
         }
         catch(Exception ex)
         {
@@ -1460,12 +1460,13 @@ class SCommon
 
 
     /**
-     * Say TTS
-     * @param bbName    Bible name
-     * @param bNumber   Book number
-     * @param cNumber   Chapter number
+     * Say chapter
+     * @param bbName       Bible name
+     * @param bNumber      Book number
+     * @param cNumber      Chapter number
+     * @param vNumberFrom  From Verse number
      */
-    void Say(final String bbName, final int bNumber, final int cNumber)
+    void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
     {
         try
         {
@@ -1490,11 +1491,18 @@ class SCommon
                     SayMain();
                 }
 
+                @Override
+                public void interrupt() {
+                    super.interrupt();
+
+                    System.out.println("Thread interrupt");
+                }
+
                 private void SayMain()
                 {
                     try
                     {
-                        final ArrayList<VerseBO> lstVerse = _dal.GetChapter(bbName, bNumber, cNumber);
+                        final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumber, cNumber, vNumberFrom);
                         final Locale locale = PCommon.GetLocale(_context, bbName);
                         if (locale == null)
                         {
@@ -1552,12 +1560,14 @@ class SCommon
         try
         {
             ttsManager.ShutDown();
-
-            ttsManager = null;
         }
         catch(Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            ttsManager = null;
         }
     }
 
