@@ -83,9 +83,9 @@ public class TtsManager
         return false;
     }
 
-    //TODO TTS (called by UI)
     public void ShutDown()
     {
+        //Rem: don't thread.sleep here, impact UI
         try
         {
             if (IsLoaded())
@@ -103,34 +103,17 @@ public class TtsManager
                 }
                 catch (Exception ex)
                 { }
-
-                tts = null;
-                isLoaded = false;
-                locale = null;
             }
         }
         catch (Exception ex)
         {
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
-    }
-
-    public void SayClear(final String msg)
-    {
-        try
+        finally
         {
-            if (IsLoaded())
-            {
-                tts.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
-            }
-            else
-            {
-                Log.e("error", "TTS Not Initialized");
-            }
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+            tts = null;
+            isLoaded = false;
+            locale = null;
         }
     }
 

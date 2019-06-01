@@ -1468,18 +1468,21 @@ class SCommon
      */
     void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
     {
+        //TODO TTS: STOP VIA UI IS NECESSARY BEFORE LISTEN CHAPTER
         try
         {
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
             final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
 
+            if (ttsManager != null)
+            {
+                ttsManager.ShutDown();
+
+                ttsManager = null;
+            }
+
             if (ttsThread != null)
             {
-                if (ttsManager != null)
-                {
-                    ttsManager.ShutDown();
-                }
-
                 ttsThread.interrupt();
             }
 
@@ -1489,13 +1492,6 @@ class SCommon
                 public void run()
                 {
                     SayMain();
-                }
-
-                @Override
-                public void interrupt() {
-                    super.interrupt();
-
-                    System.out.println("Thread interrupt");
                 }
 
                 private void SayMain()
@@ -1515,19 +1511,13 @@ class SCommon
                             {
                                 if (lstVerse.size() > 0)
                                 {
-                                    //Background process ?!
-                                    //WARNING: can Start/Stop at any time
-                                    if (ttsManager == null)
-                                    {
-                                        ttsManager = new TtsManager(_context, locale);
-                                        final boolean isReady = ttsManager.WaitForReady();
-                                        if (!isReady)
-                                        {
-                                            throw new Exception("TTS not ready!");
-                                        }
-                                    }
+                                    ttsManager = new TtsManager(_context, locale);
 
-                                    ttsManager.SayClear("");
+                                    final boolean isReady = ttsManager.WaitForReady();
+                                    if (!isReady)
+                                    {
+                                        throw new Exception("TTS not ready!");
+                                    }
 
                                     for(final VerseBO verse : lstVerse)
                                     {
