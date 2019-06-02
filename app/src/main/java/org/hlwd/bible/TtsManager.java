@@ -2,48 +2,52 @@ package org.hlwd.bible;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 
 import java.util.Locale;
 
-//TODO TTS: logs in debug
 public class TtsManager
 {
     private Context context = null;
-    private Locale locale = null;
     private boolean isLoaded = false;
     private TextToSpeech tts = null;
     private final long SLEEP_WHEN_SPEAKING_MILLICS = 1000;
     private final long SLEEP_WHEN_NOT_READY_MILLICS = 300;
 
-    TtsManager(final Context ctx, final Locale local)
+    TtsManager(final Context ctx, final Locale locale)
     {
         try
         {
             isLoaded = false;
             tts = null;
             context = ctx;
-            locale = local;
 
             final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener()
             {
                 @Override
                 public void onInit(int status)
                 {
-                    if (status == TextToSpeech.SUCCESS)
+                    try
                     {
-                        int result = tts.setLanguage(locale);
-                        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                        if (status == TextToSpeech.SUCCESS)
                         {
-                            Log.e("TTS", "This Language is not supported");
-                            return;
+                            final int result = tts.setLanguage(locale);
+                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                            {
+                                //TTS language is missing or not supported!
+                            }
+                            else
+                            {
+                                isLoaded = true;
+                            }
                         }
-
-                        isLoaded = true;
+                        else
+                        {
+                           //TTS initialization failed!
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Log.e("TTS", "Initilization Failed!");
+                        if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
                     }
                 }
             };
@@ -57,7 +61,7 @@ public class TtsManager
 
     /***
      * Wait several seconds for TTS to be ready
-     * @return True if was loaded the limit time
+     * @return True if was loaded before the limit time
      */
     public boolean WaitForReady()
     {
@@ -113,7 +117,6 @@ public class TtsManager
         {
             tts = null;
             isLoaded = false;
-            locale = null;
         }
     }
 
@@ -128,11 +131,11 @@ public class TtsManager
                     Thread.sleep(SLEEP_WHEN_SPEAKING_MILLICS);
                 }
 
-                tts.speak(msg, TextToSpeech.QUEUE_ADD, null);
+                tts.speak(msg, TextToSpeech.QUEUE_ADD,null);
             }
             else
             {
-                Log.e("error", "TTS Not Initialized");
+                throw new Exception("TTS not loaded!");
             }
         }
         catch (Exception ex)

@@ -44,7 +44,6 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
@@ -806,8 +805,15 @@ final class PCommon implements IProject
      */
     static void ShowToast(final Context context, final int message, final int duration)
     {
-        final Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
+        try
+        {
+            final Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
     }
 
     /***
@@ -818,8 +824,15 @@ final class PCommon implements IProject
      */
     static void ShowToast(final Context context, final String message, @SuppressWarnings("SameParameterValue") final int duration)
     {
-        final Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
+        try
+        {
+            final Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
     }
 
     /***
@@ -2037,33 +2050,5 @@ final class PCommon implements IProject
         {
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
-    }
-
-    static Locale GetLocale(final Context context, final String bbName)
-    {
-        try
-        {
-            final String lang = bbName.toLowerCase();
-            switch (lang)
-            {
-                case "k":
-                    return new Locale("en", "GB");
-
-                case "v":
-                    return new Locale("es", "ES");
-
-                case "d":
-                    return new Locale("it", "IT");
-
-                case "l":
-                    return new Locale("fr", "FR");
-            }
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
-        }
-
-        return null;
     }
 }

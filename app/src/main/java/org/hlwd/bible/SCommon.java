@@ -4,7 +4,6 @@ package org.hlwd.bible;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.format.DateFormat;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1435,30 +1434,6 @@ class SCommon
         return pgrStatus;
     }
 
-/*
-    void SayVerse(final String bbName, final int bNumber, final int cNumber, final int vNumber)
-    {
-        try
-        {
-            final String msg = _dal.GetVerseTextOnly(bbName, bNumber, cNumber, vNumber);
-            final Locale locale = GetLocale(bbName);
-            if (locale == null)
-            {
-                //TODO NEXT: not supported locale
-                PCommon.ShowToast(_context, "Language unavailable!", Toast.LENGTH_SHORT);
-                return;
-            }
-
-            Say(locale, msg);
-        }
-        catch(Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
-        }
-    }
-*/
-
-
     /**
      * Say chapter
      * @param bbName       Bible name
@@ -1468,12 +1443,10 @@ class SCommon
      */
     void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
     {
-        //TODO TTS: STOP VIA UI IS NECESSARY BEFORE LISTEN CHAPTER
+        //TODO TTS: STOP VIA UI IS NECESSARY BEFORE LISTEN CHAPTER,
+        //TODO TTS: TELL HOW TO DOWNLOAD VOICES...
         try
         {
-            final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
-            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
-
             if (ttsManager != null)
             {
                 ttsManager.ShutDown();
@@ -1485,6 +1458,9 @@ class SCommon
             {
                 ttsThread.interrupt();
             }
+
+            final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
 
             ttsThread = new Thread(threadGroup, threadName)
             {
@@ -1499,13 +1475,8 @@ class SCommon
                     try
                     {
                         final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumber, cNumber, vNumberFrom);
-                        final Locale locale = PCommon.GetLocale(_context, bbName);
-                        if (locale == null)
-                        {
-                            //TODO NEXT: not supported language (DEBUG too)
-                            PCommon.ShowToast(_context, "Language unavailable!", Toast.LENGTH_SHORT);
-                        }
-                        else
+                        final Locale locale = GetLocale(_context, bbName);
+                        if (locale != null)
                         {
                             if (lstVerse != null)
                             {
@@ -1514,14 +1485,12 @@ class SCommon
                                     ttsManager = new TtsManager(_context, locale);
 
                                     final boolean isReady = ttsManager.WaitForReady();
-                                    if (!isReady)
+                                    if (isReady)
                                     {
-                                        throw new Exception("TTS not ready!");
-                                    }
-
-                                    for(final VerseBO verse : lstVerse)
-                                    {
-                                        ttsManager.SayAdd(verse.vText);
+                                        for(final VerseBO verse : lstVerse)
+                                        {
+                                            ttsManager.SayAdd(verse.vText);
+                                        }
                                     }
                                 }
                             }
@@ -1531,6 +1500,37 @@ class SCommon
                     {
                         if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
                     }
+                }
+
+                private Locale GetLocale(final Context context, final String bbName)
+                {
+                    try
+                    {
+                        final String lang = bbName.toLowerCase();
+                        switch (lang)
+                        {
+                            case "k":
+                                return new Locale("en", "GB");
+
+                            case "v":
+                                return new Locale("es", "ES");
+
+                            case "l":
+                                return new Locale("fr", "FR");
+
+                            case "d":
+                                return new Locale("it", "IT");
+
+                            case "a":
+                                return new Locale("pt", "BR");
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+                    }
+
+                    return null;
                 }
             };
             ttsThread.setPriority(Thread.MIN_PRIORITY);
