@@ -1460,7 +1460,7 @@ class SCommon
             }
 
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
-            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort(), _context.getString(R.string.threadNfoListen));
 
             ttsThread = new Thread(threadGroup, threadName)
             {

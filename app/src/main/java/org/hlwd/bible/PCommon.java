@@ -647,10 +647,56 @@ final class PCommon implements IProject
     }
 
     /***
+     * Get thread type running
+     * @param context   Context
+     * @return Get thread type running (0=DEFAUT, 1=INSTALL, 2=LISTEN)
+     */
+    private static int GetThreadTypeRunning(final Context context)
+    {
+        int threadType = 0;
+
+        try
+        {
+            final String threadName = context.getString(R.string.threadNfoPrefix);
+            final String threadNameInstall = context.getString(R.string.threadNfoInstall);
+            final String threadNameListen = context.getString(R.string.threadNfoListen);
+
+            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+            final Thread[] threadArr = threadSet.toArray(new Thread[0]);
+            for (Thread thread : threadArr)
+            {
+                //TODO: ThreadGroup! => list group to find it?
+                if (thread.getName().startsWith(threadName))
+                {
+                    if (thread.getName().contains(threadNameInstall))
+                    {
+                        threadType = 1;
+                        break;
+                    }
+                    else if (thread.getName().contains(threadNameListen))
+                    {
+                        threadType = 2;
+                        break;
+                    }
+                }
+            }
+
+            threadSet.clear();
+            //noinspection UnusedAssignment
+            threadSet = null;
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
+
+        return threadType;
+    }
+
+/***
      * Get count of threads running
      * @param context   Context
      * @return Count of threads running
-     */
     private static int GetCountThreadRunning(final Context context)
     {
         int count = 0;
@@ -679,6 +725,7 @@ final class PCommon implements IProject
 
         return count;
     }
+*/
 
     /***
      * Try to quit application
@@ -688,10 +735,10 @@ final class PCommon implements IProject
     {
         try
         {
-            final int count = GetCountThreadRunning(context);
-            if (count > 0)
+            final int threadType = PCommon.GetThreadTypeRunning(context);
+            if (threadType > 0)
             {
-                ShowToast(context, R.string.installQuit, Toast.LENGTH_SHORT);
+                ShowToast(context, threadType == 1 ? R.string.installQuit : R.string.listenQuit, Toast.LENGTH_SHORT);
                 return;
             }
         }

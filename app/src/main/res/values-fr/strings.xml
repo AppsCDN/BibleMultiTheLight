@@ -125,8 +125,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genèse 2.2</string>
     <string name="seeMat24_32">Matthieu 24.32</string>
-    <string name="threadNfoPrefix">biblenfo</string>
-    <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vide!</string>
     <string name="toastEmpty3">Min. 3 caractères!</string>
     <string name="toastBookNotInstalled">Livre non installé!</string>

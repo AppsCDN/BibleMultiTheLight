@@ -22,6 +22,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="languageFrInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES, FR…</string>
     <string name="languageClear">Clear</string>
     <string name="languageContinue">Continue</string>
+    <string name="listenQuit">Listening, please wait or stop.</string>
     <string name="logErr">Error: %s</string>
     <string name="mnuAbout">About / Contact</string>
     <string name="mnuQuit">Quit</string>
@@ -92,9 +93,9 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuPrbl">Parables</string>
     <string name="mnuListen">Listen</string>
     <string name="mnuListenStop">Stop</string>
-    <string name="mnuListenChapter">Listen to chapter</string>
-    <string name="mnuListenChapterFrom1">From beginning</string>
-    <string name="mnuListenChapterFromPos">From here</string>
+    <string name="mnuListenChapter">Chapter</string>
+    <string name="mnuListenChapterFrom1">Beginning</string>
+    <string name="mnuListenChapterFromPos">Current position</string>
     <string name="mnuShare">Share</string>
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
@@ -131,8 +132,6 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
     <string name="tabEmpty" translatable="false"><![CDATA[<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></string>
-    <string name="threadNfoPrefix">biblenfo</string>
-    <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
     <string name="toastEmpty3">Min. 3 characters!</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
@@ -1666,6 +1665,10 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tabMyArtPrefix" translatable="false">MYART</string>
+    <string name="threadNfoPrefix" translatable="false">biblenfo</string>
+    <string name="threadNfoGroup" translatable="false">biblenfogrp</string>
+    <string name="threadNfoInstall" translatable="false">INSTALL</string>
+    <string name="threadNfoListen" translatable="false">LISTEN</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>

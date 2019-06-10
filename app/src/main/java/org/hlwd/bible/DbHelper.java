@@ -553,7 +553,7 @@ class DbHelper extends SQLiteOpenHelper
         try
         {
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
-            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort(), _context.getString(R.string.threadNfoInstall));
             final Thread thread = new Thread(threadGroup, threadName)
             {
                 int id = 0;
@@ -764,7 +764,7 @@ class DbHelper extends SQLiteOpenHelper
         try
         {
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
-            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort(), _context.getString(R.string.threadNfoInstall));
             //noinspection SameParameterValue
             final Thread thread = new Thread(threadGroup, threadName)
             {
@@ -957,7 +957,7 @@ class DbHelper extends SQLiteOpenHelper
         try
         {
             final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
-            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort());
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort(), _context.getString(R.string.threadNfoInstall));
             final Thread thread = new Thread(threadGroup, threadName)
             {
                 @Override
