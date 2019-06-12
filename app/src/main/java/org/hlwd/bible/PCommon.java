@@ -58,7 +58,7 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    final static boolean _isDebugVersion = true;
+    final static boolean _isDebugVersion = false;
 
     final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -1920,6 +1920,42 @@ final class PCommon implements IProject
     static int GetEditArticleId(final Context context)
     {
         return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "-1"));
+    }
+
+    /***
+     * Save listen position
+     * @param bbName
+     * @param bNumber
+     * @param cNumber
+     */
+    static void SetListenPosition(final Context context, final String bbName, final int bNumber, final int cNumber)
+    {
+        final String listenPosition = PCommon.ConcaT(bbName, ",", bNumber, ",", cNumber);
+
+        PCommon.SavePrefInt(context, IProject.APP_PREF_KEY.LISTEN_STATUS, 1);
+        PCommon.SavePref(context, IProject.APP_PREF_KEY.LISTEN_POSITION, listenPosition);
+    }
+
+    /***
+     * Get listen position
+     * @return array of string with bbname, bnumber, cnumber OR null
+     */
+    static String[] GetListenPosition(final Context context)
+    {
+        final String listenPosition = PCommon.GetPref(context, IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+
+        return listenPosition.isEmpty() ? null : listenPosition.split(",");
+    }
+
+    /***
+     * Get listen status
+     * @param context
+     * @return
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetListenStatus(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.LISTEN_STATUS, "0"));
     }
 
     /***

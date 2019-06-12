@@ -18,7 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
-// PROD: Bible 4.0,    DbVersion: 30 (11)2019-06-02
+// PROD: Bible 3.11,   DbVersion: 31 (12)2019-06-12
+// PROD: Bible 3.11,   DbVersion: 30 (11)2019-06-10 (me only)
 // PROD: Bible 3.10,   DbVersion: 29 (11)2019-05-11
 // PROD: Bible 3.10,   DbVersion: 29 (11)2019-04-28 (me only)
 // PROD: Bible 3.9,    DbVersion: 28 (10)2019-01-27
@@ -64,7 +65,7 @@ class DbHelper extends SQLiteOpenHelper
     @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 30;
+    private static final int _version = 31;
 
     //</editor-fold>
 
@@ -411,6 +412,11 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE UNIQUE INDEX artDesc0_ndx on artDesc (artId)";
                 _db.execSQL(sql);
             }
+            if (oldVersion < 31)    //1..30 => 31
+            {
+                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+            }
 
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //Last
@@ -481,6 +487,8 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "3");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
@@ -513,6 +521,8 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_3:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3)));
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_4:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4)));
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_5:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5)));
+            System.out.println(PCommon.ConcaT("LISTEN_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION)));
+            System.out.println(PCommon.ConcaT("LISTEN_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_STATUS)));
             System.out.println(PCommon.ConcaT("THEME_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME)));
             System.out.println(PCommon.ConcaT("FONT_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_NAME)));
             System.out.println(PCommon.ConcaT("FONT_SIZE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_SIZE)));

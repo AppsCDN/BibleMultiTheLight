@@ -485,6 +485,53 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_share_result).setVisible(false);
         }
 
+        //~~~ Listen
+        final int listenStatus = PCommon.GetListenStatus(v.getContext());
+        final boolean listen_cmd_visibility = listenStatus == 1;
+        final String listenPosMainTitle;
+        final String[] arrListen = PCommon.GetListenPosition(v.getContext());
+        if (arrListen == null || arrListen.length != 3)
+        {
+            listenPosMainTitle = null;
+        }
+        else
+        {
+            final String listen_bbname = arrListen[0];
+            final int listen_bnumber = Integer.parseInt(arrListen[1]);
+            final int listen_cnumber = Integer.parseInt(arrListen[2]);
+            final BibleRefBO bookRef = _s.GetBookRef(listen_bbname, listen_bnumber);
+            listenPosMainTitle = PCommon.ConcaT(bookRef.bName, " ", listen_cnumber);
+        }
+        final String listenMainTitle = listenPosMainTitle == null ? getString(R.string.mnuListen) :
+                        PCommon.ConcaT(getString(R.string.mnuListen),
+                        " (",
+                        listenPosMainTitle,
+                        ")");
+        //~
+        final String listenPosCurrentChapterTitle;
+        final VerseBO verse = (bibleId > -1) ? _s.GetVerse(bibleId) : null;
+        if (verse == null)
+        {
+            listenPosCurrentChapterTitle = null;
+        }
+        else
+        {
+            listenPosCurrentChapterTitle = PCommon.ConcaT(verse.bName, " ", verse.cNumber);
+        }
+        final String listCurrentChapterTitle = listenPosCurrentChapterTitle == null ? getString(R.string.mnuListenCurrentChapter) :
+                        PCommon.ConcaT(getString(R.string.mnuListenCurrentChapter),
+                        " (",
+                        listenPosCurrentChapterTitle,
+                        ")");
+
+        menu.findItem(R.id.mnu_listen).setTitle(listenMainTitle);
+        menu.findItem(R.id.mnu_listen_stop).setVisible(true);
+        menu.findItem(R.id.mnu_listen_current_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_previous_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_next_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_current_chapter).setTitle(listCurrentChapterTitle);
+
+        //~~~ Edit
         final int installStatus = PCommon.GetInstallStatus(v.getContext());
         final int editStatus = PCommon.GetEditStatus(v.getContext());
         final int editArtId = PCommon.GetEditArticleId(v.getContext());
@@ -493,7 +540,7 @@ public class SearchFragment extends Fragment
         final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
                 ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
                 : -1;
-        final String title = editStatus == 0 ? getString(R.string.mnuEditOn) :
+        final String editTitle = editStatus == 0 ? getString(R.string.mnuEditOn) :
                     PCommon.ConcaT(getString(R.string.mnuEditOff),
                     " (",
                     getString(R.string.tabMyArtPrefix),
@@ -502,7 +549,7 @@ public class SearchFragment extends Fragment
 
 /*
         final TextView textView = new TextView(v.getContext());
-        textView.setText(Html.fromHtml(title));
+        textView.setText(Html.fromHtml(editTitle));
         textView.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
         textView.setPadding(10, 20, 10, 20);
 */
@@ -511,7 +558,7 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_edit).setVisible(false);
         }
         else {
-            menu.findItem(R.id.mnu_edit).setTitle(title).setVisible(true);                          //.setActionView(textView);
+            menu.findItem(R.id.mnu_edit).setTitle(editTitle).setVisible(true);                          //.setActionView(textView);
         }
 
         final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
@@ -727,14 +774,56 @@ public class SearchFragment extends Fragment
             {
                 case R.id.mnu_listen_stop:
                 {
+                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
                     _s.SayStop();
 
                     return true;
                 }
-                case R.id.mnu_listen_chapter_from_1:
-                case R.id.mnu_listen_chapter_from_pos:
+                case R.id.mnu_listen_current_chapter_from_1:
+                case R.id.mnu_listen_current_chapter_from_pos:
                 {
-                    _s.Say(verse.bbName, verse.bNumber, verse.cNumber, itemId == R.id.mnu_listen_chapter_from_1 ? 1 : verse.vNumber);
+                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.LISTEN_STATUS, 1);
+                    PCommon.SetListenPosition(getContext(), verse.bbName, verse.bNumber, verse.cNumber);
+                    _s.Say(verse.bbName, verse.bNumber, verse.cNumber, itemId == R.id.mnu_listen_current_chapter_from_1 ? 1 : verse.vNumber);
+
+                    return true;
+                }
+                case R.id.mnu_listen_previous_chapter:
+                case R.id.mnu_listen_next_chapter:
+                {
+                    final String[] arrListen = PCommon.GetListenPosition(getContext());
+                    if (arrListen == null || arrListen.length != 3) return true;
+
+                    final String listen_bbname = arrListen[0];
+                    final int listen_bnumber = Integer.parseInt(arrListen[1]);
+                    final int listen_cnumber = Integer.parseInt(arrListen[2]);
+
+                    if (itemId == R.id.mnu_listen_previous_chapter)
+                    {
+                        if ((listen_cnumber - 1) < 1)
+                        {
+                            PCommon.ShowToast(getContext(), R.string.toastChapterFailure, Toast.LENGTH_SHORT);
+                        }
+                        else
+                        {
+                            PCommon.SetListenPosition(getContext(), listen_bbname, listen_bnumber, listen_cnumber - 1);
+                            _s.Say(listen_bbname, listen_bnumber, listen_cnumber - 1, 1);
+                        }
+                    }
+                    else
+                    {
+                        //Next chapter
+                        final int chapterMax =_s.GetBookChapterMax(listen_bnumber);
+                        if ((listen_cnumber + 1) > chapterMax)
+                        {
+                            PCommon.ShowToast(getContext(), R.string.toastChapterFailure, Toast.LENGTH_SHORT);
+                        }
+                        else
+                        {
+                            PCommon.SetListenPosition(getContext(), listen_bbname, listen_bnumber, listen_cnumber + 1);
+                            _s.Say(listen_bbname, listen_bnumber, listen_cnumber + 1, 1);
+                        }
+                    }
 
                     return true;
                 }

@@ -61,23 +61,30 @@
         </menu>
     </item>
     <item
+        android:id="@+id/mnu_listen"
         android:title="@string/mnuListen">
         <menu>
             <item
-                android:id="@+id/mnu_listen_chapter"
-                android:title="@string/mnuListenChapter">
+                android:id="@+id/mnu_listen_stop"
+                android:title="@string/mnuListenStop" />
+            <item
+                android:id="@+id/mnu_listen_current_chapter"
+                android:title="@string/mnuListenCurrentChapter">
                 <menu>
                     <item
-                        android:id="@+id/mnu_listen_chapter_from_1"
-                        android:title="@string/mnuListenChapterFrom1" />
+                        android:id="@+id/mnu_listen_current_chapter_from_1"
+                        android:title="@string/mnuListenCurrentChapterFrom1" />
                     <item
-                        android:id="@+id/mnu_listen_chapter_from_pos"
-                        android:title="@string/mnuListenChapterFromPos" />
+                        android:id="@+id/mnu_listen_current_chapter_from_pos"
+                        android:title="@string/mnuListenCurrentChapterFromPos" />
                 </menu>
             </item>
             <item
-                android:id="@+id/mnu_listen_stop"
-                android:title="@string/mnuListenStop" />
+                android:id="@+id/mnu_listen_previous_chapter"
+                android:title="@string/mnuListenPreviousChapter" />
+            <item
+                android:id="@+id/mnu_listen_next_chapter"
+                android:title="@string/mnuListenNextChapter" />
         </menu>
     </item>
     <item

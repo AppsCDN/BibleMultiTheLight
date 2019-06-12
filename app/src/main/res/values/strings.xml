@@ -93,9 +93,11 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuPrbl">Parables</string>
     <string name="mnuListen">Listen</string>
     <string name="mnuListenStop">Stop</string>
-    <string name="mnuListenChapter">Chapter</string>
-    <string name="mnuListenChapterFrom1">Beginning</string>
-    <string name="mnuListenChapterFromPos">Current position</string>
+    <string name="mnuListenCurrentChapter">Current chapter</string>
+    <string name="mnuListenCurrentChapterFrom1">Beginning</string>
+    <string name="mnuListenCurrentChapterFromPos">Current position</string>
+    <string name="mnuListenPreviousChapter">Previous chapter</string>
+    <string name="mnuListenNextChapter">Next chapter</string>
     <string name="mnuShare">Share</string>
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
@@ -134,6 +136,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tabEmpty" translatable="false"><![CDATA[<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></string>
     <string name="toastEmpty">Empty!</string>
     <string name="toastEmpty3">Min. 3 characters!</string>
+    <string name="toastChapterFailure">End of book&#8230;</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
