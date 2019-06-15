@@ -486,8 +486,6 @@ public class SearchFragment extends Fragment
         }
 
         //~~~ Listen
-        final int listenStatus = PCommon.GetListenStatus(v.getContext());
-        final boolean listen_cmd_visibility = listenStatus == 1;
         final String listenPosMainTitle;
         final String[] arrListen = PCommon.GetListenPosition(v.getContext());
         if (arrListen == null || arrListen.length != 3)
@@ -523,20 +521,21 @@ public class SearchFragment extends Fragment
                         " (",
                         listenPosCurrentChapterTitle,
                         ")");
-
+        final int listenStatus = PCommon.GetListenStatus(v.getContext());
+        final boolean listen_cmd_visibility = listenStatus > 0;
         menu.findItem(R.id.mnu_listen).setTitle(listenMainTitle);
-        menu.findItem(R.id.mnu_listen_stop).setVisible(true);
-        menu.findItem(R.id.mnu_listen_current_chapter).setVisible(!listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_previous_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_stop).setVisible(listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_replay).setVisible(!listen_cmd_visibility);
         menu.findItem(R.id.mnu_listen_next_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_previous_chapter).setVisible(!listen_cmd_visibility);
+        menu.findItem(R.id.mnu_listen_current_chapter).setVisible(!listen_cmd_visibility);
         menu.findItem(R.id.mnu_listen_current_chapter).setTitle(listCurrentChapterTitle);
 
         //~~~ Edit
         final int installStatus = PCommon.GetInstallStatus(v.getContext());
         final int editStatus = PCommon.GetEditStatus(v.getContext());
         final int editArtId = PCommon.GetEditArticleId(v.getContext());
-        //TODO NEXT: Create customized view
-        //final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
+        //TODO NEXT: Create customized view -- final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
         final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
                 ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
                 : -1;
@@ -558,7 +557,7 @@ public class SearchFragment extends Fragment
             menu.findItem(R.id.mnu_edit).setVisible(false);
         }
         else {
-            menu.findItem(R.id.mnu_edit).setTitle(editTitle).setVisible(true);                          //.setActionView(textView);
+            menu.findItem(R.id.mnu_edit).setTitle(editTitle).setVisible(true);                      //.setActionView(textView);
         }
 
         final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
@@ -774,7 +773,6 @@ public class SearchFragment extends Fragment
             {
                 case R.id.mnu_listen_stop:
                 {
-                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
                     _s.SayStop();
 
                     return true;
@@ -782,12 +780,12 @@ public class SearchFragment extends Fragment
                 case R.id.mnu_listen_current_chapter_from_1:
                 case R.id.mnu_listen_current_chapter_from_pos:
                 {
-                    PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.LISTEN_STATUS, 1);
                     PCommon.SetListenPosition(getContext(), verse.bbName, verse.bNumber, verse.cNumber);
                     _s.Say(verse.bbName, verse.bNumber, verse.cNumber, itemId == R.id.mnu_listen_current_chapter_from_1 ? 1 : verse.vNumber);
 
                     return true;
                 }
+                case R.id.mnu_listen_replay:
                 case R.id.mnu_listen_previous_chapter:
                 case R.id.mnu_listen_next_chapter:
                 {
@@ -798,7 +796,12 @@ public class SearchFragment extends Fragment
                     final int listen_bnumber = Integer.parseInt(arrListen[1]);
                     final int listen_cnumber = Integer.parseInt(arrListen[2]);
 
-                    if (itemId == R.id.mnu_listen_previous_chapter)
+                    if (itemId == R.id.mnu_listen_replay)
+                    {
+                        PCommon.SetListenPosition(getContext(), listen_bbname, listen_bnumber, listen_cnumber);
+                        _s.Say(listen_bbname, listen_bnumber, listen_cnumber, 1);
+                    }
+                    else if (itemId == R.id.mnu_listen_previous_chapter)
                     {
                         if ((listen_cnumber - 1) < 1)
                         {

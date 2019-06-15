@@ -41,8 +41,6 @@ public interface IProject
 
         LISTEN_POSITION,
 
-        LISTEN_STATUS,
-
         THEME_NAME,
 
         FONT_NAME,

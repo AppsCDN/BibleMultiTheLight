@@ -22,7 +22,6 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="languageFrInstalled" tools:ignore="UnusedResources">Versions installed: EN, ES, FR…</string>
     <string name="languageClear">Clear</string>
     <string name="languageContinue">Continue</string>
-    <string name="listenQuit">Listening, please wait or stop.</string>
     <string name="logErr">Error: %s</string>
     <string name="mnuAbout">About / Contact</string>
     <string name="mnuQuit">Quit</string>
@@ -92,8 +91,9 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupFavSymbol">Favorite symbol</string>
     <string name="mnuPrbl">Parables</string>
     <string name="mnuListen">Listen</string>
+    <string name="mnuListenReplay">Replay</string>
     <string name="mnuListenStop">Stop</string>
-    <string name="mnuListenCurrentChapter">Current chapter</string>
+    <string name="mnuListenCurrentChapter">Your selection</string>
     <string name="mnuListenCurrentChapterFrom1">Beginning</string>
     <string name="mnuListenCurrentChapterFromPos">Current position</string>
     <string name="mnuListenPreviousChapter">Previous chapter</string>
@@ -137,6 +137,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastEmpty">Empty!</string>
     <string name="toastEmpty3">Min. 3 characters!</string>
     <string name="toastChapterFailure">End of book&#8230;</string>
+    <string name="toastListenQuit">Listening, please wait or stop.</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
@@ -732,6 +733,14 @@ In a next version, you will be able to change the Reading symbol.<br>
 - Manage sections<br>
 - To share your articles with the users: send me the source. Please don\'t add too much text, just some titles, let the verses speak.<br>
 <br><br>
+<H>Audio Bible</H>
+- <u>Context menu</u>: Listen<br><br>
+- <u>Android</u>:<br>
+Settings<br>
+Language & Input<br>
+Text-to-speech output<br>
+Select Google Text-to-speech (or Samsung) as your preferred TTS engine.<br>
+<br><br>
 <H>Tips</H>
 - Let the application resident, the memory is well managed<br>
 - Search result is useful to search verses in a language and get the exact same verses in another language, to learn, compare texts, check words&#8230;<br>
@@ -748,6 +757,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Audio Bible (see the section in the help)<br>
+<br>
 <H>3.10</H>
 • Creation of articles (see the section in the help)<br>
 <br>

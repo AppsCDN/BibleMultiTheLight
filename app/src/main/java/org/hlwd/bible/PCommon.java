@@ -649,9 +649,10 @@ final class PCommon implements IProject
     /***
      * Get thread type running
      * @param context   Context
+     * @param findThreadType    Thread to find (0=ANY, 1=LISTEN)
      * @return Get thread type running (0=DEFAUT, 1=INSTALL, 2=LISTEN)
      */
-    private static int GetThreadTypeRunning(final Context context)
+    static int GetThreadTypeRunning(final Context context, final int findThreadType)
     {
         int threadType = 0;
 
@@ -668,15 +669,26 @@ final class PCommon implements IProject
                 //TODO: ThreadGroup! => list group to find it?
                 if (thread.getName().startsWith(threadName))
                 {
-                    if (thread.getName().contains(threadNameInstall))
+                    if (findThreadType == 0)
                     {
-                        threadType = 1;
-                        break;
+                        if (thread.getName().contains(threadNameInstall))
+                        {
+                            threadType = 1;
+                            break;
+                        }
+                        else if (thread.getName().contains(threadNameListen))
+                        {
+                            threadType = 2;
+                            break;
+                        }
                     }
-                    else if (thread.getName().contains(threadNameListen))
+                    else
                     {
-                        threadType = 2;
-                        break;
+                        if (thread.getName().contains(threadNameListen))
+                        {
+                            threadType = 2;
+                            break;
+                        }
                     }
                 }
             }
@@ -735,10 +747,10 @@ final class PCommon implements IProject
     {
         try
         {
-            final int threadType = PCommon.GetThreadTypeRunning(context);
+            final int threadType = PCommon.GetThreadTypeRunning(context, 0);
             if (threadType > 0)
             {
-                ShowToast(context, threadType == 1 ? R.string.installQuit : R.string.listenQuit, Toast.LENGTH_SHORT);
+                ShowToast(context, threadType == 1 ? R.string.installQuit : R.string.toastListenQuit, Toast.LENGTH_SHORT);
                 return;
             }
         }
@@ -1932,7 +1944,6 @@ final class PCommon implements IProject
     {
         final String listenPosition = PCommon.ConcaT(bbName, ",", bNumber, ",", cNumber);
 
-        PCommon.SavePrefInt(context, IProject.APP_PREF_KEY.LISTEN_STATUS, 1);
         PCommon.SavePref(context, IProject.APP_PREF_KEY.LISTEN_POSITION, listenPosition);
     }
 
@@ -1950,12 +1961,12 @@ final class PCommon implements IProject
     /***
      * Get listen status
      * @param context
-     * @return
+     * @return (1=Active, 0=Inactive)
      */
     @SuppressWarnings("JavaDoc")
     static int GetListenStatus(final Context context)
     {
-        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.LISTEN_STATUS, "0"));
+        return PCommon.GetThreadTypeRunning(context, 1) > 0 ? 1 : 0;
     }
 
     /***

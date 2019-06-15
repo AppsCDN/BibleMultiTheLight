@@ -414,7 +414,6 @@ class DbHelper extends SQLiteOpenHelper
             }
             if (oldVersion < 31)    //1..30 => 31
             {
-                PCommon.SavePrefInt(_context, IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
                 PCommon.SavePref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION, "");
             }
 
@@ -488,7 +487,6 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LISTEN_POSITION, "");
-        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.LISTEN_STATUS, 0);
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
@@ -522,7 +520,6 @@ class DbHelper extends SQLiteOpenHelper
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_4:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4)));
             System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_5:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5)));
             System.out.println(PCommon.ConcaT("LISTEN_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION)));
-            System.out.println(PCommon.ConcaT("LISTEN_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_STATUS)));
             System.out.println(PCommon.ConcaT("THEME_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME)));
             System.out.println(PCommon.ConcaT("FONT_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_NAME)));
             System.out.println(PCommon.ConcaT("FONT_SIZE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_SIZE)));
