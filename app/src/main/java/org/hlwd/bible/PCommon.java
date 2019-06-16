@@ -652,7 +652,7 @@ final class PCommon implements IProject
      * @param findThreadType    Thread to find (0=ANY, 1=LISTEN)
      * @return Get thread type running (0=DEFAUT, 1=INSTALL, 2=LISTEN)
      */
-    static int GetThreadTypeRunning(final Context context, final int findThreadType)
+    private static int GetThreadTypeRunning(final Context context, final int findThreadType)
     {
         int threadType = 0;
 
@@ -704,40 +704,6 @@ final class PCommon implements IProject
 
         return threadType;
     }
-
-/***
-     * Get count of threads running
-     * @param context   Context
-     * @return Count of threads running
-    private static int GetCountThreadRunning(final Context context)
-    {
-        int count = 0;
-
-        try
-        {
-            final String threadName = context.getString(R.string.threadNfoPrefix);
-
-            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-            //was final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
-            final Thread[] threadArr = threadSet.toArray(new Thread[0]);
-            for (Thread thread : threadArr)
-            {
-                //TODO: ThreadGroup! => list group to find it?
-                if (thread.getName().startsWith(threadName)) count++;
-            }
-
-            threadSet.clear();
-            //noinspection UnusedAssignment
-            threadSet = null;
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
-        }
-
-        return count;
-    }
-*/
 
     /***
      * Try to quit application
@@ -1936,9 +1902,6 @@ final class PCommon implements IProject
 
     /***
      * Save listen position
-     * @param bbName
-     * @param bNumber
-     * @param cNumber
      */
     static void SetListenPosition(final Context context, final String bbName, final int bNumber, final int cNumber)
     {

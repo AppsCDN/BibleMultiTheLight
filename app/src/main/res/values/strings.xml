@@ -137,7 +137,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastEmpty">Empty!</string>
     <string name="toastEmpty3">Min. 3 characters!</string>
     <string name="toastChapterFailure">End of book&#8230;</string>
-    <string name="toastListenQuit">Listening, please wait or stop.</string>
+    <string name="toastListenQuit">Stop the audio Bible&#8230;</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
@@ -742,7 +742,7 @@ In a next version, you will be able to change the Reading symbol.<br>
 Settings<br>
 Language & Input<br>
 Text-to-speech output<br>
-Select TTS engine<br>
+Preferred engine<br>
 <br>
 3) <u>Context menu</u>: Listen<br>
 <br><br>

@@ -90,6 +90,14 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuGroupFontSize">Tamanho da fonte</string>
     <string name="mnuGroupFavSymbol">Favoritos (símbolo)</string>
     <string name="mnuPrbl">Parábolas</string>
+    <string name="mnuListen">Escutar</string>
+    <string name="mnuListenReplay">Ouvir de novo</string>
+    <string name="mnuListenStop">Parar</string>
+    <string name="mnuListenCurrentChapter">Sua seleção</string>
+    <string name="mnuListenCurrentChapterFrom1">Começo</string>
+    <string name="mnuListenCurrentChapterFromPos">Posição actual</string>
+    <string name="mnuListenPreviousChapter">Capítulo precedente</string>
+    <string name="mnuListenNextChapter">Capítulo seguinte</string>
     <string name="mnuShare">Partilhar</string>
     <string name="mnuShareChapter">Capítulo</string>
     <string name="mnuShareResult">Tudo</string>
@@ -127,6 +135,8 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="seeMat24_32">Mateus 24.32</string>
     <string name="toastEmpty">Vazio!</string>
     <string name="toastEmpty3">Mín. 3 caracteres!</string>
+    <string name="toastChapterFailure">Fim do livro&#8230;</string>
+    <string name="toastListenQuit">Bíblia audio&#8230;</string>
     <string name="toastBookNotInstalled">Papel não está instalado!</string>
     <string name="toastNoAppsToShare">Nenhum aplicativo para compartilhar!</string>
     <string name="toastNoBrowser">Instalar um browser.</string>

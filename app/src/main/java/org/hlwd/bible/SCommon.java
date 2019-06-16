@@ -1443,8 +1443,6 @@ class SCommon
      */
     void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
     {
-        //TODO TTS: STOP VIA UI IS NECESSARY BEFORE LISTEN CHAPTER,
-        //TODO TTS: TELL HOW TO DOWNLOAD VOICES...
         try
         {
             if (ttsManager != null)

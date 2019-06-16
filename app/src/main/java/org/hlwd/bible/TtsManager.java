@@ -5,7 +5,7 @@ import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
 
-public class TtsManager
+class TtsManager
 {
     private Context context = null;
     private boolean isLoaded = false;
@@ -23,6 +23,7 @@ public class TtsManager
 
             final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener()
             {
+                @SuppressWarnings("StatementWithEmptyBody")
                 @Override
                 public void onInit(int status)
                 {
@@ -63,7 +64,7 @@ public class TtsManager
      * Wait several seconds for TTS to be ready
      * @return True if was loaded before the limit time
      */
-    public boolean WaitForReady()
+    boolean WaitForReady()
     {
         try
         {
@@ -87,7 +88,7 @@ public class TtsManager
         return false;
     }
 
-    public void ShutDown()
+    void ShutDown()
     {
         //Rem: don't thread.sleep here, impact UI
         try
@@ -98,14 +99,14 @@ public class TtsManager
                 {
                     tts.stop();
                 }
-                catch (Exception ex)
+                catch (Exception ignored)
                 { }
 
                 try
                 {
                     tts.shutdown();
                 }
-                catch (Exception ex)
+                catch (Exception ignored)
                 { }
             }
         }
@@ -120,7 +121,7 @@ public class TtsManager
         }
     }
 
-    public void SayAdd(final String msg)
+    void SayAdd(final String msg)
     {
         try
         {
@@ -144,7 +145,7 @@ public class TtsManager
         }
     }
 
-    public boolean IsLoaded()
+    private boolean IsLoaded()
     {
         try
         {
