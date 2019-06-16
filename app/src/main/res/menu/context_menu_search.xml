@@ -1,5 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mnu_open"
         android:title="@string/mnuOpen">
@@ -58,6 +57,36 @@
             <item
                 android:id="@+id/mnu_remove_note"
                 android:title="@string/mnuNoteRemove" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mnu_listen"
+        android:title="@string/mnuListen">
+        <menu>
+            <item
+                android:id="@+id/mnu_listen_stop"
+                android:title="@string/mnuListenStop" />
+            <item
+                android:id="@+id/mnu_listen_replay"
+                android:title="@string/mnuListenReplay" />
+            <item
+                android:id="@+id/mnu_listen_next_chapter"
+                android:title="@string/mnuListenNextChapter" />
+            <item
+                android:id="@+id/mnu_listen_previous_chapter"
+                android:title="@string/mnuListenPreviousChapter" />
+            <item
+                android:id="@+id/mnu_listen_current_chapter"
+                android:title="@string/mnuListenCurrentChapter">
+                <menu>
+                    <item
+                        android:id="@+id/mnu_listen_current_chapter_from_1"
+                        android:title="@string/mnuListenCurrentChapterFrom1" />
+                    <item
+                        android:id="@+id/mnu_listen_current_chapter_from_pos"
+                        android:title="@string/mnuListenCurrentChapterFromPos" />
+                </menu>
+            </item>
         </menu>
     </item>
     <item

@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /***
  * Singleton
@@ -21,6 +22,8 @@ class SCommon
     private static Dal _dal = null;
     @SuppressLint("StaticFieldLeak")
     private static Context _context = null;
+    private static TtsManager ttsManager = null;
+    private static Thread ttsThread = null;
 
     //</editor-fold>
 
@@ -353,7 +356,7 @@ class SCommon
 
         try
         {
-            lstVerse = _dal.GetChapter(tbbName, bNumber, cNumber);
+            lstVerse = _dal.GetChapterFromPos(tbbName, bNumber, cNumber, 1);
         }
         catch(Exception ex)
         {
@@ -1429,6 +1432,131 @@ class SCommon
         }
 
         return pgrStatus;
+    }
+
+    /**
+     * Say chapter
+     * @param bbName       Bible name
+     * @param bNumber      Book number
+     * @param cNumber      Chapter number
+     * @param vNumberFrom  From Verse number
+     */
+    void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
+    {
+        try
+        {
+            if (ttsManager != null)
+            {
+                ttsManager.ShutDown();
+
+                ttsManager = null;
+            }
+
+            if (ttsThread != null)
+            {
+                ttsThread.interrupt();
+            }
+
+            final ThreadGroup threadGroup = new ThreadGroup(_context.getString(R.string.threadNfoGroup));
+            final String threadName = PCommon.ConcaT(_context.getString(R.string.threadNfoPrefix), PCommon.TimeFuncShort(), _context.getString(R.string.threadNfoListen));
+
+            ttsThread = new Thread(threadGroup, threadName)
+            {
+                @Override
+                public void run()
+                {
+                    SayMain();
+                }
+
+                private void SayMain()
+                {
+                    try
+                    {
+                        final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumber, cNumber, vNumberFrom);
+                        final Locale locale = GetLocale(_context, bbName);
+                        if (locale != null)
+                        {
+                            if (lstVerse != null)
+                            {
+                                if (lstVerse.size() > 0)
+                                {
+                                    ttsManager = new TtsManager(_context, locale);
+
+                                    final boolean isReady = ttsManager.WaitForReady();
+                                    if (isReady)
+                                    {
+                                        for(final VerseBO verse : lstVerse)
+                                        {
+                                            ttsManager.SayAdd(verse.vText);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+                    }
+                }
+
+                private Locale GetLocale(final Context context, final String bbName)
+                {
+                    try
+                    {
+                        final String lang = bbName.toLowerCase();
+                        switch (lang)
+                        {
+                            case "k":
+                                return new Locale("en", "GB");
+
+                            case "v":
+                                return new Locale("es", "ES");
+
+                            case "l":
+                                return new Locale("fr", "FR");
+
+                            case "d":
+                                return new Locale("it", "IT");
+
+                            case "a":
+                                return new Locale("pt", "BR");
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+                    }
+
+                    return null;
+                }
+            };
+            ttsThread.setPriority(Thread.MIN_PRIORITY);
+            ttsThread.start();
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+    }
+
+    /***
+     * Shutdown TTS
+     */
+    void SayStop()
+    {
+        try
+        {
+            ttsManager.ShutDown();
+        }
+        catch(Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+        }
+        finally
+        {
+            ttsManager = null;
+        }
     }
 
     //</editor-fold>

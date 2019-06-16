@@ -56,7 +56,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuCopySourceToClipboard">Copiar fonte o clipboard</string>
     <string name="mnuEmailSourceToDeveloper">Email fonte o clipboard</string>
     <string name="mnuRename">Renomear</string>
-    <string name="mnuEditOn">Começar edição de artigo</string>
+    <string name="mnuEditOn">Editar artigo</string>
     <string name="mnuEditOff">Parar edição</string>
     <string name="mnuEditSelectFrom">&#8230; Seleccionar o começo</string>
     <string name="mnuEditSelectTo">&#8230; Seleccionar o fim</string>
@@ -90,6 +90,14 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuGroupFontSize">Tamanho da fonte</string>
     <string name="mnuGroupFavSymbol">Favoritos (símbolo)</string>
     <string name="mnuPrbl">Parábolas</string>
+    <string name="mnuListen">Escutar</string>
+    <string name="mnuListenReplay">Ouvir de novo</string>
+    <string name="mnuListenStop">Parar</string>
+    <string name="mnuListenCurrentChapter">Sua seleção</string>
+    <string name="mnuListenCurrentChapterFrom1">Começo</string>
+    <string name="mnuListenCurrentChapterFromPos">Posição actual</string>
+    <string name="mnuListenPreviousChapter">Capítulo precedente</string>
+    <string name="mnuListenNextChapter">Capítulo seguinte</string>
     <string name="mnuShare">Partilhar</string>
     <string name="mnuShareChapter">Capítulo</string>
     <string name="mnuShareResult">Tudo</string>
@@ -125,10 +133,10 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Gênesis 2.2</string>
     <string name="seeMat24_32">Mateus 24.32</string>
-    <string name="threadNfoPrefix">Biblenfo</string>
-    <string name="threadNfoGroup">Biblenfogrp</string>
     <string name="toastEmpty">Vazio!</string>
     <string name="toastEmpty3">Mín. 3 caracteres!</string>
+    <string name="toastChapterFailure">Fim do livro&#8230;</string>
+    <string name="toastListenQuit">Bíblia audio&#8230;</string>
     <string name="toastBookNotInstalled">Papel não está instalado!</string>
     <string name="toastNoAppsToShare">Nenhum aplicativo para compartilhar!</string>
     <string name="toastNoBrowser">Instalar um browser.</string>
@@ -375,7 +383,7 @@ Para obter a tradução de um verso, capítulo, resultado (resultado da pesquisa
 Você verá que as traduções estão muito próximas.<br>
 <br><br>
 <H>Como criar um artigo?</H>
-- <u>Menu contextual</u>: Começar edição de artigo<br>
+- <u>Menu contextual</u>: Editar artigo<br>
 - Criar um artigo<br>
 - Selecionar o artigo<br>
 - Selecionar os versículos (Começo/Fim) de um mesmo capítulo<br>
@@ -383,6 +391,19 @@ Você verá que as traduções estão muito próximas.<br>
 - Abrir seu artigo<br>
 - Gerir as seções<br>
 - Para compartilhar seus artigos com os usuários: me envie a fonte. Por favor, não some muito texto, só alguns títulos, permita os versos para falar.<br>
+<br><br>
+<H>Bíblia audio</H>
+1) <u>Síntese de fala grátis</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Configurar Android</u>:<br>
+Configurar<br>
+Idioma e entrada<br>
+Conversão de texto em voz<br>
+Mecanismo preferencial<br>
+<br>
+3) <u>Menu contextual</u>: Escutar<br>
 <br><br>
 <H>Dicas</H>
 - Deixe o aplicativo residente, a memória é bem gerenciada<br>
@@ -400,6 +421,9 @@ Se você tiver algum problema ou sugestão, entre em contato comigo (menu A prop
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Bíblia audio (consultar a secção na ajuda)<br>
+<br>
 <H>3.10</H>
 • Criação de artigos (consultar a secção na ajuda)<br>
 <br>

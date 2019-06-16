@@ -647,25 +647,50 @@ final class PCommon implements IProject
     }
 
     /***
-     * Get count of threads running
+     * Get thread type running
      * @param context   Context
-     * @return Count of threads running
+     * @param findThreadType    Thread to find (0=ANY, 1=LISTEN)
+     * @return Get thread type running (0=DEFAUT, 1=INSTALL, 2=LISTEN)
      */
-    private static int GetCountThreadRunning(final Context context)
+    private static int GetThreadTypeRunning(final Context context, final int findThreadType)
     {
-        int count = 0;
+        int threadType = 0;
 
         try
         {
             final String threadName = context.getString(R.string.threadNfoPrefix);
+            final String threadNameInstall = context.getString(R.string.threadNfoInstall);
+            final String threadNameListen = context.getString(R.string.threadNfoListen);
 
             Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-            //was final Thread[] threadArr = threadSet.toArray(new Thread[threadSet.size()]);
             final Thread[] threadArr = threadSet.toArray(new Thread[0]);
             for (Thread thread : threadArr)
             {
                 //TODO: ThreadGroup! => list group to find it?
-                if (thread.getName().startsWith(threadName)) count++;
+                if (thread.getName().startsWith(threadName))
+                {
+                    if (findThreadType == 0)
+                    {
+                        if (thread.getName().contains(threadNameInstall))
+                        {
+                            threadType = 1;
+                            break;
+                        }
+                        else if (thread.getName().contains(threadNameListen))
+                        {
+                            threadType = 2;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (thread.getName().contains(threadNameListen))
+                        {
+                            threadType = 2;
+                            break;
+                        }
+                    }
+                }
             }
 
             threadSet.clear();
@@ -677,7 +702,7 @@ final class PCommon implements IProject
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
 
-        return count;
+        return threadType;
     }
 
     /***
@@ -688,10 +713,10 @@ final class PCommon implements IProject
     {
         try
         {
-            final int count = GetCountThreadRunning(context);
-            if (count > 0)
+            final int threadType = PCommon.GetThreadTypeRunning(context, 0);
+            if (threadType > 0)
             {
-                ShowToast(context, R.string.installQuit, Toast.LENGTH_SHORT);
+                ShowToast(context, threadType == 1 ? R.string.installQuit : R.string.toastListenQuit, Toast.LENGTH_SHORT);
                 return;
             }
         }
@@ -805,8 +830,15 @@ final class PCommon implements IProject
      */
     static void ShowToast(final Context context, final int message, final int duration)
     {
-        final Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
+        try
+        {
+            final Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
     }
 
     /***
@@ -817,8 +849,15 @@ final class PCommon implements IProject
      */
     static void ShowToast(final Context context, final String message, @SuppressWarnings("SameParameterValue") final int duration)
     {
-        final Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
+        try
+        {
+            final Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
+        }
     }
 
     /***
@@ -1859,6 +1898,38 @@ final class PCommon implements IProject
     static int GetEditArticleId(final Context context)
     {
         return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "-1"));
+    }
+
+    /***
+     * Save listen position
+     */
+    static void SetListenPosition(final Context context, final String bbName, final int bNumber, final int cNumber)
+    {
+        final String listenPosition = PCommon.ConcaT(bbName, ",", bNumber, ",", cNumber);
+
+        PCommon.SavePref(context, IProject.APP_PREF_KEY.LISTEN_POSITION, listenPosition);
+    }
+
+    /***
+     * Get listen position
+     * @return array of string with bbname, bnumber, cnumber OR null
+     */
+    static String[] GetListenPosition(final Context context)
+    {
+        final String listenPosition = PCommon.GetPref(context, IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+
+        return listenPosition.isEmpty() ? null : listenPosition.split(",");
+    }
+
+    /***
+     * Get listen status
+     * @param context
+     * @return (1=Active, 0=Inactive)
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetListenStatus(final Context context)
+    {
+        return PCommon.GetThreadTypeRunning(context, 1) > 0 ? 1 : 0;
     }
 
     /***

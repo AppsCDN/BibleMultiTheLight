@@ -39,6 +39,8 @@ public interface IProject
 
         LAYOUT_DYNAMIC_5,
 
+        LISTEN_POSITION,
+
         THEME_NAME,
 
         FONT_NAME,

@@ -56,7 +56,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuCopySourceToClipboard">Copier source dans presse-papier</string>
     <string name="mnuEmailSourceToDeveloper">Email source au développeur</string>
     <string name="mnuRename">Renommer</string>
-    <string name="mnuEditOn">Commencer édition d\'article</string>
+    <string name="mnuEditOn">Editer article</string>
     <string name="mnuEditOff">Stopper édition</string>
     <string name="mnuEditSelectFrom">&#8230; Sélectionner le début</string>
     <string name="mnuEditSelectTo">&#8230; Sélectionner la fin</string>
@@ -90,6 +90,14 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuGroupFontSize">Taille de la police</string>
     <string name="mnuGroupFavSymbol">Favoris (symbole)</string>
     <string name="mnuPrbl">Paraboles</string>
+    <string name="mnuListen">Ecouter</string>
+    <string name="mnuListenReplay">Réécouter</string>
+    <string name="mnuListenStop">Stopper</string>
+    <string name="mnuListenCurrentChapter">Votre sélection</string>
+    <string name="mnuListenCurrentChapterFrom1">Début</string>
+    <string name="mnuListenCurrentChapterFromPos">Position actuelle</string>
+    <string name="mnuListenPreviousChapter">Chapitre précédent</string>
+    <string name="mnuListenNextChapter">Chapitre suivant</string>
     <string name="mnuShare">Partager</string>
     <string name="mnuShareChapter">Chapitre</string>
     <string name="mnuShareResult">Tout</string>
@@ -125,10 +133,10 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="emailChooser">Email</string>
     <string name="seeGen2_2">Genèse 2.2</string>
     <string name="seeMat24_32">Matthieu 24.32</string>
-    <string name="threadNfoPrefix">biblenfo</string>
-    <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Vide!</string>
     <string name="toastEmpty3">Min. 3 caractères!</string>
+    <string name="toastChapterFailure">Fin du livre&#8230;</string>
+    <string name="toastListenQuit">Stoppez la Bible audio&#8230;</string>
     <string name="toastBookNotInstalled">Livre non installé!</string>
     <string name="toastNoAppsToShare">Aucune applications pour partager!</string>
     <string name="toastNoBrowser">Installez un browser.</string>
@@ -714,7 +722,7 @@ Vous pouvez changer le symbole du favori normal dans Paramètres.<br>
 Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
 <br><br>
 <H>Comment créer un article?</H>
-- <u>Menu contextuel</u>: Commencer édition d\'article<br>
+- <u>Menu contextuel</u>: Editer article<br>
 - Créer un article<br>
 - Sélectionner l\'article<br>
 - Sélectionner des versets (Début/Fin) d\'un même chapitre<br>
@@ -722,6 +730,19 @@ Dans une prochaine version, vous pourrez changer le symbole de lecture.<br>
 - Ouvrir votre article<br>
 - Gérer les sections<br>
 - Pour partager vos articles avec les utilisateurs: envoyez-moi le source. S\'il vous plait, n\'ajoutez pas trop de texte, juste quelques titres, laissez les versets parler.<br>
+<br><br>
+<H>Bible Audio</H>
+1) <u>Moteurs gratuits de synthèse vocale</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Paramètres Android</u>:<br>
+Paramètres<br>
+Langue & Saisie<br>
+Sortie de la synthèse vocale<br>
+Moteur préféré<br>
+<br>
+3) <u>Menu contextuel</u>: Ecouter<br>
 <br><br>
 <H>Astuces</H>
 - Laissez l\'application résidente, la mémoire est bien gérée<br>
@@ -739,8 +760,11 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Bible audio (consulter l\'Aide)<br>
+<br>
 <H>3.10</H>
-• Création d\'articles (consulter la section dans l\'aide)<br>
+• Création d\'articles (consulter l\'Aide)<br>
 <br>
 <H>3.9</H>
 • +20 articles<br>

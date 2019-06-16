@@ -56,7 +56,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
     <string name="mnuEmailSourceToDeveloper">Email source to developer</string>
     <string name="mnuRename">Rename</string>
-    <string name="mnuEditOn">Start editing article</string>
+    <string name="mnuEditOn">Edit article</string>
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
     <string name="mnuEditSelectTo">&#8230; Select To</string>
@@ -90,6 +90,14 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupFontSize">Font size</string>
     <string name="mnuGroupFavSymbol">Favorite symbol</string>
     <string name="mnuPrbl">Parables</string>
+    <string name="mnuListen">Listen</string>
+    <string name="mnuListenReplay">Replay</string>
+    <string name="mnuListenStop">Stop</string>
+    <string name="mnuListenCurrentChapter">Your selection</string>
+    <string name="mnuListenCurrentChapterFrom1">Beginning</string>
+    <string name="mnuListenCurrentChapterFromPos">Current position</string>
+    <string name="mnuListenPreviousChapter">Previous chapter</string>
+    <string name="mnuListenNextChapter">Next chapter</string>
     <string name="mnuShare">Share</string>
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
@@ -126,10 +134,10 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="seeGen2_2">Genesis 2.2</string>
     <string name="seeMat24_32">Matthew 24.32</string>
     <string name="tabEmpty" translatable="false"><![CDATA[<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></string>
-    <string name="threadNfoPrefix">biblenfo</string>
-    <string name="threadNfoGroup">biblenfogrp</string>
     <string name="toastEmpty">Empty!</string>
     <string name="toastEmpty3">Min. 3 characters!</string>
+    <string name="toastChapterFailure">End of book&#8230;</string>
+    <string name="toastListenQuit">Stop the audio Bible&#8230;</string>
     <string name="toastBookNotInstalled">Book not installed!</string>
     <string name="toastNoAppsToShare">No applications to share!</string>
     <string name="toastNoBrowser">Install a browser.</string>
@@ -716,7 +724,7 @@ You can change the normal favorite symbol in Settings menu.<br>
 In a next version, you will be able to change the Reading symbol.<br>
 <br><br>
 <H>How to create an article?</H>
-- <u>Context menu</u>: Start editing article<br>
+- <u>Context menu</u>: Edit article<br>
 - Create an article<br>
 - Select it<br>
 - Select verses (From/To) of same chapter<br>
@@ -724,6 +732,19 @@ In a next version, you will be able to change the Reading symbol.<br>
 - Open your article<br>
 - Manage sections<br>
 - To share your articles with the users: send me the source. Please don\'t add too much text, just some titles, let the verses speak.<br>
+<br><br>
+<H>Audio Bible</H>
+1) <u>Free Text To Speech Engines</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Android settings</u>:<br>
+Settings<br>
+Language & Input<br>
+Text-to-speech output<br>
+Preferred engine<br>
+<br>
+3) <u>Context menu</u>: Listen<br>
 <br><br>
 <H>Tips</H>
 - Let the application resident, the memory is well managed<br>
@@ -741,6 +762,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Audio Bible (see the section in the help)<br>
+<br>
 <H>3.10</H>
 • Creation of articles (see the section in the help)<br>
 <br>
@@ -1661,6 +1685,10 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="mnuLanguage" translatable="false">Language / Lengua /\nLangue / Lingua / Idioma ?</string>
     <string name="tabSizeName" translatable="false">10</string>
     <string name="tabMyArtPrefix" translatable="false">MYART</string>
+    <string name="threadNfoPrefix" translatable="false">biblenfo</string>
+    <string name="threadNfoGroup" translatable="false">biblenfogrp</string>
+    <string name="threadNfoInstall" translatable="false">INSTALL</string>
+    <string name="threadNfoListen" translatable="false">LISTEN</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>
