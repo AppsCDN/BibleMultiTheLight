@@ -56,7 +56,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuCopySourceToClipboard">Copy source to clipboard</string>
     <string name="mnuEmailSourceToDeveloper">Email source to developer</string>
     <string name="mnuRename">Rename</string>
-    <string name="mnuEditOn">Start editing article</string>
+    <string name="mnuEditOn">Edit article</string>
     <string name="mnuEditOff">Stop editing</string>
     <string name="mnuEditSelectFrom">&#8230; Select From</string>
     <string name="mnuEditSelectTo">&#8230; Select To</string>
@@ -724,7 +724,7 @@ You can change the normal favorite symbol in Settings menu.<br>
 In a next version, you will be able to change the Reading symbol.<br>
 <br><br>
 <H>How to create an article?</H>
-- <u>Context menu</u>: Start editing article<br>
+- <u>Context menu</u>: Edit article<br>
 - Create an article<br>
 - Select it<br>
 - Select verses (From/To) of same chapter<br>
@@ -734,12 +734,17 @@ In a next version, you will be able to change the Reading symbol.<br>
 - To share your articles with the users: send me the source. Please don\'t add too much text, just some titles, let the verses speak.<br>
 <br><br>
 <H>Audio Bible</H>
-- <u>Context menu</u>: Listen<br><br>
-- <u>Android</u>:<br>
+1) <u>Free Text To Speech Engines</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Android settings</u>:<br>
 Settings<br>
 Language & Input<br>
 Text-to-speech output<br>
-Select Google Text-to-speech (or Samsung) as your preferred TTS engine.<br>
+Select TTS engine<br>
+<br>
+3) <u>Context menu</u>: Listen<br>
 <br><br>
 <H>Tips</H>
 - Let the application resident, the memory is well managed<br>

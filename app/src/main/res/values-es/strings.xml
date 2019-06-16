@@ -56,7 +56,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuCopySourceToClipboard">Copiar fuente al portapapeles</string>
     <string name="mnuEmailSourceToDeveloper">Email fuente al desarrollador</string>
     <string name="mnuRename">Renombrar</string>
-    <string name="mnuEditOn">Empezar edición de artículo</string>
+    <string name="mnuEditOn">Editar artículo</string>
     <string name="mnuEditOff">Parar edición</string>
     <string name="mnuEditSelectFrom">&#8230; Seleccionar el principio</string>
     <string name="mnuEditSelectTo">&#8230; Seleccionar el fin</string>
@@ -705,7 +705,7 @@ Hay dos tipos de favoritos:<br>
 - Favorito de lectura (pasaje)<br>
 <br><br>
 <H>¿Cómo crear un artículo?</H>
-- <u>Menú contextual</u>: Empezar edición de artículo<br>
+- <u>Menú contextual</u>: Editar artículo<br>
 - Crear un artículo<br>
 - Seleccionar el articulo<br>
 - Seleccionar los versículos (Principio/Fin) de un mismo capítulo<br>
@@ -713,6 +713,19 @@ Hay dos tipos de favoritos:<br>
 - Abrir su artículo<br>
 - Gestionar las secciones<br>
 - Para compartir tus artículos con los usuarios: envíeme el fuente. Por favor, no agregues demasiado texto, solamente algunos títulos, dejad los versículos hablar.<br>
+<br><br>
+<H>Biblia audio</H>
+1) <u>Motores gratuitos de síntesis de voz</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Ajustes Android</u>:<br>
+Ajustes<br>
+Idioma e introducción de texto<br>
+Síntesis de voz<br>
+Motor preferido<br>
+<br>
+3) <u>Menú contextual</u>: Escuchar<br>
 <br><br>
 <H>Trucos</H>
 - Deje la aplicación residente, la memoria es bien administrada<br>
@@ -730,6 +743,9 @@ Si usted tiene problemas o sugerencias, póngase en contacto conmigo (menú A pr
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Biblia audio (consultar la sección en la ayuda)<br>
+<br>
 <H>3.10</H>
 • Creación de artículos (consultar la sección en la ayuda)<br>
 <br>

@@ -18,7 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
-// PROD: Bible 3.11,   DbVersion: 31 (12)2019-06-12
+// PROD: Bible 3.11,   DbVersion: 32 (12)2019-06-16
+// PROD: Bible 3.11,   DbVersion: 31 (12)2019-06-12 (me only)
 // PROD: Bible 3.11,   DbVersion: 30 (11)2019-06-10 (me only)
 // PROD: Bible 3.10,   DbVersion: 29 (11)2019-05-11
 // PROD: Bible 3.10,   DbVersion: 29 (11)2019-04-28 (me only)
@@ -412,9 +413,9 @@ class DbHelper extends SQLiteOpenHelper
                 sql = "CREATE UNIQUE INDEX artDesc0_ndx on artDesc (artId)";
                 _db.execSQL(sql);
             }
-            if (oldVersion < 31)    //1..30 => 31
+            if (oldVersion < 32)    //1..31 => 32
             {
-                PCommon.SavePref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+                PCommon.SavePref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION, "k,1,1");
             }
 
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -486,7 +487,7 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "3");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "2");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "1");
-        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LISTEN_POSITION, "");
+        PCommon.SavePref(_context,      IProject.APP_PREF_KEY.LISTEN_POSITION, "k,1,1");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.THEME_NAME, "DARK");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");

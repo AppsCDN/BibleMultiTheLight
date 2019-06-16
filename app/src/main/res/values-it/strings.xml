@@ -56,7 +56,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuCopySourceToClipboard">Copiare sorgente negli appunti</string>
     <string name="mnuEmailSourceToDeveloper">Email sorgente allo sviluppatore</string>
     <string name="mnuRename">Rinominare</string>
-    <string name="mnuEditOn">Cominciare edizione di articolo</string>
+    <string name="mnuEditOn">Editare articolo</string>
     <string name="mnuEditOff">Fermare edizione</string>
     <string name="mnuEditSelectFrom">&#8230; Selezionare l\'inizio</string>
     <string name="mnuEditSelectTo">&#8230; Selezionare la fine</string>
@@ -707,7 +707,7 @@ Ci sono due tipi di favoriti:<br>
 - favorito di lettura (passaggio)<br>
 <br><br>
 <H>Come creare un articolo?</H>
-- <u>Menu contestuale</u>: Cominciare edizione di articolo<br>
+- <u>Menu contestuale</u>: Editare articolo<br>
 - Creare un articolo<br>
 - Selezionare l\'articolo<br>
 - Selezionare i versetti (Inizio/Fine) dello stesso capitolo<br>
@@ -715,6 +715,19 @@ Ci sono due tipi di favoriti:<br>
 - Aprire vostro articolo<br>
 - Gestire le sezioni<br>
 - Per condividere i tuoi articoli con gli utilizzatori: mandatemi la sorgente. Per favore, non aggiungere troppo testo, solo qualche riga, lasciate i versetti parlare.<br>
+<br><br>
+<H>Bibbia audio</H>
+1) <u>Motori gratuiti di sintesi vocale</u>:<br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.tts">Google</a><br>
+&nbsp;<a href="https://play.google.com/store/apps/details?id=com.redzoc.ramees.tts.espeak">eSpeak</a><br>
+<br>
+2) <u>Impostazioni Android</u>:<br>
+Impostazioni<br>
+Lingua e immissione<br>
+Output sintesi vocale<br>
+Motore preferito<br>
+<br>
+3) <u>Menu contestuale</u>: Ascoltare<br>
 <br><br>
 <H>Suggerimenti</H>
 - Lasciate l\'applicazione résidente, la memoria è gestita molto<br>
@@ -732,6 +745,9 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.11</H>
+• Bibbia audio (consultare la sezione nell\’aiuto)<br>
+<br>
 <H>3.10</H>
 • Creazione di articoli (consultare la sezione nell\’aiuto)<br>
 <br>

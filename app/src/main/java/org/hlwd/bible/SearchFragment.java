@@ -469,119 +469,131 @@ public class SearchFragment extends Fragment
     {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        final MenuInflater menuInflater = getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.context_menu_search, menu);
-
-        final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
-        final boolean bible_cmd_visibility = (bibleId > -1);
-        menu.findItem(R.id.mnu_open).setVisible(bible_cmd_visibility);
-        menu.findItem(R.id.mnu_copy).setVisible(bible_cmd_visibility);
-        menu.findItem(R.id.mnu_share).setVisible(bible_cmd_visibility);
-
-        if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
+        try
         {
-            menu.findItem(R.id.mnu_open_result).setVisible(false);
-            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
-            menu.findItem(R.id.mnu_share_result).setVisible(false);
-        }
+            final MenuInflater menuInflater = getActivity().getMenuInflater();
+            menuInflater.inflate(R.menu.context_menu_search, menu);
 
-        //~~~ Listen
-        final String listenPosMainTitle;
-        final String[] arrListen = PCommon.GetListenPosition(v.getContext());
-        if (arrListen == null || arrListen.length != 3)
-        {
-            listenPosMainTitle = null;
-        }
-        else
-        {
-            final String listen_bbname = arrListen[0];
-            final int listen_bnumber = Integer.parseInt(arrListen[1]);
-            final int listen_cnumber = Integer.parseInt(arrListen[2]);
-            final BibleRefBO bookRef = _s.GetBookRef(listen_bbname, listen_bnumber);
-            listenPosMainTitle = PCommon.ConcaT(bookRef.bName, " ", listen_cnumber);
-        }
-        final String listenMainTitle = listenPosMainTitle == null ? getString(R.string.mnuListen) :
-                        PCommon.ConcaT(getString(R.string.mnuListen),
+            final int bibleId = Integer.parseInt(PCommon.GetPref(getContext(), IProject.APP_PREF_KEY.BIBLE_ID, "0"));
+            final boolean bible_cmd_visibility = (bibleId > -1);
+            menu.findItem(R.id.mnu_open).setVisible(bible_cmd_visibility);
+            menu.findItem(R.id.mnu_copy).setVisible(bible_cmd_visibility);
+            menu.findItem(R.id.mnu_share).setVisible(bible_cmd_visibility);
+
+            if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
+            {
+                menu.findItem(R.id.mnu_open_result).setVisible(false);
+                menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
+                menu.findItem(R.id.mnu_share_result).setVisible(false);
+            }
+
+            //~~~ Listen
+            final String listenPosMainTitle;
+            final String[] arrListen = PCommon.GetListenPosition(v.getContext());
+            if (arrListen == null || arrListen.length != 3)
+            {
+                listenPosMainTitle = null;
+            }
+            else
+            {
+                final String listen_bbname = arrListen[0];
+                final int listen_bnumber = Integer.parseInt(arrListen[1]);
+                final int listen_cnumber = Integer.parseInt(arrListen[2]);
+                final BibleRefBO bookRef = _s.GetBookRef(listen_bbname, listen_bnumber);
+                listenPosMainTitle = PCommon.ConcaT(bookRef.bName, " ", listen_cnumber);
+            }
+            final String listenMainTitle = listenPosMainTitle == null ? getString(R.string.mnuListen) :
+                            PCommon.ConcaT(getString(R.string.mnuListen),
+                            " (",
+                            listenPosMainTitle,
+                            ")");
+            //~
+            final String listenPosCurrentChapterTitle;
+            final VerseBO verse = (bibleId > -1) ? _s.GetVerse(bibleId) : null;
+            if (verse == null)
+            {
+                listenPosCurrentChapterTitle = null;
+            }
+            else
+            {
+                listenPosCurrentChapterTitle = PCommon.ConcaT(verse.bName, " ", verse.cNumber);
+            }
+            final String listCurrentChapterTitle = listenPosCurrentChapterTitle == null ? getString(R.string.mnuListenCurrentChapter) :
+                            PCommon.ConcaT(getString(R.string.mnuListenCurrentChapter),
+                            " (",
+                            listenPosCurrentChapterTitle,
+                            ")");
+            final int listenStatus = PCommon.GetListenStatus(v.getContext());
+            final boolean listen_cmd_visibility = listenStatus > 0;
+            menu.findItem(R.id.mnu_listen).setTitle(listenMainTitle);
+            menu.findItem(R.id.mnu_listen_stop).setVisible(listen_cmd_visibility);
+            menu.findItem(R.id.mnu_listen_replay).setVisible(!listen_cmd_visibility);
+            menu.findItem(R.id.mnu_listen_next_chapter).setVisible(!listen_cmd_visibility);
+            menu.findItem(R.id.mnu_listen_previous_chapter).setVisible(!listen_cmd_visibility);
+            menu.findItem(R.id.mnu_listen_current_chapter).setVisible(!listen_cmd_visibility);
+            menu.findItem(R.id.mnu_listen_current_chapter).setTitle(listCurrentChapterTitle);
+
+            //~~~ Edit
+            final int editStatus = PCommon.GetEditStatus(v.getContext());
+            final int editArtId = PCommon.GetEditArticleId(v.getContext());
+            //TODO NEXT: Create customized view -- final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
+            final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
+                    ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
+                    : -1;
+            final String editTitle = editStatus == 0 ? getString(R.string.mnuEditOn) :
+                        PCommon.ConcaT(getString(R.string.mnuEditOff),
                         " (",
-                        listenPosMainTitle,
+                        getString(R.string.tabMyArtPrefix),
+                        editArtId,
                         ")");
-        //~
-        final String listenPosCurrentChapterTitle;
-        final VerseBO verse = (bibleId > -1) ? _s.GetVerse(bibleId) : null;
-        if (verse == null)
+
+    /*
+            final TextView textView = new TextView(v.getContext());
+            textView.setText(Html.fromHtml(editTitle));
+            textView.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
+            textView.setPadding(10, 20, 10, 20);
+    */
+
+            final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
+            final boolean edit_search_cmd_visibility = editStatus == 1 && (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE || fragmentType == FRAGMENT_TYPE.PLAN_TYPE);
+            final boolean edit_fav_cmd_visibility = editStatus == 1 && fragmentType == FRAGMENT_TYPE.FAV_TYPE;
+            menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_select_from_to).setVisible(edit_search_cmd_visibility || edit_fav_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_move).setVisible(edit_art_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_add).setVisible(edit_art_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_update).setVisible(edit_art_cmd_visibility);
+            menu.findItem(R.id.mnu_edit_remove).setVisible(edit_art_cmd_visibility);
+
+            if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
+            {
+                menu.findItem(R.id.mnu_open_result).setVisible(false);
+                menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
+                menu.findItem(R.id.mnu_share_result).setVisible(false);
+
+                menu.findItem(R.id.mnu_open_verse).setVisible(false);
+                menu.findItem(R.id.mnu_copy_verse_to_clipboard).setVisible(false);
+                menu.findItem(R.id.mnu_share_verse).setVisible(false);
+
+                menu.findItem(R.id.mnu_fav).setVisible(false);
+            }
+
+            //~~~ Main menus
+            final int installStatus = PCommon.GetInstallStatus(v.getContext());
+            if (installStatus != 5)
+            {
+                menu.findItem(R.id.mnu_listen).setVisible(false);
+                menu.findItem(R.id.mnu_edit).setVisible(false);
+            }
+            else
+            {
+                menu.findItem(R.id.mnu_listen).setVisible(true);
+                menu.findItem(R.id.mnu_edit).setTitle(editTitle).setVisible(true);                      //.setActionView(textView);
+            }
+        }
+        catch(Exception ex)
         {
-            listenPosCurrentChapterTitle = null;
-        }
-        else
-        {
-            listenPosCurrentChapterTitle = PCommon.ConcaT(verse.bName, " ", verse.cNumber);
-        }
-        final String listCurrentChapterTitle = listenPosCurrentChapterTitle == null ? getString(R.string.mnuListenCurrentChapter) :
-                        PCommon.ConcaT(getString(R.string.mnuListenCurrentChapter),
-                        " (",
-                        listenPosCurrentChapterTitle,
-                        ")");
-        final int listenStatus = PCommon.GetListenStatus(v.getContext());
-        final boolean listen_cmd_visibility = listenStatus > 0;
-        menu.findItem(R.id.mnu_listen).setTitle(listenMainTitle);
-        menu.findItem(R.id.mnu_listen_stop).setVisible(listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_replay).setVisible(!listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_next_chapter).setVisible(!listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_previous_chapter).setVisible(!listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_current_chapter).setVisible(!listen_cmd_visibility);
-        menu.findItem(R.id.mnu_listen_current_chapter).setTitle(listCurrentChapterTitle);
-
-        //~~~ Edit
-        final int installStatus = PCommon.GetInstallStatus(v.getContext());
-        final int editStatus = PCommon.GetEditStatus(v.getContext());
-        final int editArtId = PCommon.GetEditArticleId(v.getContext());
-        //TODO NEXT: Create customized view -- final String editArtName = editStatus == 1 ? _s.GetMyArticleName(editArtId) : "";         //"<small>Un example</small>" : "";
-        final int tabArtId = editStatus == 1 && fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE && tabTitle.startsWith(getString(R.string.tabMyArtPrefix))
-                ? Integer.parseInt(tabTitle.replaceAll(getString(R.string.tabMyArtPrefix), ""))
-                : -1;
-        final String editTitle = editStatus == 0 ? getString(R.string.mnuEditOn) :
-                    PCommon.ConcaT(getString(R.string.mnuEditOff),
-                    " (",
-                    getString(R.string.tabMyArtPrefix),
-                    editArtId,
-                    ")");
-
-/*
-        final TextView textView = new TextView(v.getContext());
-        textView.setText(Html.fromHtml(editTitle));
-        textView.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-        textView.setPadding(10, 20, 10, 20);
-*/
-
-        if (installStatus != 5) {
-            menu.findItem(R.id.mnu_edit).setVisible(false);
-        }
-        else {
-            menu.findItem(R.id.mnu_edit).setTitle(editTitle).setVisible(true);                      //.setActionView(textView);
-        }
-
-        final boolean edit_art_cmd_visibility = editStatus == 1 && editArtId == tabArtId;
-        final boolean edit_search_cmd_visibility = editStatus == 1 && (fragmentType == FRAGMENT_TYPE.SEARCH_TYPE || fragmentType == FRAGMENT_TYPE.PLAN_TYPE);
-        final boolean edit_fav_cmd_visibility = editStatus == 1 && fragmentType == FRAGMENT_TYPE.FAV_TYPE;
-        menu.findItem(R.id.mnu_edit_select_from).setVisible(edit_search_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_select_to).setVisible(edit_search_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_select_from_to).setVisible(edit_search_cmd_visibility || edit_fav_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_move).setVisible(edit_art_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_add).setVisible(edit_art_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_update).setVisible(edit_art_cmd_visibility);
-        menu.findItem(R.id.mnu_edit_remove).setVisible(edit_art_cmd_visibility);
-
-        if (fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE)
-        {
-            menu.findItem(R.id.mnu_open_result).setVisible(false);
-            menu.findItem(R.id.mnu_copy_result_to_clipboard).setVisible(false);
-            menu.findItem(R.id.mnu_share_result).setVisible(false);
-
-            menu.findItem(R.id.mnu_open_verse).setVisible(false);
-            menu.findItem(R.id.mnu_copy_verse_to_clipboard).setVisible(false);
-            menu.findItem(R.id.mnu_share_verse).setVisible(false);
-
-            menu.findItem(R.id.mnu_fav).setVisible(false);
+            if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
         }
     }
 
