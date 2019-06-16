@@ -66,7 +66,7 @@ class DbHelper extends SQLiteOpenHelper
     @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 31;
+    private static final int _version = 32;
 
     //</editor-fold>
 
