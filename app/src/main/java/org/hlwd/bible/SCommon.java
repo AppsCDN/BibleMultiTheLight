@@ -1437,11 +1437,11 @@ class SCommon
     /**
      * Say chapter
      * @param bbName       Bible name
-     * @param bNumber      Book number
-     * @param cNumber      Chapter number
+     * @param bNumberFrom  From Book number
+     * @param cNumberFrom  From Chapter number
      * @param vNumberFrom  From Verse number
      */
-    void Say(final String bbName, final int bNumber, final int cNumber, final int vNumberFrom)
+    void Say(final String bbName, final int bNumberFrom, final int cNumberFrom, final int vNumberFrom)
     {
         try
         {
@@ -1472,25 +1472,43 @@ class SCommon
                 {
                     try
                     {
-                        final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumber, cNumber, vNumberFrom);
-                        final Locale locale = GetLocale(_context, bbName);
-                        if (locale != null)
-                        {
-                            if (lstVerse != null)
-                            {
-                                if (lstVerse.size() > 0)
-                                {
-                                    ttsManager = new TtsManager(_context, locale);
+                        int cNumber = cNumberFrom;
+                        int vNumber;
 
-                                    final boolean isReady = ttsManager.WaitForReady();
-                                    if (isReady)
+                        final int chapterLimit = 2;
+                        final int chapterMax = _dal.GetBookChapterMax(bbName, bNumberFrom);
+                        final Locale locale = GetLocale(_context, bbName);
+                        if (locale == null) return;
+
+                        ttsManager = new TtsManager(_context, locale);
+                        final boolean isReady = ttsManager.WaitForReady();
+                        if (isReady)
+                        {
+                            while(cNumber <= chapterMax)
+                            {
+                                if (cNumber - cNumberFrom > chapterLimit - 1) return;
+
+                                vNumber = cNumber == cNumberFrom ? vNumberFrom : 1;
+                                final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumberFrom, cNumber, vNumber);
+                                if (lstVerse != null)
+                                {
+                                    if (lstVerse.size() > 0)
                                     {
+                                        PCommon.SetListenPosition(_context, bbName, bNumberFrom, cNumber);
+
                                         for(final VerseBO verse : lstVerse)
                                         {
+                                            if (verse.vNumber == 1)
+                                            {
+                                                ttsManager.SayAdd(PCommon.ConcaT(_context.getString(R.string.mnuOpenChapter), " ", verse.cNumber));
+                                            }
+
                                             ttsManager.SayAdd(verse.vText);
                                         }
                                     }
                                 }
+
+                                cNumber++;
                             }
                         }
                     }
