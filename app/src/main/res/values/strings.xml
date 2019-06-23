@@ -762,6 +762,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.12</H>
+• Audio Bible: read a whole book<br>
+<br>
 <H>3.11</H>
 • Audio Bible (see the section in the help)<br>
 <br>
@@ -1689,6 +1692,11 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="threadNfoGroup" translatable="false">biblenfogrp</string>
     <string name="threadNfoInstall" translatable="false">INSTALL</string>
     <string name="threadNfoListen" translatable="false">LISTEN</string>
+    <string name="ttsENChapter" translatable="false" tools:keep="@string/ttsENChapter">Chapter</string>
+    <string name="ttsFRChapter" translatable="false" tools:keep="@string/ttsFRChapter">Chapitre</string>
+    <string name="ttsESChapter" translatable="false" tools:keep="@string/ttsESChapter">Capítulo</string>
+    <string name="ttsITChapter" translatable="false" tools:keep="@string/ttsITChapter">Capitolo</string>
+    <string name="ttsPTChapter" translatable="false" tools:keep="@string/ttsPTChapter">Capítulo</string>
     <string name="tvFontExample" translatable="false">The quick brown fox jumps over the lazy dog.</string>
     <string name="widgetTvLang" translatable="false">-</string>
     <string name="widgetTvRef" translatable="false">R</string>

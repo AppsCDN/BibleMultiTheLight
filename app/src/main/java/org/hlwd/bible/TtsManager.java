@@ -12,6 +12,7 @@ class TtsManager
     private TextToSpeech tts = null;
     private final long SLEEP_WHEN_SPEAKING_MILLICS = 1000;
     private final long SLEEP_WHEN_NOT_READY_MILLICS = 300;
+    private final long SLEEP_BEFORE_SPEAKING_MILLICS = 1000;
 
     TtsManager(final Context ctx, final Locale locale)
     {
@@ -53,6 +54,26 @@ class TtsManager
                 }
             };
             tts = new TextToSpeech(context, onInitListener);
+
+/* works but actually not necessary:
+tts.setOnUtteranceProgressListener(new UtteranceProgressListener()
+{
+   @Override
+   public void onStart(String utteranceId) {
+       //System.out.println("TTS progress: onStart");
+   }
+
+   @Override
+   public void onDone(String utteranceId) {
+       //System.out.println("TTS progress: onDone");
+   }
+
+   @Override
+   public void onError(String utteranceId) {
+       //System.out.println("TTS progress - onError");
+   }
+});
+*/
         }
         catch (Exception ex)
         {
@@ -125,14 +146,24 @@ class TtsManager
     {
         try
         {
+            if (msg == null || msg.isEmpty()) return;
+
             if (IsLoaded())
             {
                 while (tts.isSpeaking())
                 {
                     Thread.sleep(SLEEP_WHEN_SPEAKING_MILLICS);
                 }
+                Thread.sleep(SLEEP_BEFORE_SPEAKING_MILLICS);
 
-                tts.speak(msg, TextToSpeech.QUEUE_ADD,null);
+                /* works but not optimized:
+                final HashMap<String, String> myHashAlarm = new HashMap<>();
+                myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
+                myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, msg);
+                tts.speak(msg, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+                */
+
+                tts.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
             }
             else
             {

@@ -725,13 +725,13 @@ final class PCommon implements IProject
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
 
-        QuitApplication(context);
+        QuitApplication();
     }
 
     /***
      * Quit application
      */
-    private static void QuitApplication(final Context context)
+    private static void QuitApplication()
     {
         //noinspection EmptyCatchBlock
         try
