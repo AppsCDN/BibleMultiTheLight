@@ -1,21 +1,18 @@
 package org.hlwd.bible;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 class TtsManager
 {
     private Context context = null;
     private boolean isLoaded = false;
-    private boolean isSpeaking = false;
     private TextToSpeech tts = null;
-    private final long SLEEP_WHEN_SPEAKING_MILLICS = 1000;  //was 1000
+    private final long SLEEP_WHEN_SPEAKING_MILLICS = 1000;
     private final long SLEEP_WHEN_NOT_READY_MILLICS = 300;
+    private final long SLEEP_BEFORE_SPEAKING_MILLICS = 1000;
 
     TtsManager(final Context ctx, final Locale locale)
     {
@@ -57,25 +54,26 @@ class TtsManager
                 }
             };
             tts = new TextToSpeech(context, onInitListener);
-            tts.setOnUtteranceProgressListener(new UtteranceProgressListener()
-            {
-                @Override
-                public void onStart(String utteranceId) {
-                    isSpeaking = true;
-                    //System.out.println("TTS progress: onStart");
-                }
 
-                @Override
-                public void onDone(String utteranceId) {
-                    //System.out.println("TTS progress: onDone");
-                    isSpeaking = false;
-                }
+/* works but actually not necessary:
+tts.setOnUtteranceProgressListener(new UtteranceProgressListener()
+{
+   @Override
+   public void onStart(String utteranceId) {
+       //System.out.println("TTS progress: onStart");
+   }
 
-                @Override
-                public void onError(String utteranceId) {
-                    //System.out.println("TTS progress - onError");
-                }
-            });
+   @Override
+   public void onDone(String utteranceId) {
+       //System.out.println("TTS progress: onDone");
+   }
+
+   @Override
+   public void onError(String utteranceId) {
+       //System.out.println("TTS progress - onError");
+   }
+});
+*/
         }
         catch (Exception ex)
         {
@@ -148,24 +146,24 @@ class TtsManager
     {
         try
         {
+            if (msg == null || msg.isEmpty()) return;
+
             if (IsLoaded())
             {
                 while (tts.isSpeaking())
                 {
                     Thread.sleep(SLEEP_WHEN_SPEAKING_MILLICS);
                 }
+                Thread.sleep(SLEEP_BEFORE_SPEAKING_MILLICS);
 
-                Thread.sleep(3000);
+                /* works but not optimized:
+                final HashMap<String, String> myHashAlarm = new HashMap<>();
+                myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
+                myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, msg);
+                tts.speak(msg, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+                */
 
-                if(msg != null)
-                {
-                    final HashMap<String, String> myHashAlarm = new HashMap<>();
-                    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
-                    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, msg);
-
-                    //System.out.println("send msg");
-                    tts.speak(msg, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
-                }
+                tts.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
             }
             else
             {

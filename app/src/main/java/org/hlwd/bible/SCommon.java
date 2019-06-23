@@ -1475,10 +1475,15 @@ class SCommon
                         int cNumber = cNumberFrom;
                         int vNumber;
 
+                        /* works but it's better to read all the book:
                         final int chapterLimit = 2;
+                        */
+
                         final int chapterMax = _dal.GetBookChapterMax(bbName, bNumberFrom);
                         final Locale locale = GetLocale(_context, bbName);
                         if (locale == null) return;
+                        final String chapterVerbose = _context.getString(PCommon.GetResId(_context, PCommon.ConcaT("tts", locale.getLanguage().toUpperCase(), "Chapter")));
+                        String verseText;
 
                         ttsManager = new TtsManager(_context, locale);
                         final boolean isReady = ttsManager.WaitForReady();
@@ -1486,7 +1491,9 @@ class SCommon
                         {
                             while(cNumber <= chapterMax)
                             {
+                                /* works but it's better to read all the book:
                                 if (cNumber - cNumberFrom > chapterLimit - 1) return;
+                                */
 
                                 vNumber = cNumber == cNumberFrom ? vNumberFrom : 1;
                                 final ArrayList<VerseBO> lstVerse = _dal.GetChapterFromPos(bbName, bNumberFrom, cNumber, vNumber);
@@ -1498,12 +1505,10 @@ class SCommon
 
                                         for(final VerseBO verse : lstVerse)
                                         {
-                                            if (verse.vNumber == 1)
-                                            {
-                                                ttsManager.SayAdd(PCommon.ConcaT(_context.getString(R.string.mnuOpenChapter), " ", verse.cNumber));
-                                            }
+                                            if (verse.vNumber == 1) ttsManager.SayAdd(PCommon.ConcaT(chapterVerbose, " ", verse.cNumber));
 
-                                            ttsManager.SayAdd(verse.vText);
+                                            verseText = verse.vText.replaceAll("\\([0-9]*:[0-9]*\\)", "");
+                                            ttsManager.SayAdd(verseText);
                                         }
                                     }
                                 }

@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.12,   DbVersion: 33 (12)2019-06-23
 // PROD: Bible 3.11,   DbVersion: 32 (12)2019-06-16
 // PROD: Bible 3.11,   DbVersion: 31 (12)2019-06-12 (me only)
 // PROD: Bible 3.11,   DbVersion: 30 (11)2019-06-10 (me only)
@@ -66,7 +67,7 @@ class DbHelper extends SQLiteOpenHelper
     @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 32;
+    private static final int _version = 33;
 
     //</editor-fold>
 
