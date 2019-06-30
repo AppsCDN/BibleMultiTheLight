@@ -142,6 +142,8 @@
             android:background="@drawable/focus_button"
             android:nextFocusUp="@id/btnPlanSetStartDt"
             android:nextFocusLeft="@id/btnPlanSetStartDt"
+            android:nextFocusRight="@id/btnGotoPlans"
+            android:nextFocusDown="@id/btnGotoPlans"
             android:text="@string/planCreate"
             android:visibility="gone"
             tools:ignore="RtlCompat"/>
