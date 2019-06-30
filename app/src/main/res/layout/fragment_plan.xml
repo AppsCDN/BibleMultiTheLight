@@ -10,16 +10,15 @@
     android:orientation="vertical"
     tools:ignore="RtlHardcoded">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/llPlan"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_horizontal"
-                  android:orientation="vertical"
-                  android:layout_marginBottom="16dp">
+    <LinearLayout
+        android:id="@+id/llPlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
 
         <android.support.constraint.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
@@ -52,10 +51,9 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/glPlanCalMeasures"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:visibility="gone">
 
@@ -67,8 +65,9 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/planCalTitleVerseCount"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                app:layout_constraintStart_toStartOf="@+id/npVerseCount"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@+id/npVerseCount"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tvTitleDayCount"
@@ -84,11 +83,14 @@
                 android:id="@+id/tvTitleStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/planStartDate"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintStart_toStartOf="@+id/btnPlanSetStartDt"
-                app:layout_constraintTop_toTopOf="@+id/tvTitleDayCount"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnPlanSetStartDt"
+                app:layout_constraintStart_toStartOf="@+id/npVerseCount"
+                app:layout_constraintTop_toBottomOf="@+id/npVerseCount"/>
 
             <NumberPicker android:id="@+id/npVerseCount"
                           android:layout_width="wrap_content"
@@ -108,7 +110,7 @@
                           android:focusable="true"
                           android:nextFocusLeft="@id/npVerseCount"
                           android:nextFocusRight="@id/btnPlanSetStartDt"
-                          app:layout_constraintEnd_toStartOf="@+id/btnPlanSetStartDt"
+                          app:layout_constraintEnd_toEndOf="parent"
                           app:layout_constraintHorizontal_bias="0.5"
                           app:layout_constraintStart_toEndOf="@+id/npVerseCount"
                           app:layout_constraintTop_toTopOf="@+id/npVerseCount"
@@ -118,20 +120,17 @@
                 android:id="@+id/btnPlanSetStartDt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/focus_button"
                 android:focusable="true"
                 android:nextFocusDown="@id/btnPlanCreate"
-                android:nextFocusRight="@id/btnPlanCreate"
                 android:nextFocusLeft="@id/npDayCount"
-                app:layout_constraintBottom_toBottomOf="@+id/npDayCount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/npDayCount"
-                app:layout_constraintTop_toTopOf="@+id/npDayCount"
-                tools:ignore="RtlCompat"/>
+                android:nextFocusUp="@id/npDayCount"
+                android:nextFocusRight="@id/btnPlanCreate"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTitleStartDate"
+                app:layout_constraintEnd_toEndOf="@+id/npDayCount"
+                app:layout_constraintStart_toEndOf="@+id/tvTitleStartDate"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleStartDate" tools:ignore="RtlCompat"/>
         </android.support.constraint.ConstraintLayout>
 
         <Button
@@ -184,7 +183,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/btnForward"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/btnBack"
-                    app:layout_constraintTop_toTopOf="parent" tools:ignore="ButtonStyle,RtlCompat"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ButtonStyle,RtlCompat"/>
 
             <Button android:id="@+id/btnForward"
                     android:layout_width="wrap_content"

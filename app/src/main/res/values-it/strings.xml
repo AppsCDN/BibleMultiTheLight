@@ -755,6 +755,10 @@ Se avete dei problemi o delle suggestioni, contattatemi (menù A proposito).<br>
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.13</H>
+• Supporto per Android 9.0 (Pie)<br>
+• Supporto per "Multi-Window" (Android 7.0+)<br>
+<br>
 <H>3.12</H>
 • Bibbia audio: leggi un intero libro<br>
 <br>

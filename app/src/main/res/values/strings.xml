@@ -762,6 +762,10 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.13</H>
+• Support for Android 9.0 (Pie)<br>
+• Support for "Multi-Window" (Android 7.0+)<br>
+<br>
 <H>3.12</H>
 • Audio Bible: read a whole book<br>
 <br>

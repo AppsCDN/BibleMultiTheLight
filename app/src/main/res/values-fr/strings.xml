@@ -760,6 +760,10 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.13</H>
+• Support pour Android 9.0 (Pie)<br>
+• Support pour "Multi-Fenêtres" (Android 7.0+)<br>
+<br>
 <H>3.12</H>
 • Bible audio: lire un livre entier<br>
 <br>
