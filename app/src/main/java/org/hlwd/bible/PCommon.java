@@ -1272,7 +1272,6 @@ final class PCommon implements IProject
      * Show articles
      * @param context   Context
      */
-    @SuppressWarnings("JavaDoc")
     static void ShowArticles(final Context context)
     {
         ShowArticles(context, isShowMyArt, false);
@@ -1284,7 +1283,6 @@ final class PCommon implements IProject
      * @param isMyArticleType   Is MyArt type?
      * @param isForSelection    Is for selection? (False=to open it)
      */
-    @SuppressWarnings("JavaDoc")
     static void ShowArticles(final Context context, final boolean isMyArticleType, final boolean isForSelection)
     {
         try
@@ -1467,7 +1465,6 @@ final class PCommon implements IProject
      * @param context   Context
      * @param artName   Article name
      */
-    @SuppressWarnings("JavaDoc")
     static void ShowArticle(final Context context, final String artName)
     {
         try
@@ -1495,7 +1492,6 @@ final class PCommon implements IProject
      * @param dlgMyArticles  Dialog
      * @param artName     Article Name
      */
-    @SuppressWarnings("JavaDoc")
     private static void ShowMyArticleMenu(final AlertDialog dlgMyArticles, final String artName)
     {
         final Context context = dlgMyArticles.getContext();
@@ -1638,7 +1634,6 @@ final class PCommon implements IProject
      * @param action    Action
      * @param isForSelection    CREATE_ARTICLE can be called in 2 ways: during the selection of an article or to open an article
      */
-    @SuppressWarnings("JavaDoc")
     private static void EditArticleDialog(final AlertDialog dlg, final int titleId, final int artId, final ARTICLE_ACTION action, final boolean isForSelection)
     {
         final Context context = dlg.getContext();

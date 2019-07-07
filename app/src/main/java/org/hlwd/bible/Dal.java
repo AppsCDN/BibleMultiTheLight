@@ -1123,7 +1123,6 @@ class Dal
      * Get list of my articles Id
      * @return list of articles Id
      */
-    @SuppressWarnings("JavaDoc")
     String[] GetListMyArticlesId()
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -1261,7 +1260,6 @@ class Dal
      * Get new MyArticle Id
      * @return bibleId
      */
-    @SuppressWarnings("JavaDoc")
     int GetNewMyArticleId()
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -1303,7 +1301,6 @@ class Dal
      * @param artId         Article Id
      * @param substSource   Source substitued
      */
-    @SuppressWarnings("JavaDoc")
     void UpdateMyArticleSource(final int artId, final String substSource)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -1331,7 +1328,6 @@ class Dal
      * @param artId     Article Id
      * @param title     Title
      */
-    @SuppressWarnings("JavaDoc")
     void UpdateMyArticleTitle(final int artId, final String title)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -1358,7 +1354,6 @@ class Dal
      * Add my article
      * @param ad    Article description
      */
-    @SuppressWarnings("JavaDoc")
     void AddMyArticle(final ArtDescBO ad)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -1389,7 +1384,6 @@ class Dal
      * Delete my article
      * @param artId         Article Id
      */
-    @SuppressWarnings("JavaDoc")
     void DeleteMyArticle(final int artId)
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -2312,7 +2306,6 @@ class Dal
      * Get Bible Id count
      * @return bibleId
      */
-    @SuppressWarnings("JavaDoc")
     int GetBibleIdCount()
     {
         @SuppressWarnings("UnusedAssignment") String sql = null;
@@ -2719,8 +2712,8 @@ class Dal
             _db.execSQL(sql);
 
             //Plan Calendar
-            @SuppressWarnings("UnusedAssignment") int bNumberStart = 0, cNumberStart = 0, vNumberStart = 0;
-            @SuppressWarnings("UnusedAssignment") int bNumberEnd = 0, cNumberEnd = 0, vNumberEnd = 0;
+            int bNumberStart = 0, cNumberStart = 0, vNumberStart = 0;
+            int bNumberEnd = 0, cNumberEnd = 0, vNumberEnd = 0;
             int dayNumber = 1;
             boolean shouldBreak = false;
 

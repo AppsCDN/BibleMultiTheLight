@@ -18,10 +18,8 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     private SCommon _s = null;
     private final ArrayList<SectionBO> lstSection = new ArrayList<>();
     private ArrayList<ShortSectionBO> lstShortSection = new ArrayList<>();
-    @SuppressWarnings("UnusedAssignment")
     private String bbName = null;
     private final boolean isUiTelevision = true;
-    @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private int id = -1;
     private int blockId = -1;
@@ -130,7 +128,6 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
      * Get article
      * @param artOriginalContent    Original content
      */
-    @SuppressWarnings("JavaDoc")
     private String GetArticle(final ArtOriginalContentBO artOriginalContent)
     {
         if (artOriginalContent == null) return "";
@@ -499,7 +496,6 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             tv_text.setTextSize(fontSize);
             if (tv_after != null) tv_after.setTextSize(fontSize);
 
-            //noinspection ConstantConditions
             if (isUiTelevision)
             {
                 tv_before0 = view.findViewById(R.id.tv_before0);
@@ -526,7 +522,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
     @Override
     public BibleArticleAdapter.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int viewType)
     {
-        @SuppressWarnings("ConstantConditions") final View view = LayoutInflater.from(viewGroup.getContext())
+        final View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(isUiTelevision ? R.layout.card_article_recipient_tv : R.layout.card_article_recipient, viewGroup,false);
 
         return new ViewHolder(view);
@@ -540,7 +536,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
             final SectionBO section = lstSection.get(position);
             if (section.before != null)
             {
-                @SuppressWarnings("ConstantConditions") final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
+                final TextView vwh_tv_before = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_before0 : viewHolder.tv_before;
                 final Spanned spanned = Html.fromHtml(section.before);
                 vwh_tv_before.setVisibility(View.VISIBLE);
                 vwh_tv_before.setText(spanned);
@@ -576,17 +572,15 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 //test:
                 //SpannableStringBuilder ssb = new SpannableStringBuilder();
                 //ssb.append(spanned);
-                //noinspection ConstantConditions
                 if (isUiTelevision && section.blockSubId == 0)
                 {
                     final TextView vwh_tv_space_text_before = viewHolder.tv_text_space_before;
                     vwh_tv_space_text_before.setVisibility(View.VISIBLE);
                 }
-                @SuppressWarnings("ConstantConditions") final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
+                final TextView vwh_tv_text = (isUiTelevision && section.blockSubId == 0) ? viewHolder.tv_text0 : viewHolder.tv_text;
                 final Spanned spanned = Html.fromHtml(section.content);
                 vwh_tv_text.setVisibility(View.VISIBLE);
                 vwh_tv_text.setText(spanned);
-                //noinspection ConstantConditions
                 if (isUiTelevision) vwh_tv_text.setTag(R.id.tv1, section.blockRef);
                 vwh_tv_text.setTag(position);
                 vwh_tv_text.setOnLongClickListener(new View.OnLongClickListener()
@@ -599,7 +593,7 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                             final TextView tvText = (TextView) view;
                             if (tvText == null) return false;
                             @SuppressWarnings("unused") final String content = tvText.getText().toString();
-                            @SuppressWarnings("ConstantConditions") final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
+                            final String completeRef = (!isUiTelevision) ? content.substring(0, content.indexOf(":")).replace(".", " ") : (String)view.getTag(R.id.tv1);
                             if (completeRef == null) return false;
                             final String[] ref = completeRef.split("\\s");
                             final int bNumber = _s.GetBookNumberByName(ref[0]);
@@ -631,7 +625,6 @@ class BibleArticleAdapter extends RecyclerView.Adapter<BibleArticleAdapter.ViewH
                 }
             }
 
-            //noinspection ConstantConditions
             if (!isUiTelevision)
             {
                 if (section.after != null)
