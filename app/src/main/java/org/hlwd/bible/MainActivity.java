@@ -1136,7 +1136,6 @@ public class MainActivity extends AppCompatActivity
                             final TextView tvStatus = new TextView(this);
                             tvStatus.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                             tvStatus.setPadding(50, 10, 10, 0);
-                            //noinspection deprecation
                             tvStatus.setText(Html.fromHtml(text));
                             tvStatus.setTag(idx);
                             tvStatus.setOnClickListener(new View.OnClickListener()
@@ -1224,7 +1223,6 @@ public class MainActivity extends AppCompatActivity
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
             final TextView tvPlanTitle = view.findViewById(R.id.tvPlanTitle);
-            //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
             if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
             tvPlanTitle.setTextSize(fontSize);
@@ -1333,7 +1331,7 @@ public class MainActivity extends AppCompatActivity
 
             final String plan = getApplicationContext().getResources().getStringArray(R.array.PLAN_ARRAY)[planIdx];
             final String[] cols = plan.split("\\|");
-            @SuppressWarnings("UnusedAssignment") int bCount = 0, cCount = 0, vCount = 0, bNumber;
+            int bCount = 0, cCount = 0, vCount = 0, bNumber;
             final PlanDescBO pd;
             final String dtFormat = "yyyyMMdd";
 
@@ -1560,21 +1558,18 @@ public class MainActivity extends AppCompatActivity
                 tvDay.setLayoutParams(PCommon._layoutParamsWrap);
                 tvDay.setPadding(10, 10, 10, 10);
                 PCommon.SetTextAppareance(tvDay, this, R.style.TextAppearance_AppCompat_Subhead);
-                //noinspection deprecation
                 tvDay.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleDt).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvUntil = new TextView(this);
                 tvUntil.setLayoutParams(PCommon._layoutParamsWrap);
                 tvUntil.setPadding(10, 10, 10, 10);
                 PCommon.SetTextAppareance(tvUntil, this, R.style.TextAppearance_AppCompat_Subhead);
-                //noinspection deprecation
                 tvUntil.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleUntil).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 tvTitleIsRead = new TextView(this);
                 tvTitleIsRead.setLayoutParams(PCommon._layoutParamsWrap);
                 tvTitleIsRead.setPadding(10, 10, 10, 10);
                 PCommon.SetTextAppareance(tvTitleIsRead, this, R.style.TextAppearance_AppCompat_Subhead);
-                //noinspection deprecation
                 tvTitleIsRead.setText( Html.fromHtml( PCommon.ConcaT("<b>", getString(R.string.planCalTitleIsRead).replaceFirst("\n", "<br><u>"), "</b>")));
 
                 glCal.addView(tvTitleIsRead);
@@ -1691,7 +1686,6 @@ public class MainActivity extends AppCompatActivity
             final int resId = PCommon.GetResId(getApplicationContext(), pd.planRef);
             final String planTitle = PCommon.ConcaT("<b>", getString(resId), " :</b>");
             final TextView tvPlanTitle = view.findViewById(R.id.tvPlanTitle);
-            //noinspection deprecation
             tvPlanTitle.setText(Html.fromHtml(planTitle));
             if (typeface != null) { tvPlanTitle.setTypeface(typeface); }
             tvPlanTitle.setTextSize(fontSize);
@@ -1817,7 +1811,6 @@ public class MainActivity extends AppCompatActivity
                 tvReading = new TextView(this);
                 tvReading.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
                 tvReading.setPadding(10, 10, 10, 10);
-                //noinspection deprecation
                 tvReading.setText( Html.fromHtml(markText));
                 tvReading.setTag( fullQuery );
                 tvReading.setOnClickListener(new View.OnClickListener()

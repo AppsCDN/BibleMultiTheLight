@@ -1367,7 +1367,6 @@ public class SearchFragment extends Fragment
      * Get article
      * @param t     CacheTabBO
      */
-    @SuppressWarnings("JavaDoc")
     private ArtOriginalContentBO GetArticle(final CacheTabBO t)
     {
         if (t == null) return null;
@@ -1864,8 +1863,8 @@ public class SearchFragment extends Fragment
 
             SetLocalBibleName();
 
-            @SuppressWarnings("UnusedAssignment") boolean isBook = false,  isChapter = false,  isVerse = false;
-            @SuppressWarnings("UnusedAssignment") int     bNumber = 0,     cNumber = 0,        vNumber = 0;
+            boolean isBook = false,  isChapter = false,  isVerse = false;
+            int     bNumber = 0,     cNumber = 0,        vNumber = 0;
             @SuppressWarnings("UnusedAssignment") int wCount = 0;
             final String[] words = searchFullQuery.split("\\s");
             final String patternDigit = "\\d+";
@@ -1915,7 +1914,7 @@ public class SearchFragment extends Fragment
                     vNumber = Integer.parseInt(words[2]);
                     final int vNumberTo = Integer.parseInt(words[3]);
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowVerses(bbName, bNumber, cNumber, vNumber, vNumberTo);
 
@@ -1937,7 +1936,7 @@ public class SearchFragment extends Fragment
                     cNumber = Integer.parseInt(words[1]);
                     vNumber = Integer.parseInt(words[2]);
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowVerse(bbName, bNumber, cNumber, vNumber);
 
@@ -1962,7 +1961,7 @@ public class SearchFragment extends Fragment
                     //noinspection ConstantConditions
                     vNumber = 0;
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
 
                     final InnerClass innerClass = new InnerClass();
@@ -1999,7 +1998,7 @@ public class SearchFragment extends Fragment
                     //noinspection ConstantConditions
                     vNumber = 0;
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowChapter(bbName, bNumber, cNumber);
 
@@ -2025,7 +2024,7 @@ public class SearchFragment extends Fragment
                     //noinspection ConstantConditions
                     vNumber = 0;
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
 
                     final InnerClass innerClass = new InnerClass();
@@ -2062,7 +2061,7 @@ public class SearchFragment extends Fragment
                     //noinspection ConstantConditions
                     vNumber = 0;
 
-                    //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                    // noinspection ConstantConditions,ConstantConditions
                     SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                     ShowChapter(bbName, bNumber, cNumber);
 
@@ -2085,7 +2084,7 @@ public class SearchFragment extends Fragment
                 //noinspection ConstantConditions
                 vNumber = 0;
 
-                //noinspection ConstantConditions,ConstantConditions,ConstantConditions
+                // noinspection ConstantConditions,ConstantConditions
                 SaveRef(isBook, isChapter, isVerse, bNumber, cNumber, vNumber);
                 SetTabTitle(searchFullQuery);
                 SaveTab();

@@ -538,7 +538,6 @@ class SCommon
      * Get list of my articles Id
      * @return list of articles Id
      */
-    @SuppressWarnings("JavaDoc")
     String[] GetListMyArticlesId()
     {
         return _dal.GetListMyArticlesId();
@@ -571,7 +570,6 @@ class SCommon
      * @param source    Source without substitution (except <R></R>)
      * @return  String with edit tags
      */
-    @SuppressWarnings("JavaDoc")
     private String GetMyArticleSourceSubstition(final String source)
     {
         return source
@@ -614,7 +612,6 @@ class SCommon
      * @param artId     Article Id
      * @param title     Title
      */
-    @SuppressWarnings("JavaDoc")
     void UpdateMyArticleTitle(final int artId, final String title)
     {
         try
@@ -631,7 +628,6 @@ class SCommon
      * Add my article
      * @param ad    Article description
      */
-    @SuppressWarnings("JavaDoc")
     void AddMyArticle(final ArtDescBO ad)
     {
         try
@@ -648,7 +644,6 @@ class SCommon
      * Delete my article
      * @param artId     Article Id
      */
-    @SuppressWarnings("JavaDoc")
     void DeleteMyArticle(final int artId)
     {
         try
@@ -874,7 +869,6 @@ class SCommon
     /***
      * Save cache search
      */
-    @SuppressWarnings("JavaDoc")
     void SaveCacheSearch(final ArrayList<Integer> lstBibleId)
     {
         try
@@ -900,7 +894,7 @@ class SCommon
     {
         try
         {
-            @SuppressWarnings({"UnusedAssignment", "unused"})
+            @SuppressWarnings({"unused"})
             final boolean res = _dal.CopyCacheSearchForOtherBible(tabIdFrom, tabIdTo, bbNameTo);
         }
         catch(Exception ex)
@@ -1047,7 +1041,6 @@ class SCommon
      * Get bibleId count
      * @return count
      */
-    @SuppressWarnings("JavaDoc")
     int GetBibleIdCount()
     {
         int count = 0;

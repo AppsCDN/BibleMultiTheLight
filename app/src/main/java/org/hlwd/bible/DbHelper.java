@@ -100,7 +100,6 @@ class DbHelper extends SQLiteOpenHelper
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion)
     {
@@ -635,7 +634,6 @@ class DbHelper extends SQLiteOpenHelper
                     is.close();
                     is = am.open(xmlName);
 
-                    @SuppressWarnings("UnusedAssignment")
                     VTDGen vg = null;
                     {
                         byte[] b = new byte[tot];
@@ -831,7 +829,6 @@ class DbHelper extends SQLiteOpenHelper
                     is.close();
                     is = am.open(xmlName);
 
-                    @SuppressWarnings("UnusedAssignment")
                     VTDGen vg = null;
                     {
                         byte[] b = new byte[tot];
