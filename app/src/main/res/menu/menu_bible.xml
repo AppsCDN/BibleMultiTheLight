@@ -27,11 +27,6 @@
         android:title="@string/mnuBooks"
         app:showAsAction="never" />
     <item
-        android:id="@+id/mnu_reading"
-        android:orderInCategory="6"
-        android:title="@string/mnuReading"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/mnu_prbl"
         android:orderInCategory="7"
         android:title="@string/mnuPrbl"

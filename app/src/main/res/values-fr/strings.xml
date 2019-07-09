@@ -154,10 +154,6 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvTrad">Ordre:</string>
 
     <string name="tvFavOrder">Ordre:</string>
-    <string name="favOrder0">Favori (lecture en premier)</string>
-    <string name="favOrder1">Date (récent en premier)</string>
-    <string name="favOrder2">Livre (ordre)</string>
-
     <string name="favOrder0Short">Favori</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Livre</string>

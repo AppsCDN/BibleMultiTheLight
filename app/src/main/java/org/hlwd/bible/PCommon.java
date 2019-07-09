@@ -1896,6 +1896,28 @@ final class PCommon implements IProject
     }
 
     /***
+     * Get Fav Filter
+     * @return 0..2
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetFavFilter(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.FAV_FILTER, "0"));
+    }
+
+    /***
+     * Get Fav Order
+     * @return 1 or 2
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetFavOrder(final Context context)
+    {
+        final int orderBy = Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.FAV_ORDER, "1"));
+
+        return orderBy == 0 ? 1 : orderBy;
+    }
+
+    /***
      * Save listen position
      */
     static void SetListenPosition(final Context context, final String bbName, final int bNumber, final int cNumber)

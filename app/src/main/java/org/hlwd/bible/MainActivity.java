@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity
             slideViewTabHandleMain = (isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
             slideViewTabHandle = (isUiTelevision) ? findViewById(R.id.slideViewTabHandle) : null;
 
-            if (!isUiTelevision) {
+            if (!isUiTelevision)
+            {
                 final Toolbar toolbar = findViewById(R.id.toolbar);
                 if (toolbar != null) { setSupportActionBar(toolbar); }
             }
@@ -524,11 +525,6 @@ public class MainActivity extends AppCompatActivity
                 case R.id.mnu_plans:
 
                     ShowPlans();
-                    return true;
-
-                case R.id.mnu_reading:
-
-                    ShowFav("2");
                     return true;
 
                 case R.id.mnu_prbl:
@@ -1769,7 +1765,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /***
-     * @param markType 2:reading, 1:fav
+     * @param markType 1:normal, 2:reading
      */
     private void ShowFav(@SuppressWarnings("SameParameterValue") final String markType)
     {
@@ -2466,36 +2462,61 @@ slideViewMenu.startAnimation(animate);
             final String searchTextHint = PCommon.ConcaT("<i>", getString(isSearchBible ? R.string.searchBibleHint : R.string.searchFavHint, "</i>"));
             etSearchText.setHint(Html.fromHtml(searchTextHint));
             final NumberPicker npSearchLanguage = vw.findViewById(R.id.npSearchLanguage);
+            final View vwFavFilter = vw.findViewById(R.id.tvFavFilter);
+            final ToggleButton btnFilter0 = vw.findViewById(R.id.btnFavFilter0);
+            final ToggleButton btnFilter1 = vw.findViewById(R.id.btnFavFilter1);
+            final ToggleButton btnFilter2 = vw.findViewById(R.id.btnFavFilter2);
             final View vwFavOrder = vw.findViewById(R.id.tvFavOrder);
-            final ToggleButton btnOrder0 = vw.findViewById(R.id.btnOrder0);
-            final ToggleButton btnOrder1 = vw.findViewById(R.id.btnOrder1);
-            final ToggleButton btnOrder2 = vw.findViewById(R.id.btnOrder2);
+            final ToggleButton btnOrder1 = vw.findViewById(R.id.btnFavOrder1);
+            final ToggleButton btnOrder2 = vw.findViewById(R.id.btnFavOrder2);
 
             if (!isSearchBible)
             {
                 npSearchLanguage.setVisibility(View.GONE);
-                final int orderBy = Integer.valueOf(PCommon.GetPref(vw.getContext(), IProject.APP_PREF_KEY.FAV_ORDER, "1"));
-                btnOrder0.setChecked(false);
-                btnOrder1.setChecked(false);
-                btnOrder2.setChecked(false);
-                if (orderBy == 0) btnOrder0.setChecked(true);
-                    else if (orderBy == 2) btnOrder2.setChecked(true);
-                        else btnOrder1.setChecked(true);
-                btnOrder0.setOnClickListener(new View.OnClickListener() {
+                final int filterBy = PCommon.GetFavFilter(context);
+                btnFilter0.setChecked(false);
+                btnFilter1.setChecked(false);
+                btnFilter2.setChecked(false);
+                if (filterBy == 1) btnFilter1.setChecked(true);
+                    else if (filterBy == 2) btnFilter2.setChecked(true);
+                        else btnFilter0.setChecked(true);
+                btnFilter0.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final int orderBy = Integer.parseInt(v.getTag().toString());
-                        PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_ORDER, orderBy);
-                        btnOrder1.setChecked(false);
-                        btnOrder2.setChecked(false);
+                        final int filterBy = Integer.parseInt(v.getTag().toString());
+                        PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_FILTER, filterBy);
+                        btnFilter1.setChecked(false);
+                        btnFilter2.setChecked(false);
                     }
                 });
+                btnFilter1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int filterBy = Integer.parseInt(v.getTag().toString());
+                        PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_FILTER, filterBy);
+                        btnFilter0.setChecked(false);
+                        btnFilter2.setChecked(false);
+                    }
+                });
+                btnFilter2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int filterBy = Integer.parseInt(v.getTag().toString());
+                        PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_FILTER, filterBy);
+                        btnFilter0.setChecked(false);
+                        btnFilter1.setChecked(false);
+                    }
+                });
+                final int orderBy = PCommon.GetFavOrder(context);
+                btnOrder1.setChecked(false);
+                btnOrder2.setChecked(false);
+                if (orderBy == 2) btnOrder2.setChecked(true);
+                    else btnOrder1.setChecked(true);
                 btnOrder1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final int orderBy = Integer.parseInt(v.getTag().toString());
                         PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_ORDER, orderBy);
-                        btnOrder0.setChecked(false);
                         btnOrder2.setChecked(false);
                     }
                 });
@@ -2504,17 +2525,20 @@ slideViewMenu.startAnimation(animate);
                     public void onClick(View v) {
                         final int orderBy = Integer.parseInt(v.getTag().toString());
                         PCommon.SavePrefInt(v.getContext(), IProject.APP_PREF_KEY.FAV_ORDER, orderBy);
-                        btnOrder0.setChecked(false);
                         btnOrder1.setChecked(false);
                     }
                 });
             }
             else
             {
-                vwFavOrder.setVisibility(View.INVISIBLE);
-                btnOrder0.setVisibility(View.INVISIBLE);
-                btnOrder1.setVisibility(View.INVISIBLE);
-                btnOrder2.setVisibility(View.INVISIBLE);
+                vwFavFilter.setVisibility(View.GONE);
+                btnFilter0.setVisibility(View.GONE);
+                btnFilter1.setVisibility(View.GONE);
+                btnFilter2.setVisibility(View.GONE);
+
+                vwFavOrder.setVisibility(View.GONE);
+                btnOrder1.setVisibility(View.GONE);
+                btnOrder2.setVisibility(View.GONE);
             }
 
             final String[] npLanguageValues = new String[] { getString(R.string.languageEn), getString(R.string.languageEs), getString(R.string.languageFr), getString(R.string.languageIt), getString(R.string.languagePt) };

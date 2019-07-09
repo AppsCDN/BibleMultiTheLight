@@ -276,7 +276,7 @@ public class SearchFragment extends Fragment
                 SetTabTitle(tabTitle);
                 CreateRecyclerView();
 
-                final int favOrder = GetFavOrder();
+                final int favOrder = PCommon.GetFavOrder(getContext());
                 recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, favOrder, null);
                 if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
@@ -1153,9 +1153,13 @@ public class SearchFragment extends Fragment
             else if (fragmentType == FRAGMENT_TYPE.FAV_TYPE)
             {
                 menuInflater.inflate(R.menu.menu_fav, menu);
+
+                //No search
+                return;
             }
             else
             {
+                //Article
                 final int INSTALL_STATUS = PCommon.GetInstallStatus(_context);
                 if (INSTALL_STATUS == 5) menuInflater.inflate(R.menu.menu_art, menu);
 
@@ -1278,9 +1282,9 @@ public class SearchFragment extends Fragment
 
                 return true;
             }
-            case R.id.mnu_fav_sort:
+            case R.id.mnu_fav_search:
             {
-                ShowFavOrder();
+                ShowFavSearch();
 
                 return true;
             }
@@ -1288,7 +1292,7 @@ public class SearchFragment extends Fragment
             {
                 //Clear Fav filter
                 searchFullQuery = "";
-                final int orderBy = GetFavOrder();
+                final int orderBy = PCommon.GetFavOrder(getContext());
 
                 SaveTab();
 
@@ -1690,15 +1694,6 @@ public class SearchFragment extends Fragment
     }
 
     /***
-     * Get Fav Order
-     * @return 0..
-     */
-    private int GetFavOrder()
-    {
-        return Integer.parseInt(PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_ORDER, "0"));
-    }
-
-    /***
      * Get dynamic column count
      * @param ic Info count to display
      * @return Preferred number of columns to use to display the info
@@ -1744,13 +1739,13 @@ public class SearchFragment extends Fragment
         return dc;
     }
 
-    private void ShowFavOrder()
+    private void ShowFavSearch()
     {
         try
         {
             final AlertDialog builder = new AlertDialog.Builder(getContext()).create();
             final LayoutInflater inflater = getActivity().getLayoutInflater();
-            final View view = inflater.inflate(R.layout.fragment_fav_order, (ViewGroup) getActivity().findViewById(R.id.llFavOrderBy));
+            final View view = inflater.inflate(R.layout.fragment_fav_search, (ViewGroup) getActivity().findViewById(R.id.llFavOrderBy));
 
             class InnerClass
             {
@@ -1776,13 +1771,6 @@ public class SearchFragment extends Fragment
             }
             final InnerClass innerClass = new InnerClass();
 
-            final Button btn0 = view.findViewById(R.id.btnFavOrder0);
-            btn0.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    innerClass.OnDismiss(view);
-                }
-            });
             final Button btn1 = view.findViewById(R.id.btnFavOrder1);
             btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1829,7 +1817,7 @@ public class SearchFragment extends Fragment
 
                 SaveTab();
 
-                final int orderBy = GetFavOrder();
+                final int orderBy = PCommon.GetFavOrder(_context);
                 recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
                 if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);

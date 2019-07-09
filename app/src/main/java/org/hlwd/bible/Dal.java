@@ -920,10 +920,6 @@ class Dal
             final String orderByClause;
             switch (orderBy)
             {
-                case 0:
-                    orderByClause = "n.mark DESC, n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
-                    break;
-
                 case 1:
                     orderByClause = "n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
                     break;
@@ -933,7 +929,7 @@ class Dal
                     break;
 
                 default:
-                    orderByClause = "b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
+                    orderByClause = "n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
                     break;
             }
 

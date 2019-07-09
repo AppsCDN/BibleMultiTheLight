@@ -155,13 +155,14 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tvTrad">Order:</string>
 
     <string name="tvFavOrder">Order:</string>
-    <string name="favOrder0">Mark (reading first)</string>
-    <string name="favOrder1">Date (recent first)</string>
-    <string name="favOrder2">Book (order)</string>
-
     <string name="favOrder0Short">Mark</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Book</string>
+
+    <string name="tvFavFilter">Favorites:</string>
+    <string name="favFilter0Short">All</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Reading</string>
 
     <string name="PRBL1">The Good Shepherd</string>
     <string name="PRBL2">The wheat and the tares (1)</string>

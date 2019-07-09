@@ -5,24 +5,17 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnFavOrder0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/favOrder0"
-        android:tag="0" />
-
-    <Button
         android:id="@+id/btnFavOrder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favOrder1"
+        android:text="@string/favOrder1Short"
         android:tag="1" />
 
     <Button
         android:id="@+id/btnFavOrder2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favOrder2"
+        android:text="@string/favOrder2Short"
         android:tag="2" />
 
 </LinearLayout>
