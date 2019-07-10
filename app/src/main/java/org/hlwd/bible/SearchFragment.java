@@ -277,7 +277,8 @@ public class SearchFragment extends Fragment
                 CreateRecyclerView();
 
                 final int favOrder = PCommon.GetFavOrder(getContext());
-                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, favOrder, null);
+                final int favType = PCommon.GetFavFilter(getContext());
+                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, favOrder, favType);
                 if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
@@ -1284,7 +1285,14 @@ public class SearchFragment extends Fragment
             }
             case R.id.mnu_fav_search:
             {
-                ((MainActivity) getActivity()).SearchDialog(getContext(), false);
+                try
+                {
+                    ((MainActivity) getActivity()).SearchDialog(getContext(), false);
+                }
+                catch (Exception ex)
+                {
+                    if (PCommon._isDebugVersion) PCommon.LogR(_context, ex);
+                }
 
                 return true;
             }
@@ -1294,9 +1302,10 @@ public class SearchFragment extends Fragment
                 searchFullQuery = "";
                 final int orderBy = PCommon.GetFavOrder(getContext());
 
+                PCommon.SavePrefInt(getContext(), IProject.APP_PREF_KEY.FAV_FILTER, 0);
                 SaveTab();
 
-                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
+                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, 0);
                 if (WhenTabIsEmptyOrNull(true)) return true;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);
@@ -1820,7 +1829,8 @@ public class SearchFragment extends Fragment
                 SaveTab();
 
                 final int orderBy = PCommon.GetFavOrder(_context);
-                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, null);
+                final int favType = PCommon.GetFavFilter(_context);
+                recyclerViewAdapter = new BibleAdapter(getContext(), bbName, searchFullQuery, orderBy, favType);
                 if (WhenTabIsEmptyOrNull(true)) return;
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setHasFixedSize(true);

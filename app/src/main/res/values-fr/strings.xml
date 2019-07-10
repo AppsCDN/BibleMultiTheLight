@@ -102,7 +102,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuShareChapter">Chapitre</string>
     <string name="mnuShareResult">Tout</string>
     <string name="mnuShareVerse">Verset</string>
-    <string name="mnuShowFav">Montrer Favoris</string>
+    <string name="mnuShowFav">Favoris</string>
     <string name="mnuThemeLight">Clair</string>
     <string name="mnuTypefaceDefault">Défaut</string>
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->
@@ -153,10 +153,13 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvPlanYourPlans">- Vos plans -</string>
     <string name="tvTrad">Ordre:</string>
 
-    <string name="tvFavOrder">Ordre:</string>
-    <string name="favOrder0Short">Favori</string>
+    <string name="tvFavOrder">Trier par:</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Livre</string>
+
+    <string name="tvFavFilter">Favoris:</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Lecture</string>
 
     <string name="PRBL1">Le bon berger</string>
     <string name="PRBL2">Le bon grain et l\'ivraie (1)</string>

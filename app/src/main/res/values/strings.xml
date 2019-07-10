@@ -102,7 +102,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
     <string name="mnuShareVerse">Verse</string>
-    <string name="mnuShowFav">Show Favorites</string>
+    <string name="mnuShowFav">Favorites</string>
     <string name="mnuThemeLight">Light</string>
     <string name="mnuTypefaceDefault">Default</string>
     <string name="searchBibleHint">Search Bible</string><!-- was: book chapter expression -->
@@ -154,8 +154,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tvPlanYourPlans">- Your plans -</string>
     <string name="tvTrad">Order:</string>
 
-    <string name="tvFavOrder">Order:</string>
-    <string name="favOrder0Short">Mark</string>
+    <string name="tvFavOrder">Order by:</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Book</string>
 

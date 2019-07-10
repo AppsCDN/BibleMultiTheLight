@@ -102,7 +102,7 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="mnuShareChapter">Capitolo</string>
     <string name="mnuShareResult">Tutto</string>
     <string name="mnuShareVerse">Versetto</string>
-    <string name="mnuShowFav">Mostrare favoriti</string>
+    <string name="mnuShowFav">Favoriti</string>
     <string name="mnuThemeLight">Chiaro</string>
     <string name="mnuTypefaceDefault">Predefinito</string>
     <string name="searchBibleHint">Cercare Bibbia</string>
@@ -153,10 +153,13 @@ Per favore, siate paziente, questo lungo process non si prodursi più all\'epoca
     <string name="tvPlanYourPlans">- Vostri piani -</string>
     <string name="tvTrad">Ordine:</string>
 
-    <string name="tvFavOrder">Ordine:</string>
-    <string name="favOrder0Short">Favorito</string>
+    <string name="tvFavOrder">Ordinare per:</string>
     <string name="favOrder1Short">Data</string>
     <string name="favOrder2Short">Libro</string>
+
+    <string name="tvFavFilter">Favoriti:</string>
+    <string name="favFilter1Short">Normale</string>
+    <string name="favFilter2Short">Lettura</string>
 
     <string name="PRBL1" tools:ignore="UnusedResources">Il buon pastore</string>
     <string name="PRBL2" tools:ignore="UnusedResources">Il grano e la zizzania (1)</string>

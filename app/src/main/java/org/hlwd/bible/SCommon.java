@@ -491,11 +491,11 @@ class SCommon
      * @param bbName
      * @param searchString  Give NULL to get all notes
      * @param orderBy       Order by
-     * @param markType      Mark type (NULL to get all types)
+     * @param markType      Mark type
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    ArrayList<VerseBO> SearchNotes(final String bbName, final String searchString, final int orderBy, final String markType)
+    ArrayList<VerseBO> SearchNotes(final String bbName, final String searchString, final int orderBy, final int markType)
     {
         ArrayList<VerseBO> lstVerse = new ArrayList<>();
 

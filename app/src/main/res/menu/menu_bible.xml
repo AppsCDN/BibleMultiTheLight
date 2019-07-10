@@ -12,29 +12,29 @@
         android:title="@string/mnuRemoveTab"
         app:showAsAction="never" />
     <item
-        android:id="@+id/mnu_show_fav"
-        android:orderInCategory="3"
-        android:title="@string/mnuShowFav"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/mnu_plans"
-        android:orderInCategory="4"
-        android:title="@string/mnuPlans"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/mnu_books"
-        android:orderInCategory="5"
+        android:orderInCategory="3"
         android:title="@string/mnuBooks"
         app:showAsAction="never" />
     <item
+        android:id="@+id/mnu_show_fav"
+        android:orderInCategory="4"
+        android:title="@string/mnuShowFav"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/mnu_prbl"
-        android:orderInCategory="7"
+        android:orderInCategory="5"
         android:title="@string/mnuPrbl"
         app:showAsAction="never" />
     <item
         android:id="@+id/mnu_articles"
-        android:orderInCategory="8"
+        android:orderInCategory="6"
         android:title="@string/mnuArticles"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mnu_plans"
+        android:orderInCategory="7"
+        android:title="@string/mnuPlans"
         app:showAsAction="never" />
     <item
         android:id="@+id/mnu_language"

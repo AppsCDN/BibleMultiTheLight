@@ -162,14 +162,6 @@ public class MainActivity extends AppCompatActivity
                         ShowFav();
                     }
                 });
-                final View mnuTvReadings = findViewById(R.id.mnuTvReadings);
-                mnuTvReadings.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Slide(false);
-                        ShowFav("2");
-                    }
-                });
                 final View mnuTvHelp = findViewById(R.id.mnuTvHelp);
                 mnuTvHelp.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1756,113 +1748,6 @@ public class MainActivity extends AppCompatActivity
                     });
                 }
             });
-            builder.show();
-        }
-        catch (Exception ex)
-        {
-            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
-        }
-    }
-
-    /***
-     * @param markType 1:normal, 2:reading
-     */
-    private void ShowFav(@SuppressWarnings("SameParameterValue") final String markType)
-    {
-        try
-        {
-            final AlertDialog builder = new AlertDialog.Builder(this).create();                     //R.style.DialogStyleKaki
-            final ScrollView sv = new ScrollView(this);
-            sv.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-
-            final LinearLayout llReading = new LinearLayout(this);
-            llReading.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-            llReading.setOrientation(LinearLayout.VERTICAL);
-
-            final Typeface typeface = PCommon.GetTypeface(this);
-            final int fontSize = PCommon.GetFontSize(this);
-
-            final String bbName = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "k");
-            final int orderBy = 0;          //TODO: it's hardcoded => enum list
-            final ArrayList<VerseBO> lstVerse =_s.SearchNotes(bbName, "", orderBy, markType);
-            if (lstVerse.size() == 0)
-            {
-                PCommon.ShowToast(getApplicationContext(), R.string.toastEmpty, Toast.LENGTH_SHORT);
-                return;
-            }
-
-            TextView tvReading;
-            String fullQuery;
-            String markText;
-
-            final AlertDialog builderLanguages = new AlertDialog.Builder(this).create();             //, R.style.DialogStyleKaki
-            final LayoutInflater inflater = getLayoutInflater();
-            final View vllLanguages = inflater.inflate(PCommon.SetUILayout(this, R.layout.fragment_languages_multi, R.layout.fragment_languages_multi_tv), (ViewGroup) findViewById(R.id.llLanguages));
-
-            for (VerseBO verse : lstVerse)
-            {
-                fullQuery = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
-                markText = PCommon.ConcaT(getString(R.string.bulletDefault), " <b>", verse.bName, " ", verse.cNumber, ".", verse.vNumber, ":</b><br>", verse.vText);
-
-                tvReading = new TextView(this);
-                tvReading.setLayoutParams(PCommon._layoutParamsMatchAndWrap);
-                tvReading.setPadding(10, 10, 10, 10);
-                tvReading.setText( Html.fromHtml(markText));
-                tvReading.setTag( fullQuery );
-                tvReading.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(final View view)
-                    {
-                        try
-                        {
-                            final String tag = (String) view.getTag();
-                            if (PCommon._isDebugVersion) System.out.println(tag);
-                            final String[] ref = tag.split(" ");
-                            final int bNumber = Integer.parseInt(ref[0]);
-                            final int cNumber = Integer.parseInt(ref[1]);
-                            final int vNumber = Integer.parseInt(ref[2]);
-                            final String fullQuery = PCommon.ConcaT(bNumber, " ", cNumber);
-
-                            final String msg = PCommon.ConcaT(getString(R.string.mnuReading), "");
-                            PCommon.SelectBibleLanguageMulti(builderLanguages, view.getContext(), vllLanguages, msg, "", true, false);
-                            builderLanguages.setOnDismissListener(new DialogInterface.OnDismissListener()
-                            {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface)
-                                {
-                                    final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-                                    if (bbname.equals("")) return;
-                                    final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
-                                    MainActivity.Tab.AddTab(view.getContext(), tbbName, bNumber, cNumber, fullQuery, vNumber);
-                                }
-                            });
-                            builderLanguages.show();
-                         }
-                        catch (Exception ex)
-                        {
-                            if (PCommon._isDebugVersion) PCommon.LogR(view.getContext(), ex);
-                        }
-                        finally
-                        {
-                            builder.dismiss();
-                        }
-                    }
-                });
-                tvReading.setFocusable(true);
-                tvReading.setBackground(PCommon.GetDrawable(getApplicationContext(), R.drawable.focus_text));
-
-                //Font
-                if (typeface != null) { tvReading.setTypeface(typeface); }
-                tvReading.setTextSize(fontSize);
-
-                llReading.addView(tvReading);
-            }
-            sv.addView(llReading);
-
-            builder.setTitle(markType.equalsIgnoreCase("2") ? R.string.mnuReading : R.string.mnuFav);
-            builder.setCancelable(true);
-            builder.setView(sv);
             builder.show();
         }
         catch (Exception ex)

@@ -99,10 +99,10 @@ class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.ViewHolder>
      * @param bbName
      * @param searchString  Give NULL to get all notes
      * @param orderBy       Order by
-     * @param markType      Mark type (NULL to get all types)
+     * @param markType      Mark type
      */
     @SuppressWarnings("JavaDoc")
-    BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, @SuppressWarnings("SameParameterValue") final String markType)
+    BibleAdapter(final Context context, final String bbName, final String searchString, final int orderBy, final int markType)
     {
         CheckLocalInstance(context);
         SetMark(context);

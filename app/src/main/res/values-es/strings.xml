@@ -102,7 +102,7 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="mnuShareChapter">Capítulo</string>
     <string name="mnuShareResult">Todos</string>
     <string name="mnuShareVerse">Versículo</string>
-    <string name="mnuShowFav">Mostrar favoritos</string>
+    <string name="mnuShowFav">Favoritos</string>
     <string name="mnuThemeLight">Claro</string>
     <string name="mnuTypefaceDefault">Predeterminado</string>
     <string name="searchBibleHint">Buscar Biblia</string>
@@ -153,10 +153,13 @@ Por favor, sea paciente, este proceso largo no se producirá más en el momento 
     <string name="tvPlanYourPlans">- Vuestros planes -</string>
     <string name="tvTrad">Orden:</string>
 
-    <string name="tvFavOrder">Orden:</string>
-    <string name="favOrder0Short">Favorito</string>
+    <string name="tvFavOrder">Ordenar por:</string>
     <string name="favOrder1Short">Data</string>
     <string name="favOrder2Short">Libro</string>
+
+    <string name="tvFavFilter">Favoritos:</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Lectura</string>
 
     <string name="PRBL1">El Buen Pastor</string>
     <string name="PRBL2">El trigo y la cizaña (1)</string>

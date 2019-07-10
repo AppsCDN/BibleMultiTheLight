@@ -102,7 +102,7 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="mnuShareChapter">Capítulo</string>
     <string name="mnuShareResult">Tudo</string>
     <string name="mnuShareVerse">Verso</string>
-    <string name="mnuShowFav">Mostrar Favoritos</string>
+    <string name="mnuShowFav">Favoritos</string>
     <string name="mnuThemeLight">Claro</string>
     <string name="mnuTypefaceDefault">Predefinido</string>
     <string name="searchBibleHint">Buscar Bíblia</string>
@@ -153,10 +153,13 @@ Por favor, seja paciente este longo processo não vai acontecer novamente durant
     <string name="tvPlanYourPlans">- Seus planos -</string>
     <string name="tvTrad">Ordem:</string>
 
-    <string name="tvFavOrder">Ordem:</string>
-    <string name="favOrder0Short">Favorito</string>
+    <string name="tvFavOrder">Ordenar por:</string>
     <string name="favOrder1Short">Data</string>
     <string name="favOrder2Short">Livro</string>
+
+    <string name="tvFavFilter">Favoritos:</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Leitura</string>
 
     <string name="PRBL1">O bom pastor</string>
     <string name="PRBL2">O trigo e o joio (1)</string>
