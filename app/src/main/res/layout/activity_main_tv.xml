@@ -17,13 +17,20 @@
         android:layout_marginRight="40dp" tools:ignore="RtlHardcoded,UselessParent">
 
         <!-- Screen elements that need to be within the overscan safe area go here -->
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/slideViewMenu"
+        <ScrollView
+            android:id="@+id/svSlideViewMenu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:visibility="gone" tools:ignore="InconsistentLayout">
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/slideViewMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                tools:ignore="InconsistentLayout">
 
             <TextView
                 android:id="@+id/mnuTvHelp"
@@ -247,13 +254,15 @@
                 app:layout_constraintTop_toTopOf="@+id/ivLogo"
                 tools:ignore="HardcodedText,RtlCompat"/>
         </android.support.constraint.ConstraintLayout>
+        </ScrollView>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/slideViewTabHandleMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/slideViewMenu"
-            android:visibility="visible" tools:ignore="InconsistentLayout,RtlHardcoded">
+            android:layout_toRightOf="@id/svSlideViewMenu"
+            android:visibility="visible"
+            tools:ignore="InconsistentLayout,RtlHardcoded">
 
             <TextView
                 android:id="@+id/slideViewTabHandle"

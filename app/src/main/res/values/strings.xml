@@ -160,7 +160,6 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="favOrder2Short">Book</string>
 
     <string name="tvFavFilter">Favorites:</string>
-    <string name="favFilter0Short">All</string>
     <string name="favFilter1Short">Normal</string>
     <string name="favFilter2Short">Reading</string>
 

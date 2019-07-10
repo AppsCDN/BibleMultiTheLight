@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
             setContentView(PCommon.SetUILayout(getApplicationContext(), R.layout.activity_main, R.layout.activity_main_tv));
 
             llMain = findViewById(isUiTelevision ? R.id.slideViewTab : R.id.llMain);
-            slideViewMenu = (isUiTelevision) ? findViewById(R.id.slideViewMenu) : null;
+            slideViewMenu = (isUiTelevision) ? findViewById(R.id.svSlideViewMenu) : null;
             slideViewMenuHandle = (isUiTelevision) ? findViewById(R.id.mnuTvHandle) : null;
             slideViewTab = (isUiTelevision) ? findViewById(R.id.slideViewTab) : null;
             slideViewTabHandleMain = (isUiTelevision) ? findViewById(R.id.slideViewTabHandleMain) : null;
@@ -128,14 +128,14 @@ public class MainActivity extends AppCompatActivity
                 slideViewTabSearch.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SearchTv(v.getContext(), true);
+                        SearchDialog(v.getContext(), true);
                     }
                 });
                 final View slideViewTabFilter = findViewById(R.id.slideViewTabFilter);
                 slideViewTabFilter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SearchTv(v.getContext(), false);
+                        SearchDialog(v.getContext(), false);
                     }
                 });
                 final View mnuTvArticles = findViewById(R.id.mnuTvArticles);
@@ -633,7 +633,7 @@ public class MainActivity extends AppCompatActivity
      */
     private int GetInstallStatusPerc()
     {
-        final int pos = _s.GetBibleIdCount();
+        final float pos = _s.GetBibleIdCount();
 
         return Math.round((pos * 100) / 155510);
     }
@@ -2442,23 +2442,34 @@ animate.setFillAfter(true);
 slideViewMenu.startAnimation(animate);
 */
 
-    /***
-     * Search TV
-     */
-    private void SearchTv(final Context context, final boolean isSearchBible)
+    void SearchDialog(final Context context, final boolean isSearchBible)
     {
         //TODO FAB: cancel not working
         try
         {
-            final int searchFullQueryLimit = 3;
+            final int searchFullQueryLimit = isSearchBible ? 3 : 0;
             final int installStatus = PCommon.GetInstallStatus(context);
             if (installStatus < 1) return;
+
+            final String favSearchText;
+            if (isSearchBible)
+            {
+                favSearchText = "";
+            }
+            else
+            {
+                CheckLocalInstance(context);
+
+                final CacheTabBO favCacheTabBO = _s.GetCacheTabFav();
+                favSearchText = (favCacheTabBO == null) ? "" : (favCacheTabBO.fullQuery == null) ? "" : favCacheTabBO.fullQuery;
+            }
 
             final String bbname = PCommon.GetPref(context, IProject.APP_PREF_KEY.BIBLE_NAME, "k");
             final AlertDialog builderText = new AlertDialog.Builder(context).create();
             final LayoutInflater inflater = getLayoutInflater();
-            final View vw = inflater.inflate(R.layout.fragment_search_tv, (ViewGroup) findViewById(R.id.clSearch));
+            final View vw = inflater.inflate(R.layout.fragment_search_dialog, (ViewGroup) findViewById(R.id.clSearch));
             final EditText etSearchText = vw.findViewById(R.id.etSearchText);
+            etSearchText.setText(favSearchText);
             final String searchTextHint = PCommon.ConcaT("<i>", getString(isSearchBible ? R.string.searchBibleHint : R.string.searchFavHint, "</i>"));
             etSearchText.setHint(Html.fromHtml(searchTextHint));
             final NumberPicker npSearchLanguage = vw.findViewById(R.id.npSearchLanguage);
@@ -2557,7 +2568,8 @@ slideViewMenu.startAnimation(animate);
                 @Override
                 public void onClick(View v) {
                     etSearchText.setText(etSearchText.getText().toString().replaceAll("\n", ""));
-                    if (etSearchText.getText().toString().length() < searchFullQueryLimit) {
+                    if (etSearchText.getText().toString().length() < searchFullQueryLimit)
+                    {
                         PCommon.ShowToast(v.getContext(), R.string.toastEmpty3, Toast.LENGTH_SHORT);
                         return;
                     }
@@ -2571,10 +2583,6 @@ slideViewMenu.startAnimation(animate);
                 {
                     etSearchText.setText("");
                     etSearchText.requestFocus();
-                    if (!isSearchBible)
-                    {
-                        builderText.dismiss();
-                    }
                 }
             });
             builderText.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -2603,65 +2611,6 @@ slideViewMenu.startAnimation(animate);
             if (PCommon._isDebugVersion) PCommon.LogR(context, ex);
         }
     }
-
-/* else
-{
-
-    final String bbname = PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, bbName);
-    if (bbname.equals("")) return;
-    //not used: final String tbbName = PCommon.GetPrefTradBibleName(view.getContext(), true);
-    final int cNumber = Integer.parseInt(PCommon.GetPref(view.getContext(), IProject.APP_PREF_KEY.BOOK_CHAPTER_DIALOG, "0"));
-    final String fullQuery = PCommon.ConcaT(bNumber,
-            cNumber != 0 ? PCommon.ConcaT( " ", cNumber) : "",
-            searchText != null ? PCommon.ConcaT(" ", searchText) : "");
-    MainActivity.Tab.AddTab(view.getContext(), bbname, bNumber, cNumber, fullQuery, 1);
-
-    //redo MainActivity.ShowHideFavClick() in Tab
-    //Set fullQuery in db, save Order in PREF and switch to tab. Here under is a test, please remove the code when done.
-    final int tabCount = MainActivity.Tab.GetTabCount();
-    @SuppressWarnings("UnusedAssignment") boolean isFavShow = false;
-
-    CacheTabBO cacheTabFav = _s.GetCacheTabFav();
-    if (cacheTabFav == null)
-    {
-        isFavShow = false;
-
-        cacheTabFav = new CacheTabBO();
-        cacheTabFav.tabNumber = -1;
-        cacheTabFav.tabType = "F";
-        cacheTabFav.tabTitle = getString(R.string.favHeader);
-
-        _s.SaveCacheTabFav(cacheTabFav);
-    }
-    else
-    {
-        isFavShow = true;
-    }
-
-    isFavShow = !isFavShow;
-    if (isFavShow)
-    {
-        //Show fav tab
-        //############
-        for (int i=tabCount-1; i >= 0; i--)
-        {
-            _s.UpdateCacheId(i, i+1);
-        }
-
-        cacheTabFav.tabNumber = 0;
-        _s.SaveCacheTabFav(cacheTabFav);
-
-        final TabLayout.Tab tab = tabLayout.newTab().setText(R.string.favHeader);
-        tabLayout.addTab(tab, 0);
-        MainActivity.Tab.FullScrollTab(getApplicationContext(), HorizontalScrollView.FOCUS_LEFT);
-    }
-    else
-    {
-        //Remove fav tab
-        //##############
-        MainActivity.Tab.RemoveTabFav(getApplicationContext());
-    }
-} */
 
     private void SearchTvBook(final Context context, final String searchText, final boolean isSearchBible)
     {

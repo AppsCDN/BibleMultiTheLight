@@ -635,8 +635,8 @@ public class SearchFragment extends Fragment
                         return true;
                     }
                     final String selectTo = PCommon.ConcaT(verse.bNumber, " ", verse.cNumber, " ", verse.vNumber);
-                    final String arrFrom[] = selectFrom.split("\\s");
-                    final String arrTo[] = selectTo.split("\\s");
+                    final String[] arrFrom = selectFrom.split("\\s");
+                    final String[] arrTo = selectTo.split("\\s");
 
                     if (arrFrom.length != 3 || arrTo.length != 3)
                     {
@@ -1284,7 +1284,7 @@ public class SearchFragment extends Fragment
             }
             case R.id.mnu_fav_search:
             {
-                ShowFavSearch();
+                ((MainActivity) getActivity()).SearchDialog(getContext(), false);
 
                 return true;
             }
@@ -1739,6 +1739,7 @@ public class SearchFragment extends Fragment
         return dc;
     }
 
+/*
     private void ShowFavSearch()
     {
         try
@@ -1796,6 +1797,7 @@ public class SearchFragment extends Fragment
             if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
         }
     }
+*/
 
     private void SetTabTitle(final String title)
     {
