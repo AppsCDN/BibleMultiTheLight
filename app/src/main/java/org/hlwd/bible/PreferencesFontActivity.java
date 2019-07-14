@@ -33,7 +33,7 @@ public class PreferencesFontActivity extends AppCompatActivity
             final LayoutInflater inflater = getLayoutInflater();
             final LinearLayout llFont = (LinearLayout) (inflater.inflate(R.layout.activity_font_preferences, (LinearLayout) findViewById(R.id.llFont)));
             final RadioGroup radioGroup = new RadioGroup(context);
-            final String fontNameSelected = PCommon.GetPref(context, IProject.APP_PREF_KEY.FONT_NAME);
+            final String fontNameSelected = PCommon.GetPref(context, IProject.APP_PREF_KEY.FONT_NAME, "");
             final ScrollView svFont = new ScrollView(context);
             llFont.addView(radioGroup);
             svFont.addView(llFont);

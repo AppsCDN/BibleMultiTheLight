@@ -75,6 +75,7 @@
             android:id="@+id/btnFavFilter2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="8dp"
             android:focusable="true"
             android:nextFocusDown="@id/btnFavOrder2"
@@ -85,6 +86,8 @@
             android:textOff="@string/favFilter2Short"
             android:textOn="@string/favFilter2Short"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/btnFavFilter1"
             app:layout_constraintTop_toTopOf="@+id/btnFavFilter1"/>
 
@@ -119,6 +122,7 @@
             android:id="@+id/btnFavOrder2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="8dp"
             android:focusable="true"
             android:nextFocusDown="@id/etSearchText"
@@ -129,6 +133,8 @@
             android:textOff="@string/favOrder2Short"
             android:textOn="@string/favOrder2Short"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/btnFavOrder1"
             app:layout_constraintTop_toTopOf="@+id/btnFavOrder1"/>
 

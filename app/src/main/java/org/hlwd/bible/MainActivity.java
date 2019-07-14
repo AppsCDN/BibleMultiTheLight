@@ -138,6 +138,27 @@ public class MainActivity extends AppCompatActivity
                         SearchDialog(v.getContext(), false);
                     }
                 });
+                final View slideViewTabBooks = findViewById(R.id.slideViewTabBooks);
+                slideViewTabBooks.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowBooks(v.getContext());
+                    }
+                });
+                final View slideViewTabPrbl = findViewById(R.id.slideViewTabPrbl);
+                slideViewTabPrbl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowPrbl();
+                    }
+                });
+                final View slideViewTabArticles = findViewById(R.id.slideViewTabArticles);
+                slideViewTabArticles.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PCommon.ShowArticles(v.getContext());
+                    }
+                });
                 final View mnuTvArticles = findViewById(R.id.mnuTvArticles);
                 mnuTvArticles.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -379,10 +400,6 @@ public class MainActivity extends AppCompatActivity
         {
             if (PCommon._isDebugVersion) System.out.println("Main: onPostResume");
 
-            /* This code has been removed since version 3.7
-            PCommon.SetSound(getApplicationContext(), true);
-            */
-
             final String BIBLE_NAME = PCommon.GetPref(getApplicationContext(), IProject.APP_PREF_KEY.BIBLE_NAME, "");
             if (BIBLE_NAME.compareToIgnoreCase("k") != 0 && BIBLE_NAME.compareToIgnoreCase("l") != 0 && BIBLE_NAME.compareToIgnoreCase("d") != 0 && BIBLE_NAME.compareToIgnoreCase("v") != 0 && BIBLE_NAME.compareToIgnoreCase("a") != 0 )
             {
@@ -558,16 +575,6 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-/* NOT USED
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        //This code has been removed since version 3.7
-        PCommon.SetSound(getApplicationContext(), false);
-    }
-*/
 
     @Override
     protected void onDestroy() {

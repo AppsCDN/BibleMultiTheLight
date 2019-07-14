@@ -58,7 +58,7 @@ final class PCommon implements IProject
 
     //The following variable should be false before putting on the Market and Debuggable=False in manifest
 
-    final static boolean _isDebugVersion = false;
+    final static boolean _isDebugVersion = true;
 
     final static LayoutParams _layoutParamsWrap = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     final static LayoutParams _layoutParamsMatchAndWrap = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -226,18 +226,6 @@ final class PCommon implements IProject
     }
 
     /**
-     * Get key from SharedPreferences (defaultValue is "")
-     * @param context
-     * @param key
-     * @return
-     */
-    @SuppressWarnings("JavaDoc")
-    static String GetPref(final Context context, final APP_PREF_KEY key)
-    {
-        return GetPref(context, key, "");
-    }
-
-    /**
      * Get key from SharedPreferences
      * @param context
      * @param key
@@ -259,7 +247,7 @@ final class PCommon implements IProject
     @SuppressWarnings("JavaDoc")
     static String GetPrefBibleName(final Context context)
     {
-        String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME);
+        String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME, "");
         if (bbName == null || bbName.equals("")) bbName = "k";
 
         return bbName;
@@ -273,7 +261,7 @@ final class PCommon implements IProject
     @SuppressWarnings("JavaDoc")
     static String GetPrefTradBibleName(final Context context, final boolean canReturnDefaultValue)
     {
-        String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME);
+        String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME, "");
         if (trad == null || trad.equals(""))
         {
             if (canReturnDefaultValue)
