@@ -420,6 +420,9 @@ Se você tiver algum problema ou sugestão, entre em contato comigo (menu A prop
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.14</H>
+• Mudanças na interface do usuário (Televisão, Favoritos)<br>
+<br>
 <H>3.13</H>
 • Suporte para Android 9.0 (Pie)<br>
 • Suporte para Chromebook<br>

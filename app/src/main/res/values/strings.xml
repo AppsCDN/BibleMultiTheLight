@@ -761,6 +761,9 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.14</H>
+• User Interface changes (Television, Favorites)<br>
+<br>
 <H>3.13</H>
 • Support for Android 9.0 (Pie)<br>
 • Support for Chromebook<br>
