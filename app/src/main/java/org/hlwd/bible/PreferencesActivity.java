@@ -6,12 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 
 public class PreferencesActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        try
+        {
+            super.onCreate(savedInstanceState);
 
-        final int themeId = PCommon.GetPrefThemeId(getApplicationContext());
-        setTheme(themeId);
+            final int themeId = PCommon.GetPrefThemeId(getApplicationContext());
+            setTheme(themeId);
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferencesFragment(), "PA").commit();
+            getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferencesFragment(), "PA").commit();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
+        }
     }
 }

@@ -18,11 +18,18 @@ public class PreferencesFontActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+        try
+        {
+            super.onCreate(savedInstanceState);
 
-        final int themeId = PCommon.GetPrefThemeId(this);
-        setTheme(themeId);
-        ShowTypefaces();
+            final int themeId = PCommon.GetPrefThemeId(this);
+            setTheme(themeId);
+            ShowTypefaces();
+        }
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getApplicationContext(), ex);
+        }
     }
 
     private void ShowTypefaces()
