@@ -85,6 +85,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupLayoutDynamic4">Display for 4 languages</string>
     <string name="mnuGroupLayoutDynamic5">Display for 5 languages</string>
     <string name="mnuGroupTheme">Theme</string>
+    <string name="mnuGroupThemeUiLayoutSummary">Require restart of application</string>
     <string name="mnuGroupTypeface">Font style</string>
     <string name="mnuGroupUiLayout">User interface</string>
     <string name="mnuGroupFontSize">Font size</string>
@@ -102,7 +103,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuShareChapter">Chapter</string>
     <string name="mnuShareResult">All</string>
     <string name="mnuShareVerse">Verse</string>
-    <string name="mnuShowFav">Show Favorites</string>
+    <string name="mnuShowFav">Favorites</string>
     <string name="mnuThemeLight">Light</string>
     <string name="mnuTypefaceDefault">Default</string>
     <string name="searchBibleHint">Search Bible</string><!-- was: book chapter expression -->
@@ -143,6 +144,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastNoBrowser">Install a browser.</string>
     <string name="toastRefAdded">added</string>
     <string name="toastRefIncorrect">Reference incorrect!</string>
+    <string name="toastRestartLong">Restart the application to take effect&#8230;</string>
+    <string name="toastRestartShort">Restart the application&#8230;</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>
@@ -154,14 +157,13 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="tvPlanYourPlans">- Your plans -</string>
     <string name="tvTrad">Order:</string>
 
-    <string name="tvFavOrder">Order:</string>
-    <string name="favOrder0">Mark (reading first)</string>
-    <string name="favOrder1">Date (recent first)</string>
-    <string name="favOrder2">Book (order)</string>
-
-    <string name="favOrder0Short">Mark</string>
+    <string name="tvFavOrder">Order by:</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Book</string>
+
+    <string name="tvFavFilter">Favorites:</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Reading</string>
 
     <string name="PRBL1">The Good Shepherd</string>
     <string name="PRBL2">The wheat and the tares (1)</string>
@@ -762,6 +764,10 @@ For any issues or suggestions, please contact me (About menu).<br>
     <string name="ART_APP_LOG">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="Typos"><![CDATA[
 <HA/>
+<H>3.14</H>
+• User Interface changes (Television, Favorites)<br>
+• Fix: Settings<br>
+<br>
 <H>3.13</H>
 • Support for Android 9.0 (Pie)<br>
 • Support for Chromebook<br>
@@ -1983,6 +1989,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="leftHandle" translatable="false">&lt;</string>
     <string name="rightHandle" translatable="false">&gt;</string>
     <string name="mnuUiLayoutDefault" translatable="false">C</string>
+    <string name="snackbarWaitVeryLong" translatable="false">10000</string>
     <string name="tv1" translatable="false" tools:keep="@string/tv1">1</string>
     <string name="tv2" translatable="false" tools:keep="@string/tv2">2</string>
 

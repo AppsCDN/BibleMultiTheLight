@@ -85,6 +85,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuGroupLayoutDynamic4">Affichage pour 4 langues</string>
     <string name="mnuGroupLayoutDynamic5">Affichage pour 5 langues</string>
     <string name="mnuGroupTheme">Thème</string>
+    <string name="mnuGroupThemeUiLayoutSummary">Nécessite de redémarrer l\'application</string>
     <string name="mnuGroupTypeface">Police</string>
     <string name="mnuGroupUiLayout">Interface utilisateur</string>
     <string name="mnuGroupFontSize">Taille de la police</string>
@@ -102,7 +103,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuShareChapter">Chapitre</string>
     <string name="mnuShareResult">Tout</string>
     <string name="mnuShareVerse">Verset</string>
-    <string name="mnuShowFav">Montrer Favoris</string>
+    <string name="mnuShowFav">Favoris</string>
     <string name="mnuThemeLight">Clair</string>
     <string name="mnuTypefaceDefault">Défaut</string>
     <string name="searchBibleHint">Chercher Bible</string><!-- was: book chapter expression -->
@@ -142,6 +143,8 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="toastNoBrowser">Installez un browser.</string>
     <string name="toastRefAdded">ajouté</string>
     <string name="toastRefIncorrect">Référence incorrecte!</string>
+    <string name="toastRestartLong">Redémarrez l\'application pour prendre effet&#8230;</string>
+    <string name="toastRestartShort">Redémarrez l\'application&#8230;</string>
     <string name="tvBookInstall">(installation&#8230;)</string>
     <string name="tvBookTitle">Livre</string>
     <string name="tvBookOT">- Ancien Testament -</string>
@@ -153,14 +156,13 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="tvPlanYourPlans">- Vos plans -</string>
     <string name="tvTrad">Ordre:</string>
 
-    <string name="tvFavOrder">Ordre:</string>
-    <string name="favOrder0">Favori (lecture en premier)</string>
-    <string name="favOrder1">Date (récent en premier)</string>
-    <string name="favOrder2">Livre (ordre)</string>
-
-    <string name="favOrder0Short">Favori</string>
+    <string name="tvFavOrder">Trier par:</string>
     <string name="favOrder1Short">Date</string>
     <string name="favOrder2Short">Livre</string>
+
+    <string name="tvFavFilter">Favoris:</string>
+    <string name="favFilter1Short">Normal</string>
+    <string name="favFilter2Short">Lecture</string>
 
     <string name="PRBL1">Le bon berger</string>
     <string name="PRBL2">Le bon grain et l\'ivraie (1)</string>
@@ -760,6 +762,10 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
     <string name="ART_APP_LOG" tools:ignore="UnusedResources">Logs</string>
     <string name="ART_APP_LOG_CONTENT" tools:ignore="UnusedResources"><![CDATA[
 <HA/>
+<H>3.14</H>
+• Changements dans l\'interface utilisateur (Télévision, Favoris)<br>
+• Fix: Paramètres<br>
+<br>
 <H>3.13</H>
 • Support pour Android 9.0 (Pie)<br>
 • Support pour Chromebook<br>

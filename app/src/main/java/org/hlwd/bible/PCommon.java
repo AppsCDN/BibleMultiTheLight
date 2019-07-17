@@ -226,18 +226,6 @@ final class PCommon implements IProject
     }
 
     /**
-     * Get key from SharedPreferences (defaultValue is "")
-     * @param context
-     * @param key
-     * @return
-     */
-    @SuppressWarnings("JavaDoc")
-    static String GetPref(final Context context, final APP_PREF_KEY key)
-    {
-        return GetPref(context, key, "");
-    }
-
-    /**
      * Get key from SharedPreferences
      * @param context
      * @param key
@@ -259,7 +247,7 @@ final class PCommon implements IProject
     @SuppressWarnings("JavaDoc")
     static String GetPrefBibleName(final Context context)
     {
-        String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME);
+        String bbName = PCommon.GetPref(context, APP_PREF_KEY.BIBLE_NAME, "");
         if (bbName == null || bbName.equals("")) bbName = "k";
 
         return bbName;
@@ -273,7 +261,7 @@ final class PCommon implements IProject
     @SuppressWarnings("JavaDoc")
     static String GetPrefTradBibleName(final Context context, final boolean canReturnDefaultValue)
     {
-        String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME);
+        String trad = PCommon.GetPref(context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME, "");
         if (trad == null || trad.equals(""))
         {
             if (canReturnDefaultValue)
@@ -1893,6 +1881,28 @@ final class PCommon implements IProject
     static int GetEditArticleId(final Context context)
     {
         return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.EDIT_ART_ID, "-1"));
+    }
+
+    /***
+     * Get Fav Filter
+     * @return 0..2
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetFavFilter(final Context context)
+    {
+        return Integer.parseInt(PCommon.GetPref(context, APP_PREF_KEY.FAV_FILTER, "0"));
+    }
+
+    /***
+     * Get Fav Order
+     * @return 1 or 2
+     */
+    @SuppressWarnings("JavaDoc")
+    static int GetFavOrder(final Context context)
+    {
+        final int orderBy = Integer.parseInt(PCommon.GetPref(context, IProject.APP_PREF_KEY.FAV_ORDER, "1"));
+
+        return orderBy == 0 ? 1 : orderBy;
     }
 
     /***

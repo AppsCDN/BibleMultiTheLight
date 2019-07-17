@@ -21,3 +21,4 @@
 -keep interface android.support.v7.** { *; }
 -keep class !android.support.v4.internal.view.menu.**,android.support.v4.** {*;}
 -keep interface android.support.v4.** { *; }
+-printmapping mapping.txt

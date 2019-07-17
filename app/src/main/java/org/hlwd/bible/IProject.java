@@ -47,6 +47,8 @@ public interface IProject
 
         FONT_SIZE,
 
+        FAV_FILTER,
+
         FAV_SYMBOL,
 
         FAV_ORDER,

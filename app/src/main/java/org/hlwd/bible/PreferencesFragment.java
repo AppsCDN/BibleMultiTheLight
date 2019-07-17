@@ -12,52 +12,59 @@ public class PreferencesFragment extends PreferenceFragment
     @Override
     public void onCreate(final Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-
-        addPreferencesFromResource(R.xml.preferences);
-
-        final Preference prefThemeName = findPreference("THEME_NAME");
-        if (prefThemeName != null)
+        try
         {
-            prefThemeName.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
+            super.onCreate(savedInstanceState);
 
-                    final String themeName = o.toString();
-                    PCommon.SetThemeName(preference.getContext(), themeName);
+            addPreferencesFromResource(R.xml.preferences);
 
-                    final Intent returnIntent = new Intent();
-                    getActivity().setResult(Activity.RESULT_OK, returnIntent);
+            final Preference prefThemeName = findPreference("THEME_NAME");
+            if (prefThemeName != null)
+            {
+                prefThemeName.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
 
-                    return true;
-                }
-            });
+                        final String themeName = o.toString();
+                        PCommon.SetThemeName(preference.getContext(), themeName);
+
+                        final Intent returnIntent = new Intent();
+                        getActivity().setResult(Activity.RESULT_OK, returnIntent);
+
+                        return true;
+                    }
+                });
+            }
+
+            final Preference prefLayoutColumn = findPreference("LAYOUT_COLUMN");
+            if (prefLayoutColumn != null) {
+                prefLayoutColumn.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        final Intent returnIntent = new Intent();
+                        getActivity().setResult(Activity.RESULT_OK, returnIntent);
+
+                        return true;
+                    }
+                });
+            }
+
+            final Preference prefUiLayout = findPreference("UI_LAYOUT");
+            if (prefUiLayout != null) {
+                prefUiLayout.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        final Intent returnIntent = new Intent();
+                        getActivity().setResult(Activity.RESULT_OK, returnIntent);
+
+                        return true;
+                    }
+                });
+            }
         }
-
-        final Preference prefLayoutColumn = findPreference("LAYOUT_COLUMN");
-        if (prefLayoutColumn != null) {
-            prefLayoutColumn.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    final Intent returnIntent = new Intent();
-                    getActivity().setResult(Activity.RESULT_OK, returnIntent);
-
-                    return true;
-                }
-            });
-        }
-
-        final Preference prefUiLayout = findPreference("UI_LAYOUT");
-        if (prefUiLayout != null) {
-            prefUiLayout.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    final Intent returnIntent = new Intent();
-                    getActivity().setResult(Activity.RESULT_OK, returnIntent);
-
-                    return true;
-                }
-            });
+        catch (Exception ex)
+        {
+            if (PCommon._isDebugVersion) PCommon.LogR(getContext(), ex);
         }
     }
 }

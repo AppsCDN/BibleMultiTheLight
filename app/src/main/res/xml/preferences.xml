@@ -17,6 +17,7 @@
             android:entryValues="@array/UI_LAYOUT_VALUES_ARRAY"
             android:defaultValue="@string/mnuUiLayoutDefault"
             android:persistent="true"
+            android:summary="@string/mnuGroupThemeUiLayoutSummary"
         />
 
         <ListPreference
@@ -26,6 +27,7 @@
             android:entryValues="@array/THEME_VALUES_ARRAY"
             android:defaultValue="@string/mnuThemeLight"
             android:persistent="true"
+            android:summary="@string/mnuGroupThemeUiLayoutSummary"
         />
 
         <Preference

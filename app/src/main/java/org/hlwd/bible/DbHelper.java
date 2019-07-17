@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 //<editor-fold defaultstate="collapsed" desc="-- History --">
+// PROD: Bible 3.14,   DbVersion: 35 (13)2019-07-17
 // PROD: Bible 3.13,   DbVersion: 34 (12)2019-07-07
 // PROD: Bible 3.12,   DbVersion: 33 (12)2019-06-23
 // PROD: Bible 3.11,   DbVersion: 32 (12)2019-06-16
@@ -68,7 +69,7 @@ class DbHelper extends SQLiteOpenHelper
     @SuppressWarnings("UnusedAssignment")
     private Context _context = null;
     private SQLiteDatabase _db = null;
-    private static final int _version = 34;
+    private static final int _version = 35;
 
     //</editor-fold>
 
@@ -493,6 +494,7 @@ class DbHelper extends SQLiteOpenHelper
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_NAME, isUiTelevision ? "RobotoCondensed.regular" : "");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FONT_SIZE, isUiTelevision ? "20" : "14");
         PCommon.SavePref(_context,      IProject.APP_PREF_KEY.FAV_SYMBOL, _context.getString(R.string.favSymbolFavDefault));
+        PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_FILTER, 0);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.FAV_ORDER, 1);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.VIEW_POSITION, 0);
         PCommon.SavePrefInt(_context,   IProject.APP_PREF_KEY.PLAN_ID, -1);
@@ -505,32 +507,33 @@ class DbHelper extends SQLiteOpenHelper
         {
             if (!PCommon._isDebugVersion) return;
 
-            System.out.println(PCommon.ConcaT("INSTALL_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.INSTALL_STATUS)));
-            System.out.println(PCommon.ConcaT("UPDATE_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UPDATE_STATUS)));
-            System.out.println(PCommon.ConcaT("LOG_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LOG_STATUS)));
-            System.out.println(PCommon.ConcaT("EDIT_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_DIALOG)));
-            System.out.println(PCommon.ConcaT("EDIT_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_STATUS)));
-            System.out.println(PCommon.ConcaT("EDIT_ART_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_ART_ID)));
-            System.out.println(PCommon.ConcaT("EDIT_SELECTION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_SELECTION)));
-            System.out.println(PCommon.ConcaT("BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME)));
-            System.out.println(PCommon.ConcaT("BIBLE_NAME_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG)));
-            System.out.println(PCommon.ConcaT("TRAD_BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME)));
-            System.out.println(PCommon.ConcaT("BIBLE_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_ID)));
-            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_1:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_1)));
-            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_2:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_2)));
-            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_3:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3)));
-            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_4:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4)));
-            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_5:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5)));
-            System.out.println(PCommon.ConcaT("LISTEN_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION)));
-            System.out.println(PCommon.ConcaT("THEME_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME)));
-            System.out.println(PCommon.ConcaT("FONT_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_NAME)));
-            System.out.println(PCommon.ConcaT("FONT_SIZE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_SIZE)));
-            System.out.println(PCommon.ConcaT("FAV_SYMBOL:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_SYMBOL)));
-            System.out.println(PCommon.ConcaT("FAV_ORDER:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_ORDER)));
-            System.out.println(PCommon.ConcaT("VIEW_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.VIEW_POSITION)));
-            System.out.println(PCommon.ConcaT("PLAN_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_ID)));
-            System.out.println(PCommon.ConcaT("PLAN_PAGE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_PAGE)));
-            System.out.println(PCommon.ConcaT("UI_LAYOUT:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UI_LAYOUT)));
+            System.out.println(PCommon.ConcaT("INSTALL_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.INSTALL_STATUS, "")));
+            System.out.println(PCommon.ConcaT("UPDATE_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UPDATE_STATUS, "")));
+            System.out.println(PCommon.ConcaT("LOG_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LOG_STATUS, "")));
+            System.out.println(PCommon.ConcaT("EDIT_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_DIALOG, "")));
+            System.out.println(PCommon.ConcaT("EDIT_STATUS:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_STATUS, "")));
+            System.out.println(PCommon.ConcaT("EDIT_ART_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_ART_ID, "")));
+            System.out.println(PCommon.ConcaT("EDIT_SELECTION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.EDIT_SELECTION, "")));
+            System.out.println(PCommon.ConcaT("BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME, "")));
+            System.out.println(PCommon.ConcaT("BIBLE_NAME_DIALOG:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_NAME_DIALOG, "")));
+            System.out.println(PCommon.ConcaT("TRAD_BIBLE_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.TRAD_BIBLE_NAME, "")));
+            System.out.println(PCommon.ConcaT("BIBLE_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.BIBLE_ID, "")));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_1:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_1, "")));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_2:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_2, "")));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_3:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_3, "")));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_4:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_4, "")));
+            System.out.println(PCommon.ConcaT("LAYOUT_DYNAMIC_5:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LAYOUT_DYNAMIC_5, "")));
+            System.out.println(PCommon.ConcaT("LISTEN_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.LISTEN_POSITION, "")));
+            System.out.println(PCommon.ConcaT("THEME_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.THEME_NAME, "")));
+            System.out.println(PCommon.ConcaT("FONT_NAME:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_NAME, "")));
+            System.out.println(PCommon.ConcaT("FONT_SIZE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FONT_SIZE, "")));
+            System.out.println(PCommon.ConcaT("FAV_SYMBOL:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_SYMBOL, "")));
+            System.out.println(PCommon.ConcaT("FAV_FILTER:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_FILTER, "")));
+            System.out.println(PCommon.ConcaT("FAV_ORDER:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.FAV_ORDER, "")));
+            System.out.println(PCommon.ConcaT("VIEW_POSITION:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.VIEW_POSITION, "")));
+            System.out.println(PCommon.ConcaT("PLAN_ID:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_ID, "")));
+            System.out.println(PCommon.ConcaT("PLAN_PAGE:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.PLAN_PAGE, "")));
+            System.out.println(PCommon.ConcaT("UI_LAYOUT:", PCommon.GetPref(_context, IProject.APP_PREF_KEY.UI_LAYOUT, "")));
         }
         catch (Exception ex)
         {

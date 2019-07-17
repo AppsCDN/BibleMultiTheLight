@@ -901,11 +901,11 @@ class Dal
      * @param bbName
      * @param searchString  Give NULL to get all notes
      * @param orderBy       Order by
-     * @param markType      Mark type (NULL to get all types)
+     * @param markType      Mark type
      * @return list of verses
      */
     @SuppressWarnings("JavaDoc")
-    ArrayList<VerseBO> SearchNotes(final String bbName, String searchString, final int orderBy, final String markType)
+    ArrayList<VerseBO> SearchNotes(final String bbName, String searchString, final int orderBy, final int markType)
     {
         //TODO: maybe add ID in this call :)  for SearchFragment and GetVerse
 
@@ -920,10 +920,6 @@ class Dal
             final String orderByClause;
             switch (orderBy)
             {
-                case 0:
-                    orderByClause = "n.mark DESC, n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
-                    break;
-
                 case 1:
                     orderByClause = "n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
                     break;
@@ -933,7 +929,7 @@ class Dal
                     break;
 
                 default:
-                    orderByClause = "b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
+                    orderByClause = "n.changeDt DESC, b.bNumber ASC, b.cNumber ASC, b.vNumber ASC";
                     break;
             }
 
@@ -949,7 +945,7 @@ class Dal
                 sql = PCommon.ConcaT(sql, " AND b.vText like ", PCommon.AQ(PCommon.RQ(searchString)));
             }
 
-            if (markType != null)
+            if (markType > 0)
             {
                 sql = PCommon.ConcaT(sql, " AND n.mark=", markType);
             }
