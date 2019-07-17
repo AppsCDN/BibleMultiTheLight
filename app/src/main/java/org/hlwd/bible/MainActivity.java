@@ -601,8 +601,19 @@ public class MainActivity extends AppCompatActivity
             handler.postDelayed(new Runnable()
             {
                 @Override
-                public void run() {
-                    recreate();
+                public void run()
+                {
+                    if (!isUiTelevision)
+                    {
+                        final String contentMsg = getString(R.string.toastRestartLong);
+                        final int waitDuration = Integer.parseInt(getString(R.string.snackbarWaitVeryLong));
+                        final Snackbar snackbar = Snackbar.make(llMain, contentMsg, waitDuration);
+                        snackbar.show();
+                    }
+                    else
+                    {
+                        PCommon.ShowToast(getApplicationContext(), R.string.toastRestartShort, Toast.LENGTH_LONG);
+                    }
                 }
             }, 500);
         }

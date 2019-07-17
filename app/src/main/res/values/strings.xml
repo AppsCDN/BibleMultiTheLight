@@ -85,6 +85,7 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="mnuGroupLayoutDynamic4">Display for 4 languages</string>
     <string name="mnuGroupLayoutDynamic5">Display for 5 languages</string>
     <string name="mnuGroupTheme">Theme</string>
+    <string name="mnuGroupThemeUiLayoutSummary">Require restart of application</string>
     <string name="mnuGroupTypeface">Font style</string>
     <string name="mnuGroupUiLayout">User interface</string>
     <string name="mnuGroupFontSize">Font size</string>
@@ -143,6 +144,8 @@ Meanwhile, you can read the Bible in English (Books menu), read the Help or make
     <string name="toastNoBrowser">Install a browser.</string>
     <string name="toastRefAdded">added</string>
     <string name="toastRefIncorrect">Reference incorrect!</string>
+    <string name="toastRestartLong">Restart the application to take effect&#8230;</string>
+    <string name="toastRestartShort">Restart the application&#8230;</string>
     <string name="tvBookInstall">(installing&#8230;)</string>
     <string name="tvBookTitle">Book</string>
     <string name="tvBookOT">- Old Testament -</string>
@@ -763,6 +766,7 @@ For any issues or suggestions, please contact me (About menu).<br>
 <HA/>
 <H>3.14</H>
 • User Interface changes (Television, Favorites)<br>
+• Fix: Settings<br>
 <br>
 <H>3.13</H>
 • Support for Android 9.0 (Pie)<br>
@@ -1985,6 +1989,7 @@ Read this parable and learn how God, our loving Father, is waiting for us to rep
     <string name="leftHandle" translatable="false">&lt;</string>
     <string name="rightHandle" translatable="false">&gt;</string>
     <string name="mnuUiLayoutDefault" translatable="false">C</string>
+    <string name="snackbarWaitVeryLong" translatable="false">10000</string>
     <string name="tv1" translatable="false" tools:keep="@string/tv1">1</string>
     <string name="tv2" translatable="false" tools:keep="@string/tv2">2</string>
 

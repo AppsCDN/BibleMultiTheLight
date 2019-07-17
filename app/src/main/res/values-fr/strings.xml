@@ -85,6 +85,7 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="mnuGroupLayoutDynamic4">Affichage pour 4 langues</string>
     <string name="mnuGroupLayoutDynamic5">Affichage pour 5 langues</string>
     <string name="mnuGroupTheme">Thème</string>
+    <string name="mnuGroupThemeUiLayoutSummary">Nécessite de redémarrer l\'application</string>
     <string name="mnuGroupTypeface">Police</string>
     <string name="mnuGroupUiLayout">Interface utilisateur</string>
     <string name="mnuGroupFontSize">Taille de la police</string>
@@ -142,6 +143,8 @@ S\'il vous plaît, soyez patient, ce long process ne se produira plus lors des m
     <string name="toastNoBrowser">Installez un browser.</string>
     <string name="toastRefAdded">ajouté</string>
     <string name="toastRefIncorrect">Référence incorrecte!</string>
+    <string name="toastRestartLong">Redémarrez l\'application pour prendre effet&#8230;</string>
+    <string name="toastRestartShort">Redémarrez l\'application&#8230;</string>
     <string name="tvBookInstall">(installation&#8230;)</string>
     <string name="tvBookTitle">Livre</string>
     <string name="tvBookOT">- Ancien Testament -</string>
@@ -761,6 +764,7 @@ Si vous avez des problèmes ou des suggestions, contactez-moi (menu A Propos).<b
 <HA/>
 <H>3.14</H>
 • Changements dans l\'interface utilisateur (Télévision, Favoris)<br>
+• Fix: Paramètres<br>
 <br>
 <H>3.13</H>
 • Support pour Android 9.0 (Pie)<br>

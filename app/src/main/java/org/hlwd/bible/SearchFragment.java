@@ -1360,7 +1360,7 @@ public class SearchFragment extends Fragment
         recyclerView = v.findViewById(R.id.card_recycler_view);
 
         final RecyclerView.LayoutManager layoutManager;
-        if (trad == null)
+        if (trad == null || fragmentType == FRAGMENT_TYPE.ARTICLE_TYPE || fragmentType == FRAGMENT_TYPE.FAV_TYPE)
         {
             layoutManager = new LinearLayoutManager(_context);
         }
